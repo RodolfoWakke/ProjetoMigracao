@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/03/10 12:02:20.007</modified_date>
+  <modified_date>2023/03/10 12:10:09.794</modified_date>
   <parameters>
     </parameters>
   <connection>
@@ -923,7 +923,7 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>688</xloc>
+      <xloc>624</xloc>
       <yloc>576</yloc>
       <attributes_kjc/>
     </entry>
@@ -947,7 +947,7 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>688</xloc>
+      <xloc>624</xloc>
       <yloc>752</yloc>
       <attributes_kjc/>
     </entry>
@@ -988,7 +988,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>848</xloc>
-      <yloc>640</yloc>
+      <yloc>576</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -1051,7 +1051,7 @@ SET m.codcurso = s.codcurso;
       <specification_method>rep_name</specification_method>
       <job_object_id/>
       <filename/>
-      <jobname>JOB - EX-PONTE</jobname>
+      <jobname>JOB - SPONTE</jobname>
       <directory>/</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1137,7 +1137,7 @@ SET m.codcurso = s.codcurso;
       <specification_method>rep_name</specification_method>
       <job_object_id/>
       <filename/>
-      <jobname>JOB - EX-PONTE</jobname>
+      <jobname>JOB - SPONTE</jobname>
       <directory>/</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1162,7 +1162,7 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>736</xloc>
+      <xloc>720</xloc>
       <yloc>272</yloc>
       <attributes_kjc/>
     </entry>
@@ -1186,7 +1186,7 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>736</xloc>
+      <xloc>720</xloc>
       <yloc>160</yloc>
       <attributes_kjc/>
     </entry>
@@ -1198,7 +1198,7 @@ SET m.codcurso = s.codcurso;
       <specification_method>rep_name</specification_method>
       <job_object_id/>
       <filename/>
-      <jobname>JOB - EX-PONTE</jobname>
+      <jobname>JOB - SPONTE</jobname>
       <directory>/</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
