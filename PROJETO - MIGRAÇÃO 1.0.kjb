@@ -8,15 +8,15 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/03/10 12:10:09.794</modified_date>
+  <modified_date>2023/03/10 15:17:23.761</modified_date>
   <parameters>
     </parameters>
   <connection>
     <name>RDS</name>
-    <server>${end-RDS}</server>
+    <server>${v_end-RDS}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${nomebanco-RDS}</database>
+    <database>${v_nomebanco-RDS}</database>
     <port>3306</port>
     <username>ricardo.gad</username>
     <password>Encrypted 2be98afc86aa7f2e49910ad47df99a4df</password>
@@ -675,7 +675,7 @@ SET m.codcurso = s.codcurso;
       <attributes/>
       <valuetype>variable</valuetype>
       <fieldname>${etapas}</fieldname>
-      <variablename>${etapas}</variablename>
+      <variablename>${v_etapas}</variablename>
       <fieldtype>number</fieldtype>
       <mask/>
       <comparevalue>4</comparevalue>
@@ -699,7 +699,7 @@ SET m.codcurso = s.codcurso;
       <attributes/>
       <valuetype>variable</valuetype>
       <fieldname>${etapas}</fieldname>
-      <variablename>${etapas}</variablename>
+      <variablename>${v_etapas}</variablename>
       <fieldtype>number</fieldtype>
       <mask/>
       <comparevalue>3</comparevalue>
@@ -910,7 +910,7 @@ SET m.codcurso = s.codcurso;
       <attributes/>
       <valuetype>variable</valuetype>
       <fieldname>${etapas}</fieldname>
-      <variablename>${mig_financeiro}</variablename>
+      <variablename>${v_mig_financeiro}</variablename>
       <fieldtype>string</fieldtype>
       <mask/>
       <comparevalue>S</comparevalue>
@@ -934,7 +934,7 @@ SET m.codcurso = s.codcurso;
       <attributes/>
       <valuetype>variable</valuetype>
       <fieldname>${etapas}</fieldname>
-      <variablename>${mig_academico}</variablename>
+      <variablename>${v_mig_academico}</variablename>
       <fieldtype>string</fieldtype>
       <mask/>
       <comparevalue>S</comparevalue>
@@ -1270,17 +1270,17 @@ SET m.codcurso = s.codcurso;
       <type>MSGBOX_INFO</type>
       <attributes/>
       <bodymessage>SISTEMA: ${v_sistema}
-RDS: ${end-RDS}
-BANCO RDS: ${nomebanco-RDS}
-BANCO SERVER-PC: ${nomebanco-serverpc}
+RDS: ${v_end-RDS}
+BANCO RDS: ${v_nomebanco-RDS}
+BANCO SERVER-PC: ${v_nomebanco-serverpc}
 -----------------------------------------------------
 MIGRAÇÃO SECREARIA: ${v_mig_secretaria}
-MIGRAÇÃO FINANCEIRO: ${mig_financeiro}
-MIGRAÇÃ ACADÊMICO: ${mig_academico}
+MIGRAÇÃO FINANCEIRO: ${v_mig_financeiro}
+MIGRAÇÃ ACADÊMICO: ${v_mig_academico}
 -----------------------------------------------------
-ETAPAS: ${etapas}
-ANO LETIVO NOTAS: ${notas_anoletivo}
-VALOR PROVA: ${notas_avaliacao}</bodymessage>
+ETAPAS: ${v_etapas}
+ANO LETIVO NOTAS: ${v_notas_anoletivo}
+VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
       <titremessage>ATENÇÃO, CONFIRME A MIGRAÇÃO</titremessage>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -1780,8 +1780,8 @@ VALOR PROVA: ${notas_avaliacao}</bodymessage>
       <note>MIGRAÇÃO SECRETARIA </note>
       <xloc>352</xloc>
       <yloc>528</yloc>
-      <width>143</width>
-      <heigth>26</heigth>
+      <width>211</width>
+      <heigth>34</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -1801,8 +1801,8 @@ VALOR PROVA: ${notas_avaliacao}</bodymessage>
       <note>MIGRAÇÃO FINANCEIRA</note>
       <xloc>352</xloc>
       <yloc>704</yloc>
-      <width>142</width>
-      <heigth>26</heigth>
+      <width>208</width>
+      <heigth>34</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -1822,8 +1822,8 @@ VALOR PROVA: ${notas_avaliacao}</bodymessage>
       <note>MIGRAÇÃO ACADÊMICA</note>
       <xloc>352</xloc>
       <yloc>864</yloc>
-      <width>143</width>
-      <heigth>26</heigth>
+      <width>209</width>
+      <heigth>34</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -1843,8 +1843,8 @@ VALOR PROVA: ${notas_avaliacao}</bodymessage>
       <note>INSERT ETAPAS/NOTAS</note>
       <xloc>688</xloc>
       <yloc>864</yloc>
-      <width>130</width>
-      <heigth>26</heigth>
+      <width>194</width>
+      <heigth>34</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
