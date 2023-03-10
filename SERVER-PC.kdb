@@ -1,9 +1,9 @@
   <connection>
     <name>SERVER-PC</name>
-    <server>${end-serverpc}</server>
+    <server>${v_end-serverpc}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${nomebanco-serverpc}</database>
+    <database>${v_nomebanco-serverpc}</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted 2be98afc86aa78195a71aa271cb96a6db</password>

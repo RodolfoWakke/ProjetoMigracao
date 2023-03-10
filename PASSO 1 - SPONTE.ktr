@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>PASSO 1</name>
+    <name>PASSO 1 - SPONTE</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2022/12/25 11:13:34.137</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/03/04 10:50:10.307</modified_date>
+    <modified_date>2023/03/10 14:27:18.425</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -480,10 +480,10 @@ Logo, no início, antes de rodar o Spoon, é necessário criar o DB no servidor 
   </notepads>
   <connection>
     <name>SERVER-PC</name>
-    <server>${end-serverpc}</server>
+    <server>${v_end-serverpc}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${nomebanco-serverpc}</database>
+    <database>${v_nomebanco-serverpc}</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted 2be98afc86aa78195a71aa271cb96a6db</password>
@@ -909,7 +909,7 @@ Logo, no início, antes de rodar o Spoon, é necessário criar o DB no servidor 
     </hop>
     <hop>
       <from>CREATE tab CNAB</from>
-      <to>Microsoft Excel Input</to>
+      <to>CNAB</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -933,7 +933,7 @@ Logo, no início, antes de rodar o Spoon, é necessário criar o DB no servidor 
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Microsoft Excel Input</from>
+      <from>CNAB</from>
       <to>Insert CNAB</to>
       <enabled>Y</enabled>
     </hop>
@@ -970,7 +970,7 @@ Logo, no início, antes de rodar o Spoon, é necessário criar o DB no servidor 
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\Bancos.xlsx</name>
+      <name>${v_diretorio-backup}\Bancos.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -2064,7 +2064,7 @@ DELETE FROM planoscontas;</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\Cargos.xlsx</name>
+      <name>${v_diretorio-backup}\Cargos.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -2187,7 +2187,7 @@ DELETE FROM planoscontas;</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\Contas.xlsx</name>
+      <name>${v_diretorio-backup}\Contas.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -2346,7 +2346,7 @@ DELETE FROM planoscontas;</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\ContasReceber.xlsx</name>
+      <name>${v_diretorio-backup}\ContasReceber.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -2793,7 +2793,7 @@ DELETE FROM planoscontas;</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\ContasReceberParcelas.xlsx</name>
+      <name>${v_diretorio-backup}\ContasReceberParcelas.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -3696,7 +3696,7 @@ DELETE FROM planoscontas;</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\Contratos.xlsx</name>
+      <name>${v_diretorio-backup}\Contratos.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -4071,7 +4071,7 @@ DELETE FROM planoscontas;</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\ContratosTurmas.xlsx</name>
+      <name>${v_diretorio-backup}\ContratosTurmas.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -5402,7 +5402,7 @@ DELETE FROM turnos;</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\Empresas.xlsx</name>
+      <name>${v_diretorio-backup}\Empresas.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -5945,12 +5945,7 @@ DELETE FROM turnos;</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\EstadosCivis.xlsx</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <name/>
+      <name>${v_diretorio-backup}\EstadosCivis.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -7651,7 +7646,7 @@ DELETE FROM turnos;</sql>
     </GUI>
   </step>
   <step>
-    <name>Microsoft Excel Input</name>
+    <name>CNAB</name>
     <type>ExcelInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -7677,7 +7672,7 @@ DELETE FROM turnos;</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>C:\Users\ricar\Desktop\WAKKE\MIGRAÇÃO\02 - Maple Bear Mogi\Backup Análise\Extracao_27105_3891\CNAB.xlsx</name>
+      <name>${v_diretorio-backup}\CNAB.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -9252,7 +9247,7 @@ DELETE FROM turnos;</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\Notas.xlsx</name>
+      <name>${v_diretorio-backup}\Notas.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -9903,12 +9898,7 @@ DELETE FROM turnos;</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\PlanosContas.xlsx</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <name/>
+      <name>${v_diretorio-backup}\PlanosContas.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -10239,7 +10229,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\AlunosResponsaveis.xlsx</name>
+      <name>${v_diretorio-backup}\AlunosResponsaveis.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -10386,7 +10376,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\Alunos.xlsx</name>
+      <name>${v_diretorio-backup}\Alunos.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -11577,7 +11567,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\Funcionarios.xlsx</name>
+      <name>${v_diretorio-backup}\Funcionarios.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -12264,7 +12254,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\Responsaveis.xlsx</name>
+      <name>${v_diretorio-backup}\Responsaveis.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -12831,7 +12821,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\Bairros.xlsx</name>
+      <name>${v_diretorio-backup}\Bairros.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -12942,7 +12932,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\Cidades.xlsx</name>
+      <name>${v_diretorio-backup}\Cidades.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -13065,7 +13055,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\Cursos.xlsx</name>
+      <name>${v_diretorio-backup}\Cursos.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -13908,7 +13898,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\Disciplinas.xlsx</name>
+      <name>${v_diretorio-backup}\Disciplinas.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -14199,7 +14189,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\EmailsPessoas.xlsx</name>
+      <name>${v_diretorio-backup}\EmailsPessoas.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -14382,7 +14372,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\MatriculasRematriculasEdu.xlsx</name>
+      <name>${v_diretorio-backup}\MatriculasRematriculasEdu.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -14625,7 +14615,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\SituacoesDidaticas.xlsx</name>
+      <name>${v_diretorio-backup}\SituacoesDidaticas.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -14784,7 +14774,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\TiposEmail.xlsx</name>
+      <name>${v_diretorio-backup}\TiposEmail.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -14895,7 +14885,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\Turmas.xlsx</name>
+      <name>${v_diretorio-backup}\Turmas.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -15342,7 +15332,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\TurmaAlunos.xlsx</name>
+      <name>${v_diretorio-backup}\TurmaAlunos.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -15573,7 +15563,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${diretorio-backup}\Turnos.xlsx</name>
+      <name>${v_diretorio-backup}\Turnos.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
