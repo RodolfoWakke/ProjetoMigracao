@@ -1,5 +1,5 @@
 <job>
-  <name>JOB EX-PONTE - 1.0</name>
+  <name>PROJETO - MIGRAÇÃO 1.0</name>
   <description/>
   <extended_description/>
   <job_version/>
@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/03/10 11:15:54.837</modified_date>
+  <modified_date>2023/03/10 12:10:09.794</modified_date>
   <parameters>
     </parameters>
   <connection>
@@ -381,7 +381,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>48</xloc>
-      <yloc>768</yloc>
+      <yloc>848</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -395,8 +395,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1056</xloc>
-      <yloc>1200</yloc>
+      <xloc>1040</xloc>
+      <yloc>1280</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -426,7 +426,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>672</xloc>
+      <xloc>896</xloc>
       <yloc>384</yloc>
       <attributes_kjc/>
     </entry>
@@ -466,8 +466,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>352</xloc>
-      <yloc>496</yloc>
+      <xloc>416</xloc>
+      <yloc>576</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -484,7 +484,7 @@ Reveja o INSERT final da secretaria, passando da MIG para a tabela oficial.
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>496</yloc>
+      <yloc>576</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -523,8 +523,8 @@ Reveja o INSERT final da secretaria, passando da MIG para a tabela oficial.
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>352</xloc>
-      <yloc>672</yloc>
+      <xloc>416</xloc>
+      <yloc>752</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -563,8 +563,8 @@ Reveja o INSERT final da secretaria, passando da MIG para a tabela oficial.
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>352</xloc>
-      <yloc>832</yloc>
+      <xloc>416</xloc>
+      <yloc>912</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -581,7 +581,7 @@ Reveja o INSERT final do financeiro, passando da MIG para a tabela oficial.
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>672</yloc>
+      <yloc>752</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -598,7 +598,7 @@ Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>832</yloc>
+      <yloc>912</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -622,7 +622,7 @@ Editar o sql 'Query de UPDATE' ao final do processo:
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1184</xloc>
-      <yloc>1200</yloc>
+      <yloc>1280</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -665,7 +665,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1184</xloc>
-      <yloc>1104</yloc>
+      <yloc>1184</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -689,7 +689,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>576</xloc>
-      <yloc>832</yloc>
+      <yloc>912</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -713,7 +713,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>736</xloc>
-      <yloc>832</yloc>
+      <yloc>912</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -753,7 +753,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>576</xloc>
-      <yloc>976</yloc>
+      <yloc>1056</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -793,7 +793,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>736</xloc>
-      <yloc>976</yloc>
+      <yloc>1056</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -833,7 +833,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>896</xloc>
-      <yloc>976</yloc>
+      <yloc>1056</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -848,7 +848,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>976</yloc>
+      <yloc>1056</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -888,7 +888,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>736</xloc>
-      <yloc>1088</yloc>
+      <yloc>1168</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -900,7 +900,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>736</xloc>
-      <yloc>1200</yloc>
+      <yloc>1280</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -923,8 +923,8 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>736</xloc>
-      <yloc>496</yloc>
+      <xloc>624</xloc>
+      <yloc>576</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -947,8 +947,8 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>736</xloc>
-      <yloc>672</yloc>
+      <xloc>624</xloc>
+      <yloc>752</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -987,7 +987,7 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>896</xloc>
+      <xloc>848</xloc>
       <yloc>576</yloc>
       <attributes_kjc/>
     </entry>
@@ -1027,8 +1027,8 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>896</xloc>
-      <yloc>672</yloc>
+      <xloc>848</xloc>
+      <yloc>752</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -1039,8 +1039,8 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1056</xloc>
-      <yloc>672</yloc>
+      <xloc>1040</xloc>
+      <yloc>752</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -1051,7 +1051,7 @@ SET m.codcurso = s.codcurso;
       <specification_method>rep_name</specification_method>
       <job_object_id/>
       <filename/>
-      <jobname>JOB - EX-PONTE</jobname>
+      <jobname>JOB - SPONTE</jobname>
       <directory>/</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1076,7 +1076,7 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>192</xloc>
+      <xloc>416</xloc>
       <yloc>272</yloc>
       <attributes_kjc/>
     </entry>
@@ -1100,7 +1100,7 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>192</xloc>
+      <xloc>416</xloc>
       <yloc>160</yloc>
       <attributes_kjc/>
     </entry>
@@ -1112,7 +1112,7 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>352</xloc>
+      <xloc>576</xloc>
       <yloc>384</yloc>
       <attributes_kjc/>
     </entry>
@@ -1125,8 +1125,8 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1056</xloc>
-      <yloc>160</yloc>
+      <xloc>1040</xloc>
+      <yloc>64</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -1137,7 +1137,7 @@ SET m.codcurso = s.codcurso;
       <specification_method>rep_name</specification_method>
       <job_object_id/>
       <filename/>
-      <jobname>JOB - EX-PONTE</jobname>
+      <jobname>JOB - SPONTE</jobname>
       <directory>/</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1162,7 +1162,7 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>512</xloc>
+      <xloc>720</xloc>
       <yloc>272</yloc>
       <attributes_kjc/>
     </entry>
@@ -1186,7 +1186,7 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>512</xloc>
+      <xloc>720</xloc>
       <yloc>160</yloc>
       <attributes_kjc/>
     </entry>
@@ -1198,7 +1198,7 @@ SET m.codcurso = s.codcurso;
       <specification_method>rep_name</specification_method>
       <job_object_id/>
       <filename/>
-      <jobname>JOB - EX-PONTE</jobname>
+      <jobname>JOB - SPONTE</jobname>
       <directory>/</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1223,7 +1223,7 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>832</xloc>
+      <xloc>1040</xloc>
       <yloc>272</yloc>
       <attributes_kjc/>
     </entry>
@@ -1247,7 +1247,7 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>832</xloc>
+      <xloc>1040</xloc>
       <yloc>160</yloc>
       <attributes_kjc/>
     </entry>
@@ -1260,7 +1260,7 @@ SET m.codcurso = s.codcurso;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1056</xloc>
+      <xloc>1280</xloc>
       <yloc>384</yloc>
       <attributes_kjc/>
     </entry>
@@ -1269,23 +1269,48 @@ SET m.codcurso = s.codcurso;
       <description/>
       <type>MSGBOX_INFO</type>
       <attributes/>
-      <bodymessage>SISTEMA: ${v_sistema}.
+      <bodymessage>SISTEMA: ${v_sistema}
 RDS: ${end-RDS}
 BANCO RDS: ${nomebanco-RDS}
 BANCO SERVER-PC: ${nomebanco-serverpc}
 -----------------------------------------------------
+MIGRAÇÃO SECREARIA: ${v_mig_secretaria}
 MIGRAÇÃO FINANCEIRO: ${mig_financeiro}
 MIGRAÇÃ ACADÊMICO: ${mig_academico}
 -----------------------------------------------------
 ETAPAS: ${etapas}
 ANO LETIVO NOTAS: ${notas_anoletivo}
-VALOR PROVA: 4{notas_avaliacao}</bodymessage>
+VALOR PROVA: ${notas_avaliacao}</bodymessage>
       <titremessage>ATENÇÃO, CONFIRME A MIGRAÇÃO</titremessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
+      <xloc>416</xloc>
       <yloc>64</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>CHECK SECRETARIA</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <attributes/>
+      <valuetype>variable</valuetype>
+      <fieldname>${etapas}</fieldname>
+      <variablename>${v_mig_secretaria}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>S</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>416</xloc>
+      <yloc>384</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
@@ -1606,15 +1631,6 @@ VALOR PROVA: 4{notas_avaliacao}</bodymessage>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Success - Entrada</from>
-      <to>PASSO 4 - SEC</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>TESIS ?</from>
       <to>Tesis</to>
       <from_nr>0</from_nr>
@@ -1705,15 +1721,6 @@ VALOR PROVA: 4{notas_avaliacao}</bodymessage>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PING SERVER-PC</from>
-      <to>Display msgbox info</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
       <from>Display msgbox info</from>
       <to>SPONTE ?</to>
       <from_nr>0</from_nr>
@@ -1731,12 +1738,48 @@ VALOR PROVA: 4{notas_avaliacao}</bodymessage>
       <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>PING SERVER-PC</from>
+      <to>Display msgbox info</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Success - Entrada</from>
+      <to>CHECK SECRETARIA</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>CHECK SECRETARIA</from>
+      <to>PASSO 4 - SEC</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>CHECK SECRETARIA</from>
+      <to>CHECK FINANCEIRO</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
     <notepad>
       <note>MIGRAÇÃO SECRETARIA </note>
       <xloc>352</xloc>
-      <yloc>448</yloc>
+      <yloc>528</yloc>
       <width>143</width>
       <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
@@ -1757,7 +1800,7 @@ VALOR PROVA: 4{notas_avaliacao}</bodymessage>
     <notepad>
       <note>MIGRAÇÃO FINANCEIRA</note>
       <xloc>352</xloc>
-      <yloc>624</yloc>
+      <yloc>704</yloc>
       <width>142</width>
       <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
@@ -1778,7 +1821,7 @@ VALOR PROVA: 4{notas_avaliacao}</bodymessage>
     <notepad>
       <note>MIGRAÇÃO ACADÊMICA</note>
       <xloc>352</xloc>
-      <yloc>784</yloc>
+      <yloc>864</yloc>
       <width>143</width>
       <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
@@ -1799,7 +1842,7 @@ VALOR PROVA: 4{notas_avaliacao}</bodymessage>
     <notepad>
       <note>INSERT ETAPAS/NOTAS</note>
       <xloc>688</xloc>
-      <yloc>928</yloc>
+      <yloc>864</yloc>
       <width>130</width>
       <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
