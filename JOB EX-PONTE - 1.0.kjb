@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/03/10 10:38:54.527</modified_date>
+  <modified_date>2023/03/10 11:15:54.837</modified_date>
   <parameters>
     </parameters>
   <connection>
@@ -1269,8 +1269,18 @@ SET m.codcurso = s.codcurso;
       <description/>
       <type>MSGBOX_INFO</type>
       <attributes/>
-      <bodymessage>Você está prestes a migrar o sistema ${v_sistema}.</bodymessage>
-      <titremessage/>
+      <bodymessage>SISTEMA: ${v_sistema}.
+RDS: ${end-RDS}
+BANCO RDS: ${nomebanco-RDS}
+BANCO SERVER-PC: ${nomebanco-serverpc}
+-----------------------------------------------------
+MIGRAÇÃO FINANCEIRO: ${mig_financeiro}
+MIGRAÇÃ ACADÊMICO: ${mig_academico}
+-----------------------------------------------------
+ETAPAS: ${etapas}
+ANO LETIVO NOTAS: ${notas_anoletivo}
+VALOR PROVA: 4{notas_avaliacao}</bodymessage>
+      <titremessage>ATENÇÃO, CONFIRME A MIGRAÇÃO</titremessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
