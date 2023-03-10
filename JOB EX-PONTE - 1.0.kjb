@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/03/10 11:15:54.837</modified_date>
+  <modified_date>2023/03/10 11:37:27.447</modified_date>
   <parameters>
     </parameters>
   <connection>
@@ -1269,7 +1269,7 @@ SET m.codcurso = s.codcurso;
       <description/>
       <type>MSGBOX_INFO</type>
       <attributes/>
-      <bodymessage>SISTEMA: ${v_sistema}.
+      <bodymessage>SISTEMA: ${v_sistema}
 RDS: ${end-RDS}
 BANCO RDS: ${nomebanco-RDS}
 BANCO SERVER-PC: ${nomebanco-serverpc}
@@ -1279,12 +1279,12 @@ MIGRAÇÃ ACADÊMICO: ${mig_academico}
 -----------------------------------------------------
 ETAPAS: ${etapas}
 ANO LETIVO NOTAS: ${notas_anoletivo}
-VALOR PROVA: 4{notas_avaliacao}</bodymessage>
+VALOR PROVA: ${notas_avaliacao}</bodymessage>
       <titremessage>ATENÇÃO, CONFIRME A MIGRAÇÃO</titremessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
+      <xloc>416</xloc>
       <yloc>64</yloc>
       <attributes_kjc/>
     </entry>
@@ -1705,15 +1705,6 @@ VALOR PROVA: 4{notas_avaliacao}</bodymessage>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PING SERVER-PC</from>
-      <to>Display msgbox info</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
       <from>Display msgbox info</from>
       <to>SPONTE ?</to>
       <from_nr>0</from_nr>
@@ -1729,6 +1720,15 @@ VALOR PROVA: 4{notas_avaliacao}</bodymessage>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>PING SERVER-PC</from>
+      <to>Display msgbox info</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>
