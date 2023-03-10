@@ -1,5 +1,5 @@
 <job>
-  <name>PROJETO - MIGRAÇÃO 1.0</name>
+  <name>JOB EX-PONTE - 1.0</name>
   <description/>
   <extended_description/>
   <job_version/>
@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/03/10 12:02:20.007</modified_date>
+  <modified_date>2023/03/10 12:00:23.053</modified_date>
   <parameters>
     </parameters>
   <connection>
@@ -381,7 +381,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>48</xloc>
-      <yloc>848</yloc>
+      <yloc>768</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -396,7 +396,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1040</xloc>
-      <yloc>1280</yloc>
+      <yloc>1200</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -467,7 +467,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>416</xloc>
-      <yloc>576</yloc>
+      <yloc>496</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -484,7 +484,7 @@ Reveja o INSERT final da secretaria, passando da MIG para a tabela oficial.
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>576</yloc>
+      <yloc>496</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -524,7 +524,7 @@ Reveja o INSERT final da secretaria, passando da MIG para a tabela oficial.
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>416</xloc>
-      <yloc>752</yloc>
+      <yloc>672</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -564,7 +564,7 @@ Reveja o INSERT final da secretaria, passando da MIG para a tabela oficial.
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>416</xloc>
-      <yloc>912</yloc>
+      <yloc>832</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -581,7 +581,7 @@ Reveja o INSERT final do financeiro, passando da MIG para a tabela oficial.
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>752</yloc>
+      <yloc>672</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -598,7 +598,7 @@ Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>912</yloc>
+      <yloc>832</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -622,7 +622,7 @@ Editar o sql 'Query de UPDATE' ao final do processo:
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1184</xloc>
-      <yloc>1280</yloc>
+      <yloc>1200</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -665,7 +665,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1184</xloc>
-      <yloc>1184</yloc>
+      <yloc>1104</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -689,7 +689,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>576</xloc>
-      <yloc>912</yloc>
+      <yloc>832</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -713,7 +713,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>736</xloc>
-      <yloc>912</yloc>
+      <yloc>832</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -753,7 +753,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>576</xloc>
-      <yloc>1056</yloc>
+      <yloc>976</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -793,7 +793,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>736</xloc>
-      <yloc>1056</yloc>
+      <yloc>976</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -833,7 +833,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>896</xloc>
-      <yloc>1056</yloc>
+      <yloc>976</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -848,7 +848,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>1056</yloc>
+      <yloc>976</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -888,7 +888,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>736</xloc>
-      <yloc>1168</yloc>
+      <yloc>1088</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -900,7 +900,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>736</xloc>
-      <yloc>1280</yloc>
+      <yloc>1200</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -924,7 +924,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>688</xloc>
-      <yloc>576</yloc>
+      <yloc>496</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -948,7 +948,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>688</xloc>
-      <yloc>752</yloc>
+      <yloc>672</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -988,7 +988,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>848</xloc>
-      <yloc>640</yloc>
+      <yloc>560</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -1028,7 +1028,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>848</xloc>
-      <yloc>752</yloc>
+      <yloc>672</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -1040,7 +1040,7 @@ SET m.codcurso = s.codcurso;
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1040</xloc>
-      <yloc>752</yloc>
+      <yloc>672</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -1779,7 +1779,7 @@ VALOR PROVA: ${notas_avaliacao}</bodymessage>
     <notepad>
       <note>MIGRAÇÃO SECRETARIA </note>
       <xloc>352</xloc>
-      <yloc>528</yloc>
+      <yloc>448</yloc>
       <width>143</width>
       <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
@@ -1800,7 +1800,7 @@ VALOR PROVA: ${notas_avaliacao}</bodymessage>
     <notepad>
       <note>MIGRAÇÃO FINANCEIRA</note>
       <xloc>352</xloc>
-      <yloc>704</yloc>
+      <yloc>624</yloc>
       <width>142</width>
       <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
@@ -1821,7 +1821,7 @@ VALOR PROVA: ${notas_avaliacao}</bodymessage>
     <notepad>
       <note>MIGRAÇÃO ACADÊMICA</note>
       <xloc>352</xloc>
-      <yloc>864</yloc>
+      <yloc>784</yloc>
       <width>143</width>
       <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
@@ -1842,7 +1842,7 @@ VALOR PROVA: ${notas_avaliacao}</bodymessage>
     <notepad>
       <note>INSERT ETAPAS/NOTAS</note>
       <xloc>688</xloc>
-      <yloc>864</yloc>
+      <yloc>928</yloc>
       <width>130</width>
       <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
