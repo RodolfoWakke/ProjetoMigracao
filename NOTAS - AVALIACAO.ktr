@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/03/08 13:11:54.484</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/03/08 13:35:47.150</modified_date>
+    <modified_date>2023/03/10 14:50:15.500</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -436,10 +436,10 @@
   </notepads>
   <connection>
     <name>RDS</name>
-    <server>${end-RDS}</server>
+    <server>${v_end-RDS}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${nomebanco-RDS}</database>
+    <database>${v_nomebanco-RDS}</database>
     <port>3306</port>
     <username>ricardo.gad</username>
     <password>Encrypted 2be98afc86aa7f2e49910ad47df99a4df</password>
@@ -538,7 +538,7 @@ a.MEDIA1 as 'n1',
 a.codprofturma,
 a.MEDIA1 as 'totalnotas'
 from acumulado a
-WHERE a.ANO = ${notas_anoletivo}
+WHERE a.ANO = ${v_notas_anoletivo}
 ) ;
 
 -- --------------------------------------------------------------------
@@ -556,7 +556,7 @@ a.MEDIA2 as 'n1',
 a.codprofturma,
 a.MEDIA2 as 'totalnotas'
 from acumulado a
-WHERE a.ANO = ${notas_anoletivo}
+WHERE a.ANO = ${v_notas_anoletivo}
 ) ;
 
 -- --------------------------------------------------------------------
@@ -574,7 +574,7 @@ a.MEDIA3 as 'n1',
 a.codprofturma,
 a.MEDIA3 as 'totalnotas'
 from acumulado a
-WHERE a.ANO = ${notas_anoletivo}
+WHERE a.ANO = ${v_notas_anoletivo}
 ) ;
 
 -- --------------------------------------------------------------------
@@ -592,7 +592,7 @@ a.MEDIA4 as 'n1',
 a.codprofturma,
 a.MEDIA4 as 'totalnotas'
 from acumulado a
-WHERE a.ANO = ${notas_anoletivo}
+WHERE a.ANO = ${v_notas_anoletivo}
 ) ;
 
 -- ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -608,7 +608,7 @@ p.CODMATERIA,
 p.ANO,
 now() as 'dtregistro',
 'MIGPR' as dscavaliacao,
-${notas_avaliacao} as 'valor',
+${v_notas_avaliacao} as 'valor',
 'N1' as 'coluna',
 'S' as 'incluidosistema',
 'MÉDIA DA ETAPA (MIG AUTO)' as 'dscdetalhada',
@@ -616,7 +616,7 @@ p.CODPROFTURMA,
 'MIG AUTO' as 'cadastradopor'
 from acumulado a
 left join professorturma p on (a.codprofturma = p.CODPROFTURMA)
-WHERE p.ANO = ${notas_anoletivo}
+WHERE p.ANO = ${v_notas_anoletivo}
 group by p.CODPROFTURMA) ;
 
 -- --------------------------------------------------------------------
@@ -631,7 +631,7 @@ p.CODMATERIA,
 p.ANO,
 now() as 'dtregistro',
 'MIGPR' as dscavaliacao,
-${notas_avaliacao} as 'valor',
+${v_notas_avaliacao} as 'valor',
 'N1' as 'coluna',
 'S' as 'incluidosistema',
 'MÉDIA DA ETAPA (MIG AUTO)' as 'dscdetalhada',
@@ -639,7 +639,7 @@ p.CODPROFTURMA,
 'MIG AUTO' as 'cadastradopor'
 from acumulado a
 left join professorturma p on (a.codprofturma = p.CODPROFTURMA)
-WHERE p.ANO = ${notas_anoletivo}
+WHERE p.ANO = ${v_notas_anoletivo}
 group by p.CODPROFTURMA) ;
 
 -- --------------------------------------------------------------------
@@ -654,7 +654,7 @@ p.CODMATERIA,
 p.ANO,
 now() as 'dtregistro',
 'MIGPR' as dscavaliacao,
-${notas_avaliacao} as 'valor',
+${v_notas_avaliacao} as 'valor',
 'N1' as 'coluna',
 'S' as 'incluidosistema',
 'MÉDIA DA ETAPA (MIG AUTO)' as 'dscdetalhada',
@@ -662,7 +662,7 @@ p.CODPROFTURMA,
 'MIG AUTO' as 'cadastradopor'
 from acumulado a
 left join professorturma p on (a.codprofturma = p.CODPROFTURMA)
-WHERE p.ANO = ${notas_anoletivo}
+WHERE p.ANO = ${v_notas_anoletivo}
 group by p.CODPROFTURMA) ;
 
 -- --------------------------------------------------------------------
@@ -677,7 +677,7 @@ p.CODMATERIA,
 p.ANO,
 now() as 'dtregistro',
 'MIGPR' as dscavaliacao,
-${notas_avaliacao} as 'valor',
+${v_notas_avaliacao} as 'valor',
 'N1' as 'coluna',
 'S' as 'incluidosistema',
 'MÉDIA DA ETAPA (MIG AUTO)' as 'dscdetalhada',
@@ -685,7 +685,7 @@ p.CODPROFTURMA,
 'MIG AUTO' as 'cadastradopor'
 from acumulado a
 left join professorturma p on (a.codprofturma = p.CODPROFTURMA)
-WHERE p.ANO = ${notas_anoletivo} 
+WHERE p.ANO = ${v_notas_anoletivo} 
 group by p.CODPROFTURMA) ;</sql>
     <set_params>N</set_params>
     <insert_field/>

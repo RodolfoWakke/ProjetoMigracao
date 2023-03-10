@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>PASSO 2</name>
+    <name>PASSO 2 - SPONTE</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/02/24 16:49:54.489</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/03/08 14:19:07.123</modified_date>
+    <modified_date>2023/03/10 14:37:58.803</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -458,10 +458,10 @@
   </notepads>
   <connection>
     <name>RDS</name>
-    <server>${end-RDS}</server>
+    <server>${v_end-RDS}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${nomebanco-RDS}</database>
+    <database>${v_nomebanco-RDS}</database>
     <port>3306</port>
     <username>ricardo.gad</username>
     <password>Encrypted 2be98afc86aa7f2e49910ad47df99a4df</password>
@@ -521,10 +521,10 @@
   </connection>
   <connection>
     <name>SERVER-PC</name>
-    <server>${end-serverpc}</server>
+    <server>${v_end-serverpc}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${nomebanco-serverpc}</database>
+    <database>${v_nomebanco-serverpc}</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted 2be98afc86aa78195a71aa271cb96a6db</password>
@@ -11064,6 +11064,52 @@ GROUP BY LEFT(CONCAT(t.TurmaID, IFNULL(t.Sigla, LEFT(t.Nome, 7))),10);
     </GUI>
   </step>
   <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>codconta</name>
+      </field>
+      <field>
+        <name>dscconta</name>
+      </field>
+      <field>
+        <name>tipoconta</name>
+      </field>
+      <field>
+        <name>bancaria</name>
+      </field>
+      <field>
+        <name>ativo</name>
+      </field>
+      <field>
+        <name>homologada</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Select values 10</name>
     <type>SelectValues</type>
     <description/>
@@ -12038,58 +12084,6 @@ FROM contasreceber c GROUP BY c.ContaID;</sql>
     </remotesteps>
     <GUI>
       <xloc>688</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>codconta</name>
-        <rename/>
-      </field>
-      <field>
-        <name>dscconta</name>
-        <rename/>
-      </field>
-      <field>
-        <name>tipoconta</name>
-        <rename/>
-      </field>
-      <field>
-        <name>bancaria</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ativo</name>
-        <rename/>
-      </field>
-      <field>
-        <name>homologada</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>848</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
