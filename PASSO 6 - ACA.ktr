@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/03/02 16:05:47.461</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/03/07 10:45:08.748</modified_date>
+    <modified_date>2023/03/13 14:06:00.381</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -457,10 +457,10 @@
   </notepads>
   <connection>
     <name>RDS</name>
-    <server>${end-RDS}</server>
+    <server>${v_end-RDS}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${nomebanco-RDS}</database>
+    <database>${v_nomebanco-RDS}</database>
     <port>3306</port>
     <username>ricardo.gad</username>
     <password>Encrypted 2be98afc86aa7f2e49910ad47df99a4df</password>
@@ -542,6 +542,8 @@ DROP TRIGGER IF EXISTS TBU_ACUMULADO;
 DROP TRIGGER IF EXISTS TBU_ACUMULADOAGRUPADO;
 DROP TRIGGER IF EXISTS TAU_CALCULOACUMULADO;
 
+DELETE FROM avaliacao;
+DELETE FROM notas;
 DELETE FROM turmadiario;
 DELETE FROM acumuladoagrupado;
 DELETE FROM acumulado;
@@ -551,8 +553,9 @@ DELETE FROM professorturma;
 -- ACUMULADO
 
 INSERT INTO acumulado(CODACUMULADO, MATRICULA, CODMATERIA, ANO, CODSERIE, CODTURMA, DTENTRADA, MEDIA1, FALTAS1, MEDIA2, FALTAS2, MEDIA3, FALTAS3, MEDIA4, FALTAS4, RECSEMESTRE1, RECSEMESTRE2, RECFINAL, RECFINAL2, RECFINAL3, alterado, MEDSEM1, MEDSEM2, RESULTFINAL, TOTFALTAS, SITUACAO, codprofturma, rec1, rec2, rec3, rec4, soma1, soma2, soma3, soma4, somasemestre1, somasemestre2, CODPROFESSOR, USUARIO, codcalculoacumulado, dtvalidacaocalculo, somaetapas, matriculadonawakke)
-SELECT CODACUMULADO, MATRICULA, CODMATERIA, ANO, CODSERIE, CODTURMA, DTENTRADA, MEDIA1, FALTAS1, MEDIA2, FALTAS2, MEDIA3, FALTAS3, MEDIA4, FALTAS4, RECSEMESTRE1, RECSEMESTRE2, RECFINAL, RECFINAL2, RECFINAL3, alterado, MEDSEM1, MEDSEM2, RESULTFINAL, TOTFALTAS, SITUACAO, codprofturma, rec1, rec2, rec3, rec4, soma1, soma2, soma3, soma4, somasemestre1, somasemestre2, CODPROFESSOR, USUARIO, codcalculoacumulado, dtvalidacaocalculo, somaetapas, matriculadonawakke
-FROM mig_acumulado;
+SELECT CODACUMULADO, MATRICULA, d.coddisciplina_unificada, ANO, CODSERIE, CODTURMA, DTENTRADA, MEDIA1, FALTAS1, MEDIA2, FALTAS2, MEDIA3, FALTAS3, MEDIA4, FALTAS4, RECSEMESTRE1, RECSEMESTRE2, RECFINAL, RECFINAL2, RECFINAL3, alterado, MEDSEM1, MEDSEM2, RESULTFINAL, TOTFALTAS, SITUACAO, codprofturma, rec1, rec2, rec3, rec4, soma1, soma2, soma3, soma4, somasemestre1, somasemestre2, CODPROFESSOR, USUARIO, codcalculoacumulado, dtvalidacaocalculo, somaetapas, matriculadonawakke
+FROM mig_acumulado a
+INNER JOIN mig_disciplina d ON (d.coddisciplina = a.CODMATERIA);
 
 -- PROFESSORTURMA
 
@@ -569,14 +572,14 @@ join professorturma p on (a.CODMATERIA = p.CODMATERIA and a.ANO = p.ANO and a.CO
 set a.codprofturma = p.CODPROFTURMA
 where a.codprofturma is NULL;
 
--- INSERINDO ACUMULADO AGRUPADO 
+-- INSERINDO ACUMULADO AGRUPADO
 
-insert into acumuladoagrupado (matricula, codmateriagrade, anoletivo, codseriecurso, codturma, media1, soma1, rec1, faltas1, media2, soma2, rec2, faltas2, media3, soma3, rec3, faltas3, media4, soma4, rec4, faltas4,medsem1,medsem2,somasemestre1,somasemestre2,recsemestre1,recsemestre2,recfinal, somaetapas, resultadofinal, codaluno, totfaltas )
-(select a.MATRICULA, d.coddisciplina_unificada, a.ANO, a.CODSERIE, a.CODTURMA, a.MEDIA1, a.soma1, a.rec1, a.FALTAS1, a.MEDIA2, a.soma2, a.rec2, a.FALTAS2, a.MEDIA3, a.soma3, a.rec3, a.FALTAS3, a.MEDIA4, a.soma4, a.rec4, a.FALTAS4,a.MEDSEM1,a.MEDSEM2,a.somasemestre1, a.somasemestre2,a.RECSEMESTRE1,a.RECSEMESTRE2,recfinal, a.somaetapas, a.RESULTFINAL,m.codaluno,totfaltas 
-from acumulado a 
-inner join professorturma p on (a.codprofturma = p.CODPROFTURMA)
-inner join matricula m on (a.MATRICULA = m.codmatricula)
-INNER JOIN mig_disciplina d ON (d.coddisciplina = a.CODMATERIA));
+INSERT INTO acumuladoagrupado (matricula, codmateriagrade, anoletivo, codseriecurso, codturma, media1, soma1, rec1, faltas1, media2, soma2, rec2, faltas2, media3, soma3, rec3, faltas3, media4, soma4, rec4, faltas4,medsem1,medsem2,somasemestre1,somasemestre2,recsemestre1,recsemestre2,recfinal, somaetapas, resultadofinal, codaluno, totfaltas )
+(SELECT a.MATRICULA, a.CODMATERIA, a.ANO, a.CODSERIE, a.CODTURMA, a.MEDIA1, a.soma1, a.rec1, a.FALTAS1, a.MEDIA2, a.soma2, a.rec2, a.FALTAS2, a.MEDIA3, a.soma3, a.rec3, a.FALTAS3, a.MEDIA4, a.soma4, a.rec4, a.FALTAS4,a.MEDSEM1,a.MEDSEM2,a.somasemestre1, a.somasemestre2,a.RECSEMESTRE1,a.RECSEMESTRE2,recfinal, a.somaetapas, a.RESULTFINAL, al.codaluno_unificado, totfaltas 
+FROM acumulado a 
+INNER JOIN matricula m ON (a.MATRICULA = m.codmatricula)
+INNER JOIN mig_aluno al ON (al.codaluno = m.codaluno));
+
 
 -- INSERINDO TURMA DIARIO 
 

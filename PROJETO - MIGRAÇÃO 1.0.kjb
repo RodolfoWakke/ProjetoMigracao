@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/03/10 15:17:23.761</modified_date>
+  <modified_date>2023/03/13 11:18:55.240</modified_date>
   <parameters>
     </parameters>
   <connection>
@@ -426,7 +426,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>896</xloc>
+      <xloc>880</xloc>
       <yloc>384</yloc>
       <attributes_kjc/>
     </entry>
