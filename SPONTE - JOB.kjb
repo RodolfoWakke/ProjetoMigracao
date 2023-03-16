@@ -1,5 +1,5 @@
 <job>
-  <name>JOB - EX-PONTE</name>
+  <name>SPONTE - JOB</name>
   <description/>
   <extended_description/>
   <job_version/>
@@ -7,7 +7,7 @@
   <created_user>-</created_user>
   <created_date>2023/03/10 09:28:16.154</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/03/10 10:35:00.815</modified_date>
+  <modified_date>2023/03/16 08:39:44.889</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -293,7 +293,7 @@
       <specification_method>rep_name</specification_method>
       <trans_object_id/>
       <filename/>
-      <transname>PASSO 1 - SPONTE</transname>
+      <transname>SPONTE - PASSO 1</transname>
       <directory>/</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -349,7 +349,7 @@ Reveja o CREATE table e o INSERT dos Xlsx.</bodymessage>
       <specification_method>rep_name</specification_method>
       <trans_object_id/>
       <filename/>
-      <transname>PASSO 2 - SPONTE</transname>
+      <transname>SPONTE - PASSO 2</transname>
       <directory>/</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -389,7 +389,7 @@ Reveja o CREATE table e o INSERT dos Xlsx.</bodymessage>
       <specification_method>rep_name</specification_method>
       <trans_object_id/>
       <filename/>
-      <transname>PASSO 3 - SPONTE</transname>
+      <transname>SPONTE - PASSO 3</transname>
       <directory>/</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
