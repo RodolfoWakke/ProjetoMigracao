@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>PASSO 2 - SPONTE</name>
+    <name>SPONTE - PASSO 2</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/02/24 16:49:54.489</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/03/14 09:50:58.042</modified_date>
+    <modified_date>2023/03/30 10:57:21.955</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -5178,7 +5178,7 @@ left join contasreceber cc on (c.ContaReceberID = cc.ContaReceberID)
 left join planoscontas pc on pc.PlanoContaID = c.PlanoContaID
 LEFT JOIN alunos a ON (a.AlunoID = cc.AlunoID)
 LEFT JOIN responsaveis r ON (a.ResponsavelFinanceiroID = r.ResponsavelID)
-where pc.Tipo ='E';</sql>
+where pc.Tipo ='E' AND c.situacao &lt;&gt; 2;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -5187,14 +5187,14 @@ where pc.Tipo ='E';</sql>
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
       <value-meta>
-        <type>String</type>
+        <type>Integer</type>
         <storagetype>normal</storagetype>
         <name>codreceita_aux</name>
-        <length>50</length>
-        <precision>-1</precision>
+        <length>9</length>
+        <precision>0</precision>
         <origin>SELECT centroreceita</origin>
         <comments>codreceita_aux</comments>
-        <conversion_Mask/>
+        <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -5238,7 +5238,7 @@ where pc.Tipo ='E';</sql>
         <name>ativo</name>
         <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT centroreceita</origin>
+        <origin>SELECT conta</origin>
         <comments>ativo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
