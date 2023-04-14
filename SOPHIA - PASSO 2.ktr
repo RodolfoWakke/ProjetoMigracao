@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/04/12 11:34:19.712</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/04/14 13:44:59.664</modified_date>
+    <modified_date>2023/04/14 17:13:26.517</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -523,7 +523,7 @@
     <server>localhost</server>
     <type>MSSQLNATIVE</type>
     <access>Native</access>
-    <database>Cantinhodoceu</database>
+    <database>${v_nomebanco-sqlserver}</database>
     <port>1433</port>
     <username>sa</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
@@ -671,6 +671,16 @@
     <hop>
       <from>DELETE - INSERT - ALTER</from>
       <to>SELECT disciplina</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SELECT matricula</from>
+      <to>Select values matricula</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values matricula</from>
+      <to>Insert mig_matricula</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -885,7 +895,7 @@ AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `mig_responsavel` (
 	`codsoc` INT(11) NOT NULL AUTO_INCREMENT,
-	`cpf` VARCHAR(14) NOT NULL COLLATE 'latin1_swedish_ci',
+	`cpf` VARCHAR(14)  NULL DEFAULT NULL  COLLATE 'latin1_swedish_ci',
 	`nomeresponsavel` VARCHAR(100) NOT NULL COLLATE 'latin1_swedish_ci',
 	`profissao` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
 	`localtrabalho` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
@@ -1598,11 +1608,13 @@ DELETE FROM mig_turma;
 DELETE FROM mig_configturma;
 DELETE FROM mig_matricula;
 DELETE FROM mig_centroreceita;
+DELETE FROM mig_curso;
 DELETE FROM mig_conta;
 DELETE FROM mig_contasreceber;
 DELETE FROM mig_acumulado;
 
 ALTER TABLE mig_aluno AUTO_INCREMENT = 1;
+ALTER TABLE mig_curso AUTO_INCREMENT = 1;
 ALTER TABLE mig_responsavel AUTO_INCREMENT = 1;
 ALTER TABLE mig_funcionario AUTO_INCREMENT = 1;
 ALTER TABLE mig_funcionariounidade AUTO_INCREMENT = 1;
@@ -1859,6 +1871,50 @@ ALTER TABLE mig_acumulado AUTO_INCREMENT = 1;
     </GUI>
   </step>
   <step>
+    <name>Insert mig_matricula</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>RDS</connection>
+    <schema/>
+    <table>mig_matricula</table>
+    <commit>50000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>944</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Insert mig_responsavel</name>
     <type>TableOutput</type>
     <description/>
@@ -2003,59 +2059,57 @@ ALTER TABLE mig_acumulado AUTO_INCREMENT = 1;
     </partitioning>
     <connection>SQLSERVER-LOCALHOST</connection>
     <sql>SELECT 
-	A.CODIGO AS 'codaluno', 
-	TRIM(UPPER(NOME)) AS 'nomealuno', 
-	UPPER(IIF(LOGRADOURO IS NULL, NULL,(ISNULL(LOGRADOURO,'')+', '+ ISNULL(NUMERO,'')+' '+ ISNULL(COMPLEMENTO,'')))) AS 'endereco', 
-	UPPER(B.DESCRICAO) AS 'bairro', 
+	A.CODIGO AS 'codaluno',
+	LEFT(TRIM(UPPER(NOME)),100) AS 'nomealuno', 
+	LEFT(UPPER(IIF(LOGRADOURO IS NULL, NULL,(ISNULL(LOGRADOURO,'')+', '+ ISNULL(NUMERO,'')+' '+ ISNULL(COMPLEMENTO,'')))),200) AS 'endereco', 
+	LEFT(UPPER(B.DESCRICAO),60) AS 'bairro', 
 	ci.cod_cidade AS 'cidade',
 	LEFT(TRIM(dbo.REMOVEcaractere(CEP)),8) AS 'cep',
-	dbo.REMOVEcaractere(CONTATO1) AS 'telresid',
-	dbo.REMOVEcaractere(CONTATO2) AS 'celular', 
-	TRIM(EMAIL) AS 'email',
-	SEXO AS 'sexo',
+	LEFT(dbo.REMOVEcaractere(CONTATO1),50) AS 'telresid',
+	LEFT(dbo.REMOVEcaractere(CONTATO2),50) AS 'celular', 
+	LEFT(TRIM(EMAIL),100) AS 'email',
+	LEFT(SEXO,1) AS 'sexo',
 	CAST(DATANASC AS DATE) AS 'dtnascimento', 
-	UPPER(R.DESCRICAO) AS 'COR', 
-	UPPER(fa.PAI_NOME) 'pai', 
-	UPPER(ocp.DESCRICAO) 'profpai',
-	fa.PAI_ER_CONTATO2 AS 'telpai',
-	fa.PAI_ER_CONTATO1 AS 'celularpai',
-	fa.PAI_EMAIL AS 'emailpai', 
-	ISNULL(UPPER(fa.MAE_NOME),'SEM CADASTRO') AS 'mae', 
-	UPPER(ocm.DESCRICAO) AS 'profmae',
-	fa.MAE_ER_CONTATO2 AS 'telmae',
-	fa.MAE_ER_CONTATO1 AS 'celularmae',
-	fa.MAE_EMAIL AS 'emailmae',
-	REPLACE(REPLACE(REPLACE(OBSERVACOES, CHAR(13) + CHAR(10),' '), CHAR(13), ''), CHAR(10), '') AS 'obs', RTRIM(dbo.REMOVEcaractere(CPF)) AS 'cpf',
-	RG AS 'RG',
-	A2.CN_NUMERO AS 'certidaonumero',
+	LEFT(UPPER(R.DESCRICAO),13) AS 'COR', 
+	LEFT(UPPER(fa.PAI_NOME),100) 'pai', 
+	LEFT(UPPER(ocp.DESCRICAO),40) 'profpai',
+	LEFT(dbo.REMOVEcaractere(fa.PAI_ER_CONTATO2),50) AS 'telpai',
+	LEFT(dbo.REMOVEcaractere(fa.PAI_ER_CONTATO1),50) AS 'celularpai',
+	LEFT(fa.PAI_EMAIL,100) AS 'emailpai', 
+	LEFT(ISNULL(UPPER(fa.MAE_NOME),'SEM CADASTRO'),100) AS 'mae', 
+	LEFT(UPPER(ocm.DESCRICAO),40) AS 'profmae',
+	LEFT(dbo.REMOVEcaractere(fa.MAE_ER_CONTATO2),50) AS 'telmae',
+	LEFT(dbo.REMOVEcaractere(fa.MAE_ER_CONTATO1),50) AS 'celularmae',
+	LEFT(fa.MAE_EMAIL,100) AS 'emailmae',
+	LEFT(REPLACE(REPLACE(REPLACE(OBSERVACOES, CHAR(13) + CHAR(10),' '), CHAR(13), ''), CHAR(10), ''),5000) AS 'obs', 
+	LEFT(RTRIM(dbo.REMOVEcaractere(CPF)),11) AS 'cpf',
+	LEFT(dbo.REMOVEcaractere(RG),50) AS 'RG',
+	LEFT(A2.CN_NUMERO,40) AS 'certidaonumero',
 	LEFT('L. '+ ISNULL(A2.CN_LIVRO,'')+'F. '+ ISNULL(A2.CN_FOLHAS,''),30) 'certidaolivrofolha', 
-	UPPER(RE.DESCRICAO) AS 'RELIGIAO', 
-	UPPER(IIF(PAI_ER_ENDERECO IS NULL, NULL,(ISNULL(PAI_ER_ENDERECO,'')+', '+ ISNULL(fa.PAI_ER_NUMERO,'')+' '+ ISNULL(fa.PAI_ER_COMPLEMENTO,'')))) AS 'enderecopai', 
-	UPPER(BP.DESCRICAO) AS 'bairropai',
+	LEFT(UPPER(RE.DESCRICAO),40) AS 'RELIGIAO', 
+	LEFT(UPPER(IIF(PAI_ER_ENDERECO IS NULL, NULL,(ISNULL(PAI_ER_ENDERECO,'')+', '+ ISNULL(fa.PAI_ER_NUMERO,'')+' '+ ISNULL(fa.PAI_ER_COMPLEMENTO,'')))),200) AS 'enderecopai',
+	LEFT(UPPER(BP.DESCRICAO),60) AS 'bairropai',
 	cip.cod_cidade AS 'codcidadepai', 
-	TRIM(dbo.REMOVEcaractere(fa.PAI_ER_CEP)) AS 'ceppai',
-	UPPER(IIF(MAE_ER_ENDERECO IS NULL, NULL,(ISNULL(MAE_ER_ENDERECO,'')+', '+ ISNULL(fa.MAE_ER_NUMERO,'')+' '+ ISNULL(fa.MAE_ER_COMPLEMENTO,'')))) AS 'enderecomae', 
-	BM.DESCRICAO AS 'bairromae',
+	LEFT(TRIM(dbo.REMOVEcaractere(fa.PAI_ER_CEP)),8) AS 'ceppai',
+	LEFT(UPPER(IIF(MAE_ER_ENDERECO IS NULL, NULL,(ISNULL(MAE_ER_ENDERECO,'')+', '+ ISNULL(fa.MAE_ER_NUMERO,'')+' '+ ISNULL(fa.MAE_ER_COMPLEMENTO,'')))),200) AS 'enderecomae', 
+	LEFT(BM.DESCRICAO,60) AS 'bairromae',
 	cim.cod_cidade AS 'codcidademae', 
-	TRIM(dbo.REMOVEcaractere(fa.MAE_ER_CEP)) AS 'cepmae',
+	LEFT(TRIM(dbo.REMOVEcaractere(fa.MAE_ER_CEP)),8) AS 'cepmae',
 	'S' AS 'ativo',
 	LEFT(A2.TE_NUMERO,15) AS 'titeleitor',
-	A2.TE_ZONA AS 'zona', 
+	LEFT(A2.TE_ZONA,10) AS 'zona', 
 	CAST(GETDATE() AS DATE) AS 'dtcadastro',
 	CAST(fa.PAI_DATA_NASC AS DATE) AS 'dtnascimentopai',
 	CAST(fa.MAE_DATA_NASC AS DATE) AS 'dtnascimentomae', 
-	UPPER(C2.DESCRICAO) AS 'naturalidade', 
-	TRIM(dbo.REMOVEcaractere(PAI_CPF)) AS 'cpfpai',
-	fa.PAI_RG 'rgpai', 
-	RTRIM(dbo.REMOVEcaractere(fa.MAE_CPF)) AS 'cpfmae',
-	fa.MAE_RG AS 'rgmae', 
-	UPPER(ETC.DESCRICAO) AS 'estadocivil',
-	A2.CN_TIPO AS 'tipocertidao',
-	ORGAOEXP AS 'rgorgaoemissor',
+	LEFT(UPPER(C2.DESCRICAO),100) AS 'naturalidade', 
+	LEFT(TRIM(dbo.REMOVEcaractere(PAI_CPF)),11) AS 'cpfpai',
+	LEFT(fa.PAI_RG,50) AS 'rgpai', 
+	LEFT(RTRIM(dbo.REMOVEcaractere(fa.MAE_CPF)),11) AS 'cpfmae',
+	LEFT(fa.MAE_RG,50) AS 'rgmae', 
+	LEFT(UPPER(ETC.DESCRICAO),20) AS 'estadocivil',
+	LEFT(A2.CN_TIPO,1) AS 'tipocertidao',
 	CAST(DATAEXP AS DATE) AS 'rgdataemissao',
-	fa.PAI_ORGAO_EXP AS 'rgorgaoemissorpai',
 	CAST(fa.PAI_DATA_EXP AS DATE) AS 'rgdataemissaopai',
-	fa.MAE_ORGAO_EXP AS 'rgorgaoemissormae',
 	CAST(fa.MAE_DATA_EXP AS DATE) AS 'rgdataemissaomae'
 FROM sophia.FISICA A
 LEFT JOIN Sophia.DADOSPF A2 ON A.CODIGO = A2.FISICA
@@ -2097,7 +2151,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>codaluno</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>codaluno</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -2120,7 +2174,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>nomealuno</name>
         <length>82</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>nomealuno</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2141,9 +2195,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>endereco</name>
-        <length>315</length>
+        <length>200</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>endereco</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2166,7 +2220,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>bairro</name>
         <length>32</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>bairro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2189,7 +2243,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>cidade</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>cidade</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -2212,7 +2266,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>cep</name>
         <length>8</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>cep</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2233,9 +2287,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>telresid</name>
-        <length>256</length>
+        <length>50</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>telresid</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2256,9 +2310,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>celular</name>
-        <length>256</length>
+        <length>50</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>celular</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2279,9 +2333,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>email</name>
-        <length>180</length>
+        <length>100</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>email</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2302,9 +2356,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>sexo</name>
-        <length>3</length>
+        <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>sexo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2327,7 +2381,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>dtnascimento</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>dtnascimento</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2348,9 +2402,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>COR</name>
-        <length>15</length>
+        <length>13</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>COR</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2373,7 +2427,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>pai</name>
         <length>82</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>pai</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2396,7 +2450,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>profpai</name>
         <length>32</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>profpai</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2417,9 +2471,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>telpai</name>
-        <length>22</length>
+        <length>50</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>telpai</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2440,9 +2494,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>celularpai</name>
-        <length>22</length>
+        <length>50</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>celularpai</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2463,9 +2517,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>emailpai</name>
-        <length>180</length>
+        <length>100</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>emailpai</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2488,7 +2542,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>mae</name>
         <length>82</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>mae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2511,7 +2565,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>profmae</name>
         <length>32</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>profmae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2532,9 +2586,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>telmae</name>
-        <length>22</length>
+        <length>50</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>telmae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2555,9 +2609,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>celularmae</name>
-        <length>22</length>
+        <length>50</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>celularmae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2578,9 +2632,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>emailmae</name>
-        <length>180</length>
+        <length>100</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>emailmae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2603,7 +2657,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>obs</name>
         <length>2147483647</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>obs</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2624,9 +2678,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cpf</name>
-        <length>256</length>
+        <length>11</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>cpf</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2647,9 +2701,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>RG</name>
-        <length>22</length>
+        <length>50</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>RG</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2672,7 +2726,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>certidaonumero</name>
         <length>32</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>certidaonumero</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2695,7 +2749,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>certidaolivrofolha</name>
         <length>30</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>certidaolivrofolha</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2718,7 +2772,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>RELIGIAO</name>
         <length>32</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>RELIGIAO</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2739,9 +2793,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>enderecopai</name>
-        <length>315</length>
+        <length>200</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>enderecopai</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2764,7 +2818,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>bairropai</name>
         <length>32</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>bairropai</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2787,7 +2841,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>codcidadepai</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>codcidadepai</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -2808,9 +2862,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>ceppai</name>
-        <length>256</length>
+        <length>8</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>ceppai</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2831,9 +2885,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>enderecomae</name>
-        <length>315</length>
+        <length>200</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>enderecomae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2856,7 +2910,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>bairromae</name>
         <length>32</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>bairromae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2879,7 +2933,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>codcidademae</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>codcidademae</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -2900,9 +2954,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cepmae</name>
-        <length>256</length>
+        <length>8</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>cepmae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2925,7 +2979,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>ativo</name>
         <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>ativo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2948,7 +3002,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>titeleitor</name>
         <length>15</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>titeleitor</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2971,7 +3025,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>zona</name>
         <length>5</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>zona</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2994,7 +3048,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>dtcadastro</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>dtcadastro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3017,7 +3071,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>dtnascimentopai</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>dtnascimentopai</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3040,7 +3094,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>dtnascimentomae</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>dtnascimentomae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3063,7 +3117,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>naturalidade</name>
         <length>32</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>naturalidade</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3084,9 +3138,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cpfpai</name>
-        <length>256</length>
+        <length>11</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>cpfpai</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3109,7 +3163,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>rgpai</name>
         <length>22</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>rgpai</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3130,9 +3184,9 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cpfmae</name>
-        <length>256</length>
+        <length>11</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>cpfmae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3155,7 +3209,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>rgmae</name>
         <length>22</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>rgmae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3178,7 +3232,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>estadocivil</name>
         <length>17</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>estadocivil</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3196,36 +3250,13 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>tipocertidao</name>
-        <length>4</length>
-        <precision>0</precision>
-        <origin>SELECT funcionario 3</origin>
-        <comments>tipocertidao</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>rgorgaoemissor</name>
-        <length>22</length>
+        <name>tipocertidao</name>
+        <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
-        <comments>rgorgaoemissor</comments>
+        <origin>SELECT aluno</origin>
+        <comments>tipocertidao</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -3247,31 +3278,8 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>rgdataemissao</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>rgdataemissao</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>rgorgaoemissorpai</name>
-        <length>22</length>
-        <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
-        <comments>rgorgaoemissorpai</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -3293,31 +3301,8 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>rgdataemissaopai</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>rgdataemissaopai</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>rgorgaoemissormae</name>
-        <length>22</length>
-        <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
-        <comments>rgorgaoemissormae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -3339,7 +3324,7 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
         <name>rgdataemissaomae</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 3</origin>
+        <origin>SELECT aluno</origin>
         <comments>rgdataemissaomae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3385,10 +3370,11 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
     <connection>SQLSERVER-LOCALHOST</connection>
     <sql>SELECT 
 	T.CODIGO AS 'codconfturma', 
-	UPPER(T.NOME) AS 'dscturma', 
+	LEFT(UPPER(T.NOME),100) AS 'dscturma', 
 	IIF(LEN(REPLACE(p.DESCRICAO,'/',''))&lt;= 5,REPLACE(p.DESCRICAO,'/',''),LEFT(p.DESCRICAO,4)) AS 'anoletivo',
 	T.SERIE AS 'codseriecurso',
 	AL_MAX AS 'numvagas', 
+	LEFT(t.TURMA,10) AS 'sigla',
 	CAST(ISNULL(T.INICIO,CAST(CONCAT(LEFT(P.DESCRICAO,4),'-02-05T00:00:00.000') as VARCHAR)) AS DATE) AS 'dtinicio',
 	CAST(ISNULL(T.TERMINO,CAST(CONCAT(LEFT(P.DESCRICAO,4),'-12-22T00:00:00.000') AS VARCHAR)) AS DATE) AS 'dtfim',
 	1 AS 'codturma',
@@ -3412,7 +3398,7 @@ LEFT JOIN Sophia.TURNOS TU ON T.TURNO = TU.CODIGO;</sql>
         <name>codconfturma</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT turma 2</origin>
+        <origin>SELECT configturma</origin>
         <comments>codconfturma</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -3435,7 +3421,7 @@ LEFT JOIN Sophia.TURNOS TU ON T.TURNO = TU.CODIGO;</sql>
         <name>dscturma</name>
         <length>50</length>
         <precision>-1</precision>
-        <origin>SELECT turma 2</origin>
+        <origin>SELECT configturma</origin>
         <comments>dscturma</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3458,7 +3444,7 @@ LEFT JOIN Sophia.TURNOS TU ON T.TURNO = TU.CODIGO;</sql>
         <name>anoletivo</name>
         <length>8000</length>
         <precision>-1</precision>
-        <origin>SELECT turma 2</origin>
+        <origin>SELECT configturma</origin>
         <comments>anoletivo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3481,7 +3467,7 @@ LEFT JOIN Sophia.TURNOS TU ON T.TURNO = TU.CODIGO;</sql>
         <name>codseriecurso</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT turma 2</origin>
+        <origin>SELECT configturma</origin>
         <comments>codseriecurso</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -3504,9 +3490,32 @@ LEFT JOIN Sophia.TURNOS TU ON T.TURNO = TU.CODIGO;</sql>
         <name>numvagas</name>
         <length>4</length>
         <precision>0</precision>
-        <origin>SELECT turma 2</origin>
+        <origin>SELECT configturma</origin>
         <comments>numvagas</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>sigla</name>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>SELECT configturma</origin>
+        <comments>sigla</comments>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -3527,7 +3536,7 @@ LEFT JOIN Sophia.TURNOS TU ON T.TURNO = TU.CODIGO;</sql>
         <name>dtinicio</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT turma 2</origin>
+        <origin>SELECT configturma</origin>
         <comments>dtinicio</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3550,7 +3559,7 @@ LEFT JOIN Sophia.TURNOS TU ON T.TURNO = TU.CODIGO;</sql>
         <name>dtfim</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT turma 2</origin>
+        <origin>SELECT configturma</origin>
         <comments>dtfim</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3573,7 +3582,7 @@ LEFT JOIN Sophia.TURNOS TU ON T.TURNO = TU.CODIGO;</sql>
         <name>codturma</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT turma 2</origin>
+        <origin>SELECT configturma</origin>
         <comments>codturma</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -3596,7 +3605,7 @@ LEFT JOIN Sophia.TURNOS TU ON T.TURNO = TU.CODIGO;</sql>
         <name>cadastradopor</name>
         <length>8</length>
         <precision>-1</precision>
-        <origin>SELECT turma 2</origin>
+        <origin>SELECT configturma</origin>
         <comments>cadastradopor</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3619,7 +3628,7 @@ LEFT JOIN Sophia.TURNOS TU ON T.TURNO = TU.CODIGO;</sql>
         <name>dtcadastro</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT turma 2</origin>
+        <origin>SELECT configturma</origin>
         <comments>dtcadastro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3642,7 +3651,7 @@ LEFT JOIN Sophia.TURNOS TU ON T.TURNO = TU.CODIGO;</sql>
         <name>turno</name>
         <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT turma 2</origin>
+        <origin>SELECT configturma</origin>
         <comments>turno</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3665,7 +3674,7 @@ LEFT JOIN Sophia.TURNOS TU ON T.TURNO = TU.CODIGO;</sql>
         <name>codturma_AUX</name>
         <length>4</length>
         <precision>-1</precision>
-        <origin>SELECT turma 2</origin>
+        <origin>SELECT configturma</origin>
         <comments>codturma_AUX</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3917,8 +3926,8 @@ FROM Sophia.CURSOS C;
     <sql>
 SELECT
 	d.CODIGO AS 'coddisciplina', 
-	UPPER(d.NOME) AS 'dscdisciplina',
-	ISNULL(LEFT(UPPER(d.NOME_RESUM),5),UPPER(CONCAT(LEFT(d.NOME,3),RIGHT(d.NOME,2)))) AS 'dscabreviada',
+	LEFT(UPPER(d.NOME),120) AS 'dscdisciplina',
+	LEFT(ISNULL(LEFT(UPPER(d.NOME_RESUM),5),UPPER(CONCAT(LEFT(d.NOME,3),RIGHT(d.NOME,2)))),5) AS 'dscabreviada',
 	'S' AS 'ativo',
 	1 AS 'pesoreprovacao'
 FROM sophia.DISCIPLINAS d;</sql>
@@ -4073,31 +4082,26 @@ FROM sophia.DISCIPLINAS d;</sql>
     <connection>SQLSERVER-LOCALHOST</connection>
     <sql>SELECT 
 	A.CODIGO AS 'funcodigo', 
-	UPPER(NOME) AS 'nome',
-	SEXO AS 'sexo',
+	LEFT(UPPER(NOME),100) AS 'nome',
+	LEFT(SEXO,1) AS 'sexo',
 	CAST(DATANASC AS DATE) AS 'dtnascimento', 
 	TRIM(dbo.REMOVEcaractere(CPF)) AS 'cpf',
-	RG AS 'RG',
-	CAST(DATAEXP AS DATE) AS 'rgdataemissao', 
-	UPPER(IIF(LOGRADOURO IS NULL, NULL, ISNULL(LOGRADOURO,'')+', '+ ISNULL(NUMERO,'')+' '+ ISNULL(COMPLEMENTO,''))) AS 'endereco',
-	LEFT(dbo.REMOVEcaractere(CEP),8) cep, UPPER(B.DESCRICAO) AS 'bairro', 
-	UPPER(C.DESCRICAO) AS 'cidade',
+	LEFT(RG,30) AS 'RG',
+	LEFT(UPPER(IIF(LOGRADOURO IS NULL, NULL, ISNULL(LOGRADOURO,'')+', '+ ISNULL(NUMERO,'')+' '+ ISNULL(COMPLEMENTO,''))),100) AS 'endereco',
+	LEFT(dbo.REMOVEcaractere(CEP),8) AS 'cep', 
+	LEFT(UPPER(B.DESCRICAO),60) AS 'bairro', 
+	LEFT(UPPER(C.DESCRICAO),40) AS 'cidade',
 	LEFT(RTRIM(dbo.REMOVEcaractere(CONTATO1)),10) AS 'FONERESID',
 	LEFT(RTRIM(dbo.REMOVEcaractere(cONTATO2)),11) AS 'celular',
-	EMAIL AS 'email',
-	REPLACE(REPLACE(CONCAT(ISNULL(OBSERVACOES,''), IIF(CONTATO3 IS NOT NULL, CONCAT(' CONTATO 3 :', ISNULL(CONTATO3,'')),'')), CHAR(13), ''), CHAR(10), '') AS 'OBSERVACOES', 
-	UPPER(R.DESCRICAO) AS 'COR', 
-	UPPER(C2.DESCRICAO) AS 'NATURALIDADE',
-	UPPER(RE.DESCRICAO) AS 'RELIGIAO', 
-	UPPER(ETC.DESCRICAO) AS 'ESTADOCIVIL',
-	A2.TE_NUMERO AS 'TITELEITOR',
+	LEFT(EMAIL,70) AS 'email',
+	LEFT(REPLACE(REPLACE(CONCAT(ISNULL(OBSERVACOES,''), IIF(CONTATO3 IS NOT NULL, CONCAT(' CONTATO 3 :', ISNULL(CONTATO3,'')),'')), CHAR(13), ''), CHAR(10), ''),2000) AS 'OBSERVACOES', 
+	LEFT(UPPER(R.DESCRICAO),20) AS 'COR', 
+	LEFT(UPPER(C2.DESCRICAO),40) AS 'NATURALIDADE',
+	LEFT(UPPER(ETC.DESCRICAO),15) AS 'ESTADOCIVIL',
+	LEFT(A2.TE_NUMERO,15) AS 'TITELEITOR',
 	LEFT(A2.TE_ZONA,10) AS 'TITZONA',
-	A2.TE_SECAO AS 'TITSESSAO',
-	A2.CN_NUMERO AS 'certidaonumero',
-	A2.CN_TIPO AS 'tipocertidao',
-	A2.OBS_FIN AS 'obsfinanceiro', 
-	UPPER(fa.MAE_NOME) AS 'nomemae', 
-	UPPER(fa.PAI_NOME) AS 'nomepai'
+	LEFT(UPPER(fa.MAE_NOME),100) AS 'mae', 
+	LEFT(UPPER(fa.PAI_NOME),100) AS 'pai'
 FROM sophia.FISICA A
 LEFT JOIN Sophia.DADOSPF A2 ON A.CODIGO = A2.FISICA
 LEFT JOIN sophia.FAMILIAS fa ON a2.FAMILIA = fa.CODIGO
@@ -4119,7 +4123,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
+    <cached_row_meta_active>Y</cached_row_meta_active>
     <row-meta>
       <value-meta>
         <type>Integer</type>
@@ -4127,7 +4131,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <name>funcodigo</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>funcodigo</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -4150,7 +4154,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <name>nome</name>
         <length>82</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>nome</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4171,9 +4175,9 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>sexo</name>
-        <length>3</length>
+        <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>sexo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4196,7 +4200,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <name>dtnascimento</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>dtnascimento</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4219,7 +4223,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <name>cpf</name>
         <length>256</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>cpf</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4242,31 +4246,8 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <name>RG</name>
         <length>22</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>RG</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Date</type>
-        <storagetype>normal</storagetype>
-        <name>rgdataemissao</name>
-        <length>-1</length>
-        <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
-        <comments>rgdataemissao</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -4286,9 +4267,9 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>endereco</name>
-        <length>315</length>
+        <length>100</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>endereco</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4311,7 +4292,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <name>cep</name>
         <length>8</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>cep</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4334,7 +4315,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <name>bairro</name>
         <length>32</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>bairro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4357,7 +4338,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <name>cidade</name>
         <length>32</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>cidade</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4380,7 +4361,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <name>FONERESID</name>
         <length>10</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>FONERESID</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4403,7 +4384,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <name>celular</name>
         <length>11</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>celular</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4424,9 +4405,9 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>email</name>
-        <length>180</length>
+        <length>70</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>email</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4449,7 +4430,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <name>OBSERVACOES</name>
         <length>2147483647</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>OBSERVACOES</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4472,7 +4453,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <name>COR</name>
         <length>15</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>COR</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4495,7 +4476,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <name>NATURALIDADE</name>
         <length>32</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>NATURALIDADE</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4515,33 +4496,10 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>RELIGIAO</name>
-        <length>32</length>
-        <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
-        <comments>RELIGIAO</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
         <name>ESTADOCIVIL</name>
-        <length>17</length>
+        <length>15</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>ESTADOCIVIL</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4562,9 +4520,9 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>TITELEITOR</name>
-        <length>17</length>
+        <length>15</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>TITELEITOR</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4587,7 +4545,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <name>TITZONA</name>
         <length>5</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
+        <origin>SELECT funcionario</origin>
         <comments>TITZONA</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4607,103 +4565,11 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>TITSESSAO</name>
-        <length>6</length>
-        <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
-        <comments>TITSESSAO</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>certidaonumero</name>
-        <length>32</length>
-        <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
-        <comments>certidaonumero</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>tipocertidao</name>
-        <length>4</length>
-        <precision>0</precision>
-        <origin>SELECT seriecurso 4</origin>
-        <comments>tipocertidao</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>obsfinanceiro</name>
-        <length>2147483647</length>
-        <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
-        <comments>obsfinanceiro</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>nomemae</name>
+        <name>mae</name>
         <length>82</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
-        <comments>nomemae</comments>
+        <origin>SELECT funcionario</origin>
+        <comments>mae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -4722,11 +4588,11 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>nomepai</name>
+        <name>pai</name>
         <length>82</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 4</origin>
-        <comments>nomepai</comments>
+        <origin>SELECT funcionario</origin>
+        <comments>pai</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -4758,6 +4624,489 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
     </GUI>
   </step>
   <step>
+    <name>SELECT matricula</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>SQLSERVER-LOCALHOST</connection>
+    <sql>SELECT 
+    m.CODIGO 'codmatricula',
+    m.FISICA AS 'codaluno',
+    ss.CURSO AS 'codcurso',
+    m.SERIE 'codseriecurso',
+    REPLACE(p.DESCRICAO,'/','') AS 'anoletivo', 
+    CASE 
+        WHEN m.STATUS = 5 THEN 'C' 
+        WHEN m.STATUS = 0 THEN 'C' 
+        WHEN m.STATUS = 1 THEN 'N' 
+        WHEN m.STATUS = 2 THEN 'I' 
+        WHEN m.STATUS = 3 THEN 'T' 
+        WHEN m.STATUS = 4 THEN 'D' 
+        WHEN m.STATUS = 6 THEN 'C' 
+        WHEN m.STATUS = 7 THEN 'I' 
+        END AS 'situacao',
+    CAST(m.DATA_MATRICULA AS DATE) AS 'dtmatricula', 
+    m.TURMA_REGULAR AS 'codconfturma',
+    1 AS 'codunidade',
+    1 AS 'codturma',
+    tu.TURMA AS 'codturma_aux', 
+    CASE 
+        WHEN ff.IDFK_PARENTESCO = 2 THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fam.MAE_CPF),'00000000000')) 
+        WHEN ff.IDFK_PARENTESCO = 1 THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fam.PAI_CPF),'00000000000')) 
+        ELSE RTRIM(ISNULL((SELECT dbo.REMOVEcaractere(oo.CPF)
+            FROM sophia.FISICA oo
+            JOIN sophia.FISICA__FISICA ooff ON (oo.CODIGO = ooff.IDFK_RESPONSAVEL)
+            WHERE ooff.ID_FISICA__FISICA = ff.ID_FISICA__FISICA),'00000000000')) 
+            END AS 'cpfrespacademico', 
+    LEFT(UPPER(par2.DESCRICAO),20) AS 'parentescorespacademico',
+    CASE 
+    WHEN ff2.IDFK_PARENTESCO = 2 THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fa.MAE_CPF),'00000000000')) 
+    WHEN ff2.IDFK_PARENTESCO = 1 THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fa.PAI_CPF),'00000000000')) 
+    ELSE RTRIM(ISNULL((SELECT dbo.REMOVEcaractere(oo2.CPF)
+        FROM sophia.FISICA oo2
+        JOIN sophia.FISICA__FISICA ooff2 ON (oo2.CODIGO = ooff2.IDFK_RESPONSAVEL)
+        WHERE ooff2.ID_FISICA__FISICA = ff2.ID_FISICA__FISICA),'00000000000')) 
+        END AS 'cpfrespfinanceiro', 
+    LEFT(UPPER(par.DESCRICAO),20) AS 'parentescorespfinanceiro',
+    CAST(GETDATE() AS DATE) AS 'dtcadastro',
+    1 AS 'cadastradopor'
+FROM Sophia.MATRICULA m
+LEFT JOIN sophia.FISICA f ON m.FISICA = f.CODIGO
+LEFT JOIN sophia.PERIODOS p ON m.PERIODO = p.CODIGO
+LEFT JOIN sophia.TURNOS tur ON m.TURNO = tur.CODIGO
+LEFT JOIN sophia.VENDAS ve ON m.VENDA = ve.CODIGO
+LEFT JOIN sophia.FISICA__FISICA ff ON m.IDFK_RESPONSAVEL_PEDAGOGICO = ff.ID_FISICA__FISICA
+LEFT JOIN sophia.DADOSPF ddp ON (ddp.FISICA = f.CODIGO)
+LEFT JOIN sophia.FAMILIAS fam ON (ddp.FAMILIA = fam.CODIGO)
+LEFT JOIN sophia.FISICA__FISICA ff2 ON f.IDFK_RESPONSAVEL_FIN_PADRAO = ff2.ID_FISICA__FISICA
+LEFT JOIN sophia.DADOSPF dp ON (dp.FISICA = f.CODIGO)
+LEFT JOIN sophia.FAMILIAS fa ON (dp.FAMILIA = fa.CODIGO)
+LEFT JOIN sophia.PARENTESCOS parentFin ON ff.IDFK_PARENTESCO = parentFin.CODIGO
+LEFT JOIN SophiA.SERIE ss ON (m.SERIE = ss.CODIGO)
+LEFT JOIN SophiA.TURMAS tu ON (m.TURMA_REGULAR = tu.CODIGO)
+LEFT JOIN sophia.PARENTESCOS par ON (par.CODIGO = ff2.IDFK_PARENTESCO)
+LEFT JOIN sophia.PARENTESCOS par2 ON (ff.IDFK_PARENTESCO = par2.CODIGO)
+WHERE m.TURMA_REGULAR IS NOT NULL</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codmatricula</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT matricula</origin>
+        <comments>codmatricula</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codaluno</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT matricula</origin>
+        <comments>codaluno</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codcurso</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT matricula</origin>
+        <comments>codcurso</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codseriecurso</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT matricula</origin>
+        <comments>codseriecurso</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>anoletivo</name>
+        <length>8000</length>
+        <precision>-1</precision>
+        <origin>SELECT matricula</origin>
+        <comments>anoletivo</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>situacao</name>
+        <length>1</length>
+        <precision>-1</precision>
+        <origin>SELECT matricula</origin>
+        <comments>situacao</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Date</type>
+        <storagetype>normal</storagetype>
+        <name>dtmatricula</name>
+        <length>-1</length>
+        <precision>-1</precision>
+        <origin>SELECT matricula</origin>
+        <comments>dtmatricula</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codconfturma</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT matricula</origin>
+        <comments>codconfturma</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codunidade</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT matricula</origin>
+        <comments>codunidade</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codturma</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT matricula</origin>
+        <comments>codturma</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>codturma_aux</name>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>SELECT matricula</origin>
+        <comments>codturma_aux</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>cpfrespacademico</name>
+        <length>256</length>
+        <precision>-1</precision>
+        <origin>SELECT matricula</origin>
+        <comments>cpfrespacademico</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>parentescorespacademico</name>
+        <length>20</length>
+        <precision>-1</precision>
+        <origin>SELECT matricula</origin>
+        <comments>parentescorespacademico</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>cpfrespfinanceiro</name>
+        <length>256</length>
+        <precision>-1</precision>
+        <origin>SELECT matricula</origin>
+        <comments>cpfrespfinanceiro</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>parentescorespfinanceiro</name>
+        <length>20</length>
+        <precision>-1</precision>
+        <origin>SELECT matricula</origin>
+        <comments>parentescorespfinanceiro</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Date</type>
+        <storagetype>normal</storagetype>
+        <name>dtcadastro</name>
+        <length>-1</length>
+        <precision>-1</precision>
+        <origin>SELECT matricula</origin>
+        <comments>dtcadastro</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>cadastradopor</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT matricula</origin>
+        <comments>cadastradopor</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>944</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>SELECT responsavel</name>
     <type>TableInput</type>
     <description/>
@@ -4769,7 +5118,8 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
       <schema_name/>
     </partitioning>
     <connection>SQLSERVER-LOCALHOST</connection>
-    <sql>--PAI 
+    <sql>-- RESPONSÁVEL --
+--PAI 
 SELECT 
 	DISTINCT TRIM(dbo.REMOVEcaractere(fa.pai_CPF)) AS 'cpf', 
 	TRIM(UPPER(fa.pai_NOME)) AS 'nomeresponsavel', 
@@ -4796,7 +5146,7 @@ LEFT JOIN sophia.CIDADES c ON (fa.pai_ER_CIDADE = c.CODIGO)
 LEFT JOIN sophia.ESTCIVIL et ON (et.CODIGO = fa.pai_EST_CIVIL)
 LEFT JOIN sophia.BAIRROS ba ON (ISNULL(fa.PAI_EC_BAIRRO,fa.PAI_ER_BAIRRO) = ba.CODIGO)
 LEFT JOIN cidade_escolaweb cc ON (c.DESCRICAO = cc.nom_cidade)
-WHERE fa.pai_CPF IS NOT NULL
+WHERE fa.pai_CPF IS NOT NULL AND LEN(fa.pai_CPF) > 1 AND fa.PAI_NOME IS NOT NULL
 
 UNION ALL
 
@@ -4827,7 +5177,7 @@ LEFT JOIN sophia.CIDADES c ON (fa.MAE_ER_CIDADE = c.CODIGO)
 LEFT JOIN sophia.ESTCIVIL et ON (et.CODIGO = fa.MAE_EST_CIVIL)
 LEFT JOIN sophia.BAIRROS ba ON (ISNULL(fa.MAE_EC_BAIRRO,fa.MAE_ER_BAIRRO) = ba.CODIGO)
 LEFT JOIN cidade_escolaweb cc ON (c.DESCRICAO = cc.nom_cidade)
-WHERE fa.MAE_CPF IS NOT NULL
+WHERE fa.MAE_CPF IS NOT NULL AND LEN(fa.MAE_CPF) > 1 AND fa.mae_nome IS NOT NULL
 
 UNION ALL
 
@@ -4868,7 +5218,8 @@ LEFT JOIN Sophia.RACA R ON A.RACA = R.CODIGO
 LEFT JOIN Sophia.ESTCIVIL ETC ON A2.EST_CIVIL = ETC.CODIGO
 LEFT JOIN sophia.OCUPACOES ocp ON (ocp.CODIGO = fa.PAI_OCUPACAO)
 LEFT JOIN sophia.OCUPACOES ocm ON (ocm.CODIGO = fa.MAE_OCUPACAO)
-WHERE A.CPF IS NOT NULL;</sql>
+WHERE A.CPF IS NOT NULL AND LEN(A.cpf) > 1 AND a.NOME IS NOT NULL;
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -4882,7 +5233,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>cpf</name>
         <length>256</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>cpf</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4905,7 +5256,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>nomeresponsavel</name>
         <length>8000</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>nomeresponsavel</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4928,7 +5279,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>profissao</name>
         <length>32</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>profissao</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4951,7 +5302,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>celular</name>
         <length>256</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>celular</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4974,7 +5325,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>telresid</name>
         <length>256</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>telresid</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4997,7 +5348,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>email</name>
         <length>180</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>email</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5020,7 +5371,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>rg</name>
         <length>8000</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>rg</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5043,7 +5394,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>endereco</name>
         <length>315</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>endereco</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5066,7 +5417,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>bairro</name>
         <length>32</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>bairro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5089,7 +5440,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>cidade</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>cidade</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -5112,7 +5463,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>cep</name>
         <length>8</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>cep</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5135,7 +5486,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>sexo</name>
         <length>3</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>sexo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5158,7 +5509,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>estadocivil</name>
         <length>17</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>estadocivil</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5181,7 +5532,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>dtnascimento</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>dtnascimento</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5204,7 +5555,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>rgorgaoemissor</name>
         <length>22</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>rgorgaoemissor</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5227,7 +5578,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>cadastradopor</name>
         <length>8</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>cadastradopor</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5250,7 +5601,7 @@ WHERE A.CPF IS NOT NULL;</sql>
         <name>dtcadastro</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>dtcadastro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5302,7 +5653,7 @@ WHERE A.CPF IS NOT NULL;</sql>
 	s.ORDEM AS 'ordem',
 	'S' AS 'ativo',
 	'N' AS 'concluinte', 
-	UPPER(s.DESCRICAO) AS 'dscserie', 
+	LEFT(UPPER(s.DESCRICAO),200) AS 'dscserie', 
 	CAST(GETDATE() AS date) AS 'dtcadastro',
 	'MIG AUTO' AS 'cadastradopor'
 FROM sophia.SERIE s;
@@ -5320,7 +5671,7 @@ FROM sophia.SERIE s;
         <name>codseriecurso</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT seriecurso 3</origin>
+        <origin>SELECT seriecurso</origin>
         <comments>codseriecurso</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -5343,7 +5694,7 @@ FROM sophia.SERIE s;
         <name>codcurso</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT seriecurso 3</origin>
+        <origin>SELECT seriecurso</origin>
         <comments>codcurso</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -5366,7 +5717,7 @@ FROM sophia.SERIE s;
         <name>codunidade</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT seriecurso 3</origin>
+        <origin>SELECT seriecurso</origin>
         <comments>codunidade</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -5389,7 +5740,7 @@ FROM sophia.SERIE s;
         <name>codserie</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT seriecurso 3</origin>
+        <origin>SELECT seriecurso</origin>
         <comments>codserie</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -5412,7 +5763,7 @@ FROM sophia.SERIE s;
         <name>ordem</name>
         <length>4</length>
         <precision>0</precision>
-        <origin>SELECT seriecurso 3</origin>
+        <origin>SELECT seriecurso</origin>
         <comments>ordem</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -5435,7 +5786,7 @@ FROM sophia.SERIE s;
         <name>ativo</name>
         <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 3</origin>
+        <origin>SELECT seriecurso</origin>
         <comments>ativo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5458,7 +5809,7 @@ FROM sophia.SERIE s;
         <name>concluinte</name>
         <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 3</origin>
+        <origin>SELECT seriecurso</origin>
         <comments>concluinte</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5481,7 +5832,7 @@ FROM sophia.SERIE s;
         <name>dscserie</name>
         <length>20</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 3</origin>
+        <origin>SELECT seriecurso</origin>
         <comments>dscserie</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5504,7 +5855,7 @@ FROM sophia.SERIE s;
         <name>dtcadastro</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 3</origin>
+        <origin>SELECT seriecurso</origin>
         <comments>dtcadastro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5527,7 +5878,7 @@ FROM sophia.SERIE s;
         <name>cadastradopor</name>
         <length>8</length>
         <precision>-1</precision>
-        <origin>SELECT seriecurso 3</origin>
+        <origin>SELECT seriecurso</origin>
         <comments>cadastradopor</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5573,9 +5924,9 @@ FROM sophia.SERIE s;
     <connection>SQLSERVER-LOCALHOST</connection>
     <sql>SELECT  
 DISTINCT
-t.TURMA AS dscturma,
-	t.UNIDADE AS unidade,
-	UPPER(LEFT(tu.DESCRICAO,1)) AS turno
+	LEFT(t.TURMA,20) AS 'dscturma',
+	t.UNIDADE AS 'unidade',
+	UPPER(LEFT(tu.DESCRICAO,1)) AS 'turno'
 FROM sophia.TURMAS t
 LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
     <limit>0</limit>
@@ -5591,7 +5942,7 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
         <name>dscturma</name>
         <length>4</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 4</origin>
+        <origin>SELECT turma</origin>
         <comments>dscturma</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5614,7 +5965,7 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
         <name>unidade</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT funcionario 4</origin>
+        <origin>SELECT turma</origin>
         <comments>unidade</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -5637,7 +5988,7 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
         <name>turno</name>
         <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT funcionario 4</origin>
+        <origin>SELECT turma</origin>
         <comments>turno</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5683,168 +6034,211 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
     <fields>
       <field>
         <name>codaluno</name>
+        <rename/>
       </field>
       <field>
         <name>nomealuno</name>
+        <rename/>
       </field>
       <field>
         <name>endereco</name>
+        <rename/>
       </field>
       <field>
         <name>bairro</name>
+        <rename/>
       </field>
       <field>
         <name>cidade</name>
+        <rename/>
       </field>
       <field>
         <name>cep</name>
+        <rename/>
       </field>
       <field>
         <name>telresid</name>
+        <rename/>
       </field>
       <field>
         <name>celular</name>
+        <rename/>
       </field>
       <field>
         <name>email</name>
+        <rename/>
       </field>
       <field>
         <name>sexo</name>
+        <rename/>
       </field>
       <field>
         <name>dtnascimento</name>
+        <rename/>
       </field>
       <field>
         <name>COR</name>
+        <rename/>
       </field>
       <field>
         <name>pai</name>
+        <rename/>
       </field>
       <field>
         <name>profpai</name>
+        <rename/>
       </field>
       <field>
         <name>telpai</name>
+        <rename/>
       </field>
       <field>
         <name>celularpai</name>
+        <rename/>
       </field>
       <field>
         <name>emailpai</name>
+        <rename/>
       </field>
       <field>
         <name>mae</name>
+        <rename/>
       </field>
       <field>
         <name>profmae</name>
+        <rename/>
       </field>
       <field>
         <name>telmae</name>
+        <rename/>
       </field>
       <field>
         <name>celularmae</name>
+        <rename/>
       </field>
       <field>
         <name>emailmae</name>
+        <rename/>
       </field>
       <field>
         <name>obs</name>
+        <rename/>
       </field>
       <field>
         <name>cpf</name>
+        <rename/>
       </field>
       <field>
         <name>RG</name>
+        <rename/>
       </field>
       <field>
         <name>certidaonumero</name>
+        <rename/>
       </field>
       <field>
         <name>certidaolivrofolha</name>
+        <rename/>
       </field>
       <field>
         <name>RELIGIAO</name>
+        <rename/>
       </field>
       <field>
         <name>enderecopai</name>
+        <rename/>
       </field>
       <field>
         <name>bairropai</name>
+        <rename/>
       </field>
       <field>
         <name>codcidadepai</name>
+        <rename/>
       </field>
       <field>
         <name>ceppai</name>
+        <rename/>
       </field>
       <field>
         <name>enderecomae</name>
+        <rename/>
       </field>
       <field>
         <name>bairromae</name>
+        <rename/>
       </field>
       <field>
         <name>codcidademae</name>
+        <rename/>
       </field>
       <field>
         <name>cepmae</name>
+        <rename/>
       </field>
       <field>
         <name>ativo</name>
+        <rename/>
       </field>
       <field>
         <name>titeleitor</name>
+        <rename/>
       </field>
       <field>
         <name>zona</name>
+        <rename/>
       </field>
       <field>
         <name>dtcadastro</name>
+        <rename/>
       </field>
       <field>
         <name>dtnascimentopai</name>
+        <rename/>
       </field>
       <field>
         <name>dtnascimentomae</name>
+        <rename/>
       </field>
       <field>
         <name>naturalidade</name>
+        <rename/>
       </field>
       <field>
         <name>cpfpai</name>
+        <rename/>
       </field>
       <field>
         <name>rgpai</name>
+        <rename/>
       </field>
       <field>
         <name>cpfmae</name>
+        <rename/>
       </field>
       <field>
         <name>rgmae</name>
+        <rename/>
       </field>
       <field>
         <name>estadocivil</name>
+        <rename/>
       </field>
       <field>
         <name>tipocertidao</name>
-      </field>
-      <field>
-        <name>rgorgaoemissor</name>
+        <rename/>
       </field>
       <field>
         <name>rgdataemissao</name>
-      </field>
-      <field>
-        <name>rgorgaoemissorpai</name>
+        <rename/>
       </field>
       <field>
         <name>rgdataemissaopai</name>
-      </field>
-      <field>
-        <name>rgorgaoemissormae</name>
+        <rename/>
       </field>
       <field>
         <name>rgdataemissaomae</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -6049,9 +6443,6 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
         <name>RG</name>
       </field>
       <field>
-        <name>rgdataemissao</name>
-      </field>
-      <field>
         <name>endereco</name>
       </field>
       <field>
@@ -6082,9 +6473,6 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
         <name>NATURALIDADE</name>
       </field>
       <field>
-        <name>RELIGIAO</name>
-      </field>
-      <field>
         <name>ESTADOCIVIL</name>
       </field>
       <field>
@@ -6094,22 +6482,10 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
         <name>TITZONA</name>
       </field>
       <field>
-        <name>TITSESSAO</name>
+        <name>mae</name>
       </field>
       <field>
-        <name>certidaonumero</name>
-      </field>
-      <field>
-        <name>tipocertidao</name>
-      </field>
-      <field>
-        <name>obsfinanceiro</name>
-      </field>
-      <field>
-        <name>nomemae</name>
-      </field>
-      <field>
-        <name>nomepai</name>
+        <name>pai</name>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -6124,6 +6500,85 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
     <GUI>
       <xloc>304</xloc>
       <yloc>656</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values matricula</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>codmatricula</name>
+      </field>
+      <field>
+        <name>codaluno</name>
+      </field>
+      <field>
+        <name>codcurso</name>
+      </field>
+      <field>
+        <name>codseriecurso</name>
+      </field>
+      <field>
+        <name>anoletivo</name>
+      </field>
+      <field>
+        <name>situacao</name>
+      </field>
+      <field>
+        <name>dtmatricula</name>
+      </field>
+      <field>
+        <name>codconfturma</name>
+      </field>
+      <field>
+        <name>codunidade</name>
+      </field>
+      <field>
+        <name>codturma</name>
+      </field>
+      <field>
+        <name>codturma_aux</name>
+      </field>
+      <field>
+        <name>cpfrespacademico</name>
+      </field>
+      <field>
+        <name>parentescorespacademico</name>
+      </field>
+      <field>
+        <name>cpfrespfinanceiro</name>
+      </field>
+      <field>
+        <name>parentescorespfinanceiro</name>
+      </field>
+      <field>
+        <name>dtcadastro</name>
+      </field>
+      <field>
+        <name>cadastradopor</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6149,10 +6604,10 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
         <name>profissao</name>
       </field>
       <field>
-        <name>celular</name>
+        <name>telresid</name>
       </field>
       <field>
-        <name>telresid</name>
+        <name>celular</name>
       </field>
       <field>
         <name>email</name>
@@ -6180,9 +6635,6 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
       </field>
       <field>
         <name>dtnascimento</name>
-      </field>
-      <field>
-        <name>rgorgaoemissor</name>
       </field>
       <field>
         <name>cadastradopor</name>
