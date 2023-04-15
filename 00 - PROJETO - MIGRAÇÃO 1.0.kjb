@@ -1,5 +1,5 @@
 <job>
-  <name>PROJETO - MIGRAÇÃO 1.0</name>
+  <name>00 - PROJETO - MIGRAÇÃO 1.0</name>
   <description/>
   <extended_description/>
   <job_version/>
@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/04/14 08:53:05.913</modified_date>
+  <modified_date>2023/04/14 21:12:51.361</modified_date>
   <parameters>
     </parameters>
   <connection>
@@ -367,7 +367,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>32</xloc>
+      <xloc>192</xloc>
       <yloc>64</yloc>
       <attributes_kjc/>
     </entry>
@@ -397,23 +397,6 @@
       <nr>0</nr>
       <xloc>1040</xloc>
       <yloc>1008</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>PING SERVER-PC</name>
-      <description/>
-      <type>PING</type>
-      <attributes/>
-      <hostname>187.115.148.164</hostname>
-      <nbr_packets>2</nbr_packets>
-      <nbrpaquets>2</nbrpaquets>
-      <timeout>3000</timeout>
-      <pingtype>classicPing</pingtype>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>192</xloc>
-      <yloc>64</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -1133,15 +1116,6 @@ VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
   </entries>
   <hops>
     <hop>
-      <from>START</from>
-      <to>PING SERVER-PC</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
       <from>PASSO 4 - SEC</from>
       <to>FALHA - 4</to>
       <from_nr>0</from_nr>
@@ -1430,15 +1404,6 @@ VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PING SERVER-PC</from>
-      <to>Display msgbox info</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>CHECK SECRETARIA</from>
       <to>PASSO 4 - SEC</to>
       <from_nr>0</from_nr>
@@ -1473,6 +1438,15 @@ VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Display msgbox info</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>
