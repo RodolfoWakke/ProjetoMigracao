@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/02/26 09:22:54.470</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/03/13 14:09:15.208</modified_date>
+    <modified_date>2023/04/14 11:05:24.855</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -795,7 +795,8 @@ set a.codaluno_unificado = aa.codaluno ;
 INSERT INTO responsavel
 (cpf, nomeresponsavel, profissao, localtrabalho, teltrabalho, telresid, celular, email, rg, endereco, bairro, cidade, uf, cep, rendaliquida, sexo, estadocivil, dtnascimento, escolaridade, pai, mae, enderecocom, bairrocom, cepcom, codcidadecom, cargo, senha, login, fotoportal, nacionalidade, naturalidade, obs, rgorgaoemissor, rgestado, rgdataemissao, codpaisorigem, codcidadenaturalidade, codescolaridade, codfatura, agrupamentofatura, placa, veiculo, fotoblob, dtcadastro, dtalteracao, cadastradopor, alteradopor, codbanco, agencia, conta, debitoautomaticoativo, clienteiugu, inscricaoestadual, tokenfirebase, inscricaomunicipal) 
 (SELECT cpf, nomeresponsavel, profissao, localtrabalho, teltrabalho, telresid, celular, email, rg, endereco, bairro, cidade, uf, cep, rendaliquida, sexo, estadocivil, dtnascimento, escolaridade, pai, mae, enderecocom, bairrocom, cepcom, codcidadecom, cargo, senha, login, fotoportal, nacionalidade, naturalidade, obs, rgorgaoemissor, rgestado, rgdataemissao, codpaisorigem, codcidadenaturalidade, codescolaridade, codfatura, agrupamentofatura, placa, veiculo, fotoblob, dtcadastro, dtalteracao, cadastradopor, alteradopor, codbanco, agencia, conta, debitoautomaticoativo, clienteiugu, inscricaoestadual, tokenfirebase, inscricaomunicipal
-FROM mig_responsavel);
+FROM mig_responsavel r WHERE r.cpf IS NOT NULL AND r.cpf &lt;&gt; '' AND r.cpf &lt;&gt; ' '
+GROUP BY r.cpf);
 
 UPDATE responsavel SET codsoc = 999999 WHERE codsoc = 1;
 
