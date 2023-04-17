@@ -8,72 +8,9 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/04/15 09:51:32.596</modified_date>
+  <modified_date>2023/04/17 13:56:35.038</modified_date>
   <parameters>
     </parameters>
-  <connection>
-    <name>RDS</name>
-    <server>${v_end-RDS}</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>${v_nomebanco-RDS}</database>
-    <port>3306</port>
-    <username>ricardo.gad</username>
-    <password>Encrypted 2be98afc86aa7f2e49910ad47df99a4df</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute>
-        <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
-        <attribute>500</attribute>
-      </attribute>
-      <attribute>
-        <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
-        <attribute>true</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>3306</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>STREAM_RESULTS</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <slaveservers>
     </slaveservers>
   <job-log-table>
@@ -575,66 +512,15 @@ Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
       <description/>
       <type>MSGBOX_INFO</type>
       <attributes/>
-      <bodymessage>Pronto, agora faça os updates necessários manualmente na base do cliente;
+      <bodymessage>ACESSE O LINK E, DE ACORDO COM O SISTEMA MIGRADO, FAÇA OS UPDATES FINAIS:
 
-Editar o sql 'Query de UPDATE' ao final do processo:
-- UPDATE seriecurso (Setando codcurso[curso]);
-- UPDATE matricula (Setando codcurso[seriecurso]);
--------------------------------------------------------------------------------
-- UPDATE conta [SE TIVER FIN] (Informe-se com o cliente sobre as contas utilizadas);
--------------------------------------------------------------------------------
-- UPDATE configturma (Setar os parâmetros individuais);
--------------------------------------------------------------------------------
-- TRIGGERS > ATUALIZAR O GIT, COPIAR ARQUIVO UNIAO, RODAR NO SAPO.</bodymessage>
-      <titremessage/>
+https://drive.google.com/drive/folders/1-ZmeRyLgNLasim0SwPsmRMIcKCEB9jTf</bodymessage>
+      <titremessage>Update Final</titremessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1184</xloc>
       <yloc>1008</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>Query de UPDATE</name>
-      <description/>
-      <type>SQL</type>
-      <attributes/>
-      <sql>/*
-SELECT * FROM curso;
-SELECT * FROM seriecurso;
-
--- PASSO 1
--- UPDATE CODCURSO EM SERIECURSO
-
-SET @codcurso = 2 ; -- EXEMPLO
-SET @codseriecurso = 1,2,3 ; -- EXEMPLO
-
-UPDATE seriecurso s
-SET s.codcurso = @codcurso
-WHERE s.codseriecurso IN (@codseriecurso);
-
--- RODAR O UPDATE PARA TODAS AS SÉRIES NESSESÁRIAS ANTES DE RODAR O PASSO 2.
--- ------------------------------------------------------------------------
--- ------------------------------------------------------------------------
- 
--- PASSO 2; 
--- UPDATE CODCURSO EM MATRÍCULA
-
-UPDATE matricula m
-JOIN seriecurso s ON (s.codseriecurso = m.codseriecurso)
-SET m.codcurso = s.codcurso;
-
-*/</sql>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename/>
-      <sendOneStatement>F</sendOneStatement>
-      <connection>RDS</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>1184</xloc>
-      <yloc>912</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
