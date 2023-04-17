@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/02/24 16:49:54.489</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/04/13 10:07:43.332</modified_date>
+    <modified_date>2023/04/17 09:37:33.547</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -457,14 +457,14 @@
     </notepad>
   </notepads>
   <connection>
-    <name>RDS</name>
-    <server>${v_end-RDS}</server>
+    <name>MYSQL-LOCALHOST</name>
+    <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${v_nomebanco-RDS}</database>
+    <database>intellectus</database>
     <port>3306</port>
-    <username>ricardo.gad</username>
-    <password>Encrypted 2be98afc86aa7f2e49910ad47df99a4df</password>
+    <username>root</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -520,14 +520,14 @@
     </attributes>
   </connection>
   <connection>
-    <name>SERVER-PC</name>
-    <server>${v_end-serverpc}</server>
+    <name>RDS</name>
+    <server>${v_end-RDS}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${v_nomebanco-serverpc}</database>
+    <database>${v_nomebanco-RDS}</database>
     <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86aa78195a71aa271cb96a6db</password>
+    <username>ricardo.gad</username>
+    <password>Encrypted 2be98afc86aa7f2e49910ad47df99a4df</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -2275,7 +2275,7 @@ CREATE TABLE IF NOT EXISTS `mig_acumulado` (
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>SERVER-PC</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT
 	n.TurmaAlunoID AS 'MATRICULA', 
     LEFT(CONCAT(t.TurmaID, IFNULL(t.Sigla, LEFT(t.Nome, 7))),10) AS 'codturma_aux',
@@ -2793,7 +2793,7 @@ JOIN turmas t ON (t.TurmaID = m.TurmaID);</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>SERVER-PC</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT
 	a.AlunoID AS 'codaluno',
 	UPPER(LEFT(a.Nome,100)) AS 'nomealuno' ,
@@ -4454,7 +4454,7 @@ GROUP BY a.AlunoID;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>SERVER-PC</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT
 	p.PlanoContaID as codreceita_aux,
 	LEFT(UPPER(p.Nome),20) AS dscreceita,
@@ -4591,7 +4591,7 @@ WHERE p.Tipo = 'E';
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>SERVER-PC</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT 
 	t.TurmaID AS 'codconfturma',          
 	c.CursoID AS 'codseriecurso',  -- Manter padrão codseriecurso
@@ -4962,7 +4962,7 @@ LEFT JOIN Turnos tu ON (t.TurnoID = tu.TurnoID);</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>SERVER-PC</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT
 	IF(c.ContaID = 0, 100, c.ContaID) AS codconta,
 	'EDITAR DE ACORDO COM O CÓDIGO DO SISTEMA ANTIGO' AS dscconta,
@@ -5142,7 +5142,7 @@ FROM contasreceber c GROUP BY c.ContaID;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>SERVER-PC</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT 
 	c.NumeroParcela as parcela,
     c.Valor as valorparcela,
@@ -5971,7 +5971,7 @@ where pc.Tipo ='E' AND c.situacao &lt;&gt; 2;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>SERVER-PC</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT 
     d.DisciplinaID AS coddisciplina,
     UPPER(LEFT(d.Nome,120)) AS dscdisciplina,
@@ -6358,7 +6358,7 @@ FROM disciplinas d;
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>SERVER-PC</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT
 	f.FuncionarioID AS FUNCODIGO,
 	ct.cod_estado AS CODUF,
@@ -7545,7 +7545,7 @@ GROUP BY f.FuncionarioID;
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>SERVER-PC</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT
     a.TurmaAlunoID AS 'codmatricula',
     a.AlunoID AS 'codaluno',
@@ -8564,7 +8564,7 @@ WHERE a.Removido = 1 AND a.SituacaoDidaticaID = '-3')); -- ALUNOS REMOVIDOS
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>SERVER-PC</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT
     r.ResponsavelID AS 'codsoc',
     LEFT(RTRIM(REMOVEcaractere(r.CPF)),14) AS 'cpf',
@@ -10588,7 +10588,7 @@ GROUP BY r.CPF;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>SERVER-PC</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT 
 	c.CursoID AS 'codseriecurso',  -- Manter padrão codseriecurso
 	1 AS codcurso, -- ajustar codcurso
@@ -10913,7 +10913,7 @@ FROM cursos c;
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>SERVER-PC</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT 
     LEFT(CONCAT(t.TurmaID, IFNULL(t.Sigla, LEFT(t.Nome, 7))),10) AS 'dscturma',
     LEFT(tu.Descricao,1) as 'turno',      
