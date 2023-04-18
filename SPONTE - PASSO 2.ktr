@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/02/24 16:49:54.489</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/04/17 09:37:33.547</modified_date>
+    <modified_date>2023/04/18 16:28:37.607</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -461,7 +461,7 @@
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>intellectus</database>
+    <database>${v_nomebanco-mysql}</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
@@ -664,11 +664,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Insert mig_disciplina</from>
-      <to>SELECT aluno</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Select values 10</from>
       <to>Insert mig_acumulado</to>
       <enabled>Y</enabled>
@@ -689,48 +684,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Insert mig_responsavel</from>
-      <to>SELECT funcionario</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_aluno</from>
-      <to>SELECT reponsavel</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_centroreceita</from>
-      <to>SELECT contasreceber</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_configturma</from>
-      <to>SELECT disciplina</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DELETE - INSERT - ALTER</from>
-      <to>SELECT seriecurso</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Select values 13</from>
       <to>Insert mig_contasreceber</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_seriecurso</from>
-      <to>SELECT turma</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_turma</from>
-      <to>SELECT configturma</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_funcionario</from>
-      <to>SELECT matricula</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -756,11 +711,6 @@
     <hop>
       <from>Select values</from>
       <to>Insert mig_conta</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_conta</from>
-      <to>SELECT centroreceita</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -4476,12 +4426,150 @@ WHERE p.Tipo = 'E';
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>codreceita_aux</name>
+        <name>codconta</name>
         <length>50</length>
         <precision>-1</precision>
+        <origin>SELECT conta</origin>
+        <comments>codconta</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>dscconta</name>
+        <length>47</length>
+        <precision>-1</precision>
+        <origin>SELECT conta</origin>
+        <comments>dscconta</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>tipoconta</name>
+        <length>1</length>
+        <precision>-1</precision>
+        <origin>SELECT conta</origin>
+        <comments>tipoconta</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>bancaria</name>
+        <length>1</length>
+        <precision>-1</precision>
+        <origin>SELECT conta</origin>
+        <comments>bancaria</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>ativo</name>
+        <length>1</length>
+        <precision>-1</precision>
+        <origin>SELECT conta</origin>
+        <comments>ativo</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>homologada</name>
+        <length>1</length>
+        <precision>-1</precision>
+        <origin>SELECT conta</origin>
+        <comments>homologada</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codreceita_aux</name>
+        <length>9</length>
+        <precision>0</precision>
         <origin>SELECT centroreceita</origin>
         <comments>codreceita_aux</comments>
-        <conversion_Mask/>
+        <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -4522,7 +4610,7 @@ WHERE p.Tipo = 'E';
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>ativo</name>
+        <name>ativo_1</name>
         <length>1</length>
         <precision>-1</precision>
         <origin>SELECT centroreceita</origin>
@@ -5159,7 +5247,7 @@ FROM contasreceber c GROUP BY c.ContaID;</sql>
     IF(c.ContaID = 0, 100, c.ContaID) as codconta,
     LEFT(c.NumeroBoletoAutomatizado,20) as nossonumero,
     year(STR_TO_DATE(c.DataVencimento, '%c/%e/%Y')) as anoletivo,
-    IF(cc.AlunoID IS NULL, 0, IF(cc.AlunoID = 0, 999999999, cc.AlunoID))  as codaluno,
+    IF(cc.AlunoID IS NULL, 0, cc.AlunoID) as codaluno,
     upper(LEFT(c.Obs, 100)) as descricao,
     curdate() as dtcadastro,
     'MIG AUTO' as cadastradopor,
