@@ -8,7 +8,11 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
+<<<<<<< HEAD
   <modified_date>2023/04/18 15:26:40.999</modified_date>
+=======
+  <modified_date>2023/04/17 16:50:04.249</modified_date>
+>>>>>>> parent of 56e6206 (commit)
   <parameters>
     </parameters>
   <slaveservers>
@@ -741,7 +745,7 @@ Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>816</yloc>
+      <yloc>832</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -753,7 +757,7 @@ Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1040</xloc>
-      <yloc>816</yloc>
+      <yloc>832</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -914,9 +918,15 @@ Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
       <description/>
       <type>MSGBOX_INFO</type>
       <attributes/>
+<<<<<<< HEAD
       <bodymessage>BANCO RDS: [ ${v_nomebanco-RDS} ]
 SISTEMA: ${v_sistema}
 BANCO MYSQL: ${v_nomebanco-mysql}
+=======
+      <bodymessage>SISTEMA: ${v_sistema}
+RDS: ${v_end-RDS}
+BANCO RDS: ${v_nomebanco-RDS}
+>>>>>>> parent of 56e6206 (commit)
 BANCO SERVER-PC: ${v_nomebanco-serverpc}
 BANCO SQLSERVER: ${v_nomebanco-sqlserver}
 -----------------------------------------------------

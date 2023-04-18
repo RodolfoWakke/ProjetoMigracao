@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/02/24 16:49:54.489</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/04/18 11:40:21.958</modified_date>
+    <modified_date>2023/04/17 09:37:33.547</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -461,7 +461,7 @@
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${v_nomebanco-mysql}</database>
+    <database>intellectus</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
@@ -664,6 +664,11 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Insert mig_disciplina</from>
+      <to>SELECT aluno</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Select values 10</from>
       <to>Insert mig_acumulado</to>
       <enabled>Y</enabled>
@@ -684,8 +689,48 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Insert mig_responsavel</from>
+      <to>SELECT funcionario</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Insert mig_aluno</from>
+      <to>SELECT reponsavel</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Insert mig_centroreceita</from>
+      <to>SELECT contasreceber</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Insert mig_configturma</from>
+      <to>SELECT disciplina</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DELETE - INSERT - ALTER</from>
+      <to>SELECT seriecurso</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Select values 13</from>
       <to>Insert mig_contasreceber</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Insert mig_seriecurso</from>
+      <to>SELECT turma</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Insert mig_turma</from>
+      <to>SELECT configturma</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Insert mig_funcionario</from>
+      <to>SELECT matricula</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -711,6 +756,11 @@
     <hop>
       <from>Select values</from>
       <to>Insert mig_conta</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Insert mig_conta</from>
+      <to>SELECT centroreceita</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -775,6 +825,8 @@ DELETE FROM mig_centroreceita;
 DELETE FROM mig_conta;
 DELETE FROM mig_contasreceber;
 DELETE FROM mig_acumulado;
+
+INSERT INTO mig_aluno (codaluno, nomealuno) VALUES (999999999, 'EMPRESA/CONTASRECEBER');
 
 ALTER TABLE mig_aluno AUTO_INCREMENT = 1;
 ALTER TABLE mig_responsavel AUTO_INCREMENT = 1;
@@ -5092,41 +5144,41 @@ FROM contasreceber c GROUP BY c.ContaID;</sql>
     </partitioning>
     <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT 
-	c.NumeroParcela AS 'parcela',
-	c.Valor AS 'valorparcela',
-	1 AS 'totparcela',
-	LEFT(IFNULL(REMOVECARACTERE(r.CPF), '00000000000'),14) AS 'cpf',
-	(STR_TO_DATE( c.DataVencimento, '%c/%e/%Y')) AS 'vencimento',
-	if(c.ValorDesconto = 0, NULL, c.ValorDesconto) AS 'desconto',
-	if(c.ValorDesconto &lt;&gt; 0, 0,NULL) AS 'carenciadesconto',
-	if(c.ValorDesconto &lt;&gt; 0, (STR_TO_DATE(c.DataVencimento, '%c/%e/%Y')), NULL) AS 'vencimentodesconto',
-	IF(c.DescontoManual = 0, NULL, c.DescontoManual) AS 'desconto2',		
-	(STR_TO_DATE(c.DataPagamento, '%c/%e/%Y')) AS 'dtpagamento',
-	c.ValorPago AS 'valorpago',
-	c.PlanoContaID AS 'codreceita',
-	IF(c.ContaID = 0, 100, c.ContaID) AS 'codconta',
-	LEFT(c.NumeroBoletoAutomatizado,20) AS 'nossonumero',
-	year(STR_TO_DATE(c.DataVencimento, '%c/%e/%Y')) AS 'anoletivo',
-	IF(cc.AlunoID IS NULL, 0, cc.AlunoID)  AS 'codaluno',
-	upper(LEFT(c.Obs, 100)) AS 'descricao',
-	curdate() AS 'dtcadastro',
-	'MIG AUTO' AS 'cadastradopor',
-	1 AS 'codunidade', -- REVER UNIDADE
-	c.Valor AS 'valorbruto',
-	c.Valor AS 'valor',
-	c.ContaReceberID AS 'receitaoriginal',
-	c.PlanoContaID AS 'AUX_codreceita', 
-	c.ContaReceberID AS 'AUX_contareceberID',
-	IF(c.TipoRecebimentoID = -5, "Parcela Cartão","Parcela Boleto") AS 'AUX_tipoparcela',
-	r.Nome AS 'AUX_responsavel',
-	c.ContaID AS 'aux_contaid',
-	cc.EmpresaID AS 'EmpresaID_aux'
+	c.NumeroParcela as parcela,
+    c.Valor as valorparcela,
+    1 AS totparcela,
+    LEFT(IFNULL(REMOVECARACTERE(r.CPF), '00000000000'),14) AS cpf,
+    (STR_TO_DATE( c.DataVencimento, '%c/%e/%Y')) as vencimento,
+    if(c.ValorDesconto = 0, NULL, c.ValorDesconto) as desconto,
+    if(c.ValorDesconto &lt;&gt; 0, 0,NULL) as carenciadesconto,
+    if(c.ValorDesconto &lt;&gt; 0, (STR_TO_DATE(c.DataVencimento, '%c/%e/%Y')), NULL) as vencimentodesconto,
+	IF(c.DescontoManual = 0, NULL, c.DescontoManual) AS desconto2,		
+    (STR_TO_DATE(c.DataPagamento, '%c/%e/%Y')) as dtpagamento,
+    c.ValorPago as valorpago,
+    c.PlanoContaID as codreceita,
+    IF(c.ContaID = 0, 100, c.ContaID) as codconta,
+    LEFT(c.NumeroBoletoAutomatizado,20) as nossonumero,
+    year(STR_TO_DATE(c.DataVencimento, '%c/%e/%Y')) as anoletivo,
+    IF(cc.AlunoID IS NULL, 0, IF(cc.AlunoID = 0, 999999999, cc.AlunoID))  as codaluno,
+    upper(LEFT(c.Obs, 100)) as descricao,
+    curdate() as dtcadastro,
+    'MIG AUTO' as cadastradopor,
+	1 as codunidade, -- REVER UNIDADE
+	c.Valor AS valorbruto,
+	c.Valor AS valor,
+	c.ContaReceberID AS receitaoriginal,
+	c.PlanoContaID as AUX_codreceita, 
+	c.ContaReceberID AS AUX_contareceberID,
+	IF(c.TipoRecebimentoID = -5, "Parcela Cartão","Parcela Boleto") AS AUX_tipoparcela,
+	r.Nome AS AUX_responsavel,
+	c.ContaID AS aux_contaid,
+	cc.EmpresaID AS EmpresaID_aux
 from ContasReceberParcelas c
 left join contasreceber cc on (c.ContaReceberID = cc.ContaReceberID)
 left join planoscontas pc on pc.PlanoContaID = c.PlanoContaID
 LEFT JOIN alunos a ON (a.AlunoID = cc.AlunoID)
 LEFT JOIN responsaveis r ON (a.ResponsavelFinanceiroID = r.ResponsavelID)
-WHERE pc.Tipo ='E' AND c.situacao &lt;&gt; 2;</sql>
+where pc.Tipo ='E' AND c.situacao &lt;&gt; 2;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -11425,119 +11477,90 @@ GROUP BY LEFT(CONCAT(t.TurmaID, IFNULL(t.Sigla, LEFT(t.Nome, 7))),10);
     <fields>
       <field>
         <name>parcela</name>
-        <rename/>
       </field>
       <field>
         <name>valorparcela</name>
-        <rename/>
       </field>
       <field>
         <name>totparcela</name>
-        <rename/>
       </field>
       <field>
         <name>cpf</name>
-        <rename/>
       </field>
       <field>
         <name>vencimento</name>
-        <rename/>
       </field>
       <field>
         <name>desconto</name>
-        <rename/>
       </field>
       <field>
         <name>carenciadesconto</name>
-        <rename/>
       </field>
       <field>
         <name>vencimentodesconto</name>
-        <rename/>
       </field>
       <field>
         <name>desconto2</name>
-        <rename/>
       </field>
       <field>
         <name>dtpagamento</name>
-        <rename/>
       </field>
       <field>
         <name>valorpago</name>
-        <rename/>
       </field>
       <field>
         <name>codreceita</name>
-        <rename/>
       </field>
       <field>
         <name>codconta</name>
-        <rename/>
       </field>
       <field>
         <name>nossonumero</name>
-        <rename/>
       </field>
       <field>
         <name>anoletivo</name>
-        <rename/>
       </field>
       <field>
         <name>codaluno</name>
-        <rename/>
       </field>
       <field>
         <name>descricao</name>
-        <rename/>
       </field>
       <field>
         <name>dtcadastro</name>
-        <rename/>
       </field>
       <field>
         <name>cadastradopor</name>
-        <rename/>
       </field>
       <field>
         <name>codunidade</name>
-        <rename/>
       </field>
       <field>
         <name>valorbruto</name>
-        <rename/>
       </field>
       <field>
         <name>valor</name>
-        <rename/>
       </field>
       <field>
         <name>receitaoriginal</name>
-        <rename/>
       </field>
       <field>
         <name>AUX_codreceita</name>
-        <rename/>
       </field>
       <field>
         <name>AUX_contareceberID</name>
-        <rename/>
       </field>
       <field>
         <name>AUX_tipoparcela</name>
-        <rename/>
       </field>
       <field>
         <name>AUX_responsavel</name>
-        <rename/>
       </field>
       <field>
         <name>aux_contaid</name>
-        <rename/>
       </field>
       <field>
         <name>EmpresaID_aux</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
