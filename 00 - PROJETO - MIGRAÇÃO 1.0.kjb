@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/04/18 11:35:23.045</modified_date>
+  <modified_date>2023/04/18 15:26:40.999</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -917,9 +917,12 @@ Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
       <bodymessage>BANCO RDS: [ ${v_nomebanco-RDS} ]
 SISTEMA: ${v_sistema}
 BANCO MYSQL: ${v_nomebanco-mysql}
-RDS: ${v_end-RDS}
 BANCO SERVER-PC: ${v_nomebanco-serverpc}
 BANCO SQLSERVER: ${v_nomebanco-sqlserver}
+-----------------------------------------------------
+RDS: ${v_end-RDS}
+
+LOCAL: ${v_diretorio-backup}
 FORMATO BKP: ${v_arquivobackup}
 -----------------------------------------------------
 MIGRAÇÃO SECREARIA: ${v_mig_secretaria}
