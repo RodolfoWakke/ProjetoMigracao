@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/02/24 16:49:54.489</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/04/19 09:29:12.714</modified_date>
+    <modified_date>2023/04/24 13:26:38.251</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1292,7 +1292,8 @@ CREATE TABLE IF NOT EXISTS `mig_turma` (
 	`turno` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
 	`unidade` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
 	`mig_periodo` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	PRIMARY KEY (`codturma`) USING BTREE)
+	PRIMARY KEY (`codturma`) USING BTREE,
+	INDEX `dscturma` (`dscturma`) USING BTREE)
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
 
@@ -1372,7 +1373,8 @@ CREATE TABLE IF NOT EXISTS `mig_configturma` (
   `codprofatendimentoespecial` int(11) DEFAULT NULL,
   `codturma_aux` varchar(50) DEFAULT NULL,
   `concluirmatriculasemfinanceiro` char(1) DEFAULT 'S' COMMENT 'S=conclui a matricula mesmo sem financeiro gerado;N=impede que o usuário conclua a matrícula sem que exista um plano de pagamento gerado',
-  PRIMARY KEY (`codconfturma`) USING BTREE
+  PRIMARY KEY (`codconfturma`) USING BTREE,
+	INDEX `codturma_aux` (`codturma_aux`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
   
 CREATE TABLE IF NOT EXISTS `mig_matricula` (
@@ -1420,7 +1422,9 @@ CREATE TABLE IF NOT EXISTS `mig_matricula` (
   `codconffatura` int(11) DEFAULT NULL,
   `intercambista` char(1) DEFAULT NULL COMMENT 'S - Sim / N- Nao',
   `codturma_aux` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`codmatricula`) USING BTREE);
+  PRIMARY KEY (`codmatricula`) USING BTREE,
+	INDEX `codturma_aux` (`codturma_aux`) USING BTREE
+);
   
   -- FINANCEIRO -- 
   
@@ -1609,9 +1613,12 @@ CREATE TABLE IF NOT EXISTS `mig_contasreceber` (
 `AUX_contareceberID` VARCHAR(50),
 `AUX_tipoparcela` VARCHAR(50),
 `AUX_responsavel` VARCHAR(50),
-`aux_contaid` VARCHAR(50),
-`EmpresaID_aux` VARCHAR(50),
-  PRIMARY KEY (`codrec`) USING BTREE
+`AUX_contaid` VARCHAR(50),
+`AUX_EmpresaID` VARCHAR(50),
+`AUX_cpf` VARCHAR(50),
+  PRIMARY KEY (`codrec`) USING BTREE,
+	INDEX `codaluno` (`codaluno`) USING BTREE,
+	INDEX `codreceita` (`codreceita`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ACADÊMICO -- 
@@ -5257,8 +5264,8 @@ FROM contasreceber c GROUP BY c.ContaID;</sql>
 	c.ContaReceberID AS AUX_contareceberID,
 	IF(c.TipoRecebimentoID = -5, "Parcela Cartão","Parcela Boleto") AS AUX_tipoparcela,
 	r.Nome AS AUX_responsavel,
-	c.ContaID AS aux_contaid,
-	cc.EmpresaID AS EmpresaID_aux
+	c.ContaID AS AUX_contaid,
+	cc.EmpresaID AS AUX_EmpresaID
 from ContasReceberParcelas c
 left join contasreceber cc on (c.ContaReceberID = cc.ContaReceberID)
 left join planoscontas pc on pc.PlanoContaID = c.PlanoContaID
@@ -11551,10 +11558,10 @@ GROUP BY LEFT(CONCAT(t.TurmaID, IFNULL(t.Sigla, LEFT(t.Nome, 7))),10);
         <name>AUX_responsavel</name>
       </field>
       <field>
-        <name>aux_contaid</name>
+        <name>AUX_contaid</name>
       </field>
       <field>
-        <name>EmpresaID_aux</name>
+        <name>AUX_EmpresaID</name>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>

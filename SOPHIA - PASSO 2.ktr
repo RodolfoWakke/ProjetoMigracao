@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/04/12 11:34:19.712</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/04/20 16:57:59.342</modified_date>
+    <modified_date>2023/04/24 13:22:24.190</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1256,7 +1256,8 @@ CREATE TABLE IF NOT EXISTS `mig_turma` (
 	`turno` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
 	`unidade` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
 	`mig_periodo` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	PRIMARY KEY (`codturma`) USING BTREE)
+	PRIMARY KEY (`codturma`) USING BTREE,
+	INDEX `dscturma` (`dscturma`) USING BTREE)
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
 
@@ -1336,7 +1337,8 @@ CREATE TABLE IF NOT EXISTS `mig_configturma` (
   `codprofatendimentoespecial` int(11) DEFAULT NULL,
   `codturma_aux` varchar(50) DEFAULT NULL,
   `concluirmatriculasemfinanceiro` char(1) DEFAULT 'S' COMMENT 'S=conclui a matricula mesmo sem financeiro gerado;N=impede que o usuário conclua a matrícula sem que exista um plano de pagamento gerado',
-  PRIMARY KEY (`codconfturma`) USING BTREE
+  PRIMARY KEY (`codconfturma`) USING BTREE,
+  INDEX `codturma_aux` (`codturma_aux`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
   
 CREATE TABLE IF NOT EXISTS `mig_matricula` (
@@ -1384,7 +1386,8 @@ CREATE TABLE IF NOT EXISTS `mig_matricula` (
   `codconffatura` int(11) DEFAULT NULL,
   `intercambista` char(1) DEFAULT NULL COMMENT 'S - Sim / N- Nao',
   `codturma_aux` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`codmatricula`) USING BTREE);
+  PRIMARY KEY (`codmatricula`) USING BTREE
+  INDEX `codturma_aux` (`codturma_aux`) USING BTREE);
   
   -- FINANCEIRO -- 
   
@@ -1569,9 +1572,12 @@ CREATE TABLE IF NOT EXISTS `mig_contasreceber` (
   `dtcompetencia_antesfatura` date DEFAULT NULL,
   `cobrancaexterna` char(1) DEFAULT 'N',
   `gabrielsetoucodunidade` datetime DEFAULT NULL,
-  `codpf_aux` varchar(100) DEFAULT NULL,
-  `codpj_aux` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`codrec`) USING BTREE
+  `AUX_codpf` varchar(100) DEFAULT NULL,
+  `AUX_codpj` varchar(100) DEFAULT NULL,
+  `AUX_cpf` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`codrec`) USING BTREE,
+  INDEX `codaluno` (`codaluno`) USING BTREE,
+  INDEX `codreceita` (`codreceita`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -5089,7 +5095,7 @@ SELECT
 	(SELECT SUM(l.VALOR) FROM sophia.TIT_PGTO l WHERE l.TITULO = t.CODIGO) AS 'valorpago',
 	1 AS 'codunidade',
 	(SELECT MAX(mf.CLASSIFICACAO) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO GROUP BY mf.TITULO) AS 'codreceita',
-	t.CODPF AS 'codaluno', 
+	ISNULL(t.CODPF,0) AS 'codaluno', 
 	LEFT(ISNULL(RIGHT(REPLICATE(0,11 - LEN(t.NOSSONUM)) + CAST(t.NOSSONUM AS VARCHAR),11),RIGHT(REPLICATE(0,11 - LEN(t.CODIGO)) + CAST(t.CODIGO AS VARCHAR),11)),20) AS 'nossonumero', 
 	IIF(t.CONTA IS NOT NULL, 'S','N') AS 'cobbancaria',
 	t.CONTA AS 'codconta',
@@ -5949,7 +5955,7 @@ SELECT
 		ELSE LEFT(RTRIM(ISNULL((SELECT dbo.REMOVEcaractere(oo2.CPF) FROM sophia.FISICA oo2 JOIN sophia.FISICA__FISICA ooff2 ON (oo2.CODIGO = ooff2.IDFK_RESPONSAVEL) WHERE ooff2.ID_FISICA__FISICA = ff.ID_FISICA__FISICA),'00000000000')),14) END AS 'cpf',
 	(SELECT MAX(mf.CLASSIFICACAO) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO GROUP BY mf.TITULO) AS 'receitaoriginal',
 	(SELECT SUM(mf.valor) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND mf.VALOR > 0) AS 'valor',
-	LEFT(t.CODPF,50) AS 'codpf_aux'
+	LEFT(t.CODPF,50) AS 'AUX_codpf'
 FROM sophia.TITULOS t 
 -- left join sophia.TIT_PGTO l on t.CODIGO = l.TITULO
 LEFT JOIN sophia.FISICA f ON t.CODPF = f.CODIGO
@@ -6732,11 +6738,11 @@ AND (SELECT SUM(mf.valor) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND m
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>codpf_aux</name>
+        <name>AUX_codpf</name>
         <length>12</length>
         <precision>-1</precision>
         <origin>SELECT contasreceber(PF)</origin>
-        <comments>codpf_aux</comments>
+        <comments>AUX_codpf</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -6814,7 +6820,7 @@ SELECT
 	LEFT(ISNULL(REPLACE(REPLACE(REPLACE(j.CNPJ,'-',''),'/',''),'.',''),'00000000000'),14) AS 'cpf',
 	(SELECT MAX(mf.CLASSIFICACAO) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO GROUP BY mf.TITULO) AS 'receitaoriginal',
 	(SELECT SUM(mf.valor) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND mf.VALOR > 0) AS 'valor',
-	LEFT(t.CODPJ,50) AS 'codpj_aux'
+	LEFT(t.CODPJ,50) AS 'AUX_codpj'
 FROM sophia.TITULOS t
 -- left join sophia.TIT_PGTO l on t.CODIGO = l.TITULO
 LEFT JOIN sophia.JURIDICA j ON (t.CODPJ = j.CODIGO)
@@ -7592,11 +7598,11 @@ AND (SELECT SUM(mf.valor) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND m
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>codpj_aux</name>
+        <name>AUX_codpj</name>
         <length>12</length>
         <precision>-1</precision>
         <origin>SELECT contasreceber(PJ)</origin>
-        <comments>codpj_aux</comments>
+        <comments>AUX_codpj</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -10595,7 +10601,7 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
         <name>valor</name>
       </field>
       <field>
-        <name>codpf_aux</name>
+        <name>AUX_codpf</name>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -10725,7 +10731,7 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
         <name>valor</name>
       </field>
       <field>
-        <name>codpj_aux</name>
+        <name>AUX_codpj</name>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
