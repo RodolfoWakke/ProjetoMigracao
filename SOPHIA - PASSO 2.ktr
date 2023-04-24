@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/04/12 11:34:19.712</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/04/24 14:58:28.560</modified_date>
+    <modified_date>2023/04/24 16:17:36.208</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -4313,7 +4313,19 @@ WHERE A.CODEXT IS NOT NULL OR A.codigo IN
       <schema_name/>
     </partitioning>
     <connection>SQLSERVER-LOCALHOST</connection>
-    <sql>
+    <sql>SELECT 
+	p.CODIGO AS 'codreceita', 
+	LEFT(UPPER(p.DESCRICAO),20) AS 'dscreceita',
+	'S' AS 'ativo'
+FROM sophia.PLANOCONTAS p
+WHERE p.CODIGO IN 
+(SELECT DISTINCT mf.CLASSIFICACAO FROM sophia.TITULOS t
+LEFT JOIN sophia.MOVFIN mf ON t.CODIGO = mf.TITULO
+WHERE t.tipo = 1);
+
+
+
+/*
 SELECT 
 p.CODIGO AS 'codreceita', 
 LEFT(UPPER(p.DESCRICAO),20) AS 'dscreceita',
@@ -4338,7 +4350,8 @@ SELECT f.CLASSIFICACAO FROM sophia.MOVFIN f
 LEFT JOIN sophia.TIT_PGTO ll ON (f.TITULO = ll.TITULO)
 WHERE ll.VALOR &lt; 0 AND m.TITULO = f.TITULO)) AND t.CODPJ IS NULL AND t.CODPF in (
 SELECT m.fisica FROM sophia.MATRICULA m)) AS tab
-GROUP BY tab.codreceita);</sql>
+GROUP BY tab.codreceita);
+*/</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -4365,7 +4378,7 @@ GROUP BY tab.codreceita);</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -4388,7 +4401,7 @@ GROUP BY tab.codreceita);</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -4411,7 +4424,7 @@ GROUP BY tab.codreceita);</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -10951,71 +10964,54 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
     <fields>
       <field>
         <name>codmatricula</name>
-        <rename/>
       </field>
       <field>
         <name>codaluno</name>
-        <rename/>
       </field>
       <field>
         <name>codcurso</name>
-        <rename/>
       </field>
       <field>
         <name>codseriecurso</name>
-        <rename/>
       </field>
       <field>
         <name>anoletivo</name>
-        <rename/>
       </field>
       <field>
         <name>situacao</name>
-        <rename/>
       </field>
       <field>
         <name>dtmatricula</name>
-        <rename/>
       </field>
       <field>
         <name>codconfturma</name>
-        <rename/>
       </field>
       <field>
         <name>codunidade</name>
-        <rename/>
       </field>
       <field>
         <name>codturma</name>
-        <rename/>
       </field>
       <field>
         <name>codturma_aux</name>
-        <rename/>
       </field>
       <field>
         <name>cpfrespacademico</name>
-        <rename/>
       </field>
       <field>
         <name>parentescorespacademico</name>
-        <rename/>
       </field>
       <field>
         <name>cpfrespfinanceiro</name>
-        <rename/>
       </field>
       <field>
         <name>parentescorespfinanceiro</name>
-        <rename/>
       </field>
       <field>
         <name>dtcadastro</name>
-        <rename/>
       </field>
       <field>
         <name>cadastradopor</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
