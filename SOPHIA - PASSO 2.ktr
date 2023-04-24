@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/04/12 11:34:19.712</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/04/24 13:40:44.783</modified_date>
+    <modified_date>2023/04/24 14:58:28.560</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -438,8 +438,8 @@
       <note>SELECT [SQL SERVER] > MIG</note>
       <xloc>320</xloc>
       <yloc>0</yloc>
-      <width>199</width>
-      <heigth>30</heigth>
+      <width>235</width>
+      <heigth>34</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -463,8 +463,8 @@
     <access>Native</access>
     <database>${v_nomebanco-RDS}</database>
     <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86aa78195a71aa271cb96a6db</password>
+    <username>ricardoreis.gad</username>
+    <password>Encrypted 2be98afc86aa7f2e49910ad47df99a4df</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -580,16 +580,6 @@
   </connection>
   <order>
     <hop>
-      <from>Block this step until steps finish</from>
-      <to>DELETE - INSERT - ALTER</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>CREATE MIG</from>
-      <to>Block this step until steps finish</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>SELECT seriecurso</from>
       <to>Select values seriecurso</to>
       <enabled>Y</enabled>
@@ -657,11 +647,6 @@
     <hop>
       <from>Select values configturma</from>
       <to>Insert mig_configturma</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DELETE - INSERT - ALTER</from>
-      <to>SELECT disciplina</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -744,38 +729,12 @@
       <to>Insert mig_contasreceber 3</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>CREATE MIG</from>
+      <to>SELECT disciplina</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
-  <step>
-    <name>Block this step until steps finish</name>
-    <type>BlockUntilStepsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <steps>
-      <step>
-        <name>CREATE MIG</name>
-        <CopyNr>0</CopyNr>
-      </step>
-    </steps>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>CREATE MIG</name>
     <type>ExecSQL</type>
@@ -1386,7 +1345,7 @@ CREATE TABLE IF NOT EXISTS `mig_matricula` (
   `codconffatura` int(11) DEFAULT NULL,
   `intercambista` char(1) DEFAULT NULL COMMENT 'S - Sim / N- Nao',
   `codturma_aux` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`codmatricula`) USING BTREE
+  PRIMARY KEY (`codmatricula`) USING BTREE,
   INDEX `codturma_aux` (`codturma_aux`) USING BTREE);
   
   -- FINANCEIRO -- 
@@ -1632,45 +1591,9 @@ CREATE TABLE IF NOT EXISTS `mig_acumulado` (
   `codconfturma_migracao` varchar(50) DEFAULT NULL,
   `cargahoraria_migracao` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`CODACUMULADO`) USING BTREE);
-  </sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>144</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>DELETE - INSERT - ALTER</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>RDS</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>
+  
+-- ------------------------------------------------ --
+
 DELETE FROM mig_aluno;
 DELETE FROM mig_responsavel;
 DELETE FROM mig_funcionario;
@@ -1700,8 +1623,7 @@ ALTER TABLE mig_matricula AUTO_INCREMENT = 1;
 ALTER TABLE mig_centroreceita AUTO_INCREMENT = 1;
 ALTER TABLE mig_conta AUTO_INCREMENT = 1;
 ALTER TABLE mig_contasreceber AUTO_INCREMENT = 1;
-ALTER TABLE mig_acumulado AUTO_INCREMENT = 1;
-</sql>
+ALTER TABLE mig_acumulado AUTO_INCREMENT = 1;</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -1718,7 +1640,7 @@ ALTER TABLE mig_acumulado AUTO_INCREMENT = 1;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
+      <xloc>144</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -10401,43 +10323,33 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
     <fields>
       <field>
         <name>codconta</name>
-        <rename/>
       </field>
       <field>
         <name>dscconta</name>
-        <rename/>
       </field>
       <field>
         <name>codempresa</name>
-        <rename/>
       </field>
       <field>
         <name>codbanco</name>
-        <rename/>
       </field>
       <field>
         <name>agencia</name>
-        <rename/>
       </field>
       <field>
         <name>numconta</name>
-        <rename/>
       </field>
       <field>
         <name>tipoconta</name>
-        <rename/>
       </field>
       <field>
         <name>bancaria</name>
-        <rename/>
       </field>
       <field>
         <name>ativo</name>
-        <rename/>
       </field>
       <field>
         <name>homologada</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -11039,54 +10951,71 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
     <fields>
       <field>
         <name>codmatricula</name>
+        <rename/>
       </field>
       <field>
         <name>codaluno</name>
+        <rename/>
       </field>
       <field>
         <name>codcurso</name>
+        <rename/>
       </field>
       <field>
         <name>codseriecurso</name>
+        <rename/>
       </field>
       <field>
         <name>anoletivo</name>
+        <rename/>
       </field>
       <field>
         <name>situacao</name>
+        <rename/>
       </field>
       <field>
         <name>dtmatricula</name>
+        <rename/>
       </field>
       <field>
         <name>codconfturma</name>
+        <rename/>
       </field>
       <field>
         <name>codunidade</name>
+        <rename/>
       </field>
       <field>
         <name>codturma</name>
+        <rename/>
       </field>
       <field>
         <name>codturma_aux</name>
+        <rename/>
       </field>
       <field>
         <name>cpfrespacademico</name>
+        <rename/>
       </field>
       <field>
         <name>parentescorespacademico</name>
+        <rename/>
       </field>
       <field>
         <name>cpfrespfinanceiro</name>
+        <rename/>
       </field>
       <field>
         <name>parentescorespfinanceiro</name>
+        <rename/>
       </field>
       <field>
         <name>dtcadastro</name>
+        <rename/>
       </field>
       <field>
         <name>cadastradopor</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
