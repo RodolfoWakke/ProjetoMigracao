@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/02/24 16:49:54.489</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/04/24 13:26:38.251</modified_date>
+    <modified_date>2023/04/26 14:23:21.480</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -5976,7 +5976,7 @@ where pc.Tipo ='E' AND c.situacao &lt;&gt; 2;</sql>
     <sql>SELECT 
     d.DisciplinaID AS coddisciplina,
     UPPER(LEFT(d.Nome,120)) AS dscdisciplina,
-    UPPER(LEFT(SUBSTR(d.Nome, 1 , 5),5)) AS dscabreviada,
+    CONCAT(UPPER(LEFT(TRIM(d.Nome),3)),LEFT(d.DisciplinaID,2)) AS dscabreviada,
     'S' AS ativo,
     1 AS pesoreprovacao
 FROM disciplinas d;

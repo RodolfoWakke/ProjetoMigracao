@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/04/12 11:34:19.712</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/04/25 08:57:44.902</modified_date>
+    <modified_date>2023/04/26 15:14:29.760</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -7861,8 +7861,8 @@ FROM Sophia.CURSOS C;
     <sql>
 SELECT
 	d.CODIGO AS 'coddisciplina', 
-	LEFT(UPPER(d.NOME),120) AS 'dscdisciplina',
-	LEFT(ISNULL(LEFT(UPPER(d.NOME_RESUM),5),UPPER(CONCAT(LEFT(d.NOME,3),RIGHT(d.NOME,2)))),5) AS 'dscabreviada',
+	TRIM(LEFT(UPPER(d.NOME),120)) AS 'dscdisciplina',
+	UPPER(CONCAT(LEFT(TRIM(REPLACE(REPLACE(REPLACE(d.NOME,'  ',''),' ',''),'.','')),2),	RIGHT(TRIM(REPLACE(REPLACE(REPLACE(d.NOME,'  ',''),' ',''),'.','')),1),RIGHT(d.CODIGO,2))) AS dscabreviada,
 	'S' AS 'ativo',
 	1 AS 'pesoreprovacao'
 FROM sophia.DISCIPLINAS d;</sql>
@@ -7892,7 +7892,7 @@ FROM sophia.DISCIPLINAS d;</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -7915,7 +7915,7 @@ FROM sophia.DISCIPLINAS d;</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -7938,7 +7938,7 @@ FROM sophia.DISCIPLINAS d;</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -7961,7 +7961,7 @@ FROM sophia.DISCIPLINAS d;</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -7984,7 +7984,7 @@ FROM sophia.DISCIPLINAS d;</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8036,7 +8036,8 @@ FROM sophia.DISCIPLINAS d;</sql>
 	LEFT(A2.TE_NUMERO,15) AS 'TITELEITOR',
 	LEFT(A2.TE_ZONA,10) AS 'TITZONA',
 	LEFT(UPPER(fa.MAE_NOME),100) AS 'mae', 
-	LEFT(UPPER(fa.PAI_NOME),100) AS 'pai'
+	LEFT(UPPER(fa.PAI_NOME),100) AS 'pai',
+	'S' AS 'ativo'
 FROM sophia.FISICA A
 LEFT JOIN Sophia.DADOSPF A2 ON A.CODIGO = A2.FISICA
 LEFT JOIN sophia.FAMILIAS fa ON a2.FAMILIA = fa.CODIGO
@@ -8079,7 +8080,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8102,7 +8103,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8125,7 +8126,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8148,7 +8149,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8171,7 +8172,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8194,7 +8195,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8217,7 +8218,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8240,7 +8241,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8263,7 +8264,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8286,7 +8287,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8309,7 +8310,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8332,7 +8333,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8355,7 +8356,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8378,7 +8379,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8401,7 +8402,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8424,7 +8425,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8447,7 +8448,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8470,7 +8471,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8493,7 +8494,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8516,7 +8517,7 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8539,7 +8540,30 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>ativo</name>
+        <length>1</length>
+        <precision>-1</precision>
+        <origin>SELECT funcionario</origin>
+        <comments>ativo</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8592,17 +8616,17 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
     1 AS 'codturma',
     tu.TURMA AS 'codturma_aux', 
     CASE 
-        WHEN ff.IDFK_PARENTESCO = 2 THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fam.MAE_CPF),'00000000000')) 
-        WHEN ff.IDFK_PARENTESCO = 1 THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fam.PAI_CPF),'00000000000')) 
+        WHEN ff.IDFK_PARENTESCO IN (2,17) THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fam.MAE_CPF),NULL)) 
+        WHEN ff.IDFK_PARENTESCO IN (1,18) THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fam.PAI_CPF),NULL)) 
         ELSE RTRIM(ISNULL((SELECT dbo.REMOVEcaractere(oo.CPF)
             FROM sophia.FISICA oo
             JOIN sophia.FISICA__FISICA ooff ON (oo.CODIGO = ooff.IDFK_RESPONSAVEL)
-            WHERE ooff.ID_FISICA__FISICA = ff.ID_FISICA__FISICA),'00000000000')) 
+            WHERE ooff.ID_FISICA__FISICA = ff.ID_FISICA__FISICA),NULL)) 
             END AS 'cpfrespacademico', 
     LEFT(UPPER(par2.DESCRICAO),20) AS 'parentescorespacademico',
     CASE 
-    WHEN ff2.IDFK_PARENTESCO = 2 THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fa.MAE_CPF),'00000000000')) 
-    WHEN ff2.IDFK_PARENTESCO = 1 THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fa.PAI_CPF),'00000000000')) 
+    WHEN ff2.IDFK_PARENTESCO IN (2,17) THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fa.MAE_CPF),'00000000000')) 
+    WHEN ff2.IDFK_PARENTESCO IN (1,18) THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fa.PAI_CPF),'00000000000')) 
     ELSE RTRIM(ISNULL((SELECT dbo.REMOVEcaractere(oo2.CPF)
         FROM sophia.FISICA oo2
         JOIN sophia.FISICA__FISICA ooff2 ON (oo2.CODIGO = ooff2.IDFK_RESPONSAVEL)
@@ -8627,7 +8651,7 @@ LEFT JOIN SophiA.SERIE ss ON (m.SERIE = ss.CODIGO)
 LEFT JOIN SophiA.TURMAS tu ON (m.TURMA_REGULAR = tu.CODIGO)
 LEFT JOIN sophia.PARENTESCOS par ON (par.CODIGO = ff2.IDFK_PARENTESCO)
 LEFT JOIN sophia.PARENTESCOS par2 ON (ff.IDFK_PARENTESCO = par2.CODIGO)
-WHERE m.TURMA_REGULAR IS NOT NULL</sql>
+WHERE m.TURMA_REGULAR IS NOT NULL;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -8654,7 +8678,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8677,7 +8701,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8700,7 +8724,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8723,7 +8747,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8746,7 +8770,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8769,7 +8793,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8792,7 +8816,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8815,7 +8839,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8838,7 +8862,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8861,7 +8885,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8884,7 +8908,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8907,7 +8931,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8930,7 +8954,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8953,7 +8977,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8976,7 +9000,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -8999,7 +9023,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -9022,7 +9046,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -10872,66 +10896,91 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
     <fields>
       <field>
         <name>funcodigo</name>
+        <rename/>
       </field>
       <field>
         <name>nome</name>
+        <rename/>
       </field>
       <field>
         <name>sexo</name>
+        <rename/>
       </field>
       <field>
         <name>dtnascimento</name>
+        <rename/>
       </field>
       <field>
         <name>cpf</name>
+        <rename/>
       </field>
       <field>
         <name>RG</name>
+        <rename/>
       </field>
       <field>
         <name>endereco</name>
+        <rename/>
       </field>
       <field>
         <name>cep</name>
+        <rename/>
       </field>
       <field>
         <name>bairro</name>
+        <rename/>
       </field>
       <field>
         <name>cidade</name>
+        <rename/>
       </field>
       <field>
         <name>FONERESID</name>
+        <rename/>
       </field>
       <field>
         <name>celular</name>
+        <rename/>
       </field>
       <field>
         <name>email</name>
+        <rename/>
       </field>
       <field>
         <name>OBSERVACOES</name>
+        <rename/>
       </field>
       <field>
         <name>COR</name>
+        <rename/>
       </field>
       <field>
         <name>NATURALIDADE</name>
+        <rename/>
       </field>
       <field>
         <name>ESTADOCIVIL</name>
+        <rename/>
       </field>
       <field>
         <name>TITELEITOR</name>
+        <rename/>
       </field>
       <field>
         <name>TITZONA</name>
+        <rename/>
       </field>
       <field>
         <name>mae</name>
+        <rename/>
       </field>
       <field>
         <name>pai</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ativo</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
