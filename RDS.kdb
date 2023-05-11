@@ -5,8 +5,8 @@
     <access>Native</access>
     <database>${v_nomebanco-RDS}</database>
     <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86aa78195a71aa271cb96a6db</password>
+    <username>ricardo.gad</username>
+    <password>Encrypted 2be98afc86aa7f2e49910ad47df99a4df</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
