@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/06/05 10:34:50.371</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/06/13 22:20:19.463</modified_date>
+    <modified_date>2023/06/14 14:55:23.633</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1958,18 +1958,23 @@ CREATE TABLE IF NOT EXISTS `municipio` (
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
     <sql>DROP TABLE IF EXISTS `nota`;
-CREATE TABLE IF NOT EXISTS `nota` (
-  `Codigo` int(11) DEFAULT NULL,
-  `CodDisciplina` int(11) DEFAULT NULL,
-  `CodMatricula` int(11) DEFAULT NULL,
-  `CodSerieAvaliacao` bigint(20) DEFAULT NULL,
-  `Valor` varchar(15) DEFAULT NULL,
-  `DataCadastro` datetime DEFAULT NULL,
-  `DataAtualizacao` datetime DEFAULT NULL,
-  KEY `Codigo` (`Codigo`),
-  KEY `CodDisciplina` (`CodDisciplina`),
-  KEY `CodMatricula` (`CodMatricula`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql>
+CREATE TABLE `nota` (
+	`Codigo` INT(11) NULL DEFAULT NULL,
+	`CodDisciplina` INT(11) NULL DEFAULT NULL,
+	`CodMatricula` INT(11) NULL DEFAULT NULL,
+	`CodSerieAvaliacao` BIGINT(20) NULL DEFAULT NULL,
+	`Valor` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`DataCadastro` DATETIME NULL DEFAULT NULL,
+	`DataAtualizacao` DATETIME NULL DEFAULT NULL,
+	INDEX `Codigo` (`Codigo`) USING BTREE,
+	INDEX `CodDisciplina` (`CodDisciplina`) USING BTREE,
+	INDEX `CodMatricula` (`CodMatricula`) USING BTREE,
+	INDEX `CodSerieAvaliacao` (`CodSerieAvaliacao`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -2458,6 +2463,47 @@ CREATE TABLE IF NOT EXISTS `unidade` (
     <GUI>
       <xloc>96</xloc>
       <yloc>2128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Drop Views Acumulado</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MYSQL-LOCALHOST</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP VIEW IF EXISTS vw_notas;
+DROP VIEW IF EXISTS vw_rec;
+DROP VIEW IF EXISTS vw_faltas;
+DROP VIEW IF EXISTS vw_recfinal;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>704</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
