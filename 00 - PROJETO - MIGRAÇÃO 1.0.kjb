@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/06/21 15:13:05.053</modified_date>
+  <modified_date>2023/06/21 15:22:25.800</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -304,7 +304,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>192</xloc>
+      <xloc>16</xloc>
       <yloc>64</yloc>
       <attributes_kjc/>
     </entry>
@@ -904,8 +904,8 @@ Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>624</xloc>
-      <yloc>64</yloc>
+      <xloc>192</xloc>
+      <yloc>192</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -997,6 +997,22 @@ VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
       <nr>0</nr>
       <xloc>416</xloc>
       <yloc>192</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>MSG INICIAL</name>
+      <description/>
+      <type>MSGBOX_INFO</type>
+      <attributes/>
+      <bodymessage>Será migrado os dados do sistema '${v_sistema}' para o domínio '${v_nomebanco-RDS}'.
+
+Confirmar?</bodymessage>
+      <titremessage>A migração irá começar</titremessage>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>192</xloc>
+      <yloc>64</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
@@ -1281,15 +1297,6 @@ VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Display msgbox info</from>
-      <to>Abort - Variáveis</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>CHECK SECRETARIA</from>
       <to>PASSO 4 - SEC</to>
       <from_nr>0</from_nr>
@@ -1327,12 +1334,39 @@ VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
     </hop>
     <hop>
       <from>START</from>
-      <to>Display msgbox info</to>
+      <to>MSG INICIAL</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>MSG INICIAL</from>
+      <to>Display msgbox info</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>MSG INICIAL</from>
+      <to>Abort - Variáveis</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Display msgbox info</from>
+      <to>Abort - Variáveis</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
