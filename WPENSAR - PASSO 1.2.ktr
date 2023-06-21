@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/06/14 13:37:17.309</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/06/18 19:34:54.724</modified_date>
+    <modified_date>2023/06/21 14:50:43.917</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1462,37 +1462,44 @@ CREATE TABLE IF NOT EXISTS `mig_matricula` (
 );
   
   -- FINANCEIRO -- 
-  
-  CREATE TABLE if not exists `mig_centroreceita` (
-  `codreceita` int(11) NOT NULL AUTO_INCREMENT,
-  `dscreceita` varchar(20) NOT NULL,
-  `ativo` char(1) DEFAULT 'S',
-  `multa` decimal(10,5) DEFAULT NULL,
-  `juros` decimal(10,5) DEFAULT NULL,
-  `codnaturezalanccaixa` int(10) unsigned DEFAULT NULL,
-  `carenciamulta` int(11) DEFAULT '0',
-  `carenciadesconto` int(11) DEFAULT '0',
-  `percentualdesconto` decimal(10,5) DEFAULT NULL,
-  `codcontacaixa` int(10) DEFAULT NULL,
-  `principal` char(1) DEFAULT 'N',
-  `jurossobre` char(1) DEFAULT 'P',
-  `msgfixaboleto` varchar(400) DEFAULT NULL,
-  `atualizajuros` char(1) NOT NULL DEFAULT 'D' COMMENT 'Indica se o ojuros sera atualizado diariamente ou mensalmente sendo D=diario, D=mensal',
-  `desconto2sobre` char(1) DEFAULT 'P',
-  `podeagrupar` char(1) DEFAULT 'N' COMMENT 's=permite agrupar na fatura; nao permite agrupar na fatura',
-  `conluimatriculaonline` char(1) DEFAULT 'N',
-  `cobrancaautomatica` char(1) DEFAULT 'S',
-  `cieloativo` char(1) DEFAULT 'N' COMMENT 'Indica se o sistema de pagamento online cielo estÃ¡ ativo',
-  `tipocobrancaiugu` char(1) DEFAULT 'B' COMMENT 'A=CARTAO E BOLETO; B=SOMENTE BOLETO; C-SOMENTE CARTAO',
-  `competencia` int(11) DEFAULT '0' COMMENT '0= mesmo mes do vencimento; 1=prÃ³ximo mÃªs do vencimento; -1 = mes anterior ao vencimento',
-  `opcional` char(1) DEFAULT 'N' COMMENT 'S = Informa que o centro de receita Ã© opcional, foi acrescentado para atender o matriculaOnline; N = Informa que Ã© obrigatÃ³rio',
-  `alteradopor` varchar(60) DEFAULT NULL,
-  `dtalteracao` datetime DEFAULT NULL,
-`codreceita_aux` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-`dscreceita_aux` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-`codreceita_unificado` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-  PRIMARY KEY (`codreceita`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+
+  CREATE TABLE `mig_centroreceita` (
+	`codreceita` INT(11) NOT NULL AUTO_INCREMENT,
+	`dscreceita` VARCHAR(20) NOT NULL COLLATE 'latin1_swedish_ci',
+	`ativo` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`multa` DECIMAL(10,5) NULL DEFAULT NULL,
+	`juros` DECIMAL(10,5) NULL DEFAULT NULL,
+	`codnaturezalanccaixa` INT(10) UNSIGNED NULL DEFAULT NULL,
+	`carenciamulta` INT(11) NULL DEFAULT '0',
+	`carenciadesconto` INT(11) NULL DEFAULT '0',
+	`percentualdesconto` DECIMAL(10,5) NULL DEFAULT NULL,
+	`codcontacaixa` INT(10) NULL DEFAULT NULL,
+	`principal` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`jurossobre` CHAR(1) NULL DEFAULT 'P' COLLATE 'latin1_swedish_ci',
+	`msgfixaboleto` VARCHAR(400) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`atualizajuros` CHAR(1) NOT NULL DEFAULT 'D' COMMENT 'Indica se o ojuros sera atualizado diariamente ou mensalmente sendo D=diario, D=mensal' COLLATE 'latin1_swedish_ci',
+	`desconto2sobre` CHAR(1) NULL DEFAULT 'P' COLLATE 'latin1_swedish_ci',
+	`podeagrupar` CHAR(1) NULL DEFAULT 'N' COMMENT 's=permite agrupar na fatura; nao permite agrupar na fatura' COLLATE 'latin1_swedish_ci',
+	`conluimatriculaonline` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`cobrancaautomatica` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`cieloativo` CHAR(1) NULL DEFAULT 'N' COMMENT 'Indica se o sistema de pagamento online cielo estÃ¡ ativo' COLLATE 'latin1_swedish_ci',
+	`tipocobrancaiugu` CHAR(1) NULL DEFAULT 'B' COMMENT 'A=CARTAO E BOLETO; B=SOMENTE BOLETO; C-SOMENTE CARTAO' COLLATE 'latin1_swedish_ci',
+	`competencia` INT(11) NULL DEFAULT '0' COMMENT '0= mesmo mes do vencimento; 1=prÃ³ximo mÃªs do vencimento; -1 = mes anterior ao vencimento',
+	`opcional` CHAR(1) NULL DEFAULT 'N' COMMENT 'S = Informa que o centro de receita Ã© opcional, foi acrescentado para atender o matriculaOnline; N = Informa que Ã© obrigatÃ³rio' COLLATE 'latin1_swedish_ci',
+	`alteradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dtalteracao` DATETIME NULL DEFAULT NULL,
+	`codreceita_aux` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dscreceita_aux` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codreceita_unificado` INT(11) NULL DEFAULT NULL,
+	PRIMARY KEY (`codreceita`) USING BTREE,
+	INDEX `codreceita_unificado` (`codreceita_unificado`) USING BTREE
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+
 
 CREATE TABLE if not exists  `mig_conta` (
   `codconta` int(10) NOT NULL AUTO_INCREMENT,
