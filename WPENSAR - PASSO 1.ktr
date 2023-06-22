@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/06/05 10:34:50.371</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/06/22 13:26:54.978</modified_date>
+    <modified_date>2023/06/22 16:48:35.274</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -731,11 +731,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Create Tab Avaliacao</from>
-      <to>Create Table Camp</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Create Table Camp</from>
       <to>Create Tab alun</to>
       <enabled>Y</enabled>
@@ -826,11 +821,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Create tab periodo</from>
-      <to>Create tab resp</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Create tab resp</from>
       <to>Create tab serie</to>
       <enabled>Y</enabled>
@@ -858,6 +848,31 @@
     <hop>
       <from>Create serie_avaliacao</from>
       <to>Create tab turma</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>presenca csv</from>
+      <to>presenca - LH</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Create tab periodo</from>
+      <to>Create presenca</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Create presenca</from>
+      <to>Create tab resp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>aula csv</from>
+      <to>aula - LH</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab Avaliacao</from>
+      <to>Create Aula</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -901,7 +916,7 @@ CREATE TABLE IF NOT EXISTS `bairro` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>448</yloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1167,7 +1182,7 @@ CREATE TABLE IF NOT EXISTS `curso` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>848</yloc>
+      <yloc>928</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1225,7 +1240,7 @@ ENGINE=InnoDB
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>288</yloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1314,7 +1329,7 @@ ENGINE=InnoDB
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>768</yloc>
+      <yloc>848</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1366,7 +1381,7 @@ CREATE TABLE IF NOT EXISTS `disciplina` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>928</yloc>
+      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1410,7 +1425,7 @@ CREATE TABLE IF NOT EXISTS `aluno_campo_desativado` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>208</yloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1483,7 +1498,60 @@ ENGINE=InnoDB
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>368</yloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Create presenca</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP TABLE IF EXISTS `presenca`;
+CREATE TABLE presenca
+(
+  Codigo BIGINT
+, CodAula BIGINT
+, CodMatricula BIGINT
+, Situacao CHAR(1)
+, agente BIGINT
+,INDEX `Codigo` (`Codigo`) USING BTREE
+,INDEX `CodAula` (`CodAula`) USING BTREE
+,INDEX `CodMatricula` (`CodMatricula`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>1808</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1538,7 +1606,7 @@ ENGINE=InnoDB
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>1888</yloc>
+      <yloc>2048</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1585,7 +1653,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>528</yloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1649,7 +1717,7 @@ CREATE TABLE IF NOT EXISTS `cedente` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>608</yloc>
+      <yloc>688</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1752,7 +1820,7 @@ CREATE TABLE IF NOT EXISTS `cedente_conta` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>688</yloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1809,7 +1877,7 @@ CREATE TABLE IF NOT EXISTS `evento_financeiro` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>1008</yloc>
+      <yloc>1088</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1874,7 +1942,7 @@ CREATE TABLE IF NOT EXISTS `financeiro_faturaiugu` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>1088</yloc>
+      <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1994,7 +2062,7 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>1168</yloc>
+      <yloc>1248</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2072,7 +2140,7 @@ ENGINE=InnoDB
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>1248</yloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2117,7 +2185,7 @@ CREATE TABLE IF NOT EXISTS `matricula_situacao` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>1328</yloc>
+      <yloc>1408</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2168,7 +2236,7 @@ ENGINE=InnoDB
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>1408</yloc>
+      <yloc>1488</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2223,7 +2291,7 @@ ENGINE=InnoDB
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>1488</yloc>
+      <yloc>1568</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2283,7 +2351,7 @@ ENGINE=InnoDB
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>1568</yloc>
+      <yloc>1648</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2327,7 +2395,7 @@ CREATE TABLE IF NOT EXISTS `periodo` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>1648</yloc>
+      <yloc>1728</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2428,7 +2496,7 @@ ENGINE=InnoDB
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>1728</yloc>
+      <yloc>1888</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2478,7 +2546,7 @@ CREATE TABLE IF NOT EXISTS `serie` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>1808</yloc>
+      <yloc>1968</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2539,7 +2607,7 @@ CREATE TABLE IF NOT EXISTS `turma` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>1968</yloc>
+      <yloc>2128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2585,7 +2653,7 @@ CREATE TABLE IF NOT EXISTS `turno` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>2048</yloc>
+      <yloc>2208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2646,7 +2714,7 @@ CREATE TABLE IF NOT EXISTS `unidade` (
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>2128</yloc>
+      <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4570,7 +4638,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>208</yloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4622,7 +4690,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>208</yloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4666,7 +4734,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>288</yloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4806,7 +4874,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>288</yloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4850,7 +4918,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>368</yloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5166,7 +5234,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>368</yloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5817,7 +5885,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>448</yloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5891,7 +5959,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>448</yloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5935,7 +6003,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>528</yloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6031,7 +6099,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>528</yloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6075,7 +6143,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>608</yloc>
+      <yloc>688</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6369,7 +6437,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>608</yloc>
+      <yloc>688</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6413,7 +6481,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>688</yloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -7103,7 +7171,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>688</yloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -12727,7 +12795,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>768</yloc>
+      <yloc>848</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -13175,7 +13243,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>768</yloc>
+      <yloc>848</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -13219,7 +13287,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>848</yloc>
+      <yloc>928</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -13370,7 +13438,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>848</yloc>
+      <yloc>928</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -13414,7 +13482,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>928</yloc>
+      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -13565,7 +13633,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>928</yloc>
+      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -13609,7 +13677,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1008</yloc>
+      <yloc>1088</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -13826,7 +13894,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>1008</yloc>
+      <yloc>1088</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -13870,7 +13938,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1088</yloc>
+      <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -14186,7 +14254,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>1088</yloc>
+      <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -14230,7 +14298,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1168</yloc>
+      <yloc>1248</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -15107,7 +15175,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>1168</yloc>
+      <yloc>1248</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -15151,7 +15219,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1248</yloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -15511,7 +15579,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>1248</yloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -15555,7 +15623,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1328</yloc>
+      <yloc>1408</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -15640,7 +15708,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>1328</yloc>
+      <yloc>1408</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -15684,7 +15752,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1408</yloc>
+      <yloc>1488</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -15769,7 +15837,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>1408</yloc>
+      <yloc>1488</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -15813,7 +15881,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1488</yloc>
+      <yloc>1568</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -15931,7 +15999,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>1488</yloc>
+      <yloc>1568</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -15975,7 +16043,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1568</yloc>
+      <yloc>1648</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -16170,7 +16238,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>1568</yloc>
+      <yloc>1648</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -16214,7 +16282,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1648</yloc>
+      <yloc>1728</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -16288,7 +16356,167 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>1648</yloc>
+      <yloc>1728</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>presenca - LH</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <schema/>
+    <table>presenca</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>Codigo</column_name>
+        <stream_name>Codigo</stream_name>
+      </field>
+      <field>
+        <column_name>CodAula</column_name>
+        <stream_name>CodAula</stream_name>
+      </field>
+      <field>
+        <column_name>CodMatricula</column_name>
+        <stream_name>CodMatricula</stream_name>
+      </field>
+      <field>
+        <column_name>Situacao</column_name>
+        <stream_name>Situacao</stream_name>
+      </field>
+      <field>
+        <column_name>agente</column_name>
+        <stream_name>agente</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>1808</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>presenca csv</name>
+    <type>CsvInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <filename>${v_diretorio-backup}\presenca.csv</filename>
+    <filename_field/>
+    <rownum_field/>
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>Y</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <format>mixed</format>
+    <encoding>UTF-8</encoding>
+    <fields>
+      <field>
+        <name>Codigo</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>CodAula</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>CodMatricula</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Situacao</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>agente</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>1808</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -16332,7 +16560,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1728</yloc>
+      <yloc>1888</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -16956,7 +17184,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>1728</yloc>
+      <yloc>1888</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -17000,7 +17228,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1808</yloc>
+      <yloc>1968</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -17151,7 +17379,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>1808</yloc>
+      <yloc>1968</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -17195,7 +17423,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1888</yloc>
+      <yloc>2048</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -17324,7 +17552,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>1888</yloc>
+      <yloc>2048</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -17368,7 +17596,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1968</yloc>
+      <yloc>2128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -17596,7 +17824,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>1968</yloc>
+      <yloc>2128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -17640,7 +17868,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>2048</yloc>
+      <yloc>2208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -17736,7 +17964,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>2048</yloc>
+      <yloc>2208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -17780,7 +18008,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>2128</yloc>
+      <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -17997,7 +18225,354 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>2128</yloc>
+      <yloc>2288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Create Aula</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP TABLE IF EXISTS `aula`;
+CREATE TABLE aula
+(
+  Codigo INT(11)
+, Data VARCHAR(50)
+, HoraInicial VARCHAR(50)
+, HoraFinal VARCHAR(50)
+, Situacao VARCHAR(50)
+, CodTurma INT(11)
+, CodDisciplina INT(11)
+, CodProfessor VARCHAR(50)
+, CodSala VARCHAR(300)
+, Observacoes VARCHAR(500)
+, CodRepeticao VARCHAR(50)
+, EditavelPorProfessor VARCHAR(50)
+, modulo_disciplina_id VARCHAR(50)
+, tipo VARCHAR(50)
+, valor VARCHAR(50)
+, atividades VARCHAR(1000)
+, CodPlanoAula VARCHAR(50)
+, Periodicidade VARCHAR(50)
+,INDEX `Codigo` (`Codigo`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>aula - LH</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <schema/>
+    <table>aula</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>aula csv</name>
+    <type>CsvInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <filename>${v_diretorio-backup}\aula.csv</filename>
+    <filename_field/>
+    <rownum_field/>
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>Y</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <format>mixed</format>
+    <encoding>UTF-8</encoding>
+    <fields>
+      <field>
+        <name>CodDisciplina</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>CodPlanoAula</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>CodProfessor</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>CodRepeticao</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>CodSala</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>CodTurma</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Codigo</name>
+        <type>Integer</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Data</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>EditavelPorProfessor</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>HoraFinal</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>5</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>HoraInicial</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>5</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Observacoes</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>500</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Periodicidade</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Situacao</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>atividades</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>1000</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>modulo_disciplina_id</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>tipo</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>valor</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
