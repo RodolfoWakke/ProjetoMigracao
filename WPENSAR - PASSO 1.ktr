@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/06/05 10:34:50.371</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/06/23 14:22:20.044</modified_date>
+    <modified_date>2023/06/26 15:43:18.287</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -871,18 +871,23 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Create tab unidade</from>
+      <to>CREATE  aux_acumulado</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Create Tab Avaliacao</from>
       <to>Create Aula</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Create tab unidade</from>
-      <to>CREATE  aux_acumulado</to>
+      <from>Create Aula</from>
+      <to>Create Table Camp</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Create Aula</name>
+    <name>CREATE  aux_acumulado</name>
     <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
@@ -897,30 +902,56 @@
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>DROP TABLE IF EXISTS `aula`;
-CREATE TABLE aula
-(
-  Codigo INT(11)
-, Data VARCHAR(50)
-, HoraInicial VARCHAR(50)
-, HoraFinal VARCHAR(50)
-, Situacao VARCHAR(50)
-, CodTurma INT(11)
-, CodDisciplina INT(11)
-, CodProfessor VARCHAR(50)
-, CodSala VARCHAR(300)
-, Observacoes VARCHAR(500)
-, CodRepeticao VARCHAR(50)
-, EditavelPorProfessor VARCHAR(50)
-, modulo_disciplina_id VARCHAR(50)
-, tipo VARCHAR(50)
-, valor VARCHAR(50)
-, atividades VARCHAR(1000)
-, CodPlanoAula VARCHAR(50)
-, Periodicidade VARCHAR(50)
-,INDEX `Codigo` (`Codigo`) USING BTREE
+    <sql> CREATE TABLE IF NOT EXISTS `aux_acumulado` (
+	`codmateria` INT(10) NULL DEFAULT NULL,
+	`dscdicplina` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`codaluno` INT(10) NULL DEFAULT NULL,
+	`dscturma` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`codconfturma` INT(10) NULL DEFAULT NULL,
+	`codmatricula` INT(10) NULL DEFAULT NULL,
+	`ano` INT(10) NULL DEFAULT NULL,
+	`n1_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n2_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n3_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n4_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n5_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n6_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n7_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n8_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n9_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n10_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n1_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n2_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n3_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n4_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n5_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n6_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n7_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n8_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n9_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n10_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n1_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n2_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n3_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n4_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n5_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n6_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n7_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n8_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n9_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n10_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n1_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n2_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n3_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n4_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n5_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n6_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n7_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n8_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n9_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n10_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci'
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_general_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -941,7 +972,7 @@ ENGINE=InnoDB
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>208</yloc>
+      <yloc>2368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -18582,7 +18613,7 @@ VALUES
     </GUI>
   </step>
   <step>
-    <name>CREATE  aux_acumulado</name>
+    <name>Create Aula</name>
     <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
@@ -18597,56 +18628,30 @@ VALUES
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>CREATE TABLE `aux_acumulado` (
-	`codmateria` INT(10) NULL DEFAULT NULL,
-	`dscdicplina` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`codaluno` INT(10) NULL DEFAULT NULL,
-	`dscturma` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`codconfturma` INT(10) NULL DEFAULT NULL,
-	`codmatricula` INT(10) NULL DEFAULT NULL,
-	`ano` INT(10) NULL DEFAULT NULL,
-	`n1_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n2_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n3_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n4_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n5_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n6_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n7_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n8_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n9_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n10_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n1_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n2_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n3_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n4_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n5_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n6_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n7_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n8_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n9_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n10_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n1_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n2_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n3_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n4_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n5_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n6_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n7_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n8_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n9_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n10_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n1_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n2_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n3_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n4_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n5_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n6_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n7_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n8_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n9_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n10_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci'
+    <sql>DROP TABLE IF EXISTS `aula`;
+CREATE TABLE aula
+(
+  Codigo INT(11)
+, Data VARCHAR(50)
+, HoraInicial VARCHAR(50)
+, HoraFinal VARCHAR(50)
+, Situacao VARCHAR(50)
+, CodTurma INT(11)
+, CodDisciplina INT(11)
+, CodProfessor VARCHAR(50)
+, CodSala VARCHAR(300)
+, Observacoes VARCHAR(3000)
+, CodRepeticao VARCHAR(50)
+, EditavelPorProfessor VARCHAR(50)
+, modulo_disciplina_id VARCHAR(50)
+, tipo VARCHAR(50)
+, valor VARCHAR(50)
+, atividades VARCHAR(1000)
+, CodPlanoAula VARCHAR(50)
+, Periodicidade VARCHAR(50)
+,INDEX `Codigo` (`Codigo`) USING BTREE
 )
-COLLATE='utf8mb4_general_ci'
+COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -18667,7 +18672,7 @@ ENGINE=InnoDB
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>2368</yloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>PASSO 4 - SEC</name>
+    <name>04 - PASSO 4 - SEC</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/02/26 09:22:54.470</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/04/14 11:05:24.855</modified_date>
+    <modified_date>2023/06/27 10:48:15.175</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -491,8 +491,16 @@
     <index_tablespace/>
     <attributes>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.autoReconnect</code>
+        <attribute>true</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
         <attribute>500</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.net_write_timeout</code>
+        <attribute>1800</attribute>
       </attribute>
       <attribute>
         <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
@@ -579,11 +587,13 @@ DELETE FROM organizacaoseriecurso;
 DELETE FROM seriecurso;
 DELETE FROM curso;
 DELETE FROM responsavel;
+DELETE FROM funcionariodisponibilidade;
+DELETE FROM documentofuncionario;
+DELETE FROM cursofuncionario;
 DELETE FROM funcionariounidade;
 DELETE FROM funcionario;
 DELETE FROM alunodisciplina;
 DELETE FROM aluno;
-
 
 INSERT INTO `responsavel` (`codsoc`, `cpf`, `nomeresponsavel`, `profissao`, `localtrabalho`, `teltrabalho`, `telresid`, `celular`, `email`, `rg`, `endereco`, `bairro`, `cidade`, `uf`, `cep`, `rendaliquida`, `sexo`, `estadocivil`, `dtnascimento`, `escolaridade`, `pai`, `mae`, `enderecocom`, `bairrocom`, `cepcom`, `codcidadecom`, `cargo`, `senha`, `login`, `fotoportal`, `nacionalidade`, `naturalidade`, `obs`, `rgorgaoemissor`, `rgestado`, `rgdataemissao`, `codpaisorigem`, `codcidadenaturalidade`, `codescolaridade`, `codfatura`, `agrupamentofatura`, `placa`, `veiculo`, `fotoblob`, `dtcadastro`, `dtalteracao`, `cadastradopor`, `alteradopor`, `codbanco`, `agencia`, `conta`, `debitoautomaticoativo`, `clienteiugu`, `inscricaoestadual`, `tokenfirebase`, `inscricaomunicipal`) VALUES (1, '00000000000', 'INEXISTENTE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '00000000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'R', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'N', NULL, NULL, NULL, NULL);
 
@@ -598,15 +608,10 @@ ALTER TABLE seriecurso AUTO_INCREMENT = 1;
 ALTER TABLE turma AUTO_INCREMENT = 1;
 ALTER TABLE configturma AUTO_INCREMENT = 1;
 ALTER TABLE matricula AUTO_INCREMENT = 1;
-
 ALTER TABLE centroreceita AUTO_INCREMENT = 1;
 ALTER TABLE conta AUTO_INCREMENT = 1;
 ALTER TABLE contasreceber AUTO_INCREMENT = 1;
-
 ALTER TABLE acumulado AUTO_INCREMENT = 1;
-
-UPDATE responsavel SET codsoc = 999999 WHERE codsoc = 1;
-
 
 
 
