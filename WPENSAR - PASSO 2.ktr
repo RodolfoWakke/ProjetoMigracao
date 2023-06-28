@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/06/13 19:35:18.233</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/06/27 13:13:46.475</modified_date>
+    <modified_date>2023/06/28 14:30:36.111</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1366,7 +1366,7 @@
     <sql>SELECT
 	al.Matricula AS 'codaluno',
 	UPPER(TRIM(al.Nome)) AS 'nomealuno',
-	UPPER(al.Logradouro) AS 'endereco',
+	UPPER(CONCAT(al.Logradouro, IF(al.NumLogradouro IS NULL,'', CONCAT(', ', al.NumLogradouro)))) AS 'endereco',
 	UPPER(b.Nome) AS 'bairro',
 	c.cod_cidade AS 'cidade',
 	c.cod_estado AS 'uf',
@@ -1382,7 +1382,7 @@
 	UPPER(al.CorRaca) AS 'cor',
 	left(UPPER(al.Profissao),40) AS 'Profissao',
 	REMOVEcaractere(al.CPF) AS 'cpf',
-	REMOVEcaractere(al.RG) AS 'rg',
+	al.RG AS 'rg',
 	'SEM CADASTRO' AS 'mae',
 	CASE
 	WHEN al.OrgaoExpedidor LIKE '%SSP%' THEN 10
@@ -1457,7 +1457,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>endereco</name>
-        <length>65535</length>
+        <length>131072</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>endereco</comments>
@@ -1825,7 +1825,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>rg</name>
-        <length>50</length>
+        <length>21845</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>rg</comments>
@@ -3043,9 +3043,10 @@ ORDER BY ct.AnoLetivo, cu.Nome, sc.Nome, ct.Nome;</sql>
 	LEFT(cc.Carteira,5) AS 'carteira',
 	LEFT(cc.Carteira,30) AS 'carteiraboleto',
 	LEFT(cc.CodTransmissao,30) AS 'codtransmissao',
-	'S' AS 'homologada',
+	'N' AS 'homologada',
 	cc.QtdDiasDevolucao AS 'diasdevolucao'
 FROM cedente_conta cc;
+
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -7114,8 +7115,8 @@ LEFT JOIN responsavel r ON (r.Codigo = alt.Contratante);</sql>
 	YEAR(IFNULL(p.DataCompetencia, l.DataVencimento)) AS 'anoletivo',
 	l.CodEventoFinanceiro AS 'codreceita', 
 	IFNULL(al.MatAluno,0) AS 'codaluno', 
-	IFNULL(LPAD(c.Codigo,11,0),-1) AS 'nossonumero',
-	'N' AS 'cobbancaria',
+	IFNULL(ff.nosso_numero, IFNULL(c.Codigo,-1)) AS 'nossonumero', -- financeiro_faturaiugu
+	'S' AS 'cobbancaria',
 	IF(c.conta_cobranca_facil_id IS NOT NULL,11,c.CodCedenteConta) AS 'codconta',
 	'N' AS 'avulsa',
 	'MIG AUTO' AS 'cadastradopor', 
@@ -7131,6 +7132,7 @@ LEFT JOIN responsavel r ON (r.Codigo = alt.Contratante);</sql>
 FROM lancamento_financeiro l
 LEFT JOIN parcela p ON (l.CodParcela = p.Codigo)
 LEFT JOIN cobranca c ON (c.Codigo = p.CodCobranca)
+LEFT JOIN financeiro_faturaiugu ff ON (ff.cobranca_id = c.Codigo)
 LEFT JOIN aluno_turma al ON (al.Codigo = c.CodMatricula)
 LEFT JOIN responsavel r ON (r.Codigo = al.Contratante)
 WHERE l.Tipo = 'C' AND l.DataCancelamento IS NULL;</sql>
@@ -7303,16 +7305,16 @@ WHERE l.Tipo = 'C' AND l.DataCancelamento IS NULL;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>BigNumber</type>
         <storagetype>normal</storagetype>
         <name>valorparcela</name>
-        <length>10</length>
+        <length>17</length>
         <precision>2</precision>
         <origin>SELECT mig_contasreceber</origin>
         <comments>valorparcela</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
         <currency_symbol/>
         <trim_type>none</trim_type>
         <case_insensitive>N</case_insensitive>
@@ -7372,16 +7374,16 @@ WHERE l.Tipo = 'C' AND l.DataCancelamento IS NULL;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>BigNumber</type>
         <storagetype>normal</storagetype>
         <name>desconto</name>
-        <length>10</length>
+        <length>17</length>
         <precision>2</precision>
         <origin>SELECT mig_contasreceber</origin>
         <comments>desconto</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
         <currency_symbol/>
         <trim_type>none</trim_type>
         <case_insensitive>N</case_insensitive>
@@ -7628,7 +7630,7 @@ WHERE l.Tipo = 'C' AND l.DataCancelamento IS NULL;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nossonumero</name>
-        <length>11</length>
+        <length>65535</length>
         <precision>-1</precision>
         <origin>SELECT mig_contasreceber</origin>
         <comments>nossonumero</comments>
@@ -7763,16 +7765,16 @@ WHERE l.Tipo = 'C' AND l.DataCancelamento IS NULL;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>BigNumber</type>
         <storagetype>normal</storagetype>
         <name>valorparcelaoriginal</name>
-        <length>10</length>
+        <length>17</length>
         <precision>2</precision>
         <origin>SELECT mig_contasreceber</origin>
         <comments>valorparcelaoriginal</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
         <currency_symbol/>
         <trim_type>none</trim_type>
         <case_insensitive>N</case_insensitive>
@@ -7786,16 +7788,16 @@ WHERE l.Tipo = 'C' AND l.DataCancelamento IS NULL;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>BigNumber</type>
         <storagetype>normal</storagetype>
         <name>descontooriginal</name>
-        <length>10</length>
+        <length>17</length>
         <precision>2</precision>
         <origin>SELECT mig_contasreceber</origin>
         <comments>descontooriginal</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
         <currency_symbol/>
         <trim_type>none</trim_type>
         <case_insensitive>N</case_insensitive>
@@ -7832,16 +7834,16 @@ WHERE l.Tipo = 'C' AND l.DataCancelamento IS NULL;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>BigNumber</type>
         <storagetype>normal</storagetype>
         <name>valorbruto</name>
-        <length>10</length>
+        <length>17</length>
         <precision>2</precision>
         <origin>SELECT mig_contasreceber</origin>
         <comments>valorbruto</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
         <currency_symbol/>
         <trim_type>none</trim_type>
         <case_insensitive>N</case_insensitive>
@@ -7924,16 +7926,16 @@ WHERE l.Tipo = 'C' AND l.DataCancelamento IS NULL;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>BigNumber</type>
         <storagetype>normal</storagetype>
         <name>valor</name>
-        <length>10</length>
+        <length>17</length>
         <precision>2</precision>
         <origin>SELECT mig_contasreceber</origin>
         <comments>valor</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
         <currency_symbol/>
         <trim_type>none</trim_type>
         <case_insensitive>N</case_insensitive>
@@ -8053,7 +8055,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>endereco</name>
-        <length>65535</length>
+        <length>131072</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>endereco</comments>
@@ -8421,7 +8423,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>rg</name>
-        <length>50</length>
+        <length>21845</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>rg</comments>
@@ -8809,10 +8811,10 @@ GROUP BY al.Matricula;
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimentopai</name>
-        <length>-1</length>
+        <length>200</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>dtnascimentopai</comments>
@@ -8959,7 +8961,8 @@ GROUP BY al.Matricula;
 	left(UPPER(r.Profissao),40) AS 'profissao',
 	REMOVEcaractere(r.Telefone) AS 'telresid', 
 	REMOVEcaractere(r.Celular) AS 'celular',
-	UPPER(r.Logradouro) AS 'endereco',
+	r.Logradouro,
+	UPPER(CONCAT(r.Logradouro, IF(r.NumLogradouro IS NULL, '', CONCAT(', ', r.NumLogradouro)))) AS 'endereco',
 	UPPER(b.Nome) AS 'bairro',
 	c.cod_cidade AS 'cidade',
 	CASE 
@@ -8968,8 +8971,8 @@ GROUP BY al.Matricula;
 	END AS 'rgorgaoemissor',
 	c.cod_estado AS 'uf',
 	REMOVEcaractere(r.CEP) AS 'cep',
-	left(lower(r.Email),100) 'email',
-	left(r.Observacoes,200) AS 'obs'
+	LEFT(LOWER(r.Email),100) 'email',
+	LEFT(r.Observacoes,200) AS 'obs'
 FROM responsavel r
 LEFT JOIN municipio m ON m.Codigo = r.CodMunicipio
 LEFT JOIN cidade_escolaweb c ON c.nom_cidade = m.Nome AND c.sgl_estado = m.UF
@@ -9353,10 +9356,10 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimento</name>
-        <length>-1</length>
+        <length>200</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>dtnascimento</comments>
@@ -9493,8 +9496,31 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>endereco</name>
+        <name>Logradouro</name>
         <length>200</length>
+        <precision>-1</precision>
+        <origin>SELECT responsavel</origin>
+        <comments>Logradouro</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>endereco</name>
+        <length>402</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>endereco</comments>
