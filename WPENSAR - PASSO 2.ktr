@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/06/13 19:35:18.233</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/06/28 14:30:36.111</modified_date>
+    <modified_date>2023/06/29 08:55:21.193</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1365,34 +1365,34 @@
     <connection>LocalHost</connection>
     <sql>SELECT
 	al.Matricula AS 'codaluno',
-	UPPER(TRIM(al.Nome)) AS 'nomealuno',
-	UPPER(CONCAT(al.Logradouro, IF(al.NumLogradouro IS NULL,'', CONCAT(', ', al.NumLogradouro)))) AS 'endereco',
-	UPPER(b.Nome) AS 'bairro',
+	LEFT(UPPER(TRIM(al.Nome)),100) AS 'nomealuno',
+	LEFT(UPPER(CONCAT(al.Logradouro, IF(al.NumLogradouro IS NULL,'', CONCAT(', ', al.NumLogradouro)))),200) AS 'endereco',
+	LEFT(UPPER(b.Nome),60) AS 'bairro',
 	c.cod_cidade AS 'cidade',
 	c.cod_estado AS 'uf',
-	REMOVEcaractere(al.CEP) AS 'cep',
-	REMOVEcaractere(al.Telefone) AS 'telresid',
-	REMOVEcaractere(al.Celular) AS 'celular',
-	LOWER(al.Email) AS 'email',
-	UPPER(al.Sexo) AS 'sexo',
+	LEFT(REMOVEcaractere(al.CEP),8) AS 'cep',
+	LEFT(REMOVEcaractere(al.Telefone),11) AS 'telresid',
+	LEFT(REMOVEcaractere(al.Celular),16) AS 'celular',
+	LEFT(LOWER(al.Email),100) AS 'email',
+	LEFT(UPPER(al.Sexo),1) AS 'sexo',
 	UPPER(al.EstadoCivil) AS 'estadocivil',
 	al.DataNascimento AS 'dtnascimento',
 	c2.cod_cidade AS 'cidadenaturalidade',
 	c2.cod_estado AS 'ufnaturalidade',
-	UPPER(al.CorRaca) AS 'cor',
-	left(UPPER(al.Profissao),40) AS 'Profissao',
-	REMOVEcaractere(al.CPF) AS 'cpf',
-	al.RG AS 'rg',
+	LEFT(UPPER(al.CorRaca),13) AS 'cor',
+	LEFT(UPPER(al.Profissao),40) AS 'Profissao',
+	LEFT(REMOVEcaractere(al.CPF),11) AS 'cpf',
+	LEFT(al.RG,50) AS 'rg',
 	'SEM CADASTRO' AS 'mae',
 	CASE
 	WHEN al.OrgaoExpedidor LIKE '%SSP%' THEN 10
 	ELSE NULL
 	END AS 'rgorgaoemissor',
-	UPPER(al.SituacaoMilitar) AS 'situacaomilitar',
-	al.RA AS 'ra',
+	LEFT(UPPER(al.SituacaoMilitar),50) AS 'situacaomilitar',
+	LEFT(al.RA,20) AS 'ra',
 	NULL as 'obs',
-	left(al.ObsCobranca,600) as 'obsfinanceiro',
-	UPPER(al.GrupoSanguineo) AS 'tiposanguineo'
+	LEFT(al.ObsCobranca,600) as 'obsfinanceiro',
+	LEFT(UPPER(al.GrupoSanguineo),20) AS 'tiposanguineo'
 FROM aluno al
 LEFT JOIN municipio m ON m.Codigo = al.CodMunicipio
 LEFT JOIN cidade_escolaweb c ON c.nom_cidade = m.Nome AND c.sgl_estado = m.UF
@@ -1434,7 +1434,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nomealuno</name>
-        <length>65535</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>nomealuno</comments>
@@ -1457,7 +1457,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>endereco</name>
-        <length>131072</length>
+        <length>200</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>endereco</comments>
@@ -1480,7 +1480,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairro</name>
-        <length>65535</length>
+        <length>60</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>bairro</comments>
@@ -1549,7 +1549,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cep</name>
-        <length>50</length>
+        <length>8</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>cep</comments>
@@ -1572,7 +1572,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>telresid</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>telresid</comments>
@@ -1595,7 +1595,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>celular</name>
-        <length>50</length>
+        <length>16</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>celular</comments>
@@ -1618,7 +1618,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>email</name>
-        <length>65535</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>email</comments>
@@ -1641,7 +1641,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>sexo</name>
-        <length>65535</length>
+        <length>1</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>sexo</comments>
@@ -1756,7 +1756,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cor</name>
-        <length>65535</length>
+        <length>13</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>cor</comments>
@@ -1802,7 +1802,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cpf</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>cpf</comments>
@@ -1825,7 +1825,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>rg</name>
-        <length>21845</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>rg</comments>
@@ -1894,7 +1894,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>situacaomilitar</name>
-        <length>65535</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>situacaomilitar</comments>
@@ -1917,7 +1917,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>ra</name>
-        <length>21845</length>
+        <length>20</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>ra</comments>
@@ -1941,7 +1941,7 @@ GROUP BY al.Matricula;</sql>
         <storagetype>normal</storagetype>
         <name>obs</name>
         <length>-1</length>
-        <precision>-1</precision>
+        <precision>0</precision>
         <origin>SELECT aluno</origin>
         <comments>obs</comments>
         <conversion_Mask/>
@@ -1986,7 +1986,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>tiposanguineo</name>
-        <length>65535</length>
+        <length>20</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>tiposanguineo</comments>
@@ -2034,7 +2034,7 @@ GROUP BY al.Matricula;</sql>
     <connection>LocalHost</connection>
     <sql>SELECT 
 	ef.Codigo AS 'codreceita',
-	left(UPPER(ef.Nome),20) AS 'dscreceita',
+	LEFT(UPPER(ef.Nome),20) AS 'dscreceita',
 	'S' AS 'ativo'
 FROM evento_financeiro ef 
 WHERE ef.Tipo = 'C';
@@ -2513,15 +2513,15 @@ WHERE ef.Tipo = 'C';
     <sql>SELECT
 	ct.Codigo AS 'codconfturma',
 	sc.Codigo AS 'codseriecurso',
-	ct.Nome AS 'dscturma',
-	ct.Abreviacao AS 'sigla',
+	LEFT(ct.Nome,100) AS 'dscturma',
+	LEFT(ct.Abreviacao,10) AS 'sigla',
 	IFNULL(ct.DataInicial, CONCAT(ct.AnoLetivo,'-02-05')) AS 'dtinicio',
 	IFNULL(ct.DataFinal, CONCAT(ct.AnoLetivo,'-12-20')) AS 'dtfim',
 	ct.HoraInicial AS 'horaincio',
 	ct.HoraFinal AS 'horafinal',
 	ct.AnoLetivo AS 'anoletivo',
 	LEFT(t.Nome,1) AS 'turno',
-	'MIGRACAO' AS 'cadastradopor',
+	'MIG AUTO' AS 'cadastradopor',
 	CURDATE() AS 'dtcadastro',
 	ct.QtdVagas AS 'numvagas',
 	1 AS 'codturma',
@@ -2660,7 +2660,7 @@ ORDER BY ct.AnoLetivo, cu.Nome, sc.Nome, ct.Nome;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dscturma_1</name>
-        <length>21845</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT configturma</origin>
         <comments>dscturma</comments>
@@ -2683,7 +2683,7 @@ ORDER BY ct.AnoLetivo, cu.Nome, sc.Nome, ct.Nome;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>sigla</name>
-        <length>21845</length>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT configturma</origin>
         <comments>sigla</comments>
@@ -3461,13 +3461,13 @@ FROM cedente_conta cc;
 		ELSE 1
 		END AS 'codnivel',
 	0 AS 'cargahoraria',
-	TRIM(UPPER(c.Nome)) AS 'dsccurso',
+	LEFT(TRIM(UPPER(c.Nome)),150) AS 'dsccurso',
 	TRIM(UPPER(LEFT(c.Nome,10))) AS 'dscabreviada',
 	'S' AS 'ativo',
-	TRIM(UPPER(c.Nome)) AS 'dsccompleta',
+	LEFT(TRIM(UPPER(c.Nome)),150) AS 'dsccompleta',
 	1000 AS 'formulamediaetapa',
-	c.CodTributacao AS 'codtributacaomunicipio',
-	c.ItemListaServico AS 'codservico'
+	LEFT(c.CodTributacao,20) AS 'codtributacaomunicipio',
+	LEFT(c.ItemListaServico,20) AS 'codservico'
 FROM curso c;</sql>
     <limit>0</limit>
     <lookup/>
@@ -3503,7 +3503,7 @@ FROM curso c;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dscdisciplina</name>
-        <length>65535</length>
+        <length>120</length>
         <precision>-1</precision>
         <origin>SELECT disciplina</origin>
         <comments>dscdisciplina</comments>
@@ -3572,7 +3572,7 @@ FROM curso c;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nucleo</name>
-        <length>21845</length>
+        <length>20</length>
         <precision>-1</precision>
         <origin>SELECT disciplina</origin>
         <comments>nucleo</comments>
@@ -3687,7 +3687,7 @@ FROM curso c;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dsccurso</name>
-        <length>65535</length>
+        <length>150</length>
         <precision>-1</precision>
         <origin>SELECT curso</origin>
         <comments>dsccurso</comments>
@@ -3756,7 +3756,7 @@ FROM curso c;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dsccompleta</name>
-        <length>65535</length>
+        <length>150</length>
         <precision>-1</precision>
         <origin>SELECT curso</origin>
         <comments>dsccompleta</comments>
@@ -3802,7 +3802,7 @@ FROM curso c;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>codtributacaomunicipio</name>
-        <length>21845</length>
+        <length>20</length>
         <precision>-1</precision>
         <origin>SELECT curso</origin>
         <comments>codtributacaomunicipio</comments>
@@ -3825,7 +3825,7 @@ FROM curso c;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>codservico</name>
-        <length>21845</length>
+        <length>20</length>
         <precision>-1</precision>
         <origin>SELECT curso</origin>
         <comments>codservico</comments>
@@ -3873,10 +3873,10 @@ FROM curso c;</sql>
     <connection>LocalHost</connection>
     <sql>SELECT
 	d.Codigo AS 'coddisciplina',
-	UPPER(d.Nome) AS 'dscdisciplina',
+	LEFT(UPPER(d.Nome),120) AS 'dscdisciplina',
 	CONCAT(LEFT(d.Codigo,2), LEFT(d.Nome,3)) AS 'dscabreviada',
 	'S' AS 'ativo',
-	d.BaseNacional AS 'nucleo',
+	LEFT(d.BaseNacional, 20) AS 'nucleo',
 	1 AS 'pesoreprovacao'
 FROM disciplina d;
 </sql>
@@ -3914,7 +3914,7 @@ FROM disciplina d;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>NOME</name>
-        <length>65535</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>NOME</comments>
@@ -3934,10 +3934,10 @@ FROM disciplina d;
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimento</name>
-        <length>-1</length>
+        <length>200</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>dtnascimento</comments>
@@ -3983,7 +3983,7 @@ FROM disciplina d;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>endereco</name>
-        <length>200</length>
+        <length>120</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>endereco</comments>
@@ -4006,7 +4006,7 @@ FROM disciplina d;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairro</name>
-        <length>65535</length>
+        <length>60</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>bairro</comments>
@@ -4029,7 +4029,7 @@ FROM disciplina d;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cep</name>
-        <length>50</length>
+        <length>8</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>cep</comments>
@@ -4052,7 +4052,7 @@ FROM disciplina d;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nacionalidade</name>
-        <length>200</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>nacionalidade</comments>
@@ -4098,7 +4098,7 @@ FROM disciplina d;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>ESTADOCIVIL</name>
-        <length>65535</length>
+        <length>15</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>ESTADOCIVIL</comments>
@@ -4144,7 +4144,7 @@ FROM disciplina d;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>sexo</name>
-        <length>200</length>
+        <length>1</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>sexo</comments>
@@ -4190,7 +4190,7 @@ FROM disciplina d;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>RG</name>
-        <length>65535</length>
+        <length>30</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>RG</comments>
@@ -4213,7 +4213,7 @@ FROM disciplina d;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>FONERESID</name>
-        <length>65535</length>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>FONERESID</comments>
@@ -4236,7 +4236,7 @@ FROM disciplina d;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>celular</name>
-        <length>50</length>
+        <length>16</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>celular</comments>
@@ -4259,7 +4259,7 @@ FROM disciplina d;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>PISNUMERO</name>
-        <length>50</length>
+        <length>15</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>PISNUMERO</comments>
@@ -4374,7 +4374,7 @@ FROM disciplina d;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>TITELEITOR</name>
-        <length>65535</length>
+        <length>15</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>TITELEITOR</comments>
@@ -4397,7 +4397,7 @@ FROM disciplina d;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>TITZONA</name>
-        <length>65535</length>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>TITZONA</comments>
@@ -4466,7 +4466,7 @@ FROM disciplina d;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dscdisciplina</name>
-        <length>65535</length>
+        <length>120</length>
         <precision>-1</precision>
         <origin>SELECT disciplina</origin>
         <comments>dscdisciplina</comments>
@@ -4535,7 +4535,7 @@ FROM disciplina d;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nucleo</name>
-        <length>21845</length>
+        <length>20</length>
         <precision>-1</precision>
         <origin>SELECT disciplina</origin>
         <comments>nucleo</comments>
@@ -4606,15 +4606,15 @@ FROM disciplina d;
     <connection>LocalHost</connection>
     <sql>SELECT 
 	f.Codigo AS 'FUNCODIGO',
-	UPPER(trim(f.Nome)) AS 'NOME',
+	LEFT(UPPER(trim(f.Nome)),100) AS 'NOME',
 	IF(f.DataNascimento = 0, NULL, f.DataNascimento) AS 'DTNASCIMENTO',
-	m.Nome AS 'CIDADE',
-	IF(f.Logradouro = 0, NULL, UPPER(f.Logradouro)) AS 'ENDERECO',
-	UPPER(b.Nome) AS 'BAIRRO',
-	IF(f.CEP = 0, NULL, REMOVEcaractere(f.CEP)) AS 'CEP',
-	IF(f.Nacionalidade = 0, NULL , UPPER(f.Nacionalidade)) AS 'NACIONALIDADE',
-	IF(f.Complemento = 0 , NULL, UPPER(LEFT(f.Complemento,10))) AS 'COMPLEMENTO',
-	IF(f.EstadoCivil = 0, NULL, UPPER(f.EstadoCivil)) AS 'ESTADOCIVIL',
+	LEFT(m.Nome,40) AS 'CIDADE',
+	LEFT(IF(f.Logradouro = 0, NULL, UPPER(f.Logradouro)),100) AS 'ENDERECO',
+	LEFT(UPPER(b.Nome),60) AS 'BAIRRO',
+	LEFT(IF(f.CEP = 0, NULL, REMOVEcaractere(f.CEP)),8) AS 'CEP',
+	LEFT(IF(f.Nacionalidade = 0, NULL , UPPER(f.Nacionalidade)),23) AS 'NACIONALIDADE',
+	LEFT(IF(f.Complemento = 0 , NULL, UPPER(LEFT(f.Complemento,10))),10) AS 'COMPLEMENTO',
+	LEFT(IF(f.EstadoCivil = 0, NULL, UPPER(f.EstadoCivil)),15) AS 'ESTADOCIVIL',
 		CASE
 		WHEN f.CodCategoria = -3 THEN 1 -- PROFESSOR
 		WHEN f.CodCategoria = 3 THEN 2 -- SECRETARIO
@@ -4631,16 +4631,16 @@ FROM disciplina d;
 		WHEN f.TipoContratado = 'Estagiário' THEN 2
 		ELSE NULL
 		END AS 'regimecontratacao',
-	IF(f.RG = 0, NULL, f.RG) AS 'RG',
-	IF(f.Telefone = 0, NULL, (f.Telefone)) AS 'FONERESID',
-	IF(f.Celular = 0, NULL, (f.Celular)) AS 'CELULAR',
-	IF(f.PIS = 0, NULL, REMOVEcaractere(f.PIS)) AS 'PISNUMERO',
-	IF(f.Email = 0, NULL, LEFT(f.Email,100)) AS 'EMAIL',
+	LEFT(IF(f.RG = 0, NULL, f.RG),30) AS 'RG',
+	LEFT(IF(f.Telefone = 0, NULL, (f.Telefone)),10) AS 'FONERESID',
+	LEFT(IF(f.Celular = 0, NULL, (f.Celular)),11) AS 'CELULAR',
+	LEFT(IF(f.PIS = 0, NULL, REMOVEcaractere(f.PIS)),15) AS 'PISNUMERO',
+	LEFT(IF(f.Email = 0, NULL, LEFT(f.Email,100)),70) AS 'EMAIL',
 	IF(f.Observacoes = 0, NULL, LEFT(f.Observacoes,2000)) AS 'OBSERVACOES',
 	IF(f.DataAdmissao = 0, NULL, f.DataAdmissao) AS 'DTADMISSAO',
 	IF(f.DataDesligamento = 0, NULL, f.DataDesligamento) AS 'DTDESLIGAMENTO',
-	IF(f.TituloNumero = 0, NULL, f.TituloNumero) AS 'TITELEITOR',
-	IF(f.TituloZona = 0, NULL, f.TituloZona) AS 'TITZONA',
+	LEFT(IF(f.TituloNumero = 0, NULL, f.TituloNumero),15) AS 'TITELEITOR',
+	LEFT(IF(f.TituloZona = 0, NULL, f.TituloZona),10) AS 'TITZONA',
 	'S' as 'ATIVO'
 FROM funcionario f
 LEFT JOIN municipio m ON m.Codigo = f.CodMunicipio
@@ -4657,7 +4657,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nomeresponsavel</name>
-        <length>200</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>nomeresponsavel</comments>
@@ -4680,7 +4680,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cpf</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>cpf</comments>
@@ -4700,10 +4700,10 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimento</name>
-        <length>-1</length>
+        <length>200</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>dtnascimento</comments>
@@ -4726,7 +4726,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>sexo</name>
-        <length>200</length>
+        <length>1</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>sexo</comments>
@@ -4749,7 +4749,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nacionalidade</name>
-        <length>200</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>nacionalidade</comments>
@@ -4795,7 +4795,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>telresid</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>telresid</comments>
@@ -4818,7 +4818,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>celular</name>
-        <length>50</length>
+        <length>16</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>celular</comments>
@@ -4841,7 +4841,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>endereco</name>
-        <length>200</length>
+        <length>120</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>endereco</comments>
@@ -4864,7 +4864,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairro</name>
-        <length>65535</length>
+        <length>60</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>bairro</comments>
@@ -4956,7 +4956,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cep</name>
-        <length>50</length>
+        <length>8</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>cep</comments>
@@ -5048,7 +5048,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>NOME</name>
-        <length>65535</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>NOME</comments>
@@ -5094,7 +5094,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>CIDADE_1</name>
-        <length>50</length>
+        <length>40</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>CIDADE</comments>
@@ -5117,7 +5117,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>ENDERECO_1</name>
-        <length>65535</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>ENDERECO</comments>
@@ -5140,7 +5140,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>BAIRRO_1</name>
-        <length>65535</length>
+        <length>60</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>BAIRRO</comments>
@@ -5163,7 +5163,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>CEP_1</name>
-        <length>50</length>
+        <length>8</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>CEP</comments>
@@ -5186,7 +5186,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>NACIONALIDADE_1</name>
-        <length>65535</length>
+        <length>23</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>NACIONALIDADE</comments>
@@ -5232,7 +5232,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>ESTADOCIVIL</name>
-        <length>65535</length>
+        <length>15</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>ESTADOCIVIL</comments>
@@ -5324,7 +5324,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>RG</name>
-        <length>65535</length>
+        <length>30</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>RG</comments>
@@ -5347,7 +5347,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>FONERESID</name>
-        <length>65535</length>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>FONERESID</comments>
@@ -5370,7 +5370,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>CELULAR_1</name>
-        <length>65535</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>CELULAR</comments>
@@ -5393,7 +5393,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>PISNUMERO</name>
-        <length>50</length>
+        <length>15</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>PISNUMERO</comments>
@@ -5416,7 +5416,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>EMAIL_1</name>
-        <length>100</length>
+        <length>70</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>EMAIL</comments>
@@ -5508,7 +5508,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>TITELEITOR</name>
-        <length>65535</length>
+        <length>15</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>TITELEITOR</comments>
@@ -5531,7 +5531,7 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>TITZONA</name>
-        <length>65535</length>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>TITZONA</comments>
@@ -5602,19 +5602,19 @@ LEFT JOIN bairro b ON b.Codigo = f.CodBairro;
     <connection>LocalHost</connection>
     <sql>SELECT
 	al.Matricula AS 'codaluno',
-	UPPER(TRIM(al.Nome)) AS 'nomealuno',
-	UPPER(IFNULL(IFNULL(al.NomeDaMae, upper(rm.Nome)),'SEM CADASTRO')) AS 'mae',
-	REMOVEcaractere(rm.CPF) AS 'cpfmae',
-	left(UPPER(rm.Profissao),40) AS 'profmae',
-	REMOVEcaractere(rm.Telefone) AS 'telmae',
-	REMOVEcaractere(rm.Celular) AS 'celularmae',
-	LOWER(rm.Email) AS 'emailmae',
-	UPPER(rm.Nacionalidade) AS 'nacionalidademae',
+	LEFT(UPPER(TRIM(al.Nome)),100) AS 'nomealuno',
+	LEFT(UPPER(IFNULL(IFNULL(al.NomeDaMae, upper(rm.Nome)),'SEM CADASTRO')),100) AS 'mae',
+	LEFT(REMOVEcaractere(rm.CPF),11) AS 'cpfmae',
+	LEFT(UPPER(rm.Profissao),40) AS 'profmae',
+	LEFT(REMOVEcaractere(rm.Telefone),11) AS 'telmae',
+	LEFT(REMOVEcaractere(rm.Celular),11) AS 'celularmae',
+	LEFT(LOWER(rm.Email),100) AS 'emailmae',
+	LEFT(UPPER(rm.Nacionalidade),50) AS 'nacionalidademae',
 	rm.DataNascimento AS 'dtnascimentomae',
-	UPPER(rm.Sexo) AS 'sexomae',
-	REMOVEcaractere(rm.CEP) AS 'cepmae',
+	LEFT(UPPER(rm.Sexo),1) AS 'sexomae',
+	LEFT(REMOVEcaractere(rm.CEP),8) AS 'cepmae',
 	cm.cod_cidade AS 'codcidademae',
-	UPPER(bm.Nome) AS 'bairromae'
+	LEFT(UPPER(bm.Nome),60) AS 'bairromae'
 FROM aluno al
 LEFT JOIN aluno_responsavel arm ON arm.MatAluno = al.Matricula AND arm.CodParentesco = 8
 LEFT JOIN responsavel rm ON rm.Codigo = arm.CodResponsavel
@@ -5656,7 +5656,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nomealuno</name>
-        <length>65535</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>nomealuno</comments>
@@ -5679,7 +5679,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>pai</name>
-        <length>65535</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>pai</comments>
@@ -5702,7 +5702,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cpfpai</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>cpfpai</comments>
@@ -5748,7 +5748,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>telpai</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>telpai</comments>
@@ -5771,7 +5771,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>celularpai</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>celularpai</comments>
@@ -5794,7 +5794,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>emailpai</name>
-        <length>200</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>emailpai</comments>
@@ -5817,7 +5817,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nacionalidadepai</name>
-        <length>200</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>nacionalidadepai</comments>
@@ -5837,10 +5837,10 @@ GROUP BY al.Matricula;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimentopai</name>
-        <length>-1</length>
+        <length>200</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>dtnascimentopai</comments>
@@ -5863,7 +5863,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>sexopai</name>
-        <length>200</length>
+        <length>1</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>sexopai</comments>
@@ -5886,7 +5886,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>ceppai</name>
-        <length>50</length>
+        <length>8</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>ceppai</comments>
@@ -5932,7 +5932,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairropai</name>
-        <length>65535</length>
+        <length>60</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>bairropai</comments>
@@ -5978,7 +5978,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nomealuno_1</name>
-        <length>65535</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>nomealuno</comments>
@@ -6001,7 +6001,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>mae</name>
-        <length>65535</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>mae</comments>
@@ -6024,7 +6024,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cpfmae</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>cpfmae</comments>
@@ -6070,7 +6070,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>telmae</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>telmae</comments>
@@ -6093,7 +6093,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>celularmae</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>celularmae</comments>
@@ -6116,7 +6116,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>emailmae</name>
-        <length>200</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>emailmae</comments>
@@ -6139,7 +6139,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nacionalidademae</name>
-        <length>200</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>nacionalidademae</comments>
@@ -6159,10 +6159,10 @@ GROUP BY al.Matricula;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimentomae</name>
-        <length>-1</length>
+        <length>200</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>dtnascimentomae</comments>
@@ -6185,7 +6185,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>sexomae</name>
-        <length>200</length>
+        <length>1</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>sexomae</comments>
@@ -6208,7 +6208,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cepmae</name>
-        <length>50</length>
+        <length>8</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>cepmae</comments>
@@ -6254,7 +6254,7 @@ GROUP BY al.Matricula;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairromae</name>
-        <length>65535</length>
+        <length>60</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>bairromae</comments>
@@ -6406,7 +6406,7 @@ LEFT JOIN responsavel r ON (r.Codigo = alt.Contratante);</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>sigla</name>
-        <length>21845</length>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT configturma</origin>
         <comments>sigla</comments>
@@ -7125,8 +7125,8 @@ LEFT JOIN responsavel r ON (r.Codigo = alt.Contratante);</sql>
 	p.Desconto AS 'descontooriginal', 
 	IFNULL(p.DataCompetencia,l.DataVencimento) AS 'vencimentooriginal',
 	IFNULL(p.Valor, l.Valor) AS 'valorbruto',
-	l.Descricao AS 'descricao',
-	REMOVEcaractere(IFNULL(r.CPF, '00000000000')) AS 'cpf',
+	LEFT(l.Descricao,100) AS 'descricao',
+	LEFT(REMOVEcaractere(IFNULL(r.CPF, '00000000000')),14) AS 'cpf',
 	l.CodEventoFinanceiro AS 'receitaoriginal',
 	IFNULL(p.Valor, l.Valor) AS 'valor'
 FROM lancamento_financeiro l
@@ -7860,7 +7860,7 @@ WHERE l.Tipo = 'C' AND l.DataCancelamento IS NULL;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>descricao</name>
-        <length>400</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT mig_contasreceber</origin>
         <comments>descricao</comments>
@@ -7883,7 +7883,7 @@ WHERE l.Tipo = 'C' AND l.DataCancelamento IS NULL;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cpf</name>
-        <length>50</length>
+        <length>14</length>
         <precision>-1</precision>
         <origin>SELECT mig_contasreceber</origin>
         <comments>cpf</comments>
@@ -7977,19 +7977,19 @@ WHERE l.Tipo = 'C' AND l.DataCancelamento IS NULL;</sql>
     <connection>LocalHost</connection>
     <sql>SELECT
 	al.Matricula AS 'codaluno',
-	UPPER(TRIM(al.Nome)) AS 'nomealuno',
-	ifnull(UPPER(al.NomeDoPai), upper(rp.Nome)) AS 'pai',
-	REMOVEcaractere(rp.CPF) AS 'cpfpai',
-	left(UPPER(rp.Profissao),40) AS 'profpai',
-	REMOVEcaractere(rp.Telefone) AS 'telpai',
-	REMOVEcaractere(rp.Celular) AS 'celularpai',
-	LOWER(rp.Email) AS 'emailpai',
-	UPPER(rp.Nacionalidade) AS 'nacionalidadepai',
+	LEFT(UPPER(TRIM(al.Nome)),100) AS 'nomealuno',
+	LEFT(ifnull(UPPER(al.NomeDoPai), upper(rp.Nome)),100) AS 'pai',
+	LEFT(REMOVEcaractere(rp.CPF),11) AS 'cpfpai',
+	LEFT(UPPER(rp.Profissao),40) AS 'profpai',
+	LEFT(REMOVEcaractere(rp.Telefone),11) AS 'telpai',
+	LEFT(REMOVEcaractere(rp.Celular),11) AS 'celularpai',
+	LEFT(LOWER(rp.Email),100) AS 'emailpai',
+	LEFT(UPPER(rp.Nacionalidade),50) AS 'nacionalidadepai',
 	rp.DataNascimento AS 'dtnascimentopai',
-	UPPER(rp.Sexo) AS 'sexopai',
-	REMOVEcaractere(rp.CEP) AS 'ceppai',
+	LEFT(UPPER(rp.Sexo),1) AS 'sexopai',
+	LEFT(REMOVEcaractere(rp.CEP),8) AS 'ceppai',
 	cp.cod_cidade AS 'codcidadepai',
-	UPPER(bp.Nome) AS 'bairropai'
+	LEFT(UPPER(bp.Nome),60) AS 'bairropai'
 FROM aluno al
 LEFT JOIN aluno_responsavel arp ON arp.MatAluno = al.Matricula AND arp.CodParentesco = 7
 LEFT JOIN responsavel rp ON rp.Codigo = arp.CodResponsavel
@@ -8032,7 +8032,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nomealuno</name>
-        <length>65535</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>nomealuno</comments>
@@ -8055,7 +8055,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>endereco</name>
-        <length>131072</length>
+        <length>200</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>endereco</comments>
@@ -8078,7 +8078,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairro</name>
-        <length>65535</length>
+        <length>60</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>bairro</comments>
@@ -8147,7 +8147,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cep</name>
-        <length>50</length>
+        <length>8</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>cep</comments>
@@ -8170,7 +8170,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>telresid</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>telresid</comments>
@@ -8193,7 +8193,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>celular</name>
-        <length>50</length>
+        <length>16</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>celular</comments>
@@ -8216,7 +8216,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>email</name>
-        <length>65535</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>email</comments>
@@ -8239,7 +8239,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>sexo</name>
-        <length>65535</length>
+        <length>1</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>sexo</comments>
@@ -8354,7 +8354,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cor</name>
-        <length>65535</length>
+        <length>13</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>cor</comments>
@@ -8400,7 +8400,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cpf</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>cpf</comments>
@@ -8423,7 +8423,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>rg</name>
-        <length>21845</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>rg</comments>
@@ -8492,7 +8492,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>situacaomilitar</name>
-        <length>65535</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>situacaomilitar</comments>
@@ -8515,7 +8515,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>ra</name>
-        <length>21845</length>
+        <length>20</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>ra</comments>
@@ -8539,7 +8539,7 @@ GROUP BY al.Matricula;
         <storagetype>normal</storagetype>
         <name>obs</name>
         <length>-1</length>
-        <precision>-1</precision>
+        <precision>0</precision>
         <origin>SELECT aluno</origin>
         <comments>obs</comments>
         <conversion_Mask/>
@@ -8584,7 +8584,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>tiposanguineo</name>
-        <length>65535</length>
+        <length>20</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>tiposanguineo</comments>
@@ -8630,7 +8630,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nomealuno_1</name>
-        <length>65535</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>nomealuno</comments>
@@ -8653,7 +8653,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>pai</name>
-        <length>65535</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>pai</comments>
@@ -8676,7 +8676,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cpfpai</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>cpfpai</comments>
@@ -8722,7 +8722,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>telpai</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>telpai</comments>
@@ -8745,7 +8745,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>celularpai</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>celularpai</comments>
@@ -8768,7 +8768,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>emailpai</name>
-        <length>200</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>emailpai</comments>
@@ -8791,7 +8791,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nacionalidadepai</name>
-        <length>200</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>nacionalidadepai</comments>
@@ -8837,7 +8837,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>sexopai</name>
-        <length>200</length>
+        <length>1</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>sexopai</comments>
@@ -8860,7 +8860,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>ceppai</name>
-        <length>50</length>
+        <length>8</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>ceppai</comments>
@@ -8906,7 +8906,7 @@ GROUP BY al.Matricula;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairropai</name>
-        <length>65535</length>
+        <length>60</length>
         <precision>-1</precision>
         <origin>SELECT pai</origin>
         <comments>bairropai</comments>
@@ -8953,24 +8953,23 @@ GROUP BY al.Matricula;
     </partitioning>
     <connection>LocalHost</connection>
     <sql>SELECT
-	UPPER(TRIM(r.Nome)) AS 'nomeresponsavel',
-	REMOVEcaractere(r.CPF) AS 'cpf',
+	LEFT(UPPER(TRIM(r.Nome)),100) AS 'nomeresponsavel',
+	LEFT(REMOVEcaractere(r.CPF),11) AS 'cpf',
 	r.DataNascimento AS 'dtnascimento',
-	UPPER(r.Sexo) AS 'sexo',
-	UPPER(r.Nacionalidade) AS 'nacionalidade',
-	left(UPPER(r.Profissao),40) AS 'profissao',
-	REMOVEcaractere(r.Telefone) AS 'telresid', 
-	REMOVEcaractere(r.Celular) AS 'celular',
-	r.Logradouro,
-	UPPER(CONCAT(r.Logradouro, IF(r.NumLogradouro IS NULL, '', CONCAT(', ', r.NumLogradouro)))) AS 'endereco',
-	UPPER(b.Nome) AS 'bairro',
+	LEFT(UPPER(r.Sexo),1) AS 'sexo',
+	LEFT(UPPER(r.Nacionalidade),50) AS 'nacionalidade',
+	LEFT(UPPER(r.Profissao),40) AS 'profissao',
+	LEFT(REMOVEcaractere(r.Telefone),11) AS 'telresid', 
+	LEFT(REMOVEcaractere(r.Celular),16) AS 'celular',
+	LEFT(UPPER(CONCAT(r.Logradouro, IF(r.NumLogradouro IS NULL, '', CONCAT(', ', r.NumLogradouro)))),120) AS 'endereco',
+	LEFT(UPPER(b.Nome),60) AS 'bairro',
 	c.cod_cidade AS 'cidade',
 	CASE 
 	WHEN r.OrgaoExpedidor LIKE '%SSP%' THEN 10
 	ELSE NULL
 	END AS 'rgorgaoemissor',
 	c.cod_estado AS 'uf',
-	REMOVEcaractere(r.CEP) AS 'cep',
+	LEFT(REMOVEcaractere(r.CEP),8) AS 'cep',
 	LEFT(LOWER(r.Email),100) 'email',
 	LEFT(r.Observacoes,200) AS 'obs'
 FROM responsavel r
@@ -9014,7 +9013,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nomealuno</name>
-        <length>65535</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>nomealuno</comments>
@@ -9037,7 +9036,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>mae</name>
-        <length>65535</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>mae</comments>
@@ -9060,7 +9059,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cpfmae</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>cpfmae</comments>
@@ -9106,7 +9105,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>telmae</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>telmae</comments>
@@ -9129,7 +9128,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>celularmae</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>celularmae</comments>
@@ -9152,7 +9151,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>emailmae</name>
-        <length>200</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>emailmae</comments>
@@ -9175,7 +9174,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nacionalidademae</name>
-        <length>200</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>nacionalidademae</comments>
@@ -9195,10 +9194,10 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimentomae</name>
-        <length>-1</length>
+        <length>200</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>dtnascimentomae</comments>
@@ -9221,7 +9220,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>sexomae</name>
-        <length>200</length>
+        <length>1</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>sexomae</comments>
@@ -9244,7 +9243,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cepmae</name>
-        <length>50</length>
+        <length>8</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>cepmae</comments>
@@ -9290,7 +9289,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairromae</name>
-        <length>65535</length>
+        <length>60</length>
         <precision>-1</precision>
         <origin>SELECT mae</origin>
         <comments>bairromae</comments>
@@ -9313,7 +9312,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nomeresponsavel</name>
-        <length>200</length>
+        <length>100</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>nomeresponsavel</comments>
@@ -9336,7 +9335,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cpf</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>cpf</comments>
@@ -9382,7 +9381,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>sexo</name>
-        <length>200</length>
+        <length>1</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>sexo</comments>
@@ -9405,7 +9404,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nacionalidade</name>
-        <length>200</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>nacionalidade</comments>
@@ -9451,7 +9450,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>telresid</name>
-        <length>50</length>
+        <length>11</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>telresid</comments>
@@ -9474,7 +9473,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>celular</name>
-        <length>50</length>
+        <length>16</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>celular</comments>
@@ -9496,31 +9495,8 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>Logradouro</name>
-        <length>200</length>
-        <precision>-1</precision>
-        <origin>SELECT responsavel</origin>
-        <comments>Logradouro</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
         <name>endereco</name>
-        <length>402</length>
+        <length>120</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>endereco</comments>
@@ -9543,7 +9519,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairro</name>
-        <length>65535</length>
+        <length>60</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>bairro</comments>
@@ -9635,7 +9611,7 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cep</name>
-        <length>50</length>
+        <length>8</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>cep</comments>
@@ -9733,8 +9709,8 @@ AND REPLACE(REMOVEcaractere(r.CPF), ' ', '');</sql>
 	sc.CodCurso AS 'codcurso',
 	sc.Codigo AS 'codserie',
 	sc.NumSerie AS 'ordem',
-	UPPER(sc.Nome) AS 'dscserie',
-	UPPER(sc.Nome) AS 'dscseriecompleta',
+	LEFT(UPPER(sc.Nome),200) AS 'dscserie',
+	LEFT(UPPER(sc.Nome),200) AS 'dscseriecompleta',
 	'S' AS 'ativo',
 	'N' AS 'concluinte',
 	NOW() AS 'dtcadastro',
@@ -9820,7 +9796,7 @@ FROM serie sc;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dsccurso</name>
-        <length>21845</length>
+        <length>150</length>
         <precision>-1</precision>
         <origin>SELECT curso</origin>
         <comments>dsccurso</comments>
@@ -9889,7 +9865,7 @@ FROM serie sc;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dsccompleta</name>
-        <length>65535</length>
+        <length>150</length>
         <precision>-1</precision>
         <origin>SELECT curso</origin>
         <comments>dsccompleta</comments>
@@ -9935,7 +9911,7 @@ FROM serie sc;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>codtributacaomunicipio</name>
-        <length>21845</length>
+        <length>20</length>
         <precision>-1</precision>
         <origin>SELECT curso</origin>
         <comments>codtributacaomunicipio</comments>
@@ -9958,7 +9934,7 @@ FROM serie sc;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>codservico</name>
-        <length>21845</length>
+        <length>20</length>
         <precision>-1</precision>
         <origin>SELECT curso</origin>
         <comments>codservico</comments>
@@ -10096,7 +10072,7 @@ FROM serie sc;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dscserie</name>
-        <length>65535</length>
+        <length>200</length>
         <precision>-1</precision>
         <origin>SELECT seriecurso</origin>
         <comments>dscserie</comments>
@@ -10119,7 +10095,7 @@ FROM serie sc;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dscseriecompleta</name>
-        <length>65535</length>
+        <length>200</length>
         <precision>-1</precision>
         <origin>SELECT seriecurso</origin>
         <comments>dscseriecompleta</comments>
@@ -10390,7 +10366,7 @@ GROUP BY left(t.Nome,10);</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dscserie</name>
-        <length>65535</length>
+        <length>200</length>
         <precision>-1</precision>
         <origin>SELECT seriecurso</origin>
         <comments>dscserie</comments>
@@ -10413,7 +10389,7 @@ GROUP BY left(t.Nome,10);</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dscseriecompleta</name>
-        <length>65535</length>
+        <length>200</length>
         <precision>-1</precision>
         <origin>SELECT seriecurso</origin>
         <comments>dscseriecompleta</comments>
@@ -10859,51 +10835,67 @@ GROUP BY left(t.Nome,10);</sql>
     <fields>
       <field>
         <name>nomeresponsavel</name>
+        <rename/>
       </field>
       <field>
         <name>cpf</name>
+        <rename/>
       </field>
       <field>
         <name>dtnascimento</name>
+        <rename/>
       </field>
       <field>
         <name>sexo</name>
+        <rename/>
       </field>
       <field>
         <name>nacionalidade</name>
+        <rename/>
       </field>
       <field>
         <name>profissao</name>
+        <rename/>
       </field>
       <field>
         <name>telresid</name>
+        <rename/>
       </field>
       <field>
         <name>celular</name>
+        <rename/>
       </field>
       <field>
         <name>endereco</name>
+        <rename/>
       </field>
       <field>
         <name>bairro</name>
+        <rename/>
       </field>
       <field>
         <name>cidade</name>
+        <rename/>
       </field>
       <field>
         <name>rgorgaoemissor</name>
+        <rename/>
       </field>
       <field>
         <name>uf</name>
+        <rename/>
       </field>
       <field>
         <name>cep</name>
+        <rename/>
       </field>
       <field>
         <name>email</name>
+        <rename/>
       </field>
       <field>
         <name>obs</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
