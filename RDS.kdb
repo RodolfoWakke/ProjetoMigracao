@@ -1,6 +1,6 @@
   <connection>
     <name>RDS</name>
-    <server>${v_end-RDS}</server>
+    <server>escolawebrds${v_end-RDS}.cdq77divwtia.sa-east-1.rds.amazonaws.com</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>${v_nomebanco-RDS}</database>

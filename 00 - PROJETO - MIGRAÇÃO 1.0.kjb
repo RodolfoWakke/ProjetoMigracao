@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/06/28 14:15:22.687</modified_date>
+  <modified_date>2023/06/30 10:38:38.232</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -890,7 +890,7 @@ Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
+      <xloc>208</xloc>
       <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
@@ -922,7 +922,7 @@ VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
+      <xloc>208</xloc>
       <yloc>64</yloc>
       <attributes_kjc/>
     </entry>
@@ -992,7 +992,7 @@ VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
       <description/>
       <type>MSGBOX_INFO</type>
       <attributes/>
-      <bodymessage>Serão migrados os dados do sistema '${v_sistema}' para o domínio '${v_nomebanco-RDS}'.
+      <bodymessage>Serão migrados os dados do sistema '${v_sistema}' para o domínio '${v_nomebanco-RDS}' no RDS: ${v_end-RDS}.
 
 Confirmar?</bodymessage>
       <titremessage>A migração irá começar</titremessage>
@@ -1041,7 +1041,7 @@ Confirmar?</bodymessage>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>CHECK SECRETARIA 2</name>
+      <name>CHECK CREATE LOCAL</name>
       <description/>
       <type>SIMPLE_EVAL</type>
       <attributes/>
@@ -1410,7 +1410,7 @@ Confirmar?</bodymessage>
     </hop>
     <hop>
       <from>CONFIG MIG</from>
-      <to>CHECK SECRETARIA 2</to>
+      <to>CHECK CREATE LOCAL</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1418,7 +1418,7 @@ Confirmar?</bodymessage>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>CHECK SECRETARIA 2</from>
+      <from>CHECK CREATE LOCAL</from>
       <to>SISTEMAS</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1427,7 +1427,7 @@ Confirmar?</bodymessage>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>CHECK SECRETARIA 2</from>
+      <from>CHECK CREATE LOCAL</from>
       <to>PASSO 4 - SEC</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
