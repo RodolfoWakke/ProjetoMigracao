@@ -428,21 +428,21 @@
     <created_user>-</created_user>
     <created_date>2023/05/05 15:33:04.450</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/06/26 15:41:40.455</modified_date>
+    <modified_date>2023/07/03 16:55:52.153</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>LocalHost</name>
-    <server>127.0.0.1</server>
+    <name>RDS</name>
+    <server>escolawebrds${v_end-RDS}.cdq77divwtia.sa-east-1.rds.amazonaws.com</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${v_nomebanco-mysql}</database>
+    <database>${v_nomebanco-RDS}</database>
     <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
+    <username>ricardo.gad</username>
+    <password>Encrypted 2be98afc86aa7f2e49910ad47df99a4df</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -505,93 +505,98 @@
       </attribute>
     </attributes>
   </connection>
+  <connection>
+    <name>SQLSERVER-LOCALHOST</name>
+    <server>localhost</server>
+    <type>MSSQLNATIVE</type>
+    <access>Native</access>
+    <database>${v_nomebanco-sqlserver}</database>
+    <port>1433</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>MSSQLUseIntegratedSecurity</code>
+        <attribute>false</attribute>
+      </attribute>
+      <attribute>
+        <code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>1433</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <order>
     <hop>
-      <from>aula csv</from>
-      <to>aula - LH</to>
-      <enabled>Y</enabled>
+      <from>SELECT contasreceber(Aluno)</from>
+      <to>Select values contasreceber (ALUNO)</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Select values contasreceber (ALUNO)</from>
+      <to>Insert mig_contasreceber</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing)</from>
+      <to>SELECT contasreceber(Aluno)</to>
+      <enabled>N</enabled>
     </hop>
   </order>
   <step>
-    <name>Create Aula</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LocalHost</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>DROP TABLE IF EXISTS `aula`;
-CREATE TABLE aula
-(
-  Codigo INT(11)
-, Data VARCHAR(50)
-, HoraInicial VARCHAR(50)
-, HoraFinal VARCHAR(50)
-, Situacao VARCHAR(50)
-, CodTurma INT(11)
-, CodDisciplina INT(11)
-, CodProfessor VARCHAR(50)
-, CodSala VARCHAR(300)
-, Observacoes VARCHAR(3000)
-, CodRepeticao VARCHAR(50)
-, EditavelPorProfessor VARCHAR(50)
-, modulo_disciplina_id VARCHAR(50)
-, tipo VARCHAR(50)
-, valor VARCHAR(50)
-, atividades VARCHAR(1000)
-, CodPlanoAula VARCHAR(50)
-, Periodicidade VARCHAR(50)
-,INDEX `Codigo` (`Codigo`) USING BTREE
-)
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB
-;
-</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>304</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>aula - LH</name>
+    <name>Insert mig_contasreceber</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>1</copies>
+    <copies>2</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <schema/>
-    <table>aula</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
+    <table>mig_contasreceber</table>
+    <commit>5000</commit>
+    <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
     <specify_fields>N</specify_fields>
@@ -615,14 +620,881 @@ ENGINE=InnoDB
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
-      <yloc>304</yloc>
+      <xloc>864</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>aula csv</name>
-    <type>CsvInput</type>
+    <name>SELECT contasreceber(Aluno)</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>SQLSERVER-LOCALHOST</connection>
+    <sql>-- PARCELAS PARA ALUNOS MATRÍCULADOS
+
+SELECT 
+	t.CODIGO AS 'codrec', 
+	IIF((SELECT MAX(m.CODIGO) FROM sophia.MOVFIN mf LEFT JOIN Sophia.MATRICULA m ON mf.VENDA = m.VENDA WHERE mf.TITULO = t.CODIGO GROUP BY mf.TITULO) IS NULL, NULL,(SELECT MAX(m.CODIGO) FROM sophia.MOVFIN mf LEFT JOIN Sophia.MATRICULA m ON mf.VENDA = m.VENDA WHERE mf.TITULO = t.CODIGO GROUP BY mf.TITULO)) AS 'codmatricula',
+	(SELECT MAX(mf.parcela) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO GROUP BY mf.TITULO) AS 'parcela',
+	1 AS 'anoletivo',
+	(SELECT MAX(mf.PLANO) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO GROUP BY mf.TITULO) AS 'totparcela',
+	(SELECT SUM(mf.valor) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND mf.VALOR > 0) AS 'valorparcela', 
+	t.DATA_VCTO AS 'vencimento',
+	(SELECT SUM(mf.valor) * (-1) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND mf.VALOR &lt; 0) AS 'desconto',
+	0 AS 'carenciadesconto',
+	t.DATA_VCTO AS 'vencimentodesconto',
+	(SELECT SUM(mf.VALOR) FROM sophia.MOVFIN mf JOIN sophia.PLANOCONTAS pc ON (mf.CLASSIFICACAO = pc.CODIGO) WHERE mf.TITULO = t.CODIGO AND pc.CODIGO = 337 AND mf.VALOR > 0) AS 'multa',
+	(SELECT SUM(mf.VALOR) FROM sophia.MOVFIN mf JOIN sophia.PLANOCONTAS pc ON (mf.CLASSIFICACAO = pc.CODIGO) WHERE mf.TITULO = t.CODIGO AND pc.CODIGO = 329 AND mf.VALOR > 0) AS 'juros',
+	t.DATA_VCTO AS 'vencimentomulta',
+	0 AS 'carenciamulta',
+	(SELECT MAX(l.DATA_EFETIVA) FROM sophia.TIT_PGTO l WHERE l.TITULO = t.CODIGO) 'dtpagamento',
+	(SELECT SUM(l.VALOR) FROM sophia.TIT_PGTO l WHERE l.TITULO = t.CODIGO) AS 'valorpago',
+	1 AS 'codunidade',
+	(SELECT MAX(mf.CLASSIFICACAO) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO GROUP BY mf.TITULO) AS 'codreceita',
+	ISNULL(t.CODPF,0) AS 'codaluno', 
+	LEFT(ISNULL(RIGHT(REPLICATE(0,11 - LEN(t.NOSSONUM)) + CAST(t.NOSSONUM AS VARCHAR),11),RIGHT(REPLICATE(0,11 - LEN(t.CODIGO)) + CAST(t.CODIGO AS VARCHAR),11)),20) AS 'nossonumero', 
+	IIF(t.CONTA IS NOT NULL, 'S','N') AS 'cobbancaria',
+	t.CONTA AS 'codconta',
+	'N' AS 'avulsa',
+	'MIG AUTO' AS 'cadastradopor', GETDATE() AS 'dtcadastro',
+	(SELECT SUM(mf.valor) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND mf.VALOR > 0) AS 'valorparcelaoriginal',
+	(SELECT SUM(mf.valor) * (-1) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND mf.VALOR &lt; 0) AS 'descontooriginal',
+	t.DATA_VCTO AS 'vencimentooriginal',
+	(SELECT SUM(mf.valor)
+	FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND mf.VALOR > 0) AS 'valorbruto',
+	LEFT(t.DESCRICAO_RESUMIDA,100) AS 'descricao',
+		CASE
+		WHEN ff.IDFK_PARENTESCO IN (1,18) THEN LEFT(RTRIM(ISNULL(dbo.REMOVEcaractere(fa.PAI_CPF),'00000000000')),14) 
+		WHEN ff.IDFK_PARENTESCO IN (2,17) THEN LEFT(RTRIM(ISNULL(dbo.REMOVEcaractere(fa.MAE_CPF),'00000000000')),14) 
+		ELSE LEFT(RTRIM(ISNULL((SELECT dbo.REMOVEcaractere(oo2.CPF) FROM sophia.FISICA oo2 JOIN sophia.FISICA__FISICA ooff2 ON (oo2.CODIGO = ooff2.IDFK_RESPONSAVEL) WHERE ooff2.ID_FISICA__FISICA = ff.ID_FISICA__FISICA),'00000000000')),14) END AS 'cpf',
+	(SELECT MAX(mf.CLASSIFICACAO) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO GROUP BY mf.TITULO) AS 'receitaoriginal',
+	(SELECT SUM(mf.valor) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND mf.VALOR > 0) AS 'valor',
+	t.unidade AS 'AUX_codunidade'
+FROM sophia.TITULOS t
+LEFT JOIN sophia.FISICA f ON t.CODPF = f.CODIGO
+LEFT JOIN sophia.FISICA__FISICA ff ON (ff.ID_FISICA__FISICA = f.IDFK_RESPONSAVEL_FIN_PADRAO)
+LEFT JOIN sophia.DADOSPF dp ON (dp.FISICA = f.CODIGO)
+LEFT JOIN sophia.FAMILIAS fa ON (dp.FAMILIA = fa.CODIGO)
+WHERE t.TIPO = 1 AND t.CODPJ IS NULL AND t.CODPF in (SELECT m.fisica FROM sophia.MATRICULA m) 
+AND t.CODIGO NOT in (SELECT tb.TITULO FROM sophia.TIT_baixa tb) 
+AND (SELECT SUM(mf.valor) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND mf.VALOR > 0) IS NOT NULL;
+
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codrec</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>codrec</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codmatricula</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>codmatricula</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>parcela</name>
+        <length>4</length>
+        <precision>0</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>parcela</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>anoletivo</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>anoletivo</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>totparcela</name>
+        <length>4</length>
+        <precision>0</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>totparcela</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>BigNumber</type>
+        <storagetype>normal</storagetype>
+        <name>valorparcela</name>
+        <length>38</length>
+        <precision>4</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>valorparcela</comments>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>vencimento</name>
+        <length>3</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>vencimento</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>BigNumber</type>
+        <storagetype>normal</storagetype>
+        <name>desconto</name>
+        <length>38</length>
+        <precision>4</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>desconto</comments>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>carenciadesconto</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>carenciadesconto</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>vencimentodesconto</name>
+        <length>3</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>vencimentodesconto</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>BigNumber</type>
+        <storagetype>normal</storagetype>
+        <name>multa</name>
+        <length>38</length>
+        <precision>4</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>multa</comments>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>BigNumber</type>
+        <storagetype>normal</storagetype>
+        <name>juros</name>
+        <length>38</length>
+        <precision>4</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>juros</comments>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>vencimentomulta</name>
+        <length>3</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>vencimentomulta</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>carenciamulta</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>carenciamulta</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>dtpagamento</name>
+        <length>3</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>dtpagamento</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>BigNumber</type>
+        <storagetype>normal</storagetype>
+        <name>valorpago</name>
+        <length>38</length>
+        <precision>4</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>valorpago</comments>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codunidade</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>codunidade</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codreceita</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>codreceita</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codaluno</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>codaluno</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>nossonumero</name>
+        <length>11</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>nossonumero</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>cobbancaria</name>
+        <length>1</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>cobbancaria</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codconta</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>codconta</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>avulsa</name>
+        <length>1</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>avulsa</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>cadastradopor</name>
+        <length>8</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>cadastradopor</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>dtcadastro</name>
+        <length>3</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>dtcadastro</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>BigNumber</type>
+        <storagetype>normal</storagetype>
+        <name>valorparcelaoriginal</name>
+        <length>38</length>
+        <precision>4</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>valorparcelaoriginal</comments>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>BigNumber</type>
+        <storagetype>normal</storagetype>
+        <name>descontooriginal</name>
+        <length>38</length>
+        <precision>4</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>descontooriginal</comments>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>vencimentooriginal</name>
+        <length>3</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>vencimentooriginal</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>BigNumber</type>
+        <storagetype>normal</storagetype>
+        <name>valorbruto</name>
+        <length>38</length>
+        <precision>4</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>valorbruto</comments>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>descricao</name>
+        <length>100</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>descricao</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>cpf</name>
+        <length>14</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>cpf</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>receitaoriginal</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>receitaoriginal</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>BigNumber</type>
+        <storagetype>normal</storagetype>
+        <name>valor</name>
+        <length>38</length>
+        <precision>4</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>valor</comments>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>AUX_codunidade</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>AUX_codunidade</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values contasreceber (ALUNO)</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -631,219 +1503,110 @@ ENGINE=InnoDB
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${v_diretorio-backup}\aula.csv</filename>
-    <filename_field/>
-    <rownum_field/>
-    <include_filename>N</include_filename>
-    <separator>,</separator>
-    <enclosure>"</enclosure>
-    <header>Y</header>
-    <buffer_size>50000</buffer_size>
-    <lazy_conversion>Y</lazy_conversion>
-    <add_filename_result>N</add_filename_result>
-    <parallel>N</parallel>
-    <newline_possible>N</newline_possible>
-    <format>mixed</format>
-    <encoding>UTF-8</encoding>
     <fields>
       <field>
-        <name>CodDisciplina</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>codrec</name>
       </field>
       <field>
-        <name>CodPlanoAula</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>codmatricula</name>
       </field>
       <field>
-        <name>CodProfessor</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>parcela</name>
       </field>
       <field>
-        <name>CodRepeticao</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>anoletivo</name>
       </field>
       <field>
-        <name>CodSala</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>totparcela</name>
       </field>
       <field>
-        <name>CodTurma</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>valorparcela</name>
       </field>
       <field>
-        <name>Codigo</name>
-        <type>Integer</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
+        <name>vencimento</name>
       </field>
       <field>
-        <name>Data</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>desconto</name>
       </field>
       <field>
-        <name>EditavelPorProfessor</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>carenciadesconto</name>
       </field>
       <field>
-        <name>HoraFinal</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>5</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>vencimentodesconto</name>
       </field>
       <field>
-        <name>HoraInicial</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>5</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>multa</name>
       </field>
       <field>
-        <name>Observacoes</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>500</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>juros</name>
       </field>
       <field>
-        <name>Periodicidade</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>vencimentomulta</name>
       </field>
       <field>
-        <name>Situacao</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>carenciamulta</name>
       </field>
       <field>
-        <name>atividades</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>1000</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>dtpagamento</name>
       </field>
       <field>
-        <name>modulo_disciplina_id</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>valorpago</name>
       </field>
       <field>
-        <name>tipo</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>codunidade</name>
+      </field>
+      <field>
+        <name>codreceita</name>
+      </field>
+      <field>
+        <name>codaluno</name>
+      </field>
+      <field>
+        <name>nossonumero</name>
+      </field>
+      <field>
+        <name>cobbancaria</name>
+      </field>
+      <field>
+        <name>codconta</name>
+      </field>
+      <field>
+        <name>avulsa</name>
+      </field>
+      <field>
+        <name>cadastradopor</name>
+      </field>
+      <field>
+        <name>dtcadastro</name>
+      </field>
+      <field>
+        <name>valorparcelaoriginal</name>
+      </field>
+      <field>
+        <name>descontooriginal</name>
+      </field>
+      <field>
+        <name>vencimentooriginal</name>
+      </field>
+      <field>
+        <name>valorbruto</name>
+      </field>
+      <field>
+        <name>descricao</name>
+      </field>
+      <field>
+        <name>cpf</name>
+      </field>
+      <field>
+        <name>receitaoriginal</name>
       </field>
       <field>
         <name>valor</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <length>15</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
       </field>
+      <field>
+        <name>AUX_codunidade</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -854,8 +1617,170 @@ ENGINE=InnoDB
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
-      <yloc>304</yloc>
+      <xloc>624</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>CREATE MIG</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>RDS</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP TABLE IF EXISTS `mig_contasreceber`;
+CREATE TABLE IF NOT EXISTS `mig_contasreceber` (
+  `codrec` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `codmatricula` int(10) unsigned DEFAULT NULL,
+  `parcela` int(10) unsigned DEFAULT NULL,
+  `totparcela` int(10) unsigned DEFAULT NULL,
+  `valorparcela` decimal(17,2) DEFAULT NULL,
+  `vencimento` date DEFAULT NULL,
+  `desconto` decimal(10,2) DEFAULT NULL,
+  `desconto_antesfatura` decimal(10,2) DEFAULT NULL,
+  `carenciadesconto` int(11) DEFAULT NULL,
+  `vencimentodesconto` date DEFAULT NULL,
+  `desconto2` decimal(10,2) DEFAULT NULL,
+  `desconto2_antesfatura` decimal(10,2) DEFAULT NULL,
+  `carenciadesconto2` int(11) DEFAULT NULL,
+  `vencimentodesconto2` date DEFAULT NULL,
+  `desconto3` decimal(10,2) DEFAULT NULL,
+  `desconto3_antesfatura` decimal(10,2) DEFAULT NULL,
+  `carenciadesconto3` int(11) DEFAULT NULL,
+  `vencimentodesconto3` date DEFAULT NULL,
+  `multa` decimal(10,2) unsigned DEFAULT NULL,
+  `juros` decimal(10,2) unsigned DEFAULT NULL,
+  `carenciamulta` int(11) DEFAULT NULL,
+  `vencimentomulta` date DEFAULT NULL,
+  `dtpagamento` date DEFAULT NULL,
+
+  `valorpago` VARCHAR(50) DEFAULT NULL,
+
+  `recebidopor` varchar(30) DEFAULT NULL,
+  `codunidade` int(11) unsigned NOT NULL,
+  `anoletivo` int(11) NOT NULL,
+  `codreceita` int(11) NOT NULL,
+  `codcontapago` int(11) DEFAULT NULL,
+  `codaluno` int(11) NOT NULL,
+  `nossonumero` varchar(20) DEFAULT NULL,
+  `linha` varchar(60) DEFAULT NULL,
+  `barra` varchar(50) DEFAULT NULL,
+  `cobbancaria` char(1) DEFAULT NULL,
+  `codconta` int(11) DEFAULT NULL,
+  `incluidotabrps` char(1) DEFAULT NULL,
+  `codliquidacao` int(11) DEFAULT NULL,
+  `avulsa` char(1) DEFAULT NULL,
+  `cadastradopor` varchar(60) NOT NULL,
+  `dtcadastro` datetime NOT NULL,
+  `valorparcelaoriginal` decimal(17,2) DEFAULT NULL,
+  `descontooriginal` decimal(17,2) DEFAULT NULL,
+  `vencimentooriginal` date DEFAULT NULL,
+  `enviaremessa` char(1) DEFAULT 'N',
+  `codremessa` int(11) DEFAULT NULL,
+  `cobregistradabanco` char(1) DEFAULT NULL COMMENT 'confirmaÃ§Ã£o do registro da cobranca no banco',
+  `alteradopor` varchar(60) DEFAULT NULL,
+  `codnegociacao` int(11) DEFAULT NULL,
+  `valornegociado` decimal(10,2) DEFAULT NULL,
+  `abatimento` decimal(10,2) DEFAULT NULL,
+  `abatimento_antesfatura` decimal(10,2) DEFAULT NULL,
+  `valorbruto` decimal(10,2) NOT NULL,
+  `codcontrato` int(11) DEFAULT NULL,
+  `codfornecedor` int(11) DEFAULT NULL,
+  `outrasreceitas` char(1) DEFAULT NULL,
+  `descricao` varchar(100) DEFAULT NULL,
+  `codrecfatura` int(11) DEFAULT NULL,
+  `codlotefatura` int(11) DEFAULT NULL,
+  `CPF` varchar(14) NOT NULL,
+  `vencfatura` datetime DEFAULT NULL,
+  `vencfaturadesc` datetime DEFAULT NULL,
+  `vencfaturadesc2` datetime DEFAULT NULL,
+  `vencfaturamulta` datetime DEFAULT NULL,
+  `receitaoriginal` int(11) NOT NULL,
+  `codinscricaoevento` int(11) DEFAULT NULL,
+  `codremessaalteracao` int(11) DEFAULT NULL,
+  `faturaunica` char(1) DEFAULT NULL COMMENT 'S=SE PARCELA FOR UMA FATURA SEM FILHOS',
+  `outrosacrescimos` decimal(10,2) DEFAULT NULL,
+  `outrosabatimentos` decimal(10,2) DEFAULT NULL,
+  `valor` decimal(17,2) NOT NULL,
+  `codsolicitacao` int(11) DEFAULT NULL,
+  `carenciadesconto1original` int(11) DEFAULT NULL,
+  `carenciadesconto2original` int(11) DEFAULT NULL,
+  `carenciamultaoriginal` int(11) DEFAULT NULL,
+  `registroconfirmado` char(1) DEFAULT NULL,
+  `carenciadesconto3original` int(11) DEFAULT NULL,
+  `idfaturaiugu` varchar(100) DEFAULT NULL,
+  `statusparcela` varchar(20) DEFAULT NULL,
+  `boletourl` varchar(1000) DEFAULT NULL COMMENT 'Variável para guardar URL para pagamente de boleto, atualmente usado apenas para ISAAC',
+  `parcelaremessasicoob` smallint(4) DEFAULT '1',
+  `tipocobrancaiugu` char(1) DEFAULT 'B' COMMENT 'A=CARTAO E BOLETO; B=SOMENTE BOLETO; C-SOMENTE CARTAO',
+  `tipocobrancaiuguoriginal` char(1) DEFAULT NULL,
+  `dtcompetencia` date DEFAULT NULL,
+  `dtcompetencia_antesfatura` date DEFAULT NULL,
+  `cobrancaexterna` char(1) DEFAULT 'N',
+  `gabrielsetoucodunidade` datetime DEFAULT NULL,
+  `AUX_codpf` varchar(100) DEFAULT NULL,
+  `AUX_codpj` varchar(100) DEFAULT NULL,
+  `AUX_cpf` varchar(50) DEFAULT NULL,
+  `AUX_codunidade` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`codrec`) USING BTREE,
+  INDEX `codaluno` (`codaluno`) USING BTREE,
+  INDEX `codreceita` (`codreceita`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>80</xloc>
+      <yloc>16</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>234</xloc>
+      <yloc>327</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
