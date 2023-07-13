@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/02/26 09:22:54.470</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/06/27 10:48:15.175</modified_date>
+    <modified_date>2023/07/07 13:33:03.519</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -479,7 +479,7 @@
   </notepads>
   <connection>
     <name>RDS</name>
-    <server>${v_end-RDS}</server>
+    <server>escolawebrds${v_end-RDS}.cdq77divwtia.sa-east-1.rds.amazonaws.com</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>${v_nomebanco-RDS}</database>
@@ -594,9 +594,6 @@ DELETE FROM funcionariounidade;
 DELETE FROM funcionario;
 DELETE FROM alunodisciplina;
 DELETE FROM aluno;
-
-INSERT INTO `responsavel` (`codsoc`, `cpf`, `nomeresponsavel`, `profissao`, `localtrabalho`, `teltrabalho`, `telresid`, `celular`, `email`, `rg`, `endereco`, `bairro`, `cidade`, `uf`, `cep`, `rendaliquida`, `sexo`, `estadocivil`, `dtnascimento`, `escolaridade`, `pai`, `mae`, `enderecocom`, `bairrocom`, `cepcom`, `codcidadecom`, `cargo`, `senha`, `login`, `fotoportal`, `nacionalidade`, `naturalidade`, `obs`, `rgorgaoemissor`, `rgestado`, `rgdataemissao`, `codpaisorigem`, `codcidadenaturalidade`, `codescolaridade`, `codfatura`, `agrupamentofatura`, `placa`, `veiculo`, `fotoblob`, `dtcadastro`, `dtalteracao`, `cadastradopor`, `alteradopor`, `codbanco`, `agencia`, `conta`, `debitoautomaticoativo`, `clienteiugu`, `inscricaoestadual`, `tokenfirebase`, `inscricaomunicipal`) VALUES (1, '00000000000', 'INEXISTENTE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '00000000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'R', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'N', NULL, NULL, NULL, NULL);
-
 
 ALTER TABLE aluno AUTO_INCREMENT = 1;
 ALTER TABLE responsavel AUTO_INCREMENT = 1;
@@ -797,13 +794,17 @@ set a.codaluno_unificado = aa.codaluno ;
 
 -- RESPONSÁVEL 
 
+DELETE r FROM  mig_responsavel r
+WHERE r.cpf = '00000000000';
+
+INSERT INTO `responsavel` (`codsoc`, `cpf`, `nomeresponsavel`, `profissao`, `localtrabalho`, `teltrabalho`, `telresid`, `celular`, `email`, `rg`, `endereco`, `bairro`, `cidade`, `uf`, `cep`, `rendaliquida`, `sexo`, `estadocivil`, `dtnascimento`, `escolaridade`, `pai`, `mae`, `enderecocom`, `bairrocom`, `cepcom`, `codcidadecom`, `cargo`, `senha`, `login`, `fotoportal`, `nacionalidade`, `naturalidade`, `obs`, `rgorgaoemissor`, `rgestado`, `rgdataemissao`, `codpaisorigem`, `codcidadenaturalidade`, `codescolaridade`, `codfatura`, `agrupamentofatura`, `placa`, `veiculo`, `fotoblob`, `dtcadastro`, `dtalteracao`, `cadastradopor`, `alteradopor`, `codbanco`, `agencia`, `conta`, `debitoautomaticoativo`, `clienteiugu`, `inscricaoestadual`, `tokenfirebase`, `inscricaomunicipal`) VALUES (1, '00000000000', 'INEXISTENTE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '00000000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'R', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'N', NULL, NULL, NULL, NULL);
+
 INSERT INTO responsavel
 (cpf, nomeresponsavel, profissao, localtrabalho, teltrabalho, telresid, celular, email, rg, endereco, bairro, cidade, uf, cep, rendaliquida, sexo, estadocivil, dtnascimento, escolaridade, pai, mae, enderecocom, bairrocom, cepcom, codcidadecom, cargo, senha, login, fotoportal, nacionalidade, naturalidade, obs, rgorgaoemissor, rgestado, rgdataemissao, codpaisorigem, codcidadenaturalidade, codescolaridade, codfatura, agrupamentofatura, placa, veiculo, fotoblob, dtcadastro, dtalteracao, cadastradopor, alteradopor, codbanco, agencia, conta, debitoautomaticoativo, clienteiugu, inscricaoestadual, tokenfirebase, inscricaomunicipal) 
 (SELECT cpf, nomeresponsavel, profissao, localtrabalho, teltrabalho, telresid, celular, email, rg, endereco, bairro, cidade, uf, cep, rendaliquida, sexo, estadocivil, dtnascimento, escolaridade, pai, mae, enderecocom, bairrocom, cepcom, codcidadecom, cargo, senha, login, fotoportal, nacionalidade, naturalidade, obs, rgorgaoemissor, rgestado, rgdataemissao, codpaisorigem, codcidadenaturalidade, codescolaridade, codfatura, agrupamentofatura, placa, veiculo, fotoblob, dtcadastro, dtalteracao, cadastradopor, alteradopor, codbanco, agencia, conta, debitoautomaticoativo, clienteiugu, inscricaoestadual, tokenfirebase, inscricaomunicipal
 FROM mig_responsavel r WHERE r.cpf IS NOT NULL AND r.cpf &lt;&gt; '' AND r.cpf &lt;&gt; ' '
 GROUP BY r.cpf);
 
-UPDATE responsavel SET codsoc = 999999 WHERE codsoc = 1;
 
 -- CURSO
 
@@ -892,17 +893,10 @@ UPDATE login l
 JOIN aluno a ON a.codaluno = l.codaluno
 SET l.senha = a.senha;
  
-SELECT * FROM login l 
-JOIN aluno a ON a.codaluno = l.codaluno
-WHERE l.senha &lt;&gt; a.senha;
- 
 UPDATE login l   
 JOIN responsavel r ON r.codsoc = l.codsoc 
 SET l.senha = r.senha; 
  
-SELECT * FROM login l  
-JOIN responsavel r ON r.codsoc = l.codsoc 
-WHERE l.senha &lt;&gt; r.senha; 
   
 UPDATE login l 
 JOIN responsavel r ON r.codsoc = l.codsoc 
