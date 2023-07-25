@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/06/14 13:37:17.309</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/06/23 13:51:17.632</modified_date>
+    <modified_date>2023/07/21 08:50:40.217</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -508,7 +508,7 @@
   </connection>
   <connection>
     <name>RDS</name>
-    <server>${v_end-RDS}</server>
+    <server>escolawebrds${v_end-RDS}.cdq77divwtia.sa-east-1.rds.amazonaws.com</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>${v_nomebanco-RDS}</database>
@@ -1862,191 +1862,150 @@ ALTER TABLE mig_acumulado AUTO_INCREMENT = 1;
     <fields>
       <field>
         <name>codmateria</name>
-        <rename/>
       </field>
       <field>
         <name>dscdicplina</name>
-        <rename/>
       </field>
       <field>
         <name>codaluno</name>
-        <rename/>
+      </field>
+      <field>
+        <name>codcurso</name>
+      </field>
+      <field>
+        <name>codseriecurso</name>
       </field>
       <field>
         <name>dscturma</name>
-        <rename/>
       </field>
       <field>
         <name>codconfturma</name>
-        <rename/>
       </field>
       <field>
         <name>codmatricula</name>
-        <rename/>
       </field>
       <field>
         <name>ano</name>
-        <rename/>
       </field>
       <field>
         <name>n1_1</name>
-        <rename/>
       </field>
       <field>
         <name>n2_1</name>
-        <rename/>
       </field>
       <field>
         <name>n3_1</name>
-        <rename/>
       </field>
       <field>
         <name>n4_1</name>
-        <rename/>
       </field>
       <field>
         <name>n5_1</name>
-        <rename/>
       </field>
       <field>
         <name>n6_1</name>
-        <rename/>
       </field>
       <field>
         <name>n7_1</name>
-        <rename/>
       </field>
       <field>
         <name>n8_1</name>
-        <rename/>
       </field>
       <field>
         <name>n9_1</name>
-        <rename/>
       </field>
       <field>
         <name>n10_1</name>
-        <rename/>
       </field>
       <field>
         <name>n1_2</name>
-        <rename/>
       </field>
       <field>
         <name>n2_2</name>
-        <rename/>
       </field>
       <field>
         <name>n3_2</name>
-        <rename/>
       </field>
       <field>
         <name>n4_2</name>
-        <rename/>
       </field>
       <field>
         <name>n5_2</name>
-        <rename/>
       </field>
       <field>
         <name>n6_2</name>
-        <rename/>
       </field>
       <field>
         <name>n7_2</name>
-        <rename/>
       </field>
       <field>
         <name>n8_2</name>
-        <rename/>
       </field>
       <field>
         <name>n9_2</name>
-        <rename/>
       </field>
       <field>
         <name>n10_2</name>
-        <rename/>
       </field>
       <field>
         <name>n1_3</name>
-        <rename/>
       </field>
       <field>
         <name>n2_3</name>
-        <rename/>
       </field>
       <field>
         <name>n3_3</name>
-        <rename/>
       </field>
       <field>
         <name>n4_3</name>
-        <rename/>
       </field>
       <field>
         <name>n5_3</name>
-        <rename/>
       </field>
       <field>
         <name>n6_3</name>
-        <rename/>
       </field>
       <field>
         <name>n7_3</name>
-        <rename/>
       </field>
       <field>
         <name>n8_3</name>
-        <rename/>
       </field>
       <field>
         <name>n9_3</name>
-        <rename/>
       </field>
       <field>
         <name>n10_3</name>
-        <rename/>
       </field>
       <field>
         <name>n1_4</name>
-        <rename/>
       </field>
       <field>
         <name>n2_4</name>
-        <rename/>
       </field>
       <field>
         <name>n3_4</name>
-        <rename/>
       </field>
       <field>
         <name>n4_4</name>
-        <rename/>
       </field>
       <field>
         <name>n5_4</name>
-        <rename/>
       </field>
       <field>
         <name>n6_4</name>
-        <rename/>
       </field>
       <field>
         <name>n7_4</name>
-        <rename/>
       </field>
       <field>
         <name>n8_4</name>
-        <rename/>
       </field>
       <field>
         <name>n9_4</name>
-        <rename/>
       </field>
       <field>
         <name>n10_4</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -2065,50 +2024,6 @@ ALTER TABLE mig_acumulado AUTO_INCREMENT = 1;
     </GUI>
   </step>
   <step>
-    <name>Table output</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LocalHost</connection>
-    <schema/>
-    <table>AUX_acumulado</table>
-    <commit>50000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>530</xloc>
-      <yloc>331</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Table input</name>
     <type>TableInput</type>
     <description/>
@@ -2121,10 +2036,11 @@ ALTER TABLE mig_acumulado AUTO_INCREMENT = 1;
     </partitioning>
     <connection>LocalHost</connection>
     <sql>SELECT
-
 	d.Codigo AS 'codmateria',
 	d.Nome AS 'dscdicplina', 
 	m.MatAluno AS 'codaluno',
+	s.CodCurso AS 'codcurso',
+	t.CodSerie AS 'codseriecurso',
 	t.Nome AS 'dscturma',
 	m.CodTurma AS 'codconfturma',
 	n.CodMatricula AS 'codmatricula',
@@ -2176,6 +2092,7 @@ ALTER TABLE mig_acumulado AUTO_INCREMENT = 1;
 FROM nota n
 LEFT JOIN aluno_turma m ON n.CodMatricula = m.Codigo
 LEFT JOIN turma t ON t.Codigo = m.CodTurma
+LEFT JOIN serie s ON (t.CodSerie = s.Codigo)
 LEFT JOIN disciplina d ON d.Codigo = n.CodDisciplina
 LEFT JOIN serie_avaliacao sa ON n.CodSerieAvaliacao = sa.codigo
 LEFT JOIN avaliacao av ON av.Codigo = sa.CodAvaliacao
@@ -2184,6 +2101,8 @@ GROUP BY
     n.CodMatricula,
     n.CodDisciplina
 ORDER BY m.Codigo, d.Codigo;
+
+
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -2246,6 +2165,52 @@ ORDER BY m.Codigo, d.Codigo;
         <precision>0</precision>
         <origin>Table input</origin>
         <comments>codaluno</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>codcurso</name>
+        <length>21845</length>
+        <precision>-1</precision>
+        <origin>Table input</origin>
+        <comments>codcurso</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codseriecurso</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>Table input</origin>
+        <comments>codseriecurso</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -3284,6 +3249,50 @@ ORDER BY m.Codigo, d.Codigo;
     </remotesteps>
     <GUI>
       <xloc>144</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <schema/>
+    <table>AUX_acumulado</table>
+    <commit>50000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
