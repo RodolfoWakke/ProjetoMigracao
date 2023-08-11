@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>05 - PASSO 5 - FIN</name>
+    <name>FATURA 2</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -426,57 +426,13 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2023/03/02 15:42:02.689</created_date>
+    <created_date>2023/08/04 11:43:16.256</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/08/10 15:24:32.069</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2023/08/04 11:43:31.159</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
-    <notepad>
-      <note>FINANCEIRO</note>
-      <xloc>64</xloc>
-      <yloc>64</yloc>
-      <width>119</width>
-      <heigth>34</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>Y</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>255</fontcolorred>
-      <fontcolorgreen>255</fontcolorgreen>
-      <fontcolorblue>255</fontcolorblue>
-      <backgroundcolorred>0</backgroundcolorred>
-      <backgroundcolorgreen>128</backgroundcolorgreen>
-      <backgroundcolorblue>0</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>REVER CONTASRECEBER QUE ESTÃO PARA O ALUNO 999999999 'EMPRESA/CONTASRECEBER'.
-TODAS OS REGISTROS DE PARCELA QUE ESTAVAM PARA O ALUNO 0, FORAM COLOCADAS PARA O 'ALUNO' ACIMA.
-</note>
-      <xloc>208</xloc>
-      <yloc>128</yloc>
-      <width>950</width>
-      <heigth>83</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>255</fontcolorred>
-      <fontcolorgreen>255</fontcolorgreen>
-      <fontcolorblue>255</fontcolorblue>
-      <backgroundcolorred>0</backgroundcolorred>
-      <backgroundcolorgreen>128</backgroundcolorgreen>
-      <backgroundcolorblue>192</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <connection>
     <name>RDS</name>
@@ -552,7 +508,7 @@ TODAS OS REGISTROS DE PARCELA QUE ESTAVAM PARA O ALUNO 0, FORAM COLOCADAS PARA O
   <order>
   </order>
   <step>
-    <name>SCRIPT FINANCEIRO</name>
+    <name>CREATE PROCEDURE</name>
     <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
@@ -564,227 +520,14 @@ TODAS OS REGISTROS DE PARCELA QUE ESTAVAM PARA O ALUNO 0, FORAM COLOCADAS PARA O
     </partitioning>
     <connection>RDS</connection>
     <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
+    <single_statement>Y</single_statement>
+    <replace_variables>Y</replace_variables>
     <quoteString>N</quoteString>
-    <sql>DROP TRIGGER IF EXISTS TAI_PAGAMENTOFORMA;
-DROP TRIGGER IF EXISTS TAI_LIQUIDACAOBOLETO;
-DROP TRIGGER IF EXISTS TBD_LIQUIDACAOBOLETO;
-DROP TRIGGER IF EXISTS TBI_LIQUIDACAOBOLETO;
-DROP TRIGGER IF EXISTS TAU_CONTASRECEBER;
-DROP TRIGGER IF EXISTS TBD_CONTASRECEBER;
-DROP TRIGGER IF EXISTS TBI_CONTASRECEBER;
-DROP TRIGGER IF EXISTS TBU_CONTASRECEBER;
-
-DELETE FROM itenscaixa;
-DELETE FROM caixa;
-DELETE FROM liquidestornadas;
-DELETE FROM contasreceberexcluida;
-DELETE FROM usuarioconta;
-DELETE FROM pagamentoforma;
-DELETE FROM liquidacaoboleto;
-DELETE FROM pagamento;
-DELETE FROM contasreceber;
-DELETE FROM contrato;
-DELETE FROM conta;
-DELETE FROM centroreceita;
-
-ALTER TABLE centroreceita AUTO_INCREMENT = 1;
-ALTER TABLE contasreceber AUTO_INCREMENT = 1;
-ALTER TABLE liquidacaoboleto AUTO_INCREMENT = 1;
-ALTER TABLE pagamento AUTO_INCREMENT = 1;
-ALTER TABLE contasreceber AUTO_INCREMENT = 1;
-ALTER TABLE centroreceita AUTO_INCREMENT = 1;
-ALTER TABLE contrato AUTO_INCREMENT = 1;
-
-
--- MIG_CONTASRECEBER UPDATES -- 
-
--- UNIFICANDO CODALUNO
-update mig_contasreceber c
-join mig_aluno a on (c.codaluno = a.codaluno)
-set c.codaluno = a.codaluno_unificado;
-
-
--- PREENCHER CODMATRICULA PARTE 1
-update mig_contasreceber ca 
-set ca.codmatricula = (select max(m.codmatricula) from matricula m where m.codaluno = ca.codaluno and m.anoletivo = ca.anoletivo);
-
--- PREENCHER CODMATRICULA PARTE 2
-update mig_contasreceber ca 
-set ca.codmatricula = (select max(m.codmatricula) from matricula m where m.codaluno = ca.codaluno)
-where ca.codmatricula is NULL;
-
--- PREENCHER OUTRASRECEITAS
-UPDATE mig_contasreceber c SET c.outrasreceitas = 'S' WHERE c.codmatricula IS NULL;
-
--- PREENCHER CPF'S VAZIOS
-UPDATE mig_contasreceber c
-JOIN matricula m ON m.codmatricula = c.codmatricula
-SET c.cpf = m.cpfrespfinanceiro
-where c.cpf is NULL;
-
--- PREENCHER CODUNIDADE
-UPDATE mig_contasreceber c 
-JOIN matricula m ON m.codmatricula = c.codmatricula
-SET c.codunidade = m.codunidade;
-
-
--- PREENCHER RECEITAORIGINAL
-UPDATE mig_contasreceber
-SET receitaoriginal = codreceita;
-
-
--- LIMPAR ONDE O VALORPAGO É 0
-UPDATE mig_contasreceber
-SET valorpago = NULL
-WHERE valorpago = 0;
-
--- CPFs QUE NÃO EXISTEM NA TABELA RESPONSÁVEL
-UPDATE mig_contasreceber c
-SET c.AUX_cpf = c.CPF, c.CPF = '00000000000'
-WHERE c.CPF NOT IN (SELECT cpf FROM responsavel);
-
-
--- UPDATE PARA CONTAS QUE TÊM EM CONTASRECEBER MAS NÃO TEM NA TABELA CONTA
-UPDATE mig_contasreceber c
-SET c.codconta = 9999 
-WHERE c.codconta NOT IN (SELECT codconta FROM mig_conta);
-
--- ---------------------------------------------------------------
--- ---------------------------------------------------------------
-
--- CENTRORECEITA
-
-INSERT INTO centroreceita
-SELECT codreceita, dscreceita, ativo, multa, juros, codnaturezalanccaixa, carenciamulta, carenciadesconto, percentualdesconto, codcontacaixa, principal, jurossobre, msgfixaboleto, atualizajuros, desconto2sobre, podeagrupar, conluimatriculaonline, cobrancaautomatica, cieloativo, tipocobrancaiugu, competencia, opcional, alteradopor, dtalteracao 
-FROM mig_centroreceita c GROUP BY c.dscreceita;
-
-
-UPDATE mig_centroreceita c
-JOIN centroreceita a ON (c.dscreceita = a.dscreceita)
-SET c.codreceita_unificado = a.codreceita;
-
--- UPDATE CODRECEITA_UNIFICADO NO CONTASRECEBER
-
-UPDATE mig_contasreceber c
-JOIN mig_centroreceita r ON r.codreceita = c.codreceita
-SET c.codreceita = r.codreceita_unificado;
--- ---------------------------------------------------------------
--- CONTA
-
-INSERT INTO conta (codconta, dscconta, codempresa, codbanco, agencia, numconta, numdigitoconta, chequeespecial, saldoinicio, tipoconta, bancaria, ativo, agenciacodcedante, carteira, localpagamento, codbancodigito, especie, carteiraboleto, digitoagencia, codcedente, codtransmissao, codmsg1, codmsg2, msgremessa, idcontafacil, recbancoaposvenc, tipoarquivoremessa, tipoarquivoretorno, variacaocarteirabancobrasil, modalidadecarteirasicoob, protestotitulo, postocooperativasicredi, diasparaprotesto, codoperacao, sequencialremessa, homologada, dtmologacao, tecnicohomologacao, instrucaoboleto, diasdevolucao, boletofacil, dtsaldoinicio, conveniodda, diasnegativacao, emissaobanco, codigoparabaixa, codmeiopagamento, codnaturezameiopagamento, codcontavinculada, codnaturezatarifa, codnaturezaantecipacao, dataalteracao, usuarioalteracao, versaolayoutremessa)
-(SELECT codconta, dscconta, codempresa, codbanco, agencia, numconta, numdigitoconta, chequeespecial, saldoinicio, tipoconta, bancaria, ativo, agenciacodcedante, carteira, localpagamento, codbancodigito, especie, carteiraboleto, digitoagencia, codcedente, codtransmissao, codmsg1, codmsg2, msgremessa, idcontafacil, recbancoaposvenc, tipoarquivoremessa, tipoarquivoretorno, variacaocarteirabancobrasil, modalidadecarteirasicoob, protestotitulo, postocooperativasicredi, diasparaprotesto, codoperacao, sequencialremessa, homologada, dtmologacao, tecnicohomologacao, instrucaoboleto, diasdevolucao, boletofacil, dtsaldoinicio, conveniodda, diasnegativacao, emissaobanco, codigoparabaixa, codmeiopagamento, codnaturezameiopagamento, codcontavinculada, codnaturezatarifa, codnaturezaantecipacao, dataalteracao, usuarioalteracao, versaolayoutremessa
-FROM mig_conta);
-
-INSERT INTO conta (codconta, dscconta, codempresa, tipoconta, bancaria, ativo, homologada)
-VALUES (9999, 'SEM REGISTRO', 1, 'C', 'S', 'S', 'N');
-
-
--- ---------------------------------------------------------------
--- CONTASRECEBER
-
--- UPDATE CODALUNO_UNIFICADO NO CONTASRECEBER
-UPDATE mig_contasreceber c
-LEFT JOIN mig_aluno a ON c.codaluno = a.codaluno
-SET c.codaluno = a.codaluno_unificado
-WHERE c.codaluno &lt;&gt; 0;
-
-UPDATE mig_contasreceber c
-SET c.codconta = 9999
-WHERE c.codconta IS NULL;
-
-INSERT INTO contasreceber
-(codrec, codmatricula, parcela, totparcela, valorparcela, vencimento, desconto, desconto_antesfatura, carenciadesconto, vencimentodesconto, desconto2, desconto2_antesfatura, carenciadesconto2, vencimentodesconto2, desconto3, desconto3_antesfatura, carenciadesconto3, vencimentodesconto3, multa, juros, carenciamulta, vencimentomulta, dtpagamento, valorpago, recebidopor, codunidade, anoletivo, codreceita, codcontapago, codaluno, nossonumero, linha, barra, cobbancaria, codconta, incluidotabrps, codliquidacao, avulsa, cadastradopor, dtcadastro, valorparcelaoriginal, descontooriginal, vencimentooriginal, enviaremessa, codremessa, cobregistradabanco, alteradopor, codnegociacao, valornegociado, abatimento, abatimento_antesfatura, valorbruto, codcontrato, codfornecedor, outrasreceitas, descricao, codrecfatura, codlotefatura, CPF, vencfatura, vencfaturadesc, vencfaturadesc2, vencfaturamulta, receitaoriginal, codinscricaoevento, codremessaalteracao, faturaunica, outrosacrescimos, outrosabatimentos, valor, codsolicitacao, carenciadesconto1original, carenciadesconto2original, carenciamultaoriginal, registroconfirmado, carenciadesconto3original, idfaturaiugu, statusparcela, boletourl, parcelaremessasicoob, tipocobrancaiugu, tipocobrancaiuguoriginal, dtcompetencia, dtcompetencia_antesfatura, cobrancaexterna, gabrielsetoucodunidade) 
-(SELECT c.codrec, c.codmatricula, c.parcela, c.totparcela, c.valorparcela, c.vencimento, c.desconto, c.desconto_antesfatura, c.carenciadesconto, c.vencimentodesconto, c.desconto2, c.desconto2_antesfatura, c.carenciadesconto2, c.vencimentodesconto2, c.desconto3, c.desconto3_antesfatura, c.carenciadesconto3, c.vencimentodesconto3, c.multa, c.juros, c.carenciamulta, c.vencimentomulta, c.dtpagamento, c.valorpago, c.recebidopor, c.codunidade, c.anoletivo, cr.codreceita_unificado, c.codcontapago, a.codaluno_unificado, c.nossonumero, c.linha, c.barra, c.cobbancaria, c.codconta, c.incluidotabrps, c.codliquidacao, c.avulsa, c.cadastradopor, c.dtcadastro, c.valorparcelaoriginal, c.descontooriginal, c.vencimentooriginal, c.enviaremessa, c.codremessa, c.cobregistradabanco, c.alteradopor, c.codnegociacao, c.valornegociado, c.abatimento, c.abatimento_antesfatura, c.valorbruto, c.codcontrato, c.codfornecedor, c.outrasreceitas, c.descricao, c.codrecfatura, c.codlotefatura, c.CPF, c.vencfatura, c.vencfaturadesc, c.vencfaturadesc2, c.vencfaturamulta, cr.codreceita, c.codinscricaoevento, c.codremessaalteracao, c.faturaunica, c.outrosacrescimos, c.outrosabatimentos, c.valor, c.codsolicitacao, c.carenciadesconto1original, c.carenciadesconto2original, c.carenciamultaoriginal, c.registroconfirmado, c.carenciadesconto3original, c.idfaturaiugu, c.statusparcela, c.boletourl, c.parcelaremessasicoob, c.tipocobrancaiugu, c.tipocobrancaiuguoriginal, c.dtcompetencia, c.dtcompetencia_antesfatura, c.cobrancaexterna, c.gabrielsetoucodunidade
-FROM mig_contasreceber c
-JOIN mig_centroreceita cr ON (c.codreceita = cr.codreceita)
-JOIN mig_aluno a ON (c.codaluno = a.codaluno)); 
-
--- ---------------------------------------------------------------
--- CONTRATO PARA OUTRAS RECEITAS
-
-INSERT INTO contrato (codtipocontrato, codunidade, codfornecedor,cpfrespfinanceiro, anoletivo, situacao, dtcadastro, cadastradopor)
-(SELECT 0, 1, 0, cr.CPF, cr.anoletivo, 'C', CURDATE(), 'MIG AUTO'
-FROM contasreceber cr WHERE cr.outrasreceitas = 'S' GROUP BY cr.CPF);
-
--- UPDATE CONTASRECEBER SETANDO CODCONTRATO
-
-UPDATE contasreceber cr
-JOIN contrato c ON (cr.CPF = c.cpfrespfinanceiro)
-SET cr.codcontrato = c.codcontrato
-WHERE cr.outrasreceitas = 'S';
-
--- DElETE EM CONTA E CENTRORECEITA DUPLICADO OU QUE NÃO É USADO EM CONTASRECEBER
-
-DELETE c FROM centroreceita c WHERE c.codreceita NOT IN (SELECT codreceita FROM contasreceber);
-DELETE c FROM conta c WHERE c.codconta NOT IN (SELECT codconta FROM contasreceber);
-
--- INSERT EM CENTRORECEITA SE NÃO EXISTIR CODRECEITA = 1
-
-INSERT INTO centroreceita (codreceita, dscreceita)
-SELECT * FROM (SELECT 1, 'HOMOLOCAÇÃO') AS tmp
-WHERE NOT EXISTS (
-    SELECT codreceita FROM centroreceita WHERE codreceita = 1
-) LIMIT 1;
-
--- ---------------------------------------------------------------
--- LIQUIDACAOBOLETO
-
-INSERT INTO liquidacaoboleto(codreceita, valorpago, dtpagamento, codaluno, anoletivo, parcela, conta  ,vencimento  ,nossonumero,
-valorapagar, desconto, valorparcela, dtprocessamento, codrec, usuario)
-(SELECT 
-c.codreceita, 
-c.valorpago, 
-c.dtpagamento, 
-c.codaluno, 
-c.anoletivo, 
-c.parcela,
-c.codconta, 
-c.vencimento, 
-c.nossonumero, 
-c.valorparcela, 
-(c.desconto) as desconto, 
-c.valorparcela, 
-c.dtpagamento, 
-c.codrec, 
-'MIG AUTO'
-FROM contasreceber c
-WHERE c.dtpagamento IS NOT NULL);
-
--- PAGAMENTO
-
-INSERT INTO pagamento(codpagamento ,dtpagamento ,dtregistro ,registradopor ,codunidaderec ,totalpago ,obs ,codaluno ,cpfresp)
-select l.codliquidacao as codpagamento, l.dtpagamento, l.dtprocessamento , l.usuario, c.codunidade, l.valorpago, l.obspagamento, l.codaluno, c.cpf
-from liquidacaoboleto l
-join contasreceber c ON c.codrec = l.codrec
-where l.codpagamento is NULL;
-
--- PAGAMENTOFORMA
-
-INSERT INTO pagamentoforma(codpagamento ,codconta ,valorpago ,codmeiopagamentoitem ,codforma)
-select l.codliquidacao as codpagamento, c.codconta AS codconta, l.valorpago, null,
-(CASE l.formapagamento
-WHEN 'DI' THEN 1
-WHEN 'LI' THEN 2
-WHEN 'CD' THEN 4
-WHEN 'CC' THEN 5
-ELSE 1 END) AS codforma
-from liquidacaoboleto l
-join contasreceber c ON c.codrec = l.codrec
-where l.codpagamento is NULL;
-
-
--- UPDATE LIQUIDACAOBOLETO
-
-update liquidacaoboleto l
-set l.codpagamento = l.codliquidacao
-where l.codpagamento is null;
-
-
--- -----------------------------------------------------
-
-</sql>
+    <sql>CREATE PROCEDURE alter_table_fatura() BEGIN
+               DECLARE CONTINUE HANDLER FOR SQLEXCEPTION BEGIN END;
+               ALTER TABLE contasreceber ADD COLUMN tipoparcela_migracao VARCHAR(50);
+               ALTER TABLE contasreceber ADD COLUMN nossonumero_aux VARCHAR(50);
+END</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -801,8 +544,8 @@ where l.codpagamento is null;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
-      <yloc>112</yloc>
+      <xloc>246</xloc>
+      <yloc>294</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

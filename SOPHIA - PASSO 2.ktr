@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/04/12 11:34:19.712</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/07/13 10:56:15.760</modified_date>
+    <modified_date>2023/08/11 08:24:03.236</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -3905,7 +3905,7 @@ LEFT JOIN Sophia.TURNOS TU ON T.TURNO = TU.CODIGO;</sql>
 	c.BANCO AS 'codbanco',
 	LEFT(c.AGENCIA,10) AS 'agencia',
 	LEFT(c.NUMERO,20) AS 'numconta',
-	'C' AS 'tipoconta',
+	'X' AS 'tipoconta',
 	'S' AS 'bancaria',
 	'S' AS 'ativo',
 	'N' AS 'homologada'
@@ -7881,24 +7881,26 @@ WHERE a.CODIGO in (SELECT f.COD_FUNC FROM sophia.FUNCIONARIOS f);
     1 AS 'codunidade',
     1 AS 'codturma',
     tu.TURMA AS 'codturma_aux', 
-    CASE 
-        WHEN ff.IDFK_PARENTESCO IN (2,17) THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fam.MAE_CPF),NULL)) 
-        WHEN ff.IDFK_PARENTESCO IN (1,18) THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fam.PAI_CPF),NULL)) 
-        ELSE RTRIM(ISNULL((SELECT dbo.REMOVEcaractere(oo.CPF)
-            FROM sophia.FISICA oo
-            JOIN sophia.FISICA__FISICA ooff ON (oo.CODIGO = ooff.IDFK_RESPONSAVEL)
-            WHERE ooff.ID_FISICA__FISICA = ff.ID_FISICA__FISICA),NULL)) 
-            END AS 'cpfrespacademico', 
-    LEFT(UPPER(par2.DESCRICAO),20) AS 'parentescorespacademico',
-    CASE 
-    WHEN ff2.IDFK_PARENTESCO IN (2,17) THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fa.MAE_CPF),'00000000000')) 
-    WHEN ff2.IDFK_PARENTESCO IN (1,18) THEN RTRIM(ISNULL(dbo.REMOVEcaractere(fa.PAI_CPF),'00000000000')) 
-    ELSE RTRIM(ISNULL((SELECT dbo.REMOVEcaractere(oo2.CPF)
-        FROM sophia.FISICA oo2
-        JOIN sophia.FISICA__FISICA ooff2 ON (oo2.CODIGO = ooff2.IDFK_RESPONSAVEL)
-        WHERE ooff2.ID_FISICA__FISICA = ff2.ID_FISICA__FISICA),'00000000000')) 
-        END AS 'cpfrespfinanceiro', 
-    LEFT(UPPER(par.DESCRICAO),20) AS 'parentescorespfinanceiro',
+
+    CASE
+    WHEN ff.IDFK_PARENTESCO IN (${v_sophia_parentesco_mae}) THEN TRIM(dbo.REMOVECaractere(fam.MAE_CPF))
+    WHEN ff.IDFK_PARENTESCO IN (${v_sophia_parentesco_pai}) THEN TRIM(dbo.REMOVECaractere(fam.PAI_CPF))
+    WHEN ff.IDFK_PARENTESCO IN (${v_sophia_parentesco_outros}) THEN TRIM(ISNULL((SELECT dbo.REMOVEcaractere(oo.CPF)
+        FROM sophia.FISICA oo
+        JOIN sophia.FISICA__FISICA ooff ON (oo.CODIGO = ooff.IDFK_RESPONSAVEL)
+        WHERE ooff.ID_FISICA__FISICA = ff.ID_FISICA__FISICA),NULL))
+	ELSE NULL END AS 'cpfrespacademico',
+
+    CASE
+        WHEN ff2.IDFK_PARENTESCO IN (${v_sophia_parentesco_mae}) THEN TRIM(dbo.REMOVECaractere(fam.MAE_CPF))
+        WHEN ff2.IDFK_PARENTESCO IN (${v_sophia_parentesco_pai}) THEN TRIM(dbo.REMOVECaractere(fam.PAI_CPF))
+		WHEN ff2.IDFK_PARENTESCO IN (${v_sophia_parentesco_outros}) THEN TRIM(ISNULL((SELECT dbo.REMOVEcaractere(oo2.CPF)
+	FROM sophia.FISICA oo2
+	JOIN sophia.FISICA__FISICA ooff2 ON (oo2.CODIGO = ooff2.IDFK_RESPONSAVEL)
+	WHERE ooff2.ID_FISICA__FISICA = ff2.ID_FISICA__FISICA),'00000000000'))
+	ELSE '00000000000'
+	END AS 'cpfrespfinanceiro',
+
     CAST(GETDATE() AS DATE) AS 'dtcadastro',
     1 AS 'cadastradopor',
     m.unidade AS 'AUX_codunidade'
@@ -7922,7 +7924,7 @@ WHERE m.TURMA_REGULAR IS NOT NULL;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
@@ -8205,57 +8207,11 @@ WHERE m.TURMA_REGULAR IS NOT NULL;</sql>
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>parentescorespacademico</name>
-        <length>20</length>
-        <precision>-1</precision>
-        <origin>SELECT matricula</origin>
-        <comments>parentescorespacademico</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
         <name>cpfrespfinanceiro</name>
         <length>256</length>
         <precision>-1</precision>
         <origin>SELECT matricula</origin>
         <comments>cpfrespfinanceiro</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>parentescorespfinanceiro</name>
-        <length>20</length>
-        <precision>-1</precision>
-        <origin>SELECT matricula</origin>
-        <comments>parentescorespfinanceiro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -9258,107 +9214,81 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
     <fields>
       <field>
         <name>CODACUMULADO</name>
-        <rename/>
       </field>
       <field>
         <name>MATRICULA</name>
-        <rename/>
       </field>
       <field>
         <name>CODMATERIA</name>
-        <rename/>
       </field>
       <field>
         <name>ANO</name>
-        <rename/>
       </field>
       <field>
         <name>CODSERIE</name>
-        <rename/>
       </field>
       <field>
         <name>codturma</name>
-        <rename/>
       </field>
       <field>
         <name>codturma_AUX</name>
-        <rename/>
       </field>
       <field>
         <name>media1</name>
-        <rename/>
       </field>
       <field>
         <name>FALTAS1</name>
-        <rename/>
       </field>
       <field>
         <name>media2</name>
-        <rename/>
       </field>
       <field>
         <name>FALTAS2</name>
-        <rename/>
       </field>
       <field>
         <name>media3</name>
-        <rename/>
       </field>
       <field>
         <name>FALTAS3</name>
-        <rename/>
       </field>
       <field>
         <name>media4</name>
-        <rename/>
       </field>
       <field>
         <name>FALTAS4</name>
-        <rename/>
       </field>
       <field>
         <name>RECFINAL</name>
-        <rename/>
       </field>
       <field>
         <name>RESULTFINAL</name>
-        <rename/>
       </field>
       <field>
         <name>TOTFALTAS</name>
-        <rename/>
       </field>
       <field>
         <name>soma1</name>
-        <rename/>
       </field>
       <field>
         <name>soma2</name>
-        <rename/>
       </field>
       <field>
         <name>soma3</name>
-        <rename/>
       </field>
       <field>
         <name>soma4</name>
-        <rename/>
       </field>
       <field>
         <name>usuario</name>
-        <rename/>
       </field>
       <field>
         <name>somaetapas</name>
-        <rename/>
       </field>
       <field>
         <name>codconfturma_migracao</name>
-        <rename/>
       </field>
       <field>
         <name>cargahoraria_migracao</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>

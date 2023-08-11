@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/06/05 10:34:50.371</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/07/20 11:36:03.633</modified_date>
+    <modified_date>2023/08/03 15:18:57.627</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -902,7 +902,8 @@
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql> CREATE TABLE IF NOT EXISTS `aux_acumulado` (
+    <sql>DROP TABLE IF EXISTS `aux_acumulado`;
+CREATE TABLE IF NOT EXISTS `aux_acumulado` (
 	`codmateria` INT(10) NULL DEFAULT NULL,
 	`dscdicplina` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`codaluno` INT(11) NULL DEFAULT NULL,
@@ -911,6 +912,7 @@
 	`dscturma` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`codconfturma` INT(10) NULL DEFAULT NULL,
 	`codmatricula` INT(10) NULL DEFAULT NULL,
+	`totfaltas` INT(10) NULL DEFAULT NULL,
 	`ano` INT(10) NULL DEFAULT NULL,
 	`n1_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n2_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
@@ -922,6 +924,11 @@
 	`n8_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n9_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n10_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n11_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n12_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n13_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n14_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n15_1` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n1_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n2_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n3_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
@@ -932,6 +939,11 @@
 	`n8_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n9_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n10_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n11_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n12_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n13_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n14_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n15_2` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n1_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n2_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n3_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
@@ -942,6 +954,11 @@
 	`n8_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n9_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n10_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n11_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n12_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n13_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n14_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n15_3` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n1_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n2_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n3_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
@@ -951,7 +968,12 @@
 	`n7_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n8_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 	`n9_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`n10_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci'
+	`n10_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n11_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n12_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n13_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n14_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`n15_4` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci'
 )
 COLLATE='utf8mb4_general_ci'
 ENGINE=InnoDB
@@ -1012,7 +1034,7 @@ CREATE TABLE aula
 , modulo_disciplina_id VARCHAR(50)
 , tipo VARCHAR(50)
 , valor VARCHAR(50)
-, atividades VARCHAR(1000)
+, atividades TEXT
 , CodPlanoAula VARCHAR(50)
 , Periodicidade VARCHAR(50)
 ,INDEX `Codigo` (`Codigo`) USING BTREE
@@ -1695,6 +1717,7 @@ CREATE TABLE presenca
 ,INDEX `Codigo` (`Codigo`) USING BTREE
 ,INDEX `CodAula` (`CodAula`) USING BTREE
 ,INDEX `CodMatricula` (`CodMatricula`) USING BTREE
+,INDEX `Situacao` (`CodMatricula`) USING BTREE
 )
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB

@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/06/13 19:35:18.233</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/06/29 08:55:21.193</modified_date>
+    <modified_date>2023/08/11 08:23:23.382</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -508,7 +508,7 @@
   </connection>
   <connection>
     <name>RDS</name>
-    <server>${v_end-RDS}</server>
+    <server>escolawebrds${v_end-RDS}.cdq77divwtia.sa-east-1.rds.amazonaws.com</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>${v_nomebanco-RDS}</database>
@@ -760,12 +760,7 @@
     </hop>
     <hop>
       <from>Select values</from>
-      <to>Table output</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_centroreceita</from>
-      <to>SELECT mig_contasreceber</to>
+      <to>Insert mig_contasreceber</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -776,6 +771,11 @@
     <hop>
       <from>Insert mig_conta</from>
       <to>SELECT centroreceita</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Insert mig_centroreceita</from>
+      <to>SELECT mig_contasreceber</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1040,6 +1040,50 @@
     <GUI>
       <xloc>832</xloc>
       <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert mig_contasreceber</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>3</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>RDS</connection>
+    <schema/>
+    <table>mig_contasreceber</table>
+    <commit>2000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>832</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1941,7 +1985,7 @@ GROUP BY al.Matricula;</sql>
         <storagetype>normal</storagetype>
         <name>obs</name>
         <length>-1</length>
-        <precision>0</precision>
+        <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>obs</comments>
         <conversion_Mask/>
@@ -3035,7 +3079,7 @@ ORDER BY ct.AnoLetivo, cu.Nome, sc.Nome, ct.Nome;</sql>
 	LEFT(cc.Agencia,10) AS 'agencia',
 	cc.NumConta AS 'numconta',
 	LEFT(if(substring_index(cc.NumConta,'-',-1) = NumConta, NULL,substring_index(cc.NumConta,'-',-1)),2)  AS 'numdigitoconta',
-	'C' AS 'tipoconta',
+	'X' AS 'tipoconta',
 	if(cc.CodBanco IS NOT NULL,'S','N') AS 'bancaria',
 	'S' AS 'ativo',
 	0.0 AS 'saldoinicio',
@@ -7128,6 +7172,7 @@ LEFT JOIN responsavel r ON (r.Codigo = alt.Contratante);</sql>
 	LEFT(l.Descricao,100) AS 'descricao',
 	LEFT(REMOVEcaractere(IFNULL(r.CPF, '00000000000')),14) AS 'cpf',
 	l.CodEventoFinanceiro AS 'receitaoriginal',
+	ff.url_barcode AS 'boletourl',
 	IFNULL(p.Valor, l.Valor) AS 'valor'
 FROM lancamento_financeiro l
 LEFT JOIN parcela p ON (l.CodParcela = p.Codigo)
@@ -7135,7 +7180,8 @@ LEFT JOIN cobranca c ON (c.Codigo = p.CodCobranca)
 LEFT JOIN financeiro_faturaiugu ff ON (ff.cobranca_id = c.Codigo)
 LEFT JOIN aluno_turma al ON (al.Codigo = c.CodMatricula)
 LEFT JOIN responsavel r ON (r.Codigo = al.Contratante)
-WHERE l.Tipo = 'C' AND l.DataCancelamento IS NULL;</sql>
+WHERE l.Tipo = 'C' AND l.DataCancelamento IS NULL
+GROUP BY l.Codigo;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -7926,6 +7972,29 @@ WHERE l.Tipo = 'C' AND l.DataCancelamento IS NULL;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>boletourl</name>
+        <length>21845</length>
+        <precision>-1</precision>
+        <origin>SELECT mig_contasreceber</origin>
+        <comments>boletourl</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
         <type>BigNumber</type>
         <storagetype>normal</storagetype>
         <name>valor</name>
@@ -8539,7 +8608,7 @@ GROUP BY al.Matricula;
         <storagetype>normal</storagetype>
         <name>obs</name>
         <length>-1</length>
-        <precision>0</precision>
+        <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>obs</comments>
         <conversion_Mask/>
@@ -10690,6 +10759,9 @@ GROUP BY left(t.Nome,10);</sql>
         <name>receitaoriginal</name>
       </field>
       <field>
+        <name>boletourl</name>
+      </field>
+      <field>
         <name>valor</name>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -10835,67 +10907,51 @@ GROUP BY left(t.Nome,10);</sql>
     <fields>
       <field>
         <name>nomeresponsavel</name>
-        <rename/>
       </field>
       <field>
         <name>cpf</name>
-        <rename/>
       </field>
       <field>
         <name>dtnascimento</name>
-        <rename/>
       </field>
       <field>
         <name>sexo</name>
-        <rename/>
       </field>
       <field>
         <name>nacionalidade</name>
-        <rename/>
       </field>
       <field>
         <name>profissao</name>
-        <rename/>
       </field>
       <field>
         <name>telresid</name>
-        <rename/>
       </field>
       <field>
         <name>celular</name>
-        <rename/>
       </field>
       <field>
         <name>endereco</name>
-        <rename/>
       </field>
       <field>
         <name>bairro</name>
-        <rename/>
       </field>
       <field>
         <name>cidade</name>
-        <rename/>
       </field>
       <field>
         <name>rgorgaoemissor</name>
-        <rename/>
       </field>
       <field>
         <name>uf</name>
-        <rename/>
       </field>
       <field>
         <name>cep</name>
-        <rename/>
       </field>
       <field>
         <name>email</name>
-        <rename/>
       </field>
       <field>
         <name>obs</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -11610,50 +11666,6 @@ GROUP BY left(t.Nome,10);</sql>
     <GUI>
       <xloc>208</xloc>
       <yloc>896</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Table output</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>3</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>RDS</connection>
-    <schema/>
-    <table>mig_contasreceber</table>
-    <commit>2000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>832</xloc>
-      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

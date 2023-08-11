@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/06/13 19:29:39.926</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/06/23 10:46:07.476</modified_date>
+  <modified_date>2023/08/08 11:09:53.428</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -322,8 +322,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>288</xloc>
-      <yloc>208</yloc>
+      <xloc>432</xloc>
+      <yloc>128</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -339,7 +339,7 @@ Reveja o CREATE table e o INSERT dos Xlsx.</bodymessage>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>288</xloc>
-      <yloc>320</yloc>
+      <yloc>128</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -360,8 +360,8 @@ Reveja o CREATE table e o INSERT dos Xlsx.</bodymessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>288</xloc>
-      <yloc>112</yloc>
+      <xloc>432</xloc>
+      <yloc>32</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -372,8 +372,8 @@ Reveja o CREATE table e o INSERT dos Xlsx.</bodymessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>752</xloc>
-      <yloc>112</yloc>
+      <xloc>560</xloc>
+      <yloc>464</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -381,12 +381,12 @@ Reveja o CREATE table e o INSERT dos Xlsx.</bodymessage>
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message/>
+      <message>O job foi abortado.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>512</xloc>
-      <yloc>432</yloc>
+      <xloc>128</xloc>
+      <yloc>304</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -426,23 +426,23 @@ Reveja o CREATE table e o INSERT dos Xlsx.</bodymessage>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>432</xloc>
-      <yloc>208</yloc>
+      <yloc>240</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>FALHA - 2 2</name>
+      <name>FALHA - 1.2</name>
       <description/>
       <type>MSGBOX_INFO</type>
       <attributes/>
-      <bodymessage>FALHA NO PASSO 2.
+      <bodymessage>FALHA NO PASSO 1.2.
 
 Reveja os create mig_.</bodymessage>
       <titremessage/>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>432</xloc>
-      <yloc>320</yloc>
+      <xloc>288</xloc>
+      <yloc>240</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -457,8 +457,8 @@ Reveja o tratamento dos dados. O SELECT VALUES têm que estar de acordo com as c
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>592</xloc>
-      <yloc>320</yloc>
+      <xloc>288</xloc>
+      <yloc>352</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -497,8 +497,8 @@ Reveja o tratamento dos dados. O SELECT VALUES têm que estar de acordo com as c
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>592</xloc>
-      <yloc>208</yloc>
+      <xloc>432</xloc>
+      <yloc>352</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -537,8 +537,8 @@ Reveja o tratamento dos dados. O SELECT VALUES têm que estar de acordo com as c
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>752</xloc>
-      <yloc>208</yloc>
+      <xloc>432</xloc>
+      <yloc>464</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -553,8 +553,8 @@ Reveja os UPDATES.</bodymessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>752</xloc>
-      <yloc>320</yloc>
+      <xloc>288</xloc>
+      <yloc>464</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
@@ -597,7 +597,7 @@ Reveja os UPDATES.</bodymessage>
     </hop>
     <hop>
       <from>2 - PASSO 1.2</from>
-      <to>FALHA - 2 2</to>
+      <to>FALHA - 1.2</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -605,7 +605,7 @@ Reveja os UPDATES.</bodymessage>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>FALHA - 2 2</from>
+      <from>FALHA - 1.2</from>
       <to>Abort job</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>

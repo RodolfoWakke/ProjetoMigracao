@@ -1,0 +1,1161 @@
+<transformation>
+  <info>
+    <name>FATURA</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <directory>/</directory>
+    <parameters>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>Y</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </trans-log-table>
+      <perf-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>SEQ_NR</id>
+          <enabled>Y</enabled>
+          <name>SEQ_NR</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>INPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>INPUT_BUFFER_ROWS</name>
+        </field>
+        <field>
+          <id>OUTPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>OUTPUT_BUFFER_ROWS</name>
+        </field>
+      </perf-log-table>
+      <channel-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+      <step-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+      </step-log-table>
+      <metrics-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_DATE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_CODE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_CODE</name>
+        </field>
+        <field>
+          <id>METRICS_DESCRIPTION</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DESCRIPTION</name>
+        </field>
+        <field>
+          <id>METRICS_SUBJECT</id>
+          <enabled>Y</enabled>
+          <name>METRICS_SUBJECT</name>
+        </field>
+        <field>
+          <id>METRICS_TYPE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_TYPE</name>
+        </field>
+        <field>
+          <id>METRICS_VALUE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_VALUE</name>
+        </field>
+      </metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+    <created_user>-</created_user>
+    <created_date>2023/07/28 08:23:57.621</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2023/08/04 11:41:10.216</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+  </notepads>
+  <connection>
+    <name>RDS</name>
+    <server>escolawebrds${v_end-RDS}.cdq77divwtia.sa-east-1.rds.amazonaws.com</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>${v_nomebanco-RDS}</database>
+    <port>3306</port>
+    <username>ricardo.gad</username>
+    <password>Encrypted 2be98afc86aa7f2e49910ad47df99a4df</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.autoReconnect</code>
+        <attribute>true</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
+        <attribute>500</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.net_write_timeout</code>
+        <attribute>1800</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
+        <attribute>true</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>3306</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STREAM_RESULTS</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <order>
+    <hop>
+      <from>Dummy (do nothing)</from>
+      <to>Script Fatura</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing)</from>
+      <to>DROP PROCEDURE 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>DROP PROCEDURE IF</from>
+      <to>Block this step until steps finish</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block this step until steps finish</from>
+      <to>CREATE PROCEDURE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>CREATE PROCEDURE</from>
+      <to>Block this step until steps finish 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block this step until steps finish 2</from>
+      <to>EXECUTE PROCEDURE</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>Script Fatura</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>RDS</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>Y</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>-- FATURA
+-- OS REGISTROS QUE VIRARÃO FATURA SÃO OS QUE MANTÉM O MESMO NOSSO NÚMERO.
+
+
+-- 1º PASSO: CRIAR UMA TABELA PARA RECEBER OS REGISTROS QUE VIRARÃO FATURAS;
+DROP TABLE IF EXISTS `fatura_auxiliar`;
+CREATE TABLE IF NOT EXISTS `fatura_auxiliar` (
+	`codrec` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`codmatricula` INT(10) UNSIGNED NULL DEFAULT NULL,
+	`parcela` INT(10) UNSIGNED NULL DEFAULT NULL,
+	`totparcela` INT(10) UNSIGNED NULL DEFAULT NULL,
+	`valorparcela` DECIMAL(17,2) NULL DEFAULT NULL,
+	`vencimento` DATE NULL DEFAULT NULL,
+	`desconto` DECIMAL(10,2) NULL DEFAULT NULL,
+	`carenciadesconto` INT(11) NULL DEFAULT NULL,
+	`vencimentodesconto` DATE NULL DEFAULT NULL,
+	`desconto2` DECIMAL(10,2) NULL DEFAULT NULL,
+	`carenciadesconto2` INT(11) NULL DEFAULT NULL,
+	`vencimentodesconto2` DATE NULL DEFAULT NULL,
+	`desconto3` DECIMAL(10,2) NULL DEFAULT NULL,
+	`carenciadesconto3` INT(11) NULL DEFAULT NULL,
+	`vencimentodesconto3` DATE NULL DEFAULT NULL,
+	`multa` DECIMAL(10,2) UNSIGNED NULL DEFAULT NULL,
+	`juros` DECIMAL(10,2) UNSIGNED NULL DEFAULT NULL,
+	`carenciamulta` INT(11) NULL DEFAULT NULL,
+	`vencimentomulta` DATE NULL DEFAULT NULL,
+	`dtpagamento` DATE NULL DEFAULT NULL,
+	`valorpago` DECIMAL(10,2) UNSIGNED NULL DEFAULT NULL,
+	`recebidopor` VARCHAR(30) NULL DEFAULT NULL,
+	`codunidade` INT(11) NULL DEFAULT NULL,
+	`anoletivo` INT(11) NOT NULL,
+	`codreceita` INT(11) NULL DEFAULT NULL,
+	`codcontapago` INT(11) NULL DEFAULT NULL,
+	`codaluno` INT(11) NOT NULL,
+	`nossonumero` VARCHAR(20) NULL DEFAULT NULL,
+	`linha` VARCHAR(60) NULL DEFAULT NULL,
+	`barra` VARCHAR(50) NULL DEFAULT NULL,
+	`cobbancaria` CHAR(1) NULL DEFAULT NULL,
+	`codconta` INT(11) NULL DEFAULT NULL,
+	`incluidotabrps` CHAR(1) NULL DEFAULT NULL,
+	`codliquidacao` INT(11) NULL DEFAULT NULL,
+	`avulsa` CHAR(1) NULL DEFAULT NULL,
+	`cadastradopor` VARCHAR(30) NULL DEFAULT NULL,
+	`dtcadastro` DATETIME NULL DEFAULT NULL,
+	`valorparcelaoriginal` DECIMAL(17,2) NULL DEFAULT NULL,
+	`descontooriginal` DECIMAL(17,2) NULL DEFAULT NULL,
+	`vencimentooriginal` DATE NULL DEFAULT NULL,
+	`enviaremessa` CHAR(1) NULL DEFAULT 'N',
+	`codremessa` INT(11) NULL DEFAULT NULL,
+	`cobregistradabanco` CHAR(1) NULL DEFAULT NULL COMMENT 'confirmação do registro da cobranca no banco',
+	`alteradopor` VARCHAR(30) NULL DEFAULT NULL,
+	`codnegociacao` INT(11) NULL DEFAULT NULL,
+	`valornegociado` DECIMAL(10,2) NULL DEFAULT NULL,
+	`abatimento` DECIMAL(10,2) NULL DEFAULT NULL,
+	`valorbruto` DECIMAL(10,2) NULL DEFAULT NULL,
+	`codcontrato` INT(11) NULL DEFAULT NULL,
+	`codfornecedor` INT(11) NULL DEFAULT NULL,
+	`outrasreceitas` CHAR(1) NULL DEFAULT NULL,
+	`descricao` VARCHAR(100) NULL DEFAULT NULL,
+	`codrecfatura` INT(11) NULL DEFAULT NULL,
+	`codlotefatura` INT(11) NULL DEFAULT NULL,
+	`cpf` VARCHAR(14) NULL DEFAULT NULL,
+	`vencfatura` DATETIME NULL DEFAULT NULL,
+	`vencfaturadesc` DATETIME NULL DEFAULT NULL,
+	`vencfaturadesc2` DATETIME NULL DEFAULT NULL,
+	`vencfaturamulta` DATETIME NULL DEFAULT NULL,
+	`receitaoriginal` INT(11) NULL DEFAULT NULL,
+	`codinscricaoevento` INT(11) NULL DEFAULT NULL,
+	`codremessaalteracao` INT(11) NULL DEFAULT NULL,
+	`faturaunica` CHAR(1) NULL DEFAULT NULL COMMENT 'S=SE PARCELA FOR UMA FATURA SEM FILHOS',
+	`outrosacrescimos` DECIMAL(10,2) NULL DEFAULT NULL,
+	`outrosabatimentos` DECIMAL(10,2) NULL DEFAULT NULL,
+	`valor` DECIMAL(17,2) NULL DEFAULT NULL,
+	`codsolicitacao` INT(11) NULL DEFAULT NULL,
+	`carenciadesconto1original` INT(11) NULL DEFAULT NULL,
+	`carenciadesconto2original` INT(11) NULL DEFAULT NULL,
+	`carenciamultaoriginal` INT(11) NULL DEFAULT NULL,
+	`registroconfirmado` CHAR(1) NULL DEFAULT NULL,
+	`carenciadesconto3original` INT(11) NULL DEFAULT NULL,
+	`idfaturaiugu` VARCHAR(100) NULL DEFAULT NULL,
+	`statusparcela` VARCHAR(20) NULL DEFAULT NULL,
+	`parcelaremessasicoob` SMALLINT(4) NULL DEFAULT '1',
+	`tipocobrancaiugu` CHAR(1) NULL DEFAULT 'B' COMMENT 'A=CARTAO E BOLETO; B=SOMENTE BOLETO; C-SOMENTE CARTAO',
+	`tipocobrancaiuguoriginal` CHAR(1) NULL DEFAULT NULL,
+	`dtcompetencia` DATE NULL DEFAULT NULL,
+	`nossonumero_aux` VARCHAR(50) NULL DEFAULT NULL,
+	`tipo_parcela` VARCHAR(50) NULL DEFAULT NULL,
+	`contareceberID_AUX` INT(11) NULL DEFAULT NULL,
+	PRIMARY KEY (`codrec`)
+	)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+
+-- 2º PASSO: LOCALIZAR OS REGISTROS QUE VIRARÃO FATURAS
+
+-- 3º PASSO: CRIAR COLUNAS 'tipoparcela_migracao' e 'nossonumero_aux' NA TABELA CONTASRECEBER;
+
+DROP PROCEDURE IF EXISTS `alter_table_fatura`;
+DELIMITER //
+CREATE PROCEDURE `alter_table_fatura`()
+BEGIN
+  DECLARE CONTINUE HANDLER FOR SQLEXCEPTION BEGIN END;
+  ALTER TABLE `contasreceber` ADD COLUMN `tipoparcela_migracao` VARCHAR(50);
+  ALTER TABLE `contasreceber` ADD COLUMN `nossonumero_aux` VARCHAR(50);
+END //
+DELIMITER ;
+CALL `alter_table_fatura`();
+DROP PROCEDURE `alter_table_fatura`;
+
+-- 4º PASSO: INSERIR OS REGISTSROS ACHADO NA QUERY ACIMA NA TABELA `fatura_auxiliar`;
+
+INSERT INTO fatura_auxiliar (codrec, codmatricula, parcela, totparcela, valorparcela, vencimento, desconto, carenciadesconto, vencimentodesconto, desconto2, carenciadesconto2, vencimentodesconto2, desconto3, carenciadesconto3, vencimentodesconto3, multa, juros, carenciamulta, vencimentomulta, dtpagamento, valorpago, recebidopor, codunidade, anoletivo, codreceita, codcontapago, codaluno, nossonumero, linha, barra, cobbancaria, codconta, incluidotabrps, codliquidacao, avulsa, cadastradopor, dtcadastro, valorparcelaoriginal, descontooriginal, vencimentooriginal, enviaremessa, codremessa, cobregistradabanco, alteradopor, codnegociacao, valornegociado, abatimento, valorbruto, codcontrato, codfornecedor, outrasreceitas, descricao, codrecfatura, codlotefatura, cpf, vencfatura, vencfaturadesc, vencfaturadesc2, vencfaturamulta, receitaoriginal, codinscricaoevento, codremessaalteracao, faturaunica, outrosacrescimos, outrosabatimentos, valor, codsolicitacao, carenciadesconto1original, carenciadesconto2original, carenciamultaoriginal, registroconfirmado, carenciadesconto3original, idfaturaiugu, statusparcela, parcelaremessasicoob, tipocobrancaiugu, tipocobrancaiuguoriginal, dtcompetencia, nossonumero_aux)
+(
+SELECT p.codrec,
+p.codmatricula, p.parcela, p.totparcela, p.valorparcela, p.vencimento, p.desconto, p.carenciadesconto, p.vencimentodesconto, p.desconto2, p.carenciadesconto2, p.vencimentodesconto2, p.desconto3, p.carenciadesconto3, 
+p.vencimentodesconto3, p.multa, p.juros, p.carenciamulta, p.vencimentomulta, p.dtpagamento, p.valorpago, p.recebidopor, p.codunidade, p.anoletivo, p.codreceita, p.codcontapago, p.codaluno, p.nossonumero, p.linha, 
+p.barra, p.cobbancaria, p.codconta, p.incluidotabrps, p.codliquidacao, p.avulsa, p.cadastradopor, p.dtcadastro, p.valorparcelaoriginal, p.descontooriginal, p.vencimentooriginal, p.enviaremessa, p.codremessa, 
+p.cobregistradabanco, p.alteradopor, p.codnegociacao, p.valornegociado, p.abatimento, p.valorbruto, p.codcontrato, p.codfornecedor, p.outrasreceitas, p.descricao, p.codrecfatura, p.codlotefatura, p.cpf, 
+p.vencfatura, p.vencfaturadesc, p.vencfaturadesc2, p.vencfaturamulta, p.receitaoriginal, p.codinscricaoevento, p.codremessaalteracao, p.faturaunica, p.outrosacrescimos, p.outrosabatimentos, p.valor, p.codsolicitacao, 
+p.carenciadesconto1original, p.carenciadesconto2original, p.carenciamultaoriginal, p.registroconfirmado, p.carenciadesconto3original, p.idfaturaiugu, p.statusparcela, p.parcelaremessasicoob, p.tipocobrancaiugu, 
+p.tipocobrancaiuguoriginal, p.dtcompetencia, p.nossonumero
+FROM contasreceber p
+WHERE p.nossonumero IN 
+(SELECT c.nossonumero FROM contasreceber c 
+WHERE c.dtpagamento IS NULL
+GROUP BY c.nossonumero HAVING COUNT(1)>1)
+);
+
+-- 5º PASSO: APAGAR OS REGITROS EM CONTAS RECEBER QUE FORAM PARA A TABELA `fatura_auxiliar`;
+
+DELETE p FROM contasreceber p
+WHERE p.codrec IN (SELECT codrec FROM fatura_auxiliar);
+
+-- 6º PASSO: INSERIR NOVAMENTE A PARCELAS FILHAS NO CONTASRECEBER;
+
+
+INSERT INTO contasreceber(
+   codrec
+  ,codmatricula
+  ,parcela
+  ,totparcela
+  ,valorparcela
+  ,vencimento
+  ,desconto
+  ,carenciadesconto
+  ,vencimentodesconto
+  ,desconto2
+  ,carenciadesconto2
+  ,vencimentodesconto2
+  ,desconto3
+  ,carenciadesconto3
+  ,vencimentodesconto3
+  ,multa
+  ,juros
+  ,carenciamulta
+  ,vencimentomulta
+  ,dtpagamento
+  ,valorpago
+  ,recebidopor
+  ,codunidade
+  ,anoletivo
+  ,codreceita
+  ,codcontapago
+  ,codaluno
+  ,nossonumero
+  ,linha
+  ,barra
+  ,cobbancaria
+  ,codconta
+  ,incluidotabrps
+  ,codliquidacao
+  ,avulsa
+  ,cadastradopor
+  ,dtcadastro
+  ,valorparcelaoriginal
+  ,descontooriginal
+  ,vencimentooriginal
+  ,enviaremessa
+  ,codremessa
+  ,cobregistradabanco
+  ,alteradopor
+  ,codnegociacao
+  ,valornegociado
+  ,abatimento
+  ,valorbruto
+  ,codcontrato
+  ,codfornecedor
+  ,outrasreceitas
+  ,descricao
+  ,codlotefatura
+  ,cpf
+  ,vencfatura
+  ,vencfaturadesc
+  ,vencfaturadesc2
+  ,vencfaturamulta
+  ,receitaoriginal
+  ,codinscricaoevento
+  ,codremessaalteracao
+  ,faturaunica
+  ,outrosacrescimos
+  ,outrosabatimentos
+  ,valor
+  ,codsolicitacao
+  ,carenciadesconto1original
+  ,carenciadesconto2original
+  ,carenciamultaoriginal
+  ,registroconfirmado
+  ,carenciadesconto3original
+  ,idfaturaiugu
+  ,statusparcela
+  ,parcelaremessasicoob
+  ,tipocobrancaiugu
+  ,tipocobrancaiuguoriginal
+  ,dtcompetencia
+  ,nossonumero_aux
+	,tipoparcela_migracao)
+SELECT codrec, codmatricula, parcela, totparcela, valorparcela, vencimento, desconto, carenciadesconto, vencimentodesconto, desconto2, carenciadesconto2, vencimentodesconto2, desconto3, carenciadesconto3, vencimentodesconto3, multa, juros, carenciamulta, vencimentomulta, dtpagamento, valorpago, recebidopor, codunidade, anoletivo, codreceita, codcontapago, codaluno, '-1', linha, barra, 'N', NULL, incluidotabrps, codliquidacao, avulsa, cadastradopor, dtcadastro, valorparcelaoriginal, descontooriginal, vencimentooriginal, enviaremessa, codremessa, cobregistradabanco, alteradopor, codnegociacao, valornegociado, abatimento, valorbruto, codcontrato, codfornecedor, outrasreceitas, descricao, 
+ 1, cpf, vencimento, vencimentodesconto, vencimentodesconto2, vencimentomulta, receitaoriginal, codinscricaoevento, codremessaalteracao, NULL, outrosacrescimos, outrosabatimentos, valor, codsolicitacao, carenciadesconto1original, carenciadesconto2original, carenciamultaoriginal, registroconfirmado, carenciadesconto3original, idfaturaiugu, statusparcela,  parcelaremessasicoob, tipocobrancaiugu, tipocobrancaiuguoriginal, dtcompetencia, nossonumero, 'FILHA' 
+FROM fatura_auxiliar;
+
+
+
+-- 7º PASSO: INSERIR OS PAIS NA TABELA CONTASRECEBER; 
+
+INSERT INTO contasreceber(
+  codmatricula
+  ,parcela
+  ,totparcela
+  ,valorparcela
+  ,vencimento
+  ,desconto
+  ,carenciadesconto
+  ,vencimentodesconto
+  ,desconto2
+  ,carenciadesconto2
+  ,vencimentodesconto2
+  ,desconto3
+  ,carenciadesconto3
+  ,vencimentodesconto3
+  ,multa
+  ,juros
+  ,carenciamulta
+  ,vencimentomulta
+  ,dtpagamento
+  ,valorpago
+  ,recebidopor
+  ,codunidade
+  ,anoletivo
+  ,codreceita
+  ,codcontapago
+  ,codaluno
+  ,nossonumero
+  ,linha
+  ,barra
+  ,cobbancaria
+  ,codconta
+  ,incluidotabrps
+  ,codliquidacao
+  ,avulsa
+  ,cadastradopor
+  ,dtcadastro
+  ,valorparcelaoriginal
+  ,descontooriginal
+  ,vencimentooriginal
+  ,enviaremessa
+  ,codremessa
+  ,cobregistradabanco
+  ,alteradopor
+  ,codnegociacao
+  ,valornegociado
+  ,abatimento
+  ,valorbruto
+  ,codcontrato
+  ,codfornecedor
+  ,outrasreceitas
+  ,descricao
+  ,codrecfatura
+  ,codlotefatura
+  ,cpf
+  ,vencfatura
+  ,vencfaturadesc
+  ,vencfaturadesc2
+  ,vencfaturamulta
+  ,receitaoriginal
+  ,codinscricaoevento
+  ,codremessaalteracao
+  ,faturaunica
+  ,outrosacrescimos
+  ,outrosabatimentos
+  ,valor
+  ,codsolicitacao
+  ,carenciadesconto1original
+  ,carenciadesconto2original
+  ,carenciamultaoriginal
+  ,registroconfirmado
+  ,carenciadesconto3original
+  ,idfaturaiugu
+  ,statusparcela
+  ,parcelaremessasicoob
+  ,tipocobrancaiugu
+  ,tipocobrancaiuguoriginal
+  ,dtcompetencia
+  ,nossonumero_aux
+  ,tipoparcela_migracao
+)
+SELECT NULL, parcela, totparcela, sum(ifnull(valorparcela,0)), vencimento, sum(ifnull(desconto,0)), carenciadesconto, vencimentodesconto, desconto2, carenciadesconto2, vencimentodesconto2, desconto3, carenciadesconto3, vencimentodesconto3, multa, juros, carenciamulta, vencimentomulta, dtpagamento, valorpago, recebidopor, codunidade, anoletivo, codreceita, codcontapago, 0, nossonumero, linha, barra, cobbancaria, codconta, incluidotabrps, codliquidacao, avulsa, cadastradopor, dtcadastro,sum(ifnull(valorparcelaoriginal,0)), sum(ifnull(descontooriginal,0)), vencimentooriginal, enviaremessa, codremessa, cobregistradabanco, alteradopor, codnegociacao, valornegociado, abatimento, sum(ifnull(valorbruto,0)), codcontrato, codfornecedor, outrasreceitas, CONCAT('FATURA',' ',month(vencimento),'/',YEAR(vencimento)), 
+NULL , 1, cpf, vencimento, vencimentodesconto, vencimentodesconto2, vencimentomulta, receitaoriginal, codinscricaoevento, codremessaalteracao, 'N', outrosacrescimos, outrosabatimentos, sum(ifnull(valorparcela,0)) , codsolicitacao, carenciadesconto1original, carenciadesconto2original, carenciamultaoriginal, registroconfirmado, carenciadesconto3original, idfaturaiugu, statusparcela,  parcelaremessasicoob, tipocobrancaiugu, tipocobrancaiuguoriginal, dtcompetencia, f.nossonumero_aux, 'PAI' 
+FROM fatura_auxiliar f GROUP BY f.nossonumero ;
+
+
+-- 8º PASSO : INSERIR LOTE '1' NA TABELA 'faturalote' ;
+
+INSERT INTO `faturalote` (`codlote`, `dtcadastro`, `cadastradopor`, `forma`, `bancaria`, `qtd`, `codconta`, `filtrofatura`) VALUES (1, NOW(), 'MIGRACAO', NULL, NULL, NULL, NULL, NULL);
+
+
+-- 9º PASSO : INSERIR OS REGISTROS NA TABELA FATURA ;
+
+INSERT INTO fatura (codrecfatura, codrecfilho, codlote, dtcadastro, cadastradopor)
+SELECT
+(SELECT cc.codrec FROM contasreceber cc WHERE cc.nossonumero_aux = c.nossonumero_aux AND cc.tipoparcela_migracao = 'PAI') AS 'codrecfatura',
+c.codrec,
+1 as codlote,
+NOW(),
+'MIGRACAO'
+FROM contasreceber c
+WHERE c.tipoparcela_migracao = 'FILHA';
+
+
+-- 10º PASSO : SETAR O CODREC FATURA NO CONTASRECEBER ;
+
+UPDATE contasreceber c
+JOIN fatura f ON (c.codrec = f.codrecfilho)
+SET c.codrecfatura = f.codrecfatura;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DROP PROCEDURE 2</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>RDS</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>Y</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP PROCEDURE alter_table_fatura;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>CREATE PROCEDURE</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>RDS</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>Y</single_statement>
+    <replace_variables>Y</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>CREATE PROCEDURE alter_table_fatura() BEGIN
+               DECLARE CONTINUE HANDLER FOR SQLEXCEPTION BEGIN END;
+               ALTER TABLE contasreceber ADD COLUMN tipoparcela_migracao VARCHAR(50);
+               ALTER TABLE contasreceber ADD COLUMN nossonumero_aux VARCHAR(50);
+END</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DROP PROCEDURE IF</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>RDS</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>Y</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP PROCEDURE IF EXISTS alter_table_fatura;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Block this step until steps finish</name>
+    <type>BlockUntilStepsFinish</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <steps>
+      <step>
+        <name>DROP PROCEDURE IF</name>
+        <CopyNr>0</CopyNr>
+      </step>
+    </steps>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Block this step until steps finish 2</name>
+    <type>BlockUntilStepsFinish</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <steps>
+      <step>
+        <name>CREATE PROCEDURE</name>
+        <CopyNr>0</CopyNr>
+      </step>
+    </steps>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>EXECUTE PROCEDURE</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>RDS</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>Y</single_statement>
+    <replace_variables>Y</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>CALL alter_table_fatura();</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+  <attributes/>
+</transformation>
