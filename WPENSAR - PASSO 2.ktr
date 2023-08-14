@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/06/13 19:35:18.233</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/08/11 08:23:23.382</modified_date>
+    <modified_date>2023/08/14 09:19:08.355</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -6354,13 +6354,18 @@ GROUP BY al.Matricula;</sql>
 	t.AnoLetivo AS 'anoletivo',
 	t.CodUnidade AS 'codunidade',
 	'S' AS 'rematricula', 
-		CASE WHEN alt.Situacao = 1 
-		THEN 'C' WHEN alt.Situacao = 2 
-		THEN 'I' WHEN alt.Situacao = 3 
-		THEN 'T' WHEN alt.Situacao = 30 
-		THEN 'C' WHEN alt.Situacao = 31 
-		THEN 'I' ELSE 'C' 
-		END AS 'situacao', 
+	CASE 
+		WHEN alt.Situacao = 1 THEN 'C' -- Ativo
+		WHEN alt.Situacao = 2 THEN 'I' -- Cancelado
+		WHEN alt.Situacao = 3 THEN 'T' -- Transferido
+		WHEN alt.Situacao = 4 THEN 'C' -- Ativo
+		WHEN alt.Situacao = 5 THEN 'C' -- Ativo
+		WHEN alt.Situacao = 6  THEN 'C' -- Ativo
+		WHEN alt.Situacao = 7 THEN 'C' -- Ativo
+		WHEN alt.Situacao = 8 THEN 'T' -- Transferido
+		WHEN alt.Situacao = 9 THEN 'I' -- Cancelado
+		ELSE 'C' 
+	END AS 'situacao', 
 	IFNULL(REMOVEcaractere(r.CPF), '00000000000') AS 'cpfrespfinanceiro', 
 	CURDATE() AS 'dtcadastro',
 	1 AS 'cadastradopor',
