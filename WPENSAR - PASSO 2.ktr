@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/06/13 19:35:18.233</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/08/14 09:19:08.355</modified_date>
+    <modified_date>2023/08/17 14:58:06.235</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -709,56 +709,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Insert mig_aluno</from>
-      <to>SELECT pai</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert aux_pai</from>
-      <to>SELECT mae</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert aux_mae</from>
-      <to>SELECT responsavel</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_responsavel</from>
-      <to>SELECT funcionario</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_funcionario</from>
-      <to>SELECT disciplina</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_disciplina</from>
-      <to>SELECT curso</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_seriecurso</from>
-      <to>SELECT turma</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_curso</from>
-      <to>SELECT seriecurso</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_turma</from>
-      <to>SELECT configturma</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_configturma</from>
-      <to>SELECT matricula</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Select values</from>
       <to>Insert mig_contasreceber</to>
       <enabled>Y</enabled>
@@ -766,16 +716,6 @@
     <hop>
       <from>SELECT mig_contasreceber</from>
       <to>Select values</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_conta</from>
-      <to>SELECT centroreceita</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Insert mig_centroreceita</from>
-      <to>SELECT mig_contasreceber</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -7152,11 +7092,13 @@ LEFT JOIN responsavel r ON (r.Codigo = alt.Contratante);</sql>
 	1 AS 'totparcela',
 	IFNULL(p.Valor, l.Valor)  AS 'valorparcela',
 	IFNULL(p.DataCompetencia, l.DataVencimento) AS 'vencimento',
+	IFNULL(p.DataCompetencia, l.DataVencimento) AS 'vencimentomulta',
 	p.DataCompetencia AS 'dtcompetencia',
 	p.Desconto AS 'desconto',
 	c.multa AS 'multa',
 	c.juros AS 'juros',
 	'0' AS 'carenciadesconto',
+	'0' AS 'carenciamulta',
 	IFNULL(p.DataCompetencia, l.DataVencimento) AS 'vencimentodesconto', 
 	IFNULL(c.DataPagamento,l.DataPagamento) AS 'dtpagamento',
 	IFNULL(c.ValorPagamento,l.ValorPagamento) AS 'valorpago',
@@ -7194,75 +7136,6 @@ GROUP BY l.Codigo;</sql>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>codreceita</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>SELECT centroreceita</origin>
-        <comments>codreceita</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>dscreceita</name>
-        <length>20</length>
-        <precision>-1</precision>
-        <origin>SELECT centroreceita</origin>
-        <comments>dscreceita</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>ativo</name>
-        <length>1</length>
-        <precision>-1</precision>
-        <origin>SELECT conta</origin>
-        <comments>ativo</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
@@ -7404,6 +7277,29 @@ GROUP BY l.Codigo;</sql>
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
+        <name>vencimentomulta</name>
+        <length>50</length>
+        <precision>-1</precision>
+        <origin>SELECT mig_contasreceber</origin>
+        <comments>vencimentomulta</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
         <name>dtcompetencia</name>
         <length>50</length>
         <precision>-1</precision>
@@ -7501,6 +7397,29 @@ GROUP BY l.Codigo;</sql>
         <precision>-1</precision>
         <origin>SELECT mig_contasreceber</origin>
         <comments>carenciadesconto</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>carenciamulta</name>
+        <length>1</length>
+        <precision>-1</precision>
+        <origin>SELECT mig_contasreceber</origin>
+        <comments>carenciamulta</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -7634,7 +7553,7 @@ GROUP BY l.Codigo;</sql>
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>codreceita_1</name>
+        <name>codreceita</name>
         <length>9</length>
         <precision>0</precision>
         <origin>SELECT mig_contasreceber</origin>
@@ -10672,102 +10591,143 @@ GROUP BY left(t.Nome,10);</sql>
     <fields>
       <field>
         <name>codrec</name>
+        <rename/>
       </field>
       <field>
         <name>codmatricula</name>
+        <rename/>
       </field>
       <field>
         <name>parcela</name>
+        <rename/>
       </field>
       <field>
         <name>totparcela</name>
+        <rename/>
       </field>
       <field>
         <name>valorparcela</name>
+        <rename/>
       </field>
       <field>
         <name>vencimento</name>
+        <rename/>
+      </field>
+      <field>
+        <name>vencimentomulta</name>
+        <rename/>
       </field>
       <field>
         <name>dtcompetencia</name>
+        <rename/>
       </field>
       <field>
         <name>desconto</name>
+        <rename/>
       </field>
       <field>
         <name>multa</name>
+        <rename/>
       </field>
       <field>
         <name>juros</name>
+        <rename/>
       </field>
       <field>
         <name>carenciadesconto</name>
+        <rename/>
+      </field>
+      <field>
+        <name>carenciamulta</name>
+        <rename/>
       </field>
       <field>
         <name>vencimentodesconto</name>
+        <rename/>
       </field>
       <field>
         <name>dtpagamento</name>
+        <rename/>
       </field>
       <field>
         <name>valorpago</name>
+        <rename/>
       </field>
       <field>
         <name>codunidade</name>
+        <rename/>
       </field>
       <field>
         <name>anoletivo</name>
+        <rename/>
       </field>
       <field>
         <name>codreceita</name>
+        <rename/>
       </field>
       <field>
         <name>codaluno</name>
+        <rename/>
       </field>
       <field>
         <name>nossonumero</name>
+        <rename/>
       </field>
       <field>
         <name>cobbancaria</name>
+        <rename/>
       </field>
       <field>
         <name>codconta</name>
+        <rename/>
       </field>
       <field>
         <name>avulsa</name>
+        <rename/>
       </field>
       <field>
         <name>cadastradopor</name>
+        <rename/>
       </field>
       <field>
         <name>dtcadastro</name>
+        <rename/>
       </field>
       <field>
         <name>valorparcelaoriginal</name>
+        <rename/>
       </field>
       <field>
         <name>descontooriginal</name>
+        <rename/>
       </field>
       <field>
         <name>vencimentooriginal</name>
+        <rename/>
       </field>
       <field>
         <name>valorbruto</name>
+        <rename/>
       </field>
       <field>
         <name>descricao</name>
+        <rename/>
       </field>
       <field>
         <name>cpf</name>
+        <rename/>
       </field>
       <field>
         <name>receitaoriginal</name>
+        <rename/>
       </field>
       <field>
         <name>boletourl</name>
+        <rename/>
       </field>
       <field>
         <name>valor</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
