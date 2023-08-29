@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/08/24 17:17:01.990</modified_date>
+  <modified_date>2023/08/29 16:05:12.549</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -577,7 +577,7 @@ Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>704</xloc>
-      <yloc>704</yloc>
+      <yloc>656</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -617,7 +617,7 @@ Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>864</xloc>
-      <yloc>704</yloc>
+      <yloc>656</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -657,7 +657,7 @@ Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1168</xloc>
-      <yloc>704</yloc>
+      <yloc>656</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -671,7 +671,7 @@ Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>704</xloc>
+      <xloc>800</xloc>
       <yloc>816</yloc>
       <attributes_kjc/>
     </entry>
@@ -711,7 +711,7 @@ Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>944</xloc>
+      <xloc>1104</xloc>
       <yloc>816</yloc>
       <attributes_kjc/>
     </entry>
@@ -1150,7 +1150,7 @@ Confirmar?</bodymessage>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1024</xloc>
-      <yloc>704</yloc>
+      <yloc>656</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -1664,11 +1664,12 @@ Confirmar?</bodymessage>
 
 • sponte - Completa
 • sophia - Completa
-• wpensar - Parcial (Secretaria e Financeiro)</note>
-      <xloc>800</xloc>
+• wpensar - Parcial (Secretaria e Financeiro)
+• activesoft - Secretaria</note>
+      <xloc>1104</xloc>
       <yloc>64</yloc>
       <width>237</width>
-      <heigth>89</heigth>
+      <heigth>105</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
