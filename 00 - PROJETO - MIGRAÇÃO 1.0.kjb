@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/08/29 16:05:12.549</modified_date>
+  <modified_date>2023/09/04 11:27:43.134</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -1666,12 +1666,12 @@ Confirmar?</bodymessage>
 • sophia - Completa
 • wpensar - Parcial (Secretaria e Financeiro)
 • activesoft - Secretaria</note>
-      <xloc>1104</xloc>
+      <xloc>1056</xloc>
       <yloc>64</yloc>
-      <width>237</width>
-      <heigth>105</heigth>
+      <width>263</width>
+      <heigth>117</heigth>
       <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
+      <fontsize>10</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>255</fontcolorred>
@@ -1683,7 +1683,7 @@ Confirmar?</bodymessage>
       <bordercolorred>100</bordercolorred>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
+      <drawshadow>N</drawshadow>
     </notepad>
   </notepads>
   <attributes>
