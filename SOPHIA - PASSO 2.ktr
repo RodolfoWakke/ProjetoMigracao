@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/04/12 11:34:19.712</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/08/11 08:24:03.236</modified_date>
+    <modified_date>2023/09/12 13:41:47.971</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -4193,7 +4193,7 @@ SELECT
 	(SELECT SUM(mf.VALOR) FROM sophia.MOVFIN mf JOIN sophia.PLANOCONTAS pc ON (mf.CLASSIFICACAO = pc.CODIGO) WHERE mf.TITULO = t.CODIGO AND pc.CODIGO = 329 AND mf.VALOR > 0) AS 'juros',
 	t.DATA_VCTO AS 'vencimentomulta',
 	0 AS 'carenciamulta',
-	(SELECT MAX(l.DATA_EFETIVA) FROM sophia.TIT_PGTO l WHERE l.TITULO = t.CODIGO) 'dtpagamento',
+	(SELECT MIN(l.DATA_EFETIVA) FROM sophia.TIT_PGTO l WHERE l.TITULO = t.CODIGO) 'dtpagamento',
 	
 	IIF(
 	(SELECT SUM(l.VALOR) FROM sophia.TIT_PGTO l WHERE l.TITULO = t.CODIGO) &lt; 0, NULL, (SELECT SUM(l.VALOR) FROM sophia.TIT_PGTO l WHERE l.TITULO = t.CODIGO)) 
@@ -4219,7 +4219,9 @@ SELECT
 		ELSE LEFT(RTRIM(ISNULL((SELECT dbo.REMOVEcaractere(oo2.CPF) FROM sophia.FISICA oo2 JOIN sophia.FISICA__FISICA ooff2 ON (oo2.CODIGO = ooff2.IDFK_RESPONSAVEL) WHERE ooff2.ID_FISICA__FISICA = ff.ID_FISICA__FISICA),'00000000000')),14) END AS 'cpf',
 	(SELECT MAX(mf.CLASSIFICACAO) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO GROUP BY mf.TITULO) AS 'receitaoriginal',
 	(SELECT SUM(mf.valor) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND mf.VALOR > 0) AS 'valor',
-	t.unidade AS 'AUX_codunidade'
+	t.unidade AS 'AUX_codunidade',
+	t.DATA_BAIXA AS 'AUX_databaixa',
+	(SELECT MIN(IIF(l2.CARTAO IS NOT NULL,'S', NULL)) FROM sophia.TIT_PGTO l2 WHERE l2.TITULO = t.CODIGO) AS 'AUX_cartao'
 FROM sophia.TITULOS t
 LEFT JOIN sophia.FISICA f ON t.CODPF = f.CODIGO
 LEFT JOIN sophia.FISICA__FISICA ff ON (ff.ID_FISICA__FISICA = f.IDFK_RESPONSAVEL_FIN_PADRAO)
@@ -4229,6 +4231,7 @@ WHERE t.TIPO = 1 AND t.CODPJ IS NULL AND t.CODPF in (SELECT m.fisica FROM sophia
 AND t.CODIGO NOT in (SELECT tb.TITULO FROM sophia.TIT_baixa tb) 
 AND (SELECT SUM(mf.valor) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND mf.VALOR > 0) IS NOT NULL
 ) AS tab
+-- WHERE codrec = 111153
 ORDER BY valorpago;</sql>
     <limit>0</limit>
     <lookup/>
@@ -5019,6 +5022,52 @@ ORDER BY valorpago;</sql>
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>AUX_databaixa</name>
+        <length>3</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>AUX_databaixa</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>AUX_cartao</name>
+        <length>1</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(Aluno)</origin>
+        <comments>AUX_cartao</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
     </row-meta>
     <attributes/>
     <cluster_schema/>
@@ -5083,7 +5132,9 @@ IIF(TRIM(dbo.REMOVEcaractere(cpf)) = '', '00000000000', dbo.REMOVEcaractere(cpf)
 receitaoriginal,
 valor,
 AUX_codpf,
-AUX_codunidade
+AUX_codunidade,
+AUX_databaixa,
+AUX_cartao
  FROM(
 SELECT 
 	t.CODIGO AS 'codrec',
@@ -5129,7 +5180,9 @@ SELECT
 	(SELECT MAX(mf.CLASSIFICACAO) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO GROUP BY mf.TITULO) AS 'receitaoriginal',
 	(SELECT SUM(mf.valor) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND mf.VALOR > 0) AS 'valor',
 	LEFT(t.CODPF,50) AS 'AUX_codpf',
-	t.unidade AS 'AUX_codunidade'
+	t.unidade AS 'AUX_codunidade',
+	t.DATA_BAIXA AS 'AUX_databaixa',
+	(SELECT MIN(IIF(l2.CARTAO IS NOT NULL,'S',NULL)) FROM sophia.TIT_PGTO l2 WHERE l2.TITULO = t.CODIGO) AS 'AUX_cartao'
 FROM sophia.TITULOS t 
 -- left join sophia.TIT_PGTO l on t.CODIGO = l.TITULO
 LEFT JOIN sophia.FISICA f ON t.CODPF = f.CODIGO
@@ -5958,6 +6011,52 @@ AND (SELECT SUM(mf.valor) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND m
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>AUX_databaixa</name>
+        <length>3</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(PF)</origin>
+        <comments>AUX_databaixa</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>AUX_cartao</name>
+        <length>1</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(PF)</origin>
+        <comments>AUX_cartao</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
     </row-meta>
     <attributes/>
     <cluster_schema/>
@@ -5985,8 +6084,8 @@ AND (SELECT SUM(mf.valor) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND m
       <schema_name/>
     </partitioning>
     <connection>SQLSERVER-LOCALHOST</connection>
-    <sql>-- OUTRASRECEITA (PESSOA JURÍDICA)
-
+    <sql>
+USE cel;
 SELECT 
 	t.CODIGO AS 'codrec',
 	(SELECT MAX(mf.parcela) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO GROUP BY mf.TITULO) AS 'parcela',
@@ -6021,7 +6120,9 @@ SELECT
 	(SELECT MAX(mf.CLASSIFICACAO) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO GROUP BY mf.TITULO) AS 'receitaoriginal',
 	(SELECT SUM(mf.valor) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND mf.VALOR > 0) AS 'valor',
 	LEFT(t.CODPJ,50) AS 'AUX_codpj',
-	t.unidade AS 'AUX_codunidade'
+	t.unidade AS 'AUX_codunidade',
+	t.DATA_BAIXA AS 'AUX_databaixa',
+	(SELECT MIN(IIF(l2.CARTAO IS NOT NULL,'S', NULL)) FROM sophia.TIT_PGTO l2 WHERE l2.TITULO = t.CODIGO) AS 'AUX_cartao'
 FROM sophia.TITULOS t
 -- left join sophia.TIT_PGTO l on t.CODIGO = l.TITULO
 LEFT JOIN sophia.JURIDICA j ON (t.CODPJ = j.CODIGO)
@@ -6828,6 +6929,52 @@ AND (SELECT SUM(mf.valor) FROM sophia.MOVFIN mf WHERE mf.TITULO = t.CODIGO AND m
         <origin>SELECT contasreceber(PJ)</origin>
         <comments>AUX_codunidade</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>AUX_databaixa</name>
+        <length>3</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(PJ)</origin>
+        <comments>AUX_databaixa</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>AUX_cartao</name>
+        <length>1</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber(PJ)</origin>
+        <comments>AUX_cartao</comments>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -9663,105 +9810,147 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
     <fields>
       <field>
         <name>codrec</name>
+        <rename/>
       </field>
       <field>
         <name>codmatricula</name>
+        <rename/>
       </field>
       <field>
         <name>parcela</name>
+        <rename/>
       </field>
       <field>
         <name>anoletivo</name>
+        <rename/>
       </field>
       <field>
         <name>totparcela</name>
+        <rename/>
       </field>
       <field>
         <name>valorparcela</name>
+        <rename/>
       </field>
       <field>
         <name>vencimento</name>
+        <rename/>
       </field>
       <field>
         <name>desconto</name>
+        <rename/>
       </field>
       <field>
         <name>carenciadesconto</name>
+        <rename/>
       </field>
       <field>
         <name>vencimentodesconto</name>
+        <rename/>
       </field>
       <field>
         <name>multa</name>
+        <rename/>
       </field>
       <field>
         <name>juros</name>
+        <rename/>
       </field>
       <field>
         <name>vencimentomulta</name>
+        <rename/>
       </field>
       <field>
         <name>carenciamulta</name>
+        <rename/>
       </field>
       <field>
         <name>dtpagamento</name>
+        <rename/>
       </field>
       <field>
         <name>valorpago</name>
+        <rename/>
       </field>
       <field>
         <name>codunidade</name>
+        <rename/>
       </field>
       <field>
         <name>codreceita</name>
+        <rename/>
       </field>
       <field>
         <name>codaluno</name>
+        <rename/>
       </field>
       <field>
         <name>nossonumero</name>
+        <rename/>
       </field>
       <field>
         <name>cobbancaria</name>
+        <rename/>
       </field>
       <field>
         <name>codconta</name>
+        <rename/>
       </field>
       <field>
         <name>avulsa</name>
+        <rename/>
       </field>
       <field>
         <name>cadastradopor</name>
+        <rename/>
       </field>
       <field>
         <name>dtcadastro</name>
+        <rename/>
       </field>
       <field>
         <name>valorparcelaoriginal</name>
+        <rename/>
       </field>
       <field>
         <name>descontooriginal</name>
+        <rename/>
       </field>
       <field>
         <name>vencimentooriginal</name>
+        <rename/>
       </field>
       <field>
         <name>valorbruto</name>
+        <rename/>
       </field>
       <field>
         <name>descricao</name>
+        <rename/>
       </field>
       <field>
         <name>cpf</name>
+        <rename/>
       </field>
       <field>
         <name>receitaoriginal</name>
+        <rename/>
       </field>
       <field>
         <name>valor</name>
+        <rename/>
       </field>
       <field>
         <name>AUX_codunidade</name>
+        <rename/>
+      </field>
+      <field>
+        <name>AUX_databaixa</name>
+        <rename/>
+      </field>
+      <field>
+        <name>AUX_cartao</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -9793,108 +9982,151 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
     <fields>
       <field>
         <name>codrec</name>
+        <rename/>
       </field>
       <field>
         <name>parcela</name>
+        <rename/>
       </field>
       <field>
         <name>totparcela</name>
+        <rename/>
       </field>
       <field>
         <name>valorparcela</name>
+        <rename/>
       </field>
       <field>
         <name>vencimento</name>
+        <rename/>
       </field>
       <field>
         <name>desconto</name>
+        <rename/>
       </field>
       <field>
         <name>carenciadesconto</name>
+        <rename/>
       </field>
       <field>
         <name>vencimentodesconto</name>
+        <rename/>
       </field>
       <field>
         <name>multa</name>
+        <rename/>
       </field>
       <field>
         <name>juros</name>
+        <rename/>
       </field>
       <field>
         <name>vencimentomulta</name>
+        <rename/>
       </field>
       <field>
         <name>carenciamulta</name>
+        <rename/>
       </field>
       <field>
         <name>dtpagamento</name>
+        <rename/>
       </field>
       <field>
         <name>valorpago</name>
+        <rename/>
       </field>
       <field>
         <name>codunidade</name>
+        <rename/>
       </field>
       <field>
         <name>anoletivo</name>
+        <rename/>
       </field>
       <field>
         <name>outrasreceitas</name>
+        <rename/>
       </field>
       <field>
         <name>codreceita</name>
+        <rename/>
       </field>
       <field>
         <name>codaluno</name>
+        <rename/>
       </field>
       <field>
         <name>nossonumero</name>
+        <rename/>
       </field>
       <field>
         <name>cobbancaria</name>
+        <rename/>
       </field>
       <field>
         <name>codconta</name>
+        <rename/>
       </field>
       <field>
         <name>avulsa</name>
+        <rename/>
       </field>
       <field>
         <name>cadastradopor</name>
+        <rename/>
       </field>
       <field>
         <name>dtcadastro</name>
+        <rename/>
       </field>
       <field>
         <name>valorparcelaoriginal</name>
+        <rename/>
       </field>
       <field>
         <name>descontooriginal</name>
+        <rename/>
       </field>
       <field>
         <name>vencimentooriginal</name>
+        <rename/>
       </field>
       <field>
         <name>valorbruto</name>
+        <rename/>
       </field>
       <field>
         <name>descricao</name>
+        <rename/>
       </field>
       <field>
         <name>cpf</name>
+        <rename/>
       </field>
       <field>
         <name>receitaoriginal</name>
+        <rename/>
       </field>
       <field>
         <name>valor</name>
+        <rename/>
       </field>
       <field>
         <name>AUX_codpf</name>
+        <rename/>
       </field>
       <field>
         <name>AUX_codunidade</name>
+        <rename/>
+      </field>
+      <field>
+        <name>AUX_databaixa</name>
+        <rename/>
+      </field>
+      <field>
+        <name>AUX_cartao</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -9926,108 +10158,151 @@ LEFT JOIN sophia.TURNOS tu ON t.TURNO = tu.CODIGO;</sql>
     <fields>
       <field>
         <name>codrec</name>
+        <rename/>
       </field>
       <field>
         <name>parcela</name>
+        <rename/>
       </field>
       <field>
         <name>totparcela</name>
+        <rename/>
       </field>
       <field>
         <name>valorparcela</name>
+        <rename/>
       </field>
       <field>
         <name>vencimento</name>
+        <rename/>
       </field>
       <field>
         <name>desconto</name>
+        <rename/>
       </field>
       <field>
         <name>carenciadesconto</name>
+        <rename/>
       </field>
       <field>
         <name>vencimentodesconto</name>
+        <rename/>
       </field>
       <field>
         <name>multa</name>
+        <rename/>
       </field>
       <field>
         <name>juros</name>
+        <rename/>
       </field>
       <field>
         <name>vencimentomulta</name>
+        <rename/>
       </field>
       <field>
         <name>carenciamulta</name>
+        <rename/>
       </field>
       <field>
         <name>dtpagamento</name>
+        <rename/>
       </field>
       <field>
         <name>valorpago</name>
+        <rename/>
       </field>
       <field>
         <name>codunidade</name>
+        <rename/>
       </field>
       <field>
         <name>anoletivo</name>
+        <rename/>
       </field>
       <field>
         <name>outrasreceitas</name>
+        <rename/>
       </field>
       <field>
         <name>codreceita</name>
+        <rename/>
       </field>
       <field>
         <name>codaluno</name>
+        <rename/>
       </field>
       <field>
         <name>nossonumero</name>
+        <rename/>
       </field>
       <field>
         <name>cobbancaria</name>
+        <rename/>
       </field>
       <field>
         <name>codconta</name>
+        <rename/>
       </field>
       <field>
         <name>avulsa</name>
+        <rename/>
       </field>
       <field>
         <name>cadastradopor</name>
+        <rename/>
       </field>
       <field>
         <name>dtcadastro</name>
+        <rename/>
       </field>
       <field>
         <name>valorparcelaoriginal</name>
+        <rename/>
       </field>
       <field>
         <name>descontooriginal</name>
+        <rename/>
       </field>
       <field>
         <name>vencimentooriginal</name>
+        <rename/>
       </field>
       <field>
         <name>valorbruto</name>
+        <rename/>
       </field>
       <field>
         <name>descricao</name>
+        <rename/>
       </field>
       <field>
         <name>cpf</name>
+        <rename/>
       </field>
       <field>
         <name>receitaoriginal</name>
+        <rename/>
       </field>
       <field>
         <name>valor</name>
+        <rename/>
       </field>
       <field>
         <name>AUX_codpj</name>
+        <rename/>
       </field>
       <field>
         <name>AUX_codunidade</name>
+        <rename/>
+      </field>
+      <field>
+        <name>AUX_databaixa</name>
+        <rename/>
+      </field>
+      <field>
+        <name>AUX_cartao</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
