@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/02/24 16:49:54.489</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/09/21 11:44:29.392</modified_date>
+    <modified_date>2023/09/25 10:41:25.781</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -4002,7 +4002,10 @@ left join contasreceber cc on (c.ContaReceberID = cc.ContaReceberID)
 left join planoscontas pc on pc.PlanoContaID = c.PlanoContaID
 LEFT JOIN alunos a ON (a.AlunoID = cc.AlunoID)
 LEFT JOIN responsaveis r ON (a.ResponsavelFinanceiroID = r.ResponsavelID)
-where pc.Tipo ='E' AND c.situacao &lt;&gt; 2;</sql>
+where pc.Tipo ='E' AND c.situacao &lt;&gt; 2
+
+-- AND year(STR_TO_DATE(c.DataVencimento, '%c/%e/%Y')) = 2023
+;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
