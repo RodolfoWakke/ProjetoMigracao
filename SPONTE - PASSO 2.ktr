@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/02/24 16:49:54.489</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/09/25 10:41:25.781</modified_date>
+    <modified_date>2023/09/28 10:27:24.727</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1258,18 +1258,26 @@
     <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT
 	n.TurmaAlunoID AS 'MATRICULA', 
-    LEFT(CONCAT(t.TurmaID, IFNULL(t.Sigla, LEFT(t.Nome, 7))),10) AS 'codturma_aux',
+   LEFT(CONCAT(t.TurmaID, IFNULL(t.Sigla, LEFT(t.Nome, 7))),10) AS 'codturma_aux',
 	1 AS 'codturma', -- SETAR CODTURMA
 	n.disciplinaID AS 'codmateria',
 	IF(t.AnoLetivo = 0,  YEAR(STR_TO_DATE(t.DataInicio, '%c/%e/%Y')), t.AnoLetivo) AS 'ano',
 	t.CursoID AS 'CODSERIE',
-	if(n.Nota1 &lt; 0, NULL, TRUNCATE(n.Nota1,2)) AS 'MEDIA1',
-	if(n.Nota2 &lt; 0, NULL, TRUNCATE(n.Nota2,2)) AS 'MEDIA2',
-	if(n.Nota3 &lt; 0, NULL, TRUNCATE(n.Nota3,2)) AS 'MEDIA3',
-	if(n.Nota4 &lt; 0, NULL, TRUNCATE(n.Nota4,2)) AS 'MEDIA4',
-	if(n.MediaFinal &lt; 0, NULL, TRUNCATE(n.MediaFinal,2)) AS 'SOMAETAPAS',
-	if(n.RecuperacaoFinal &lt; 0, NULL, TRUNCATE(n.RecuperacaoFinal,2)) AS 'RECFINAL',
-	if(n.MediaFinal &lt; 0, NULL, TRUNCATE(n.MediaFinal,2)) AS 'RESULTFINAL', 
+	IF(n.Nota1 &lt; 0, NULL, TRUNCATE(n.Nota1,2)) AS 'SOMA1',
+	IF(n.Recuperacao1 &lt; 0, NULL, TRUNCATE(n.Recuperacao1,2)) AS 'REC1',	
+	IF(n.NotaAposRec1 &lt; 0, IF(n.Nota1 &lt; 0, NULL, n.Nota1) , TRUNCATE(n.NotaAposRec1,2)) AS 'MEDIA1',	
+	IF(n.Nota2 &lt; 0, NULL, TRUNCATE(n.Nota2,2)) AS 'SOMA2',
+	IF(n.Recuperacao2 &lt; 0, NULL, TRUNCATE(n.Recuperacao2,2)) AS 'REC2',	
+	IF(n.NotaAposRec2 &lt; 0, IF(n.Nota2 &lt; 0, NULL, n.Nota2) , TRUNCATE(n.NotaAposRec2,2)) AS 'MEDIA2',		
+	IF(n.Nota3 &lt; 0, NULL, TRUNCATE(n.Nota3,2)) AS 'SOMA3',
+	IF(n.Recuperacao3 &lt; 0, NULL, TRUNCATE(n.Recuperacao3,2)) AS 'REC3',	
+	IF(n.NotaAposRec3 &lt; 0, IF(n.Nota3 &lt; 0, NULL, n.Nota3) , TRUNCATE(n.NotaAposRec3,2)) AS 'MEDIA3',	
+	IF(n.Nota4 &lt; 0, NULL, TRUNCATE(n.Nota4,2)) AS 'SOMA4',
+	IF(n.Recuperacao4 &lt; 0, NULL, TRUNCATE(n.Recuperacao4,2)) AS 'REC4',	
+	IF(n.NotaAposRec4 &lt; 0, IF(n.Nota4 &lt; 0, NULL, n.Nota4) , TRUNCATE(n.NotaAposRec4,2)) AS 'MEDIA4',		
+	IF(n.MediaFinal &lt; 0, NULL, TRUNCATE(n.MediaFinal,2)) AS 'SOMAETAPAS',
+	IF(n.RecuperacaoFinal &lt; 0, NULL, TRUNCATE(n.RecuperacaoFinal,2)) AS 'RECFINAL',
+	IF(n.MediaFinal &lt; 0, NULL, TRUNCATE(n.MediaFinal,2)) AS 'RESULTFINAL',
 	CAST(n.Faltas1 AS DECIMAL(18)) AS 'faltas1', 
 	CAST(n.Faltas2 AS DECIMAL(18)) AS 'faltas2', 
 	CAST(n.Faltas3 AS DECIMAL(18)) AS 'faltas3',
@@ -1280,7 +1288,9 @@
 	n.SituacaoDidaticaID AS 'SituacaoDidaticaID'
 FROM notas n
 JOIN turmaalunos m ON (m.AlunoID = n.AlunoID AND m.TurmaID = n.TurmaID AND m.TurmaAlunoID = n.TurmaAlunoID)
-JOIN turmas t ON (t.TurmaID = m.TurmaID);</sql>
+JOIN turmas t ON (t.TurmaID = m.TurmaID)
+-- WHERE n.TurmaAlunoID = 1498
+;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1429,11 +1439,103 @@ JOIN turmas t ON (t.TurmaID = m.TurmaID);</sql>
       <value-meta>
         <type>Number</type>
         <storagetype>normal</storagetype>
+        <name>SOMA1</name>
+        <length>10</length>
+        <precision>2</precision>
+        <origin>SELECT acumulado</origin>
+        <comments>SOMA1</comments>
+        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Number</type>
+        <storagetype>normal</storagetype>
+        <name>REC1</name>
+        <length>10</length>
+        <precision>2</precision>
+        <origin>SELECT acumulado</origin>
+        <comments>REC1</comments>
+        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Number</type>
+        <storagetype>normal</storagetype>
         <name>MEDIA1</name>
         <length>10</length>
         <precision>2</precision>
         <origin>SELECT acumulado</origin>
         <comments>MEDIA1</comments>
+        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Number</type>
+        <storagetype>normal</storagetype>
+        <name>SOMA2</name>
+        <length>10</length>
+        <precision>2</precision>
+        <origin>SELECT acumulado</origin>
+        <comments>SOMA2</comments>
+        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Number</type>
+        <storagetype>normal</storagetype>
+        <name>REC2</name>
+        <length>10</length>
+        <precision>2</precision>
+        <origin>SELECT acumulado</origin>
+        <comments>REC2</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1475,11 +1577,103 @@ JOIN turmas t ON (t.TurmaID = m.TurmaID);</sql>
       <value-meta>
         <type>Number</type>
         <storagetype>normal</storagetype>
+        <name>SOMA3</name>
+        <length>10</length>
+        <precision>2</precision>
+        <origin>SELECT acumulado</origin>
+        <comments>SOMA3</comments>
+        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Number</type>
+        <storagetype>normal</storagetype>
+        <name>REC3</name>
+        <length>10</length>
+        <precision>2</precision>
+        <origin>SELECT acumulado</origin>
+        <comments>REC3</comments>
+        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Number</type>
+        <storagetype>normal</storagetype>
         <name>MEDIA3</name>
         <length>10</length>
         <precision>2</precision>
         <origin>SELECT acumulado</origin>
         <comments>MEDIA3</comments>
+        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Number</type>
+        <storagetype>normal</storagetype>
+        <name>SOMA4</name>
+        <length>10</length>
+        <precision>2</precision>
+        <origin>SELECT acumulado</origin>
+        <comments>SOMA4</comments>
+        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Number</type>
+        <storagetype>normal</storagetype>
+        <name>REC4</name>
+        <length>10</length>
+        <precision>2</precision>
+        <origin>SELECT acumulado</origin>
+        <comments>REC4</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -3996,7 +4190,8 @@ FROM contasreceber c GROUP BY c.ContaID;</sql>
 	IF(c.TipoRecebimentoID = -5, "Parcela Cartão","Parcela Boleto") AS 'AUX_tipoparcela',
 	r.Nome AS 'AUX_responsavel',
 	c.ContaID AS 'AUX_contaid',
-	cc.EmpresaID AS 'AUX_EmpresaID'
+	cc.EmpresaID AS 'AUX_EmpresaID',
+	c.CNABID AS 'AUX_cnabID'
 from ContasReceberParcelas c
 left join contasreceber cc on (c.ContaReceberID = cc.ContaReceberID)
 left join planoscontas pc on pc.PlanoContaID = c.PlanoContaID
@@ -4757,6 +4952,29 @@ where pc.Tipo ='E' AND c.situacao &lt;&gt; 2
         <precision>-1</precision>
         <origin>SELECT contasreceber</origin>
         <comments>AUX_EmpresaID</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>AUX_cnabID</name>
+        <length>50</length>
+        <precision>-1</precision>
+        <origin>SELECT contasreceber</origin>
+        <comments>AUX_cnabID</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -7622,66 +7840,119 @@ GROUP BY LEFT(CONCAT(t.TurmaID, IFNULL(t.Sigla, LEFT(t.Nome, 7))),10);
     <fields>
       <field>
         <name>MATRICULA</name>
+        <rename/>
       </field>
       <field>
         <name>codturma_aux</name>
+        <rename/>
       </field>
       <field>
         <name>codturma</name>
+        <rename/>
       </field>
       <field>
         <name>codmateria</name>
+        <rename/>
       </field>
       <field>
         <name>ano</name>
+        <rename/>
       </field>
       <field>
         <name>CODSERIE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>SOMA1</name>
+        <rename/>
+      </field>
+      <field>
+        <name>REC1</name>
+        <rename/>
       </field>
       <field>
         <name>MEDIA1</name>
+        <rename/>
+      </field>
+      <field>
+        <name>SOMA2</name>
+        <rename/>
+      </field>
+      <field>
+        <name>REC2</name>
+        <rename/>
       </field>
       <field>
         <name>MEDIA2</name>
+        <rename/>
+      </field>
+      <field>
+        <name>SOMA3</name>
+        <rename/>
+      </field>
+      <field>
+        <name>REC3</name>
+        <rename/>
       </field>
       <field>
         <name>MEDIA3</name>
+        <rename/>
+      </field>
+      <field>
+        <name>SOMA4</name>
+        <rename/>
+      </field>
+      <field>
+        <name>REC4</name>
+        <rename/>
       </field>
       <field>
         <name>MEDIA4</name>
+        <rename/>
       </field>
       <field>
         <name>SOMAETAPAS</name>
+        <rename/>
       </field>
       <field>
         <name>RECFINAL</name>
+        <rename/>
       </field>
       <field>
         <name>RESULTFINAL</name>
+        <rename/>
       </field>
       <field>
         <name>faltas1</name>
+        <rename/>
       </field>
       <field>
         <name>faltas2</name>
+        <rename/>
       </field>
       <field>
         <name>faltas3</name>
+        <rename/>
       </field>
       <field>
         <name>faltas4</name>
+        <rename/>
       </field>
       <field>
         <name>TOTFALTAS</name>
+        <rename/>
       </field>
       <field>
         <name>MEDSEM1</name>
+        <rename/>
       </field>
       <field>
         <name>MEDSEM2</name>
+        <rename/>
       </field>
       <field>
         <name>SituacaoDidaticaID</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -7849,6 +8120,9 @@ GROUP BY LEFT(CONCAT(t.TurmaID, IFNULL(t.Sigla, LEFT(t.Nome, 7))),10);
       </field>
       <field>
         <name>AUX_EmpresaID</name>
+      </field>
+      <field>
+        <name>AUX_cnabID</name>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
