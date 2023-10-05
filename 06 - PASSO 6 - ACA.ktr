@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/03/02 16:05:47.461</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/06/28 20:02:42.628</modified_date>
+    <modified_date>2023/09/29 17:19:19.052</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -457,7 +457,7 @@
   </notepads>
   <connection>
     <name>RDS</name>
-    <server>${v_end-RDS}</server>
+    <server>escolawebrds${v_end-RDS}.cdq77divwtia.sa-east-1.rds.amazonaws.com</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>${v_nomebanco-RDS}</database>
@@ -602,6 +602,25 @@ INNER JOIN mig_aluno al ON (al.codaluno = m.codaluno));
  insert into turmadiario (codmatricula, codaluno, anoletivo, codseriecurso, codturma, codconfturma, dtsaida)
 (select m.codmatricula, m.codaluno, m.anoletivo, m.codseriecurso, m.codturma, m.codconfturma, m.dtTransferencia
 from matricula m );
+
+
+-- **************************** _1° UPDATE_ **************************** --
+
+update turmadiario t 
+JOIN matricula m ON m.codmatricula = t.codmatricula
+JOIN configturma ct ON ct.codconfturma = t.codconfturma
+set t.dtentrada = m.dtmatricula
+WHERE t.dtentrada IS NULL AND m.dtmatricula > (ct.dtinicio + (SELECT c.id FROM config c WHERE c.rotina = 'dtlimitdiario')) AND ct.dtfim > CURDATE();
+
+
+-- **************************** _2° UPDATE_ **************************** --
+
+update acumulado a 
+JOIN turmadiario t ON t.codmatricula = a.MATRICULA
+JOIN configturma ct ON ct.codconfturma = t.codconfturma
+SET a.DTENTRADA = t.dtentrada
+WHERE a.DTENTRADA IS NULL AND t.dtentrada IS NOT NULL AND ct.dtfim > CURDATE();
+
 </sql>
     <set_params>N</set_params>
     <insert_field/>
