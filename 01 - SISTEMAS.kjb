@@ -7,7 +7,7 @@
   <created_user>-</created_user>
   <created_date>2023/03/16 08:19:19.501</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/08/21 13:37:20.029</modified_date>
+  <modified_date>2023/10/16 13:36:17.327</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -478,7 +478,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>240</xloc>
-      <yloc>544</yloc>
+      <yloc>624</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -660,6 +660,67 @@ Código outros: (${v_sophia_parentesco_outros})
       <yloc>432</yloc>
       <attributes_kjc/>
     </entry>
+    <entry>
+      <name>Padrão</name>
+      <description/>
+      <type>JOB</type>
+      <attributes/>
+      <specification_method>rep_name</specification_method>
+      <job_object_id/>
+      <filename/>
+      <jobname>ACTIVESOFT - JOB</jobname>
+      <directory>/</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>464</xloc>
+      <yloc>528</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>padrao ?</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <attributes/>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${v_sistema}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>padrao</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>240</xloc>
+      <yloc>528</yloc>
+      <attributes_kjc/>
+    </entry>
   </entries>
   <hops>
     <hop>
@@ -785,8 +846,8 @@ Código outros: (${v_sophia_parentesco_outros})
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>Activesoft ?</from>
@@ -807,7 +868,34 @@ Código outros: (${v_sophia_parentesco_outros})
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>Padrão</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>padrao ?</from>
+      <to>Padrão</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>Activesoft ?</from>
+      <to>padrao ?</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>padrao ?</from>
       <to>Abort - v_sistema</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
