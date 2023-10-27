@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/10/26 11:17:20.767</modified_date>
+  <modified_date>2023/10/27 11:17:17.683</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -1353,29 +1353,11 @@ Confirmar?</bodymessage>
     </hop>
     <hop>
       <from>CHECK SECRETARIA</from>
-      <to>PASSO 4 - SEC</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>CHECK SECRETARIA</from>
       <to>CHECK FINANCEIRO</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>SISTEMAS</from>
-      <to>CHECK SECRETARIA</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
@@ -1403,15 +1385,6 @@ Confirmar?</bodymessage>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>CHECK CREATE LOCAL</from>
-      <to>PASSO 4 - SEC</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
@@ -1570,6 +1543,24 @@ Confirmar?</bodymessage>
     <hop>
       <from>CONEXAO</from>
       <to>CHECK CREATE LOCAL</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>CHECK CREATE LOCAL</from>
+      <to>CHECK SECRETARIA</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SISTEMAS</from>
+      <to>PASSO 4 - SEC</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
