@@ -7,7 +7,7 @@
   <created_user>-</created_user>
   <created_date>2023/08/04 11:46:54.732</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/08/04 13:46:48.077</modified_date>
+  <modified_date>2023/10/27 14:36:25.290</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -308,7 +308,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>PASSO 2.1</name>
+      <name>PASSO 5.2 - FATURA</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
@@ -348,7 +348,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>PASSO 2.2</name>
+      <name>PASSO 5.3 - FATURA</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
@@ -388,7 +388,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>PASSO 2.3</name>
+      <name>PASSO 5.4 - FATURA</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
@@ -428,7 +428,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>PASSO 2.4</name>
+      <name>PASSO 5.5 - FATURA</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
@@ -480,7 +480,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>PASSO 1</name>
+      <name>PASSO 5.1 - FATURA</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
@@ -520,7 +520,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>PASSO 3</name>
+      <name>PASSO 5.6 - FATURA</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
@@ -577,7 +577,7 @@
   <hops>
     <hop>
       <from>Start</from>
-      <to>PASSO 1</to>
+      <to>PASSO 5.1 - FATURA</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -585,8 +585,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>PASSO 1</from>
-      <to>PASSO 2.1</to>
+      <from>PASSO 5.1 - FATURA</from>
+      <to>PASSO 5.2 - FATURA</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -594,8 +594,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PASSO 2.1</from>
-      <to>PASSO 2.2</to>
+      <from>PASSO 5.2 - FATURA</from>
+      <to>PASSO 5.3 - FATURA</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -603,8 +603,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PASSO 2.2</from>
-      <to>PASSO 2.3</to>
+      <from>PASSO 5.3 - FATURA</from>
+      <to>PASSO 5.4 - FATURA</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -612,8 +612,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PASSO 2.3</from>
-      <to>PASSO 2.4</to>
+      <from>PASSO 5.4 - FATURA</from>
+      <to>PASSO 5.5 - FATURA</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -621,8 +621,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PASSO 2.4</from>
-      <to>PASSO 3</to>
+      <from>PASSO 5.5 - FATURA</from>
+      <to>PASSO 5.6 - FATURA</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -630,7 +630,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PASSO 3</from>
+      <from>PASSO 5.6 - FATURA</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -639,7 +639,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PASSO 1</from>
+      <from>PASSO 5.1 - FATURA</from>
       <to>Falha na fatura</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -648,7 +648,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PASSO 2.1</from>
+      <from>PASSO 5.2 - FATURA</from>
       <to>Falha na fatura</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -657,7 +657,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PASSO 2.2</from>
+      <from>PASSO 5.3 - FATURA</from>
       <to>Falha na fatura</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -666,7 +666,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PASSO 2.3</from>
+      <from>PASSO 5.4 - FATURA</from>
       <to>Falha na fatura</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -675,7 +675,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PASSO 2.4</from>
+      <from>PASSO 5.5 - FATURA</from>
       <to>Falha na fatura</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -684,7 +684,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PASSO 3</from>
+      <from>PASSO 5.6 - FATURA</from>
       <to>Falha na fatura</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
