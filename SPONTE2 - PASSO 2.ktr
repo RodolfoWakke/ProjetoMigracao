@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/02/24 16:49:54.489</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/10/31 10:52:14.724</modified_date>
+    <modified_date>2023/11/01 16:41:44.001</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -2149,7 +2149,6 @@ JOIN turmas t ON (t.TurmaID = m.TurmaID)
 	LEFT(epa.Email,100) AS 'email',
 	LEFT(a.Sexo,1) AS 'sexo',
 	(STR_TO_DATE(a.DataNascimento, '%Y/%m/%d')) AS 'dtnascimento',
-	UPPER(LEFT(a.Cor,13)) AS 'cor',
 	ctn.cod_cidade AS 'cidadenaturalidade',
 	UPPER(LEFT(rp.Nome,100)) AS 'pai',
 	UPPER(LEFT(rp.LocalTrabalho,50)) AS 'trabpai',
@@ -2490,29 +2489,6 @@ GROUP BY a.AlunoID;</sql>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>dtnascimento</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>cor</name>
-        <length>13</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>cor</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -8322,189 +8298,247 @@ GROUP BY LEFT(CONCAT(t.TurmaID, IFNULL(t.Sigla, LEFT(t.Nome, 7))),10);
     <fields>
       <field>
         <name>codaluno</name>
+        <rename/>
       </field>
       <field>
         <name>nomealuno</name>
+        <rename/>
       </field>
       <field>
         <name>endereco</name>
+        <rename/>
       </field>
       <field>
         <name>bairro</name>
+        <rename/>
       </field>
       <field>
         <name>cidade</name>
+        <rename/>
       </field>
       <field>
         <name>uf</name>
+        <rename/>
       </field>
       <field>
         <name>cep</name>
+        <rename/>
       </field>
       <field>
         <name>telresid</name>
+        <rename/>
       </field>
       <field>
         <name>celular</name>
+        <rename/>
       </field>
       <field>
         <name>email</name>
+        <rename/>
       </field>
       <field>
         <name>sexo</name>
+        <rename/>
       </field>
       <field>
         <name>dtnascimento</name>
-      </field>
-      <field>
-        <name>cor</name>
+        <rename/>
       </field>
       <field>
         <name>cidadenaturalidade</name>
+        <rename/>
       </field>
       <field>
         <name>pai</name>
+        <rename/>
       </field>
       <field>
         <name>trabpai</name>
+        <rename/>
       </field>
       <field>
         <name>profpai</name>
+        <rename/>
       </field>
       <field>
         <name>telpai</name>
+        <rename/>
       </field>
       <field>
         <name>celularpai</name>
+        <rename/>
       </field>
       <field>
         <name>emailpai</name>
+        <rename/>
       </field>
       <field>
         <name>mae</name>
+        <rename/>
       </field>
       <field>
         <name>trabmae</name>
+        <rename/>
       </field>
       <field>
         <name>profmae</name>
+        <rename/>
       </field>
       <field>
         <name>telmae</name>
+        <rename/>
       </field>
       <field>
         <name>celularmae</name>
+        <rename/>
       </field>
       <field>
         <name>emailmae</name>
+        <rename/>
       </field>
       <field>
         <name>obs</name>
+        <rename/>
       </field>
       <field>
         <name>cpf</name>
+        <rename/>
       </field>
       <field>
         <name>rg</name>
+        <rename/>
       </field>
       <field>
         <name>certidaonumero</name>
+        <rename/>
       </field>
       <field>
         <name>certidaolivrofolha</name>
+        <rename/>
       </field>
       <field>
         <name>certidaocartorio</name>
+        <rename/>
       </field>
       <field>
         <name>enderecopai</name>
+        <rename/>
       </field>
       <field>
         <name>bairropai</name>
+        <rename/>
       </field>
       <field>
         <name>codcidadepai</name>
+        <rename/>
       </field>
       <field>
         <name>ceppai</name>
+        <rename/>
       </field>
       <field>
         <name>enderecomae</name>
+        <rename/>
       </field>
       <field>
         <name>bairromae</name>
+        <rename/>
       </field>
       <field>
         <name>codcidademae</name>
+        <rename/>
       </field>
       <field>
         <name>cepmae</name>
+        <rename/>
       </field>
       <field>
         <name>titeleitor</name>
+        <rename/>
       </field>
       <field>
         <name>zona</name>
+        <rename/>
       </field>
       <field>
         <name>dtcadastro</name>
+        <rename/>
       </field>
       <field>
         <name>usercadastro</name>
+        <rename/>
       </field>
       <field>
         <name>estadocivilpai</name>
+        <rename/>
       </field>
       <field>
         <name>estadocivilmae</name>
+        <rename/>
       </field>
       <field>
         <name>dtnascimentopai</name>
+        <rename/>
       </field>
       <field>
         <name>dtnascimentomae</name>
+        <rename/>
       </field>
       <field>
         <name>tiposanguineo</name>
+        <rename/>
       </field>
       <field>
         <name>planosaude</name>
+        <rename/>
       </field>
       <field>
         <name>alergia</name>
+        <rename/>
       </field>
       <field>
         <name>cpfpai</name>
+        <rename/>
       </field>
       <field>
         <name>rgpai</name>
+        <rename/>
       </field>
       <field>
         <name>cpfmae</name>
+        <rename/>
       </field>
       <field>
         <name>rgmae</name>
+        <rename/>
       </field>
       <field>
         <name>estadocivil</name>
+        <rename/>
       </field>
       <field>
-        <name>Profissao</name>
+        <name>profissao</name>
+        <rename/>
       </field>
       <field>
-        <name>LocalTrabalho</name>
+        <name>localtrabalho</name>
+        <rename/>
       </field>
       <field>
         <name>teltrabalho</name>
+        <rename/>
       </field>
       <field>
         <name>rgdataemissao</name>
+        <rename/>
       </field>
       <field>
         <name>rgdataemissaopai</name>
+        <rename/>
       </field>
       <field>
         <name>rgdataemissaomae</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
