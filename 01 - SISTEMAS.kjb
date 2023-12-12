@@ -7,7 +7,7 @@
   <created_user>-</created_user>
   <created_date>2023/03/16 08:19:19.501</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/10/26 10:26:12.446</modified_date>
+  <modified_date>2023/12/11 16:31:37.831</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -668,7 +668,7 @@ Código outros: (${v_sophia_parentesco_outros})
       <specification_method>rep_name</specification_method>
       <job_object_id/>
       <filename/>
-      <jobname>ACTIVESOFT - JOB</jobname>
+      <jobname>PADRAO - JOB</jobname>
       <directory>/</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>

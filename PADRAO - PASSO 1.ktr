@@ -426,37 +426,13 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2023/10/18 09:32:12.169</created_date>
+    <created_date>2023/12/11 16:31:56.798</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/10/18 15:46:32.921</modified_date>
+    <modified_date>2023/12/11 17:13:27.981</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
-    <notepad>
-      <note>-> UNIDADE ESCOLAR NÃO FAZ SENTIDO
--> Tabela turma?
--> Excluir CODIGOORGANIZACAO no steets NOTA (Acumulado não tem)
--> Parei no Acumulado</note>
-      <xloc>883</xloc>
-      <yloc>150</yloc>
-      <width>396</width>
-      <heigth>74</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>168</backgroundcolorred>
-      <backgroundcolorgreen>251</backgroundcolorgreen>
-      <backgroundcolorblue>132</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <connection>
     <name>RDS</name>
@@ -531,119 +507,14 @@
   </connection>
   <order>
     <hop>
-      <from>XLSX aluno</from>
-      <to>Select values Aluno</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values Aluno</from>
-      <to>Insert mig_aluno</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values disciplina</from>
-      <to>Insert mig_disciplina</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>XLSX disciplina</from>
-      <to>Select values disciplina</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values funcionario</from>
-      <to>Insert mig_funcionario</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>XLSX funcionario</from>
-      <to>Strings cut</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Strings cut</from>
-      <to>Select values funcionario</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values curso</from>
-      <to>Insert mig_curso</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>XLSX curso</from>
-      <to>Strings cut 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Strings cut 2</from>
-      <to>Select values curso</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values seriecurso</from>
-      <to>Insert mig_seriecurso</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>XLSX seriecurso</from>
-      <to>Strings cut 2 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Strings cut 2 2</from>
-      <to>Select values seriecurso</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values configturma</from>
-      <to>Insert mig_configturma</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>XLSX configturma</from>
-      <to>Strings cut 2 2 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Strings cut 2 2 2</from>
-      <to>Select values configturma</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values matricula</from>
-      <to>Insert mig_matricula</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>XLSX matricula</from>
-      <to>Strings cut 2 2 2 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Strings cut 2 2 2 2</from>
-      <to>Select values matricula</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values matricula 2</from>
-      <to>Insert mig_acumulado</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>XLSX nota</from>
-      <to>Strings cut 2 2 2 2 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Strings cut 2 2 2 2 2</from>
-      <to>Select values matricula 2</to>
-      <enabled>Y</enabled>
+      <from>Dummy (do nothing)</from>
+      <to>Table input</to>
+      <enabled>N</enabled>
     </hop>
   </order>
   <step>
-    <name>Insert mig_aluno</name>
-    <type>TableOutput</type>
+    <name>CREATE MIG</name>
+    <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -653,188 +524,926 @@
       <schema_name/>
     </partitioning>
     <connection>RDS</connection>
-    <schema/>
-    <table>mig_aluno</table>
-    <commit>50000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>codaluno</column_name>
-        <stream_name>codaluno</stream_name>
-      </field>
-      <field>
-        <column_name>nomealuno</column_name>
-        <stream_name>nomealuno</stream_name>
-      </field>
-      <field>
-        <column_name>ENDERECO</column_name>
-        <stream_name>ENDERECO</stream_name>
-      </field>
-      <field>
-        <column_name>BAIRRO</column_name>
-        <stream_name>BAIRRO</stream_name>
-      </field>
-      <field>
-        <column_name>AUX_UF</column_name>
-        <stream_name>AUX_UF</stream_name>
-      </field>
-      <field>
-        <column_name>AUX_CIDADE</column_name>
-        <stream_name>AUX_CIDADE</stream_name>
-      </field>
-      <field>
-        <column_name>CEP</column_name>
-        <stream_name>CEP</stream_name>
-      </field>
-      <field>
-        <column_name>telresid</column_name>
-        <stream_name>telresid</stream_name>
-      </field>
-      <field>
-        <column_name>CELULAR</column_name>
-        <stream_name>CELULAR</stream_name>
-      </field>
-      <field>
-        <column_name>EMAIL</column_name>
-        <stream_name>EMAIL</stream_name>
-      </field>
-      <field>
-        <column_name>SEXO</column_name>
-        <stream_name>SEXO</stream_name>
-      </field>
-      <field>
-        <column_name>DTNASCIMENTO</column_name>
-        <stream_name>DTNASCIMENTO</stream_name>
-      </field>
-      <field>
-        <column_name>NATURALIDADE</column_name>
-        <stream_name>NATURALIDADE</stream_name>
-      </field>
-      <field>
-        <column_name>RG</column_name>
-        <stream_name>RG</stream_name>
-      </field>
-      <field>
-        <column_name>RGDATAEMISSAO</column_name>
-        <stream_name>RGDATAEMISSAO</stream_name>
-      </field>
-      <field>
-        <column_name>CPF</column_name>
-        <stream_name>CPF</stream_name>
-      </field>
-      <field>
-        <column_name>CERTIDAONUMERO</column_name>
-        <stream_name>CERTIDAONUMERO</stream_name>
-      </field>
-      <field>
-        <column_name>PAI</column_name>
-        <stream_name>PAI</stream_name>
-      </field>
-      <field>
-        <column_name>CPFPAI</column_name>
-        <stream_name>CPFPAI</stream_name>
-      </field>
-      <field>
-        <column_name>RGPAI</column_name>
-        <stream_name>RGPAI</stream_name>
-      </field>
-      <field>
-        <column_name>CELULARPAI</column_name>
-        <stream_name>CELULARPAI</stream_name>
-      </field>
-      <field>
-        <column_name>EMAILPAI</column_name>
-        <stream_name>EMAILPAI</stream_name>
-      </field>
-      <field>
-        <column_name>ENDERECOPAI</column_name>
-        <stream_name>ENDERECOPAI</stream_name>
-      </field>
-      <field>
-        <column_name>CEPPAI</column_name>
-        <stream_name>CEPPAI</stream_name>
-      </field>
-      <field>
-        <column_name>AUX_CIDADEPAI</column_name>
-        <stream_name>AUX_CIDADEPAI</stream_name>
-      </field>
-      <field>
-        <column_name>AUX_UFPAI</column_name>
-        <stream_name>AUX_UFPAI</stream_name>
-      </field>
-      <field>
-        <column_name>BAIRROPAI</column_name>
-        <stream_name>BAIRROPAI</stream_name>
-      </field>
-      <field>
-        <column_name>MAE</column_name>
-        <stream_name>MAE</stream_name>
-      </field>
-      <field>
-        <column_name>CPFMAE</column_name>
-        <stream_name>CPFMAE</stream_name>
-      </field>
-      <field>
-        <column_name>RGMAE</column_name>
-        <stream_name>RGMAE</stream_name>
-      </field>
-      <field>
-        <column_name>CELULARMAE</column_name>
-        <stream_name>CELULARMAE</stream_name>
-      </field>
-      <field>
-        <column_name>EMAILMAE</column_name>
-        <stream_name>EMAILMAE</stream_name>
-      </field>
-      <field>
-        <column_name>ENDERECOMAE</column_name>
-        <stream_name>ENDERECOMAE</stream_name>
-      </field>
-      <field>
-        <column_name>CEPMAE</column_name>
-        <stream_name>CEPMAE</stream_name>
-      </field>
-      <field>
-        <column_name>AUX_UFMAE</column_name>
-        <stream_name>AUX_UFMAE</stream_name>
-      </field>
-      <field>
-        <column_name>AUX_CIDADEMAE</column_name>
-        <stream_name>AUX_CIDADEMAE</stream_name>
-      </field>
-      <field>
-        <column_name>BAIRROMAE</column_name>
-        <stream_name>BAIRROMAE</stream_name>
-      </field>
-      <field>
-        <column_name>RA</column_name>
-        <stream_name>RA</stream_name>
-      </field>
-      <field>
-        <column_name>OBS</column_name>
-        <stream_name>OBS</stream_name>
-      </field>
-      <field>
-        <column_name>OBSFINANCEIRO</column_name>
-        <stream_name>OBSFINANCEIRO</stream_name>
-      </field>
-      <field>
-        <column_name>OBSACADEMICO</column_name>
-        <stream_name>OBSACADEMICO</stream_name>
-      </field>
-    </fields>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>-- SECRETARIA --
+DROP TABLE IF EXISTS `mig_aluno`;
+   CREATE TABLE IF NOT EXISTS `mig_aluno` (
+	`codaluno` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`nomealuno` VARCHAR(100) NOT NULL COLLATE 'latin1_swedish_ci',
+	`endereco` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`bairro` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`uf` SMALLINT(6) NULL DEFAULT NULL,
+	`cidade` INT(11) NULL DEFAULT NULL,
+	`cep` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`telresid` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`celular` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`email` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`sexo` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dtnascimento` DATE NULL DEFAULT NULL,
+	`ufnaturalidade` SMALLINT(6) UNSIGNED NULL DEFAULT NULL,
+	`cidadenaturalidade` SMALLINT(6) UNSIGNED NULL DEFAULT NULL,
+	`cor` VARCHAR(13) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`pai` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`trabpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`profpai` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`telpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`celularpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`emailpai` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`mae` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`trabmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`profmae` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`telmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`celularmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`emailmae` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`obs` VARCHAR(5000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cpf` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rg` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`foto` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`senha` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`nomeabrev` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`certidaonumero` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`certidaolivrofolha` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`certidaocartorio` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`religiao` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codeducacaoespecial` SMALLINT(6) NULL DEFAULT NULL,
+	`obseducacaoespecial` VARCHAR(500) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codsocio` INT(11) NULL DEFAULT NULL,
+	`vivopai` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`instrucaopai` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`enderecopai` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`bairropai` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codcidadepai` INT(11) NULL DEFAULT NULL,
+	`codufpai` SMALLINT(6) NULL DEFAULT NULL,
+	`ceppai` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`vivomae` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`instrucaomae` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`enderecomae` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`bairromae` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cepmae` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codufmae` SMALLINT(6) NULL DEFAULT NULL,
+	`codcidademae` INT(11) NULL DEFAULT NULL,
+	`ativo` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`fotoPortal` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`foneportal` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`emailportal` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`titeleitor` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`zona` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dtcadastro` DATETIME NULL DEFAULT NULL,
+	`usercadastro` INT(11) NULL DEFAULT NULL,
+	`dtalteracao` DATETIME NULL DEFAULT NULL,
+	`useralteracao` INT(11) NULL DEFAULT NULL,
+	`nacionalidade` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`bloqueado` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`obshistfundamental` VARCHAR(3000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`obshistmedio` VARCHAR(3000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`estadocivilpai` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`estadocivilmae` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dtnascimentopai` DATE NULL DEFAULT NULL,
+	`dtnascimentomae` DATE NULL DEFAULT NULL,
+	`codpaisnaturalidade` INT(11) NULL DEFAULT NULL,
+	`alunoadotado` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`sabeadocao` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`paisseparados` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`tiposanguineo` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`planosaude` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`alergia` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`doencacongenita` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`deficiencia` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cuidadoespecial` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`locomocaoida` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`locomocaovolta` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`obsguiatransferencia` VARCHAR(1000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`naturalidade` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cpfpai` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rgpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cpfmae` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rgmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`fotoblob` BLOB NULL DEFAULT NULL,
+	`estadocivil` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`saisozinho` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`tipocertidao` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`certreservista` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`profissao` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`localtrabalho` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`teltrabalho` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`numcartao` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`enviarsms` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`celularsms` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`operadorasms` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`hospital` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`pne` CHAR(1) NULL DEFAULT 'N' COMMENT 'Aluno portado de necessidades especiais (S/N)' COLLATE 'latin1_swedish_ci',
+	`pnedescricao` VARCHAR(100) NULL DEFAULT NULL COMMENT 'Descricao na necessidade especial' COLLATE 'latin1_swedish_ci',
+	`pneavaliado` CHAR(1) NULL DEFAULT 'S' COMMENT 'Aluno Ã© avalidado com notas como os outros alunos' COLLATE 'latin1_swedish_ci',
+	`alunofalecido` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`codcenso` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codportaria` INT(11) NULL DEFAULT NULL,
+	`codpaisorigem` SMALLINT(6) NULL DEFAULT NULL,
+	`zonaresidencia7024` INT(1) NULL DEFAULT NULL COMMENT '1-Urbana/2-Rural',
+	`rgorgaoemissor` INT(2) NULL DEFAULT NULL COMMENT 'Orgao Emissor da indentidade. Relaciona com a tabela orgaoemissoridentidade',
+	`rgestado` SMALLINT(6) NULL DEFAULT NULL COMMENT 'Estado Identidade',
+	`rgdataemissao` DATE NULL DEFAULT NULL COMMENT 'Data de Emissao RG',
+	`rgcomplemento` VARCHAR(4) NULL DEFAULT NULL COMMENT 'Complemento RG' COLLATE 'latin1_swedish_ci',
+	`modelocertidao` INT(1) NULL DEFAULT NULL COMMENT '1-Modelo Antigo / 2-Modelo Novo',
+	`codcartoriocertidao` INT(11) NULL DEFAULT NULL COMMENT 'codigo do cartorio que emitiu a certidao',
+	`dtemissaocertidao` DATE NULL DEFAULT NULL COMMENT 'Data da emissÃ£o da certidao',
+	`rgorgaoemissorpai` INT(2) NULL DEFAULT NULL COMMENT 'Orgao Emissor da indentidade. Relaciona com a tabela orgaoemissoridentidade',
+	`rgestadopai` SMALLINT(6) NULL DEFAULT NULL COMMENT 'Estado Identidade',
+	`rgdataemissaopai` DATE NULL DEFAULT NULL COMMENT 'Data de Emissao RG',
+	`nacionalidadepai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codpaisorigempai` SMALLINT(6) NULL DEFAULT NULL,
+	`codcidadenaturalidadepai` INT(11) NULL DEFAULT NULL,
+	`codescolaridadepai` INT(11) NULL DEFAULT NULL,
+	`rgorgaoemissormae` INT(2) NULL DEFAULT NULL COMMENT 'Orgao Emissor da indentidade. Relaciona com a tabela orgaoemissoridentidade',
+	`rgestadomae` SMALLINT(6) NULL DEFAULT NULL COMMENT 'Estado Identidade',
+	`rgdataemissaomae` DATE NULL DEFAULT NULL COMMENT 'Data de Emissao RG',
+	`nacionalidademae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codpaisorigemmae` SMALLINT(6) NULL DEFAULT NULL,
+	`codcidadenaturalidademae` INT(11) NULL DEFAULT NULL,
+	`codescolaridademae` INT(11) NULL DEFAULT NULL,
+	`codrendafamiliar` INT(11) NULL DEFAULT NULL,
+	`obsfinanceiro` VARCHAR(3000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`obsacademico` VARCHAR(3000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`sexomae` CHAR(1) NULL DEFAULT 'F' COLLATE 'latin1_swedish_ci',
+	`sexopai` CHAR(1) NULL DEFAULT 'M' COLLATE 'latin1_swedish_ci',
+	`codbolsapadrao` INT(11) NULL DEFAULT NULL,
+	`diavencpadrao` INT(11) NULL DEFAULT NULL,
+	`ra` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`localbatalhaomilitar` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`categoriamilitar` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`situacaomilitar` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dataexpedicaomilitar` DATE NULL DEFAULT NULL,
+	`secaoeleitor` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dataexpedicaoeleitor` DATE NULL DEFAULT NULL,
+	`avatoken` VARCHAR(200) NULL DEFAULT NULL COMMENT 'token de autenticaÃ§Ã£o do aluno no ava json {login,senha} convertido em base64' COLLATE 'latin1_swedish_ci',
+	`avauserid` INT(11) NULL DEFAULT NULL,
+	`obshistinfantil` VARCHAR(3000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`idgoogledrive` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codescolaridadealuno` INT(11) NULL DEFAULT NULL,
+	`tokenfirebase` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`wakkestudentid` CHAR(36) NULL DEFAULT NULL COMMENT 'Identificador do aluno na Wakke Class' COLLATE 'latin1_swedish_ci',
+	`AUX_UF` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_CIDADE` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_CIDADEPAI` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_UFPAI` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_UFMAE` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_CIDADEMAE` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codaluno_unificado` INT(11) NULL DEFAULT NULL,
+	PRIMARY KEY (`codaluno`) USING BTREE,
+	INDEX `AUX_UF` (`AUX_UF`) USING BTREE,
+	INDEX `AUX_CIDADE` (`AUX_CIDADE`) USING BTREE,
+	INDEX `AUX_CIDADEPAI` (`AUX_CIDADEPAI`) USING BTREE,
+	INDEX `AUX_UFPAI` (`AUX_UFPAI`) USING BTREE,
+	INDEX `AUX_UFMAE` (`AUX_UFMAE`) USING BTREE,
+	INDEX `AUX_CIDADEMAE` (`AUX_CIDADEMAE`) USING BTREE,
+	INDEX `codaluno_unificado` (`codaluno_unificado`) USING BTREE,
+	INDEX `nomealuno` (`nomealuno`) USING BTREE,
+	INDEX `dtnascimento` (`dtnascimento`) USING BTREE
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+
+DROP TABLE IF EXISTS `mig_responsavel`;
+CREATE TABLE IF NOT EXISTS `mig_responsavel` (
+	`codsoc` INT(11) NOT NULL AUTO_INCREMENT,
+	`cpf` VARCHAR(14)  NULL DEFAULT NULL  COLLATE 'latin1_swedish_ci',
+	`nomeresponsavel` VARCHAR(100) NOT NULL COLLATE 'latin1_swedish_ci',
+	`profissao` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`localtrabalho` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`teltrabalho` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+    `turno` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`telresid` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`celular` VARCHAR(16) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`email` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rg` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`endereco` VARCHAR(120) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`bairro` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cidade` INT(11) NULL DEFAULT NULL,
+	`uf` INT(10) UNSIGNED NULL DEFAULT NULL,
+	`cep` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rendaliquida` DECIMAL(10,2) NULL DEFAULT NULL,
+	`sexo` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`estadocivil` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dtnascimento` DATE NULL DEFAULT NULL,
+	`escolaridade` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`pai` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`mae` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`enderecocom` VARCHAR(120) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`bairrocom` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cepcom` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codcidadecom` INT(11) NULL DEFAULT NULL,
+	`cargo` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`senha` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`login` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`fotoportal` VARCHAR(120) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`nacionalidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`naturalidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`obs` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rgorgaoemissor` INT(2) NULL DEFAULT NULL COMMENT 'Orgao Emissor da indentidade. Relaciona com a tabela orgaoemissoridentidade',
+	`rgestado` SMALLINT(6) NULL DEFAULT NULL COMMENT 'Estado Identidade',
+	`rgdataemissao` DATE NULL DEFAULT NULL COMMENT 'Data de Emissao RG',
+	`codpaisorigem` SMALLINT(6) NULL DEFAULT NULL,
+	`codcidadenaturalidade` INT(11) NULL DEFAULT NULL,
+	`codescolaridade` INT(11) NULL DEFAULT NULL,
+	`codfatura` INT(11) NULL DEFAULT NULL,
+	`agrupamentofatura` CHAR(1) NULL DEFAULT 'R' COMMENT 'R=responsavel; A=aluno;' COLLATE 'latin1_swedish_ci',
+	`placa` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`veiculo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`fotoblob` BLOB NULL DEFAULT NULL,
+	`dtcadastro` DATETIME NULL DEFAULT NULL,
+	`dtalteracao` DATETIME NULL DEFAULT NULL,
+	`cadastradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`alteradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codbanco` INT(11) NULL DEFAULT NULL,
+	`agencia` VARCHAR(5) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`conta` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`debitoautomaticoativo` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`clienteiugu` VARCHAR(40) NULL DEFAULT NULL COMMENT 'Id do responsavel no cadastro de clientes no iugu' COLLATE 'latin1_swedish_ci',
+	`inscricaoestadual` VARCHAR(20) NULL DEFAULT NULL COMMENT 'InscriÃ§Ã£o Estadual da empresa' COLLATE 'latin1_swedish_ci',
+	`tokenfirebase` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`inscricaomunicipal` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_UF` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_CIDADE` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	PRIMARY KEY (`codsoc`) USING BTREE,
+	INDEX `AUX_UF` (`AUX_UF`) USING BTREE,
+	INDEX `AUX_CIDADE` (`AUX_CIDADE`) USING BTREE)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS `mig_funcionario`;
+CREATE TABLE IF NOT EXISTS `mig_funcionario` (
+	`FUNCODIGO` INT(11) NOT NULL AUTO_INCREMENT,
+	`CODESCOLARIDADE` INT(11) NULL DEFAULT NULL,
+	`CODBANCO` INT(11) NULL DEFAULT NULL,
+	`funbancoagencia` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`funbancoconta` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`funbancooperacao` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`CODUF` INT(11) NULL DEFAULT NULL,
+	`NOME` VARCHAR(100) NOT NULL COLLATE 'latin1_swedish_ci',
+	`FOTO` VARCHAR(150) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`SEXO` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`DTNASCIMENTO` DATE NULL DEFAULT NULL,
+	`NATURALIDADE` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`ESTADOCIVIL` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`CONJUGE` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`DEPENDENTES` INT(11) NULL DEFAULT NULL,
+	`ESCOLARIDADE` INT(11) NULL DEFAULT NULL,
+	`ENDERECO` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`COMPLEMENTO` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`BAIRRO` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`CIDADE` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`CEP` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`FONERESID` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`CELULAR` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`FONRECADO` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`EMAIL` VARCHAR(70) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`RG` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`CPF` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`CATRABALHO` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`SERIECTRABALHO` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`HABILITACAO` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`CATEGORIA` VARCHAR(2) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`DTADMISSAO` DATE NULL DEFAULT NULL,
+	`DTDESLIGAMENTO` DATE NULL DEFAULT NULL,
+	`MOTIVO` VARCHAR(1000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`OBSERVACOES` VARCHAR(2000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+    `obs` VARCHAR(2000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`ATIVO` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`CARTASSINADA` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`CAPACETE` INT(11) NULL DEFAULT NULL,
+	`TITELEITOR` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`TITZONA` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`HORAENTRADA` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`HORASAIDA` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`DESCANSO` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`FGTSOPTANTE` CHAR(3) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`FGTSDTOPCAO` DATE NULL DEFAULT NULL,
+	`FGTSDTRETRATACAO` DATE NULL DEFAULT NULL,
+	`NACIONALIDADE` VARCHAR(23) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`PAI` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`MAE` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`NUNCTMILIT` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`SERIECTMILIT` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`CATEGCTMILIT` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`PISDTCADASTRO` DATE NULL DEFAULT NULL,
+	`PISNUMERO` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`PISENDERECOBANCO` VARCHAR(150) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`PISCODBANCO` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`PISCODAGENCIA` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`PISOBS` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`DTENTRADA` DATE NULL DEFAULT NULL,
+	`LIVREGISTRO` INT(11) NULL DEFAULT NULL,
+	`RESERVA` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`CODCARGO` INT(11) NULL DEFAULT NULL,
+	`PISBANCO` INT(11) NULL DEFAULT NULL,
+	`FGTSBANCO` INT(11) NULL DEFAULT NULL,
+	`FOTOPORTAL` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`LOGIN` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`SENHA` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`EMAILPORTAL` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`FONEPORTAL` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`bloqueado` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`UF` CHAR(2) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`horariobloqueio` DATETIME NULL DEFAULT NULL,
+	`ipbloqueio` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`loginbloqueio` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`localbloqueio` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`SENHAADM` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`fotoblob` BLOB NULL DEFAULT NULL,
+	`cor` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codpaisorigem` SMALLINT(6) NULL DEFAULT NULL,
+	`codinep` VARCHAR(12) NULL DEFAULT NULL COMMENT 'codigo do profissional no INEP' COLLATE 'latin1_swedish_ci',
+	`codcidadenaturalidade` INT(11) NULL DEFAULT NULL,
+	`zonaresidencia4006` INT(1) NULL DEFAULT NULL COMMENT '1-Urbana/2-Rural',
+	`regimecontratacao` INT(1) NULL DEFAULT NULL COMMENT '1-Concursado / 2-Contrato temporario / 3-Contrato tercerizado / 4-Contrato CLT',
+	`numcartao` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`alcunha` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rf` VARCHAR(10) NULL DEFAULT NULL COMMENT 'Registro Funcional do Professor da Prefeitura Municipal de SÃ£o Paulo' COLLATE 'latin1_swedish_ci',
+	`qpe` VARCHAR(5) NULL DEFAULT NULL COMMENT 'evoluÃ§Ã£o que o Professor possui e indicativo do que ele precisa fazer para evoluir' COLLATE 'latin1_swedish_ci',
+	`avatoken` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`tokenfirebase` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`chat_ativo` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`idgoogledrive` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`wakkeuserid` CHAR(36) NULL DEFAULT NULL COMMENT 'Identificador do funcionÃ¡rio na Wakke Class' COLLATE 'latin1_swedish_ci',
+	`AUX_codunidade` varchar(50) DEFAULT NULL,
+	PRIMARY KEY (`FUNCODIGO`) USING BTREE)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS `mig_funcionariounidade`;
+CREATE TABLE IF NOT EXISTS `mig_funcionariounidade` (
+  `codfuncionariounidade` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `codfuncionario` int(11) NOT NULL,
+  `codunidade` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`codfuncionariounidade`) USING BTREE);
+
+DROP TABLE IF EXISTS `mig_disciplina`;
+CREATE TABLE IF NOT EXISTS `mig_disciplina` (
+  `coddisciplina` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `codarea` int(10) unsigned DEFAULT NULL,
+  `dscdisciplina` varchar(120) NOT NULL,
+  `dscabreviada` varchar(5) DEFAULT NULL,
+  `ativo` char(1) DEFAULT NULL,
+  `optativa` char(1) DEFAULT 'N',
+  `nucleo` varchar(20) DEFAULT NULL COMMENT 'determina a base da disciplina; Comun ou diversificada.',
+  `coddisciplinacenso` int(2) DEFAULT NULL COMMENT 'disciplina a qual Ã© referente no censo.',
+  `pesoreprovacao` decimal(5,2) DEFAULT '1.00' COMMENT 'determina o peso na disciplina pra calcular a quantidade de disciplinas reprovadas.',
+  `codnucleo` int(11) DEFAULT NULL,
+  `coddisciplina_unificada` VARCHAR(11),
+  PRIMARY KEY (`coddisciplina`) USING BTREE);
+  
+DROP TABLE IF EXISTS `mig_curso`;
+CREATE TABLE IF NOT EXISTS `mig_curso` (
+	`codcurso` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`codnivel` INT(10) UNSIGNED NOT NULL,
+	`dsccurso` VARCHAR(150) NOT NULL COLLATE 'latin1_swedish_ci',
+	`ativo` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dscabreviada` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`enderecoaditivo` VARCHAR(150) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`financeiroporcurso` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`cnae` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`acessaportal` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`dsccompleta` VARCHAR(150) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`resolucao` VARCHAR(250) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cargahoraria` DECIMAL(10,2) NULL DEFAULT NULL,
+	`perfil` VARCHAR(4000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`competencia` TEXT NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codcenso` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codservicoprefeitura` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`fundamentolegal` VARCHAR(500) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`eixotecnologico` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`recetapas` CHAR(1) NULL DEFAULT 'S' COMMENT 'quantidade de bimestres/trimestres - curso tecnico = 1' COLLATE 'latin1_swedish_ci',
+	`recsemestre` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`numcasasdecimais` INT(11) NULL DEFAULT NULL,
+	`arredfinal` INT(11) NULL DEFAULT NULL,
+	`calculorec` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_general_ci',
+	`numetapas` INT(11) NOT NULL DEFAULT '1',
+	`anularesultadofinal` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_general_ci',
+	`tipoarredetapa` INT(11) NULL DEFAULT '0',
+	`suplementaretapa` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`profgerenciaravaliacao` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`mediafinaldiv` INT(11) NULL DEFAULT NULL,
+	`limitarrecmedia` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`limitarecfinalmedia` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`totalaprovacao` INT(11) NULL DEFAULT '60',
+	`tipoagrupmateriacomposta` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`mediasemestreagrupado` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`avaliacaogrupo` CHAR(1) NULL DEFAULT 'N' COMMENT 'define se as avaliaÃ§Ãµes da escola sÃ£o separadas em grupos. s = sim  /  n = nao.' COLLATE 'latin1_swedish_ci',
+	`calculomediafinal` CHAR(1) NULL DEFAULT 'P' COLLATE 'latin1_general_ci',
+	`qtdmateriarpp` INT(11) NULL DEFAULT '0',
+	`calculomedia` CHAR(1) NULL DEFAULT 'P' COLLATE 'latin1_swedish_ci',
+	`anoletivosemestre` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`mediasemestre1` DECIMAL(5,2) NULL DEFAULT NULL,
+	`mediasemestre2` DECIMAL(5,2) NULL DEFAULT NULL,
+	`matriculaonline` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`rpp` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`formulamediaetapa` INT(11) NOT NULL DEFAULT '1000',
+	`calculorecsemestre` INT(11) NULL DEFAULT '1000',
+	`totalaprovacaoposrecfinal` INT(11) NULL DEFAULT '60',
+	`totalaprovacaoposrecfinal2` INT(11) NULL DEFAULT '60',
+	`analisafaltaspordisciplina` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`aulahistorico` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`suplementarposrec` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`utilizanotatransferencia` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`setasituacaoalunoaolancarnota` CHAR(1) NULL DEFAULT 'N' COMMENT 'Determina se a situacao do aluno do curso nivel 4 Ã© setada na hora que lancar a nota ou se Ã© o padrÃ£o quando a turma finaliza.' COLLATE 'latin1_swedish_ci',
+	`periodorecuperacao` CHAR(2) NULL DEFAULT NULL COMMENT 'E1 - etapa1, E2 - etapa2 ,E3 - etapa3 ,E4 - etapa4, S1 - semestre1 ,S2 - semestre2, F1 - Final1, F2 - Final2' COLLATE 'latin1_swedish_ci',
+	`modalidade2036` INT(1) NULL DEFAULT NULL COMMENT '1-Ensino Regular/2-Educacao especial substituta/3-Educacao Jovens e Adultos (EJA)',
+	`codcursoprofissional2038` INT(8) NULL DEFAULT NULL COMMENT 'Codigo do curso para o censo da tabela cursoseducacaoprofissional do censo. Somente para curso de educacao prossional',
+	`codboletimportal` INT(11) NULL DEFAULT NULL,
+	`aliquota` INT(11) NULL DEFAULT NULL,
+	`aliquotanfse` DECIMAL(5,4) NULL DEFAULT NULL,
+	`dscnfse` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codservico` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codtributacaomunicipio` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`liberarsituacaoaluno` INT(11) NOT NULL DEFAULT '0',
+	`concluirmatriculasemfinanceiro` CHAR(1) NULL DEFAULT 'S' COMMENT 'S=conclui a matricula mesmo sem financeiro gerado;N=impede que o usuÃ¡rio conclua a matrÃ­cula sem que exista um plano de pagamento gerado' COLLATE 'latin1_swedish_ci',
+	`financeiroporha` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`codcursoreplicadode` INT(11) NULL DEFAULT NULL,
+	`dtreplicado` DATETIME NULL DEFAULT NULL,
+	`replicadopor` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dtcadastro` DATETIME NULL DEFAULT NULL,
+	`cadastradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`servicolc116` VARCHAR(10) NULL DEFAULT NULL COMMENT 'usado para gerar rps' COLLATE 'latin1_swedish_ci',
+	`classe` INT(11) NULL DEFAULT '1' COMMENT '1=BNCC / 2=ELETIVA / 3=ITINERARIO FORMATIVO',
+	`codigoemec` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`nomehabilitacao` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`modalidade` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`tituloconferido` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`grauconferido` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	PRIMARY KEY (`codcurso`) USING BTREE)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS `mig_seriecurso`;
+CREATE TABLE IF NOT EXISTS `mig_seriecurso` (
+	`codseriecurso` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`codcurso` INT(10) NOT NULL,
+	`codunidade` INT(10) UNSIGNED NOT NULL,
+	`codserie` INT(10) UNSIGNED NOT NULL,
+	`ordem` INT(10) UNSIGNED NULL DEFAULT NULL,
+	`ativo` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`concluinte` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dscserie` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',   -- dscserie
+	`resolucao` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`incluirhistorico` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`dscseriecompleta` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dscaprovado` VARCHAR(50) NULL DEFAULT 'APROVADO' COLLATE 'latin1_swedish_ci',
+	`dscreprovado` VARCHAR(50) NULL DEFAULT 'REPROVADO' COLLATE 'latin1_swedish_ci',
+	`dscrpp` VARCHAR(50) NULL DEFAULT 'RPP' COLLATE 'latin1_swedish_ci',
+	`codetapaensino2037` INT(2) NULL DEFAULT NULL COMMENT 'codigo da etapa de ensino da tabela etapaensinocenso',
+	`chminima` DECIMAL(10,2) NULL DEFAULT NULL,
+	`chmaxima` DECIMAL(10,2) NULL DEFAULT NULL,
+	`qtdaulasdia` INT(11) NULL DEFAULT NULL COMMENT 'quantidade de aulas por dia (urania)',
+	`diassemana` VARCHAR(20) NULL DEFAULT NULL COMMENT 'dias da semana que tem aula. ex: 2,3,4 = seg, ter,qua (urania)' COLLATE 'latin1_swedish_ci',
+	`codseriecursoreplicadode` INT(11) NULL DEFAULT NULL,
+	`replicadopor` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dtreplicado` DATETIME NULL DEFAULT NULL,
+	`dtcadastro` DATETIME NULL DEFAULT NULL,
+	`cadastradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_SerieID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_CursoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	PRIMARY KEY (`codseriecurso`) USING BTREE)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS `mig_turma`;
+CREATE TABLE IF NOT EXISTS `mig_turma` (
+	`codturma` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`dscturma` VARCHAR(10) NOT NULL COLLATE 'latin1_swedish_ci',
+	`turno` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`unidade` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`mig_periodo` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	PRIMARY KEY (`codturma`) USING BTREE,
+	INDEX `dscturma` (`dscturma`) USING BTREE)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `mig_configturma`;
+CREATE TABLE IF NOT EXISTS `mig_configturma` (
+  `codconfturma` int(11) NOT NULL AUTO_INCREMENT,
+  `codseriecurso` int(10) unsigned NOT NULL,
+  `dscturma` varchar(100) NOT NULL,
+  `sigla` varchar(10) DEFAULT NULL,
+  `dtinicio` date DEFAULT NULL,
+  `dtfim` date DEFAULT NULL,
+  `horaincio` time DEFAULT NULL,
+  `anoletivo` int(11) DEFAULT NULL,
+  `turno` char(1) DEFAULT NULL,
+  `cadastradopor` varchar(60) DEFAULT NULL,
+  `dtcadastro` datetime DEFAULT NULL,
+  `alteradopor` varchar(60) DEFAULT NULL,
+  `dtalteracao` datetime DEFAULT NULL,
+  `recetapas` char(1) DEFAULT NULL,
+  `recsemestre` char(1) DEFAULT NULL,
+  `numcasasdecimais` int(11) DEFAULT NULL,
+  `arredfinal` int(11) DEFAULT NULL,
+  `calculorec` char(1) DEFAULT NULL,
+  `numetapas` int(11) DEFAULT NULL,
+  `anularesultadofinal` char(1) DEFAULT NULL,
+  `tipoarredetapa` int(11) DEFAULT '0',
+  `suplementaretapa` char(1) DEFAULT NULL,
+  `rpp` char(1) DEFAULT NULL,
+  `profgerenciaravaliacao` char(1) DEFAULT 's',
+  `mediafinaldiv` int(11) DEFAULT NULL,
+  `limitarrecmedia` char(1) DEFAULT 's',
+  `limitarecfinalmedia` char(1) DEFAULT 'S',
+  `totalaprovacao` int(11) DEFAULT '60',
+  `tipoagrupmateriacomposta` char(1) DEFAULT 's',
+  `mediasemestreagrupado` char(1) DEFAULT 'n',
+  `avaliacaogrupo` char(1) DEFAULT 's' COMMENT 'define se as avaliações da escola são separadas em grupos. s = sim  /  n = nao.',
+  `codturma` int(10) unsigned NOT NULL,
+  `numvagas` smallint(3) DEFAULT NULL,
+  `dschorario` varchar(100) DEFAULT NULL,
+  `calculomediafinal` char(1) DEFAULT 'P',
+  `qtdmateriarpp` int(11) DEFAULT '0',
+  `calculomedia` char(1) NOT NULL DEFAULT 'P',
+  `formulamediaetapa` int(11) NOT NULL DEFAULT '1000',
+  `calculorecsemestre` int(11) DEFAULT '1000',
+  `aulahistorico` char(1) DEFAULT 'S' COMMENT 'S = contas as aulas registrada e leva para o historico  /  N = pega a carga horaria do professorturma e leva para o historico  /  C = calcula as aulas dadas * 50 / 60',
+  `anoletivosemestre` char(1) DEFAULT 'N',
+  `mediasemestre1` decimal(5,2) DEFAULT NULL,
+  `mediasemestre2` decimal(5,2) DEFAULT NULL,
+  `matriculaonline` char(1) DEFAULT 'N',
+  `totalaprovacaoposrecfinal` int(11) DEFAULT '60',
+  `totalaprovacaoposrecfinal2` int(11) DEFAULT '60',
+  `totalpontosanoletivo` decimal(5,2) DEFAULT NULL COMMENT 'Essa coluna guarda o valor do ano letivo da turma. porem ela foi inserida posterior a tabela. Ela esta nula na grande maioria das turmas. Para usa-la oriente o cliente a prenche-la.',
+  `analisafaltaspordisciplina` char(1) DEFAULT 'S',
+  `suplementarposrec` char(1) DEFAULT 'N',
+  `utilizanotatransferencia` char(1) DEFAULT 'S',
+  `setasituacaoalunoaolancarnota` char(1) DEFAULT 'N' COMMENT 'Determina se a situacao do aluno do curso nivel 4 é setada na hora que lancar a nota ou se é o padrão quando a turma finaliza.',
+  `periodorecuperacao` char(2) DEFAULT NULL COMMENT 'E1 - etapa1, E2 - etapa2 ,E3 - etapa3 ,E4 - etapa4, S1 - semestre1 ,S2 - semestre2, F1 - Final1, F2 - Final2',
+  `horafinal` time DEFAULT NULL,
+  `codinep` int(10) DEFAULT NULL,
+  `turmapararpp` char(1) DEFAULT NULL COMMENT 'Se a turma é especifica para dependencia (rpp)',
+  `turmaparaatividadeextra` char(1) DEFAULT NULL COMMENT 'Se a turma é especifica para atividades extras como (aulas extras, bale, futusal, artes, etc...)',
+  `turmaunificada8008` int(1) DEFAULT NULL COMMENT 'Usado quando for do curso de ED INF. Informa se a turma é unificada. 1-Creche/2-PreEscola',
+  `codcontrato` int(11) DEFAULT NULL,
+  `idcalendario` int(11) DEFAULT NULL,
+  `idconfigetapa` int(11) DEFAULT NULL,
+  `usuarioreplica` varchar(30) DEFAULT NULL,
+  `codconfturmaorigem` int(11) DEFAULT NULL,
+  `liberarsituacaoaluno` int(11) NOT NULL DEFAULT '0',
+  `dtlimitematonline` date DEFAULT NULL COMMENT 'se for nulo vai permitir a matricula online equanto estiver ativo, se preenchido so permitira matricula até a data limite',
+  `agendainfantil` char(1) DEFAULT 'N',
+  `codmodeloagendainfantil` int(11) DEFAULT NULL,
+  `diassemana` varchar(30) DEFAULT NULL COMMENT 'dias da semana de tem aula',
+  `qtdaulasdia` int(11) DEFAULT NULL COMMENT 'quantidade maxima de aulas por dia',
+  `dtlimitmatonline` date DEFAULT NULL,
+  `situacaomatonline` char(1) DEFAULT 'P',
+  `permiteassinarmatonline` varchar(7) DEFAULT '3' COMMENT '1 = ALUNO, 2 = RESP ACADÊ, 3= RESP FINAN, 4 = 2º RESP FINAN',
+  `codprofassistente` int(11) DEFAULT NULL,
+  `codprofatendimentoespecial` int(11) DEFAULT NULL,
+  `codturma_aux` varchar(50) DEFAULT NULL,
+  `concluirmatriculasemfinanceiro` char(1) DEFAULT 'S' COMMENT 'S=conclui a matricula mesmo sem financeiro gerado;N=impede que o usuário conclua a matrícula sem que exista um plano de pagamento gerado',
+  PRIMARY KEY (`codconfturma`) USING BTREE,
+  INDEX `codturma_aux` (`codturma_aux`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ 
+DROP TABLE IF EXISTS `mig_matricula`;
+CREATE TABLE IF NOT EXISTS `mig_matricula` (
+  `codmatricula` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `codaluno` int(10) unsigned NOT NULL,
+  `codseriecurso` int(11) DEFAULT NULL,
+  `codturma` int(10) unsigned NOT NULL,
+  `dtmatricula` date DEFAULT NULL,
+  `anoletivo` int(10) unsigned DEFAULT NULL,
+  `dtinicio` date DEFAULT NULL,
+  `dtfim` date DEFAULT NULL,
+  `cpfrespacademico` varchar(14) DEFAULT NULL,
+  `cpfrespfinanceiro` varchar(14) DEFAULT NULL,
+  `parentescorespacademico` varchar(20) DEFAULT NULL,
+  `parentescorespfinanceiro` varchar(20) DEFAULT NULL,
+  `rematricula` char(1) DEFAULT NULL,
+  `situacao` char(1) DEFAULT 'C',
+  `dtcadastro` datetime DEFAULT NULL,
+  `cadastradopor` varchar(60) DEFAULT NULL,
+  `qtdparcela` int(10) unsigned DEFAULT NULL,
+  `primeirovenc` date DEFAULT NULL,
+  `valoranuidade` decimal(15,2) DEFAULT NULL,
+  `codescolaorigem` int(11) DEFAULT NULL,
+  `dtalteracao` datetime DEFAULT NULL,
+  `alteradopor` varchar(60) DEFAULT NULL,
+  `desconto` decimal(5,2) DEFAULT NULL,
+  `bolsista` char(1) DEFAULT 'N',
+  `codbolsa` int(11) DEFAULT NULL,
+  `alunorespacademico` char(1) DEFAULT 'N',
+  `alunorespfinanceiro` char(1) DEFAULT 'N',
+  `valordiscipadicional` decimal(15,2) DEFAULT NULL,
+  `dtTransferencia` date DEFAULT NULL,
+  `motivotransf` varchar(1000) DEFAULT NULL,
+  `codcurso` int(11) DEFAULT NULL,
+  `codunidade` int(11) DEFAULT NULL,
+  `situacaoaluno` varchar(20) DEFAULT NULL,
+  `rematriculamassa` char(1) DEFAULT NULL,
+  `codconfturma` int(11) DEFAULT NULL,
+  `cpfrespfinanceiro2` varchar(14) DEFAULT NULL,
+  `parentescorespfinanceiro2` varchar(20) DEFAULT NULL,
+  `financeiroporcurso` char(1) DEFAULT 'N',
+  `integral` char(1) DEFAULT NULL,
+  `tecnicococomitante` char(1) DEFAULT 'N',
+  `matonline` char(1) DEFAULT 'N',
+  `codconffatura` int(11) DEFAULT NULL,
+  `intercambista` char(1) DEFAULT NULL COMMENT 'S - Sim / N- Nao',
+  `codturma_aux` varchar(50) DEFAULT NULL,
+  `AUX_codunidade` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`codmatricula`) USING BTREE,
+  INDEX `codturma_aux` (`codturma_aux`) USING BTREE);
+  
+  -- FINANCEIRO -- 
+  
+DROP TABLE IF EXISTS `mig_centroreceita`;
+  CREATE TABLE if not exists `mig_centroreceita` (
+  `codreceita` int(11) NOT NULL AUTO_INCREMENT,
+  `dscreceita` varchar(20) NOT NULL,
+  `ativo` char(1) DEFAULT 'S',
+  `multa` decimal(10,5) DEFAULT NULL,
+  `juros` decimal(10,5) DEFAULT NULL,
+  `codnaturezalanccaixa` int(10) unsigned DEFAULT NULL,
+  `carenciamulta` int(11) DEFAULT '0',
+  `carenciadesconto` int(11) DEFAULT '0',
+  `percentualdesconto` decimal(10,5) DEFAULT NULL,
+  `codcontacaixa` int(10) DEFAULT NULL,
+  `principal` char(1) DEFAULT 'N',
+  `jurossobre` char(1) DEFAULT 'P',
+  `msgfixaboleto` varchar(400) DEFAULT NULL,
+  `atualizajuros` char(1) NOT NULL DEFAULT 'D' COMMENT 'Indica se o ojuros sera atualizado diariamente ou mensalmente sendo D=diario, D=mensal',
+  `desconto2sobre` char(1) DEFAULT 'P',
+  `podeagrupar` char(1) DEFAULT 'N' COMMENT 's=permite agrupar na fatura; nao permite agrupar na fatura',
+  `conluimatriculaonline` char(1) DEFAULT 'N',
+  `cobrancaautomatica` char(1) DEFAULT 'S',
+  `cieloativo` char(1) DEFAULT 'N' COMMENT 'Indica se o sistema de pagamento online cielo estÃ¡ ativo',
+  `tipocobrancaiugu` char(1) DEFAULT 'B' COMMENT 'A=CARTAO E BOLETO; B=SOMENTE BOLETO; C-SOMENTE CARTAO',
+  `competencia` int(11) DEFAULT '0' COMMENT '0= mesmo mes do vencimento; 1=prÃ³ximo mÃªs do vencimento; -1 = mes anterior ao vencimento',
+  `opcional` char(1) DEFAULT 'N' COMMENT 'S = Informa que o centro de receita Ã© opcional, foi acrescentado para atender o matriculaOnline; N = Informa que Ã© obrigatÃ³rio',
+  `alteradopor` varchar(60) DEFAULT NULL,
+  `dtalteracao` datetime DEFAULT NULL,
+`codreceita_unificado` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+`dscreceita_aux` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+
+  PRIMARY KEY (`codreceita`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `mig_conta`;
+CREATE TABLE if not exists  `mig_conta` (
+  `codconta` int(10) NOT NULL AUTO_INCREMENT,
+  `dscconta` varchar(100) NOT NULL,
+  `codempresa` int(10) unsigned DEFAULT NULL,
+  `codbanco` smallint(6) DEFAULT NULL,
+  `agencia` varchar(10) DEFAULT NULL,
+  `numconta` varchar(20) DEFAULT NULL,
+  `numdigitoconta` varchar(2) DEFAULT NULL,
+  `chequeespecial` decimal(15,2) DEFAULT NULL,
+  `saldoinicio` decimal(15,2) DEFAULT NULL,
+  `tipoconta` char(1) DEFAULT NULL,
+  `bancaria` char(1) DEFAULT 'N',
+  `ativo` char(1) DEFAULT NULL,
+  `agenciacodcedante` varchar(30) DEFAULT NULL,
+  `carteira` varchar(5) DEFAULT NULL,
+  `localpagamento` varchar(100) DEFAULT NULL,
+  `codbancodigito` varchar(5) DEFAULT NULL,
+  `especie` varchar(20) DEFAULT NULL,
+  `carteiraboleto` varchar(30) DEFAULT NULL,
+  `digitoagencia` varchar(5) DEFAULT NULL,
+  `codcedente` varchar(20) DEFAULT NULL,
+  `codtransmissao` varchar(30) DEFAULT NULL,
+  `codmsg1` varchar(10) DEFAULT NULL COMMENT 'código opcional para utilizar no arquivo de remessa como instrucao de cobranca',
+  `codmsg2` varchar(10) DEFAULT NULL COMMENT 'código opcional para utilizar no arquivo de remessa como instrucao de cobranca',
+  `msgremessa` varchar(40) DEFAULT NULL,
+  `idcontafacil` int(11) DEFAULT NULL COMMENT 'identificador da conta facil no sistella',
+  `recbancoaposvenc` char(1) DEFAULT 'S',
+  `tipoarquivoremessa` int(11) DEFAULT NULL,
+  `tipoarquivoretorno` int(11) DEFAULT NULL,
+  `variacaocarteirabancobrasil` char(3) DEFAULT NULL COMMENT 'variacao da carteira banco do brasil. numero depois da barra do campo carteira boleto.',
+  `modalidadecarteirasicoob` char(2) DEFAULT NULL COMMENT 'Usado apenas no sicoob. 01 - Simples com registro / 02 - Simples sem registro',
+  `protestotitulo` char(2) DEFAULT NULL,
+  `postocooperativasicredi` char(2) DEFAULT NULL,
+  `diasparaprotesto` int(11) DEFAULT NULL,
+  `codoperacao` varchar(5) DEFAULT NULL,
+  `sequencialremessa` int(11) DEFAULT '1',
+  `homologada` char(1) DEFAULT NULL,
+  `dtmologacao` datetime DEFAULT NULL,
+  `tecnicohomologacao` varchar(30) DEFAULT NULL,
+  `instrucaoboleto` varchar(300) DEFAULT NULL,
+  `diasdevolucao` int(11) DEFAULT NULL,
+  `boletofacil` char(1) DEFAULT 'N',
+  `dtsaldoinicio` date DEFAULT NULL,
+  `conveniodda` varchar(10) DEFAULT NULL,
+  `diasnegativacao` int(11) DEFAULT NULL,
+  `emissaobanco` char(1) DEFAULT 'N' COMMENT 'S= banco que emite e entrega o boleto (implementado no bradesco para atender a um cliente)',
+  `codigoparabaixa` smallint(1) DEFAULT NULL,
+  `codmeiopagamento` int(11) DEFAULT NULL,
+  `codnaturezameiopagamento` int(11) DEFAULT NULL COMMENT 'codigo da tabela natureza - plano de contas - para cadastrar a despesa referente a tarifa',
+  `codcontavinculada` int(11) DEFAULT NULL,
+  `codnaturezatarifa` int(11) DEFAULT NULL,
+  `codnaturezaantecipacao` int(11) DEFAULT NULL,
+  `dataalteracao` date DEFAULT NULL,
+  `usuarioalteracao` varchar(30) DEFAULT NULL,
+  `versaolayoutremessa` SMALLINT(6) DEFAULT NULL,
+`AUX_titular` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+`AUX_BancoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+  PRIMARY KEY (`codconta`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `mig_contasreceber`;
+CREATE TABLE IF NOT EXISTS `mig_contasreceber` (
+  `codrec` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `codmatricula` int(10) unsigned DEFAULT NULL,
+  `parcela` int(10) unsigned DEFAULT NULL,
+  `totparcela` int(10) unsigned DEFAULT NULL,
+  `valorparcela` decimal(17,2) DEFAULT NULL,
+  `vencimento` date DEFAULT NULL,
+  `desconto` decimal(10,2) DEFAULT NULL,
+  `desconto_antesfatura` decimal(10,2) DEFAULT NULL,
+  `carenciadesconto` int(11) DEFAULT NULL,
+  `vencimentodesconto` date DEFAULT NULL,
+  `desconto2` decimal(10,2) DEFAULT NULL,
+  `desconto2_antesfatura` decimal(10,2) DEFAULT NULL,
+  `carenciadesconto2` int(11) DEFAULT NULL,
+  `vencimentodesconto2` date DEFAULT NULL,
+  `desconto3` decimal(10,2) DEFAULT NULL,
+  `desconto3_antesfatura` decimal(10,2) DEFAULT NULL,
+  `carenciadesconto3` int(11) DEFAULT NULL,
+  `vencimentodesconto3` date DEFAULT NULL,
+  `multa` decimal(10,2) unsigned DEFAULT NULL,
+  `juros` decimal(10,2) unsigned DEFAULT NULL,
+  `carenciamulta` int(11) DEFAULT NULL,
+  `vencimentomulta` date DEFAULT NULL,
+  `dtpagamento` date DEFAULT NULL,
+  `valorpago` decimal(20,2) unsigned DEFAULT NULL,
+  `recebidopor` varchar(30) DEFAULT NULL,
+  `codunidade` int(11) unsigned NOT NULL,
+  `anoletivo` int(11) NOT NULL,
+  `codreceita` int(11) NOT NULL,
+  `codcontapago` int(11) DEFAULT NULL,
+  `codaluno` int(11) NOT NULL,
+  `nossonumero` varchar(20) DEFAULT NULL,
+  `linha` varchar(60) DEFAULT NULL,
+  `barra` varchar(50) DEFAULT NULL,
+  `cobbancaria` char(1) DEFAULT NULL,
+  `codconta` int(11) DEFAULT NULL,
+  `incluidotabrps` char(1) DEFAULT NULL,
+  `codliquidacao` int(11) DEFAULT NULL,
+  `avulsa` char(1) DEFAULT NULL,
+  `cadastradopor` varchar(60) NOT NULL,
+`dtcadastro` DATETIME,  -- UPDATE MATRICULA TRAZENDO
+  `valorparcelaoriginal` decimal(17,2) DEFAULT NULL,
+  `descontooriginal` decimal(17,2) DEFAULT NULL,
+  `vencimentooriginal` date DEFAULT NULL,
+  `enviaremessa` char(1) DEFAULT 'N',
+  `codremessa` int(11) DEFAULT NULL,
+  `cobregistradabanco` char(1) DEFAULT NULL COMMENT 'confirmaÃ§Ã£o do registro da cobranca no banco',
+  `alteradopor` varchar(60) DEFAULT NULL,
+  `codnegociacao` int(11) DEFAULT NULL,
+  `valornegociado` decimal(10,2) DEFAULT NULL,
+  `abatimento` decimal(10,2) DEFAULT NULL,
+  `abatimento_antesfatura` decimal(10,2) DEFAULT NULL,
+  `valorbruto` decimal(10,2) NOT NULL,
+  `codcontrato` int(11) DEFAULT NULL,
+  `codfornecedor` int(11) DEFAULT NULL,
+  `outrasreceitas` char(1) DEFAULT NULL,
+  `descricao` varchar(100) DEFAULT NULL,
+  `codrecfatura` int(11) DEFAULT NULL,
+  `codlotefatura` int(11) DEFAULT NULL,
+  `CPF` varchar(14) NOT NULL,
+  `vencfatura` datetime DEFAULT NULL,
+  `vencfaturadesc` datetime DEFAULT NULL,
+  `vencfaturadesc2` datetime DEFAULT NULL,
+  `vencfaturamulta` datetime DEFAULT NULL,
+  `receitaoriginal` int(11) NOT NULL,
+  `codinscricaoevento` int(11) DEFAULT NULL,
+  `codremessaalteracao` int(11) DEFAULT NULL,
+  `faturaunica` char(1) DEFAULT NULL COMMENT 'S=SE PARCELA FOR UMA FATURA SEM FILHOS',
+  `outrosacrescimos` decimal(10,2) DEFAULT NULL,
+  `outrosabatimentos` decimal(10,2) DEFAULT NULL,
+  `valor` decimal(17,2) NOT NULL,
+  `codsolicitacao` int(11) DEFAULT NULL,
+  `carenciadesconto1original` int(11) DEFAULT NULL,
+  `carenciadesconto2original` int(11) DEFAULT NULL,
+  `carenciamultaoriginal` int(11) DEFAULT NULL,
+  `registroconfirmado` char(1) DEFAULT NULL,
+  `carenciadesconto3original` int(11) DEFAULT NULL,
+  `idfaturaiugu` varchar(100) DEFAULT NULL,
+  `statusparcela` varchar(20) DEFAULT NULL,
+  `boletourl` varchar(1000) DEFAULT NULL COMMENT 'Variável para guardar URL para pagamente de boleto, atualmente usado apenas para ISAAC',
+  `parcelaremessasicoob` smallint(4) DEFAULT '1',
+  `tipocobrancaiugu` char(1) DEFAULT 'B' COMMENT 'A=CARTAO E BOLETO; B=SOMENTE BOLETO; C-SOMENTE CARTAO',
+  `tipocobrancaiuguoriginal` char(1) DEFAULT NULL,
+  `dtcompetencia` date DEFAULT NULL,
+  `dtcompetencia_antesfatura` date DEFAULT NULL,
+  `cobrancaexterna` char(1) DEFAULT 'N',
+  `gabrielsetoucodunidade` datetime DEFAULT NULL,
+  `AUX_codpf` varchar(100) DEFAULT NULL,
+  `AUX_codpj` varchar(100) DEFAULT NULL,
+  `AUX_cpf` varchar(50) DEFAULT NULL,
+  `AUX_codunidade` varchar(50) DEFAULT NULL,
+  `AUX_databaixa` varchar(50) DEFAULT NULL,
+  `AUX_cartao` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`codrec`) USING BTREE,
+  INDEX `codaluno` (`codaluno`) USING BTREE,
+  INDEX `codreceita` (`codreceita`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- ACADÊMICO -- 
+
+DROP TABLE IF EXISTS `mig_acumulado`;
+CREATE TABLE IF NOT EXISTS `mig_acumulado` (
+  `CODACUMULADO` int(11) NOT NULL AUTO_INCREMENT,
+  `MATRICULA` int(11) NOT NULL,
+  `CODMATERIA` int(11) NOT NULL,
+	`ANO` INT(11), -- UPDATE MATRICULA TRAZENDO
+	`CODSERIE` INT(11), -- UPDATE MATRICULA TRAZENDO
+	`CODTURMA` INT(11), -- UPDATE MATRICULA TRAZENDO
+  `DTENTRADA` datetime DEFAULT NULL,
+  `MEDIA1` decimal(5,2) DEFAULT NULL,
+  `FALTAS1` int(11) DEFAULT NULL,
+  `MEDIA2` decimal(5,2) DEFAULT NULL,
+  `FALTAS2` int(11) DEFAULT NULL,
+  `MEDIA3` decimal(5,2) DEFAULT NULL,
+  `FALTAS3` int(11) DEFAULT NULL,
+  `MEDIA4` decimal(5,2) DEFAULT NULL,
+  `FALTAS4` int(11) DEFAULT NULL,
+  `RECSEMESTRE1` decimal(5,2) DEFAULT NULL,
+  `RECSEMESTRE2` decimal(5,2) DEFAULT NULL,
+  `RECFINAL` decimal(5,2) DEFAULT NULL,
+  `RECFINAL2` decimal(5,2) DEFAULT NULL,
+  `RECFINAL3` decimal(5,2) DEFAULT NULL,
+  `alterado` char(1) DEFAULT NULL,
+  `MEDSEM1` decimal(5,2) DEFAULT NULL,
+  `MEDSEM2` decimal(5,2) DEFAULT NULL,
+  `RESULTFINAL` decimal(5,2) DEFAULT NULL,
+  `TOTFALTAS` int(11) DEFAULT NULL,
+  `SITUACAO` char(1) DEFAULT NULL,
+  `codprofturma` int(11) DEFAULT NULL,
+  `rec1` decimal(5,2) DEFAULT NULL,
+  `rec2` decimal(5,2) DEFAULT NULL,
+  `rec3` decimal(5,2) DEFAULT NULL,
+  `rec4` decimal(5,2) DEFAULT NULL,
+  `soma1` decimal(5,2) DEFAULT NULL,
+  `soma2` decimal(5,2) DEFAULT NULL,
+  `soma3` decimal(5,2) DEFAULT NULL,
+  `soma4` decimal(5,2) DEFAULT NULL,
+  `somasemestre1` decimal(5,2) DEFAULT NULL,
+  `somasemestre2` decimal(5,2) DEFAULT NULL,
+  `CODPROFESSOR` int(11) DEFAULT NULL,
+  `USUARIO` varchar(60) DEFAULT NULL,
+  `codcalculoacumulado` int(11) DEFAULT NULL,
+  `dtvalidacaocalculo` datetime DEFAULT NULL,
+  `somaetapas` decimal(5,2) DEFAULT NULL,
+  `matriculadonawakke` tinyint(4) DEFAULT '0' COMMENT '0 = Não está matriculado na Wakke Class | 1 = Está matriculado na Wakke Class',
+  `codturma_AUX` varchar(50) DEFAULT NULL,
+  `SOMAETAPA_MIGRACAO` varchar(50) DEFAULT NULL,
+  `codconfturma_migracao` varchar(50) DEFAULT NULL,
+  `cargahoraria_migracao` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`CODACUMULADO`) USING BTREE);
+  
+-- ------------------------------------------------ --
+
+DELETE FROM mig_aluno;
+DELETE FROM mig_responsavel;
+DELETE FROM mig_funcionario;
+DELETE FROM mig_funcionariounidade;
+DELETE FROM mig_disciplina;
+DELETE FROM mig_seriecurso;
+DELETE FROM mig_turma;
+DELETE FROM mig_configturma;
+DELETE FROM mig_matricula;
+DELETE FROM mig_centroreceita;
+DELETE FROM mig_curso;
+DELETE FROM mig_conta;
+DELETE FROM mig_contasreceber;
+DELETE FROM mig_acumulado;
+
+ALTER TABLE mig_aluno AUTO_INCREMENT = 1;
+ALTER TABLE mig_curso AUTO_INCREMENT = 1;
+ALTER TABLE mig_responsavel AUTO_INCREMENT = 1;
+ALTER TABLE mig_funcionario AUTO_INCREMENT = 1;
+ALTER TABLE mig_funcionariounidade AUTO_INCREMENT = 1;
+ALTER TABLE mig_disciplina AUTO_INCREMENT = 1;
+ALTER TABLE mig_curso AUTO_INCREMENT = 1;
+ALTER TABLE mig_seriecurso AUTO_INCREMENT = 1;
+ALTER TABLE mig_turma AUTO_INCREMENT = 1;
+ALTER TABLE mig_configturma AUTO_INCREMENT = 1;
+ALTER TABLE mig_matricula AUTO_INCREMENT = 1;
+ALTER TABLE mig_centroreceita AUTO_INCREMENT = 1;
+ALTER TABLE mig_conta AUTO_INCREMENT = 1;
+ALTER TABLE mig_contasreceber AUTO_INCREMENT = 1;
+ALTER TABLE mig_acumulado AUTO_INCREMENT = 1;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -844,777 +1453,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
-      <yloc>64</yloc>
+      <xloc>144</xloc>
+      <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values Aluno</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>CODIGOALUNO</name>
-        <rename>codaluno</rename>
-      </field>
-      <field>
-        <name>NOME</name>
-        <rename>nomealuno</rename>
-      </field>
-      <field>
-        <name>ENDERECO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>BAIRRO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ESTADO</name>
-        <rename>AUX_UF</rename>
-      </field>
-      <field>
-        <name>CIDADE</name>
-        <rename>AUX_CIDADE</rename>
-      </field>
-      <field>
-        <name>CEP</name>
-        <rename/>
-      </field>
-      <field>
-        <name>TELRESIDENCIAL</name>
-        <rename>telresid</rename>
-      </field>
-      <field>
-        <name>CELULAR</name>
-        <rename/>
-      </field>
-      <field>
-        <name>EMAIL</name>
-        <rename/>
-      </field>
-      <field>
-        <name>SEXO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>DTNASCIMENTO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>NATURALIDADE</name>
-        <rename/>
-      </field>
-      <field>
-        <name>RG</name>
-        <rename/>
-      </field>
-      <field>
-        <name>RGDATAEMISSAO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CPF</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CERTIDAONUMERO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>PAI</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CPFPAI</name>
-        <rename/>
-      </field>
-      <field>
-        <name>RGPAI</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CELULARPAI</name>
-        <rename/>
-      </field>
-      <field>
-        <name>EMAILPAI</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ENDERECOPAI</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CEPPAI</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CIDADEPAI</name>
-        <rename>AUX_CIDADEPAI</rename>
-      </field>
-      <field>
-        <name>ESTADOPAI</name>
-        <rename>AUX_UFPAI</rename>
-      </field>
-      <field>
-        <name>BAIRROPAI</name>
-        <rename/>
-      </field>
-      <field>
-        <name>MAE</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CPFMAE</name>
-        <rename/>
-      </field>
-      <field>
-        <name>RGMAE</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CELULARMAE</name>
-        <rename/>
-      </field>
-      <field>
-        <name>EMAILMAE</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ENDERECOMAE</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CEPMAE</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ESTADOMAE</name>
-        <rename>AUX_UFMAE</rename>
-      </field>
-      <field>
-        <name>CIDADEMAE</name>
-        <rename>AUX_CIDADEMAE</rename>
-      </field>
-      <field>
-        <name>BAIRROMAE</name>
-        <rename/>
-      </field>
-      <field>
-        <name>RA</name>
-        <rename/>
-      </field>
-      <field>
-        <name>OBS</name>
-        <rename/>
-      </field>
-      <field>
-        <name>OBSFINANCEIRO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>OBSACADEMICO</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>XLSX aluno</name>
-    <type>ExcelInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <header>Y</header>
-    <noempty>Y</noempty>
-    <stoponempty>N</stoponempty>
-    <filefield/>
-    <sheetfield/>
-    <sheetrownumfield/>
-    <rownumfield/>
-    <sheetfield/>
-    <filefield/>
-    <limit>0</limit>
-    <encoding/>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <accept_filenames>N</accept_filenames>
-    <accept_field/>
-    <accept_stepname/>
-    <file>
-      <name>${v_diretorio-backup}\Migracao-Basica.xlsx</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>CODIGOALUNO</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>NOME</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ENDERECO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>BAIRRO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ESTADO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CIDADE</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CEP</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>TELRESIDENCIAL</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CELULAR</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>EMAIL</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>SEXO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>DTNASCIMENTO</name>
-        <type>Date</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>NATURALIDADE</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>RG</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>RGDATAEMISSAO</name>
-        <type>Date</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CPF</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CERTIDAONUMERO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>PAI</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CPFPAI</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>RGPAI</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CELULARPAI</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>EMAILPAI</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ENDERECOPAI</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CEPPAI</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CIDADEPAI</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ESTADOPAI</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>BAIRROPAI</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>MAE</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CPFMAE</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>RGMAE</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CELULARMAE</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>EMAILMAE</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ENDERECOMAE</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CEPMAE</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ESTADOMAE</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CIDADEMAE</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>BAIRROMAE</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>RA</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>OBS</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>OBSFINANCEIRO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>OBSACADEMICO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-    </fields>
-    <sheets>
-      <sheet>
-        <name>ALUNOS</name>
-        <startrow>0</startrow>
-        <startcol>0</startcol>
-      </sheet>
-    </sheets>
-    <strict_types>N</strict_types>
-    <error_ignored>N</error_ignored>
-    <error_line_skipped>N</error_line_skipped>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <spreadsheet_type>POI</spreadsheet_type>
-    <password>Encrypted </password>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>160</xloc>
-      <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy (do nothing) 2 2</name>
+    <name>Dummy (do nothing)</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -1633,14 +1478,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>848</xloc>
+      <xloc>352</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Insert mig_disciplina</name>
-    <type>TableOutput</type>
+    <name>Table input</name>
+    <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1650,192 +1495,259 @@
       <schema_name/>
     </partitioning>
     <connection>RDS</connection>
-    <schema/>
-    <table>mig_disciplina</table>
-    <commit>50000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>coddisciplina</column_name>
-        <stream_name>coddisciplina</stream_name>
-      </field>
-      <field>
-        <column_name>dscdisciplina</column_name>
-        <stream_name>dscdisciplina</stream_name>
-      </field>
-      <field>
-        <column_name>dscabreviada</column_name>
-        <stream_name>dscabreviada</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>174</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values disciplina</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>CODIGODISCIPLINA</name>
-        <rename>coddisciplina</rename>
-      </field>
-      <field>
-        <name>NOME</name>
-        <rename>dscdisciplina</rename>
-      </field>
-      <field>
-        <name>ABREVIACAO</name>
-        <rename>dscabreviada</rename>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>174</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>XLSX disciplina</name>
-    <type>ExcelInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <header>Y</header>
-    <noempty>Y</noempty>
-    <stoponempty>N</stoponempty>
-    <filefield/>
-    <sheetfield/>
-    <sheetrownumfield/>
-    <rownumfield/>
-    <sheetfield/>
-    <filefield/>
+    <sql>/* 
+-- MIG_ALUNO
+
+CREATE TABLE `mig_aluno` (
+	`codaluno` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`nomealuno` VARCHAR(100) NOT NULL COLLATE 'latin1_swedish_ci',
+	`endereco` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`bairro` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`uf` SMALLINT(6) NULL DEFAULT NULL,
+	`cidade` INT(11) NULL DEFAULT NULL,
+	`cep` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`telresid` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`celular` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`email` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`sexo` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dtnascimento` DATE NULL DEFAULT NULL,
+	`ufnaturalidade` SMALLINT(6) UNSIGNED NULL DEFAULT NULL,
+	`cidadenaturalidade` SMALLINT(6) UNSIGNED NULL DEFAULT NULL,
+	`cor` VARCHAR(13) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`pai` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`trabpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`profpai` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`telpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`celularpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`emailpai` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`mae` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`trabmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`profmae` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`telmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`celularmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`emailmae` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`obs` VARCHAR(5000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cpf` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rg` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`certidaonumero` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codsocio` INT(11) NULL DEFAULT NULL,
+	`enderecopai` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`bairropai` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codcidadepai` INT(11) NULL DEFAULT NULL,
+	`codufpai` SMALLINT(6) NULL DEFAULT NULL,
+	`ceppai` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`enderecomae` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`bairromae` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cepmae` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codufmae` SMALLINT(6) NULL DEFAULT NULL,
+	`codcidademae` INT(11) NULL DEFAULT NULL,
+	`naturalidade` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cpfpai` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rgpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cpfmae` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rgmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rgdataemissao` DATE NULL DEFAULT NULL COMMENT 'Data de Emissao RG',
+	`obsfinanceiro` VARCHAR(3000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`obsacademico` VARCHAR(3000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`ra` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_UF` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_CIDADE` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_CIDADEPAI` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_UFPAI` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_UFMAE` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_CIDADEMAE` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codaluno_unificado` INT(11) NULL DEFAULT NULL,
+	PRIMARY KEY (`codaluno`) USING BTREE,
+	INDEX `AUX_UF` (`AUX_UF`) USING BTREE,
+	INDEX `AUX_CIDADE` (`AUX_CIDADE`) USING BTREE,
+	INDEX `AUX_CIDADEPAI` (`AUX_CIDADEPAI`) USING BTREE,
+	INDEX `AUX_UFPAI` (`AUX_UFPAI`) USING BTREE,
+	INDEX `AUX_UFMAE` (`AUX_UFMAE`) USING BTREE,
+	INDEX `AUX_CIDADEMAE` (`AUX_CIDADEMAE`) USING BTREE,
+	INDEX `codaluno_unificado` (`codaluno_unificado`) USING BTREE,
+	INDEX `nomealuno` (`nomealuno`) USING BTREE,
+	INDEX `dtnascimento` (`dtnascimento`) USING BTREE
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+
+-- ----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+-- MIG_ACUMULADO
+
+CREATE TABLE `mig_acumulado` (
+	`CODACUMULADO` INT(11) NOT NULL AUTO_INCREMENT,
+	`MATRICULA` INT(11) NOT NULL,
+	`CODMATERIA` INT(11) NOT NULL,
+	`ANO` INT(11), -- UPDATE MATRICULA TRAZENDO
+	`CODSERIE` INT(11), -- UPDATE MATRICULA TRAZENDO
+	`CODTURMA` INT(11), -- UPDATE MATRICULA TRAZENDO
+	`DTENTRADA` DATETIME NULL DEFAULT NULL,
+	`MEDIA1` DECIMAL(5,2) NULL DEFAULT NULL,
+	`FALTAS1` INT(11) NULL DEFAULT NULL,
+	`MEDIA2` DECIMAL(5,2) NULL DEFAULT NULL,
+	`FALTAS2` INT(11) NULL DEFAULT NULL,
+	`MEDIA3` DECIMAL(5,2) NULL DEFAULT NULL,
+	`FALTAS3` INT(11) NULL DEFAULT NULL,
+	`MEDIA4` DECIMAL(5,2) NULL DEFAULT NULL,
+	`FALTAS4` INT(11) NULL DEFAULT NULL,
+	`RECSEMESTRE1` DECIMAL(5,2) NULL DEFAULT NULL,
+	`RECSEMESTRE2` DECIMAL(5,2) NULL DEFAULT NULL,
+	`RECFINAL` DECIMAL(5,2) NULL DEFAULT NULL,
+	`RECFINAL2` DECIMAL(5,2) NULL DEFAULT NULL,
+	`RECFINAL3` DECIMAL(5,2) NULL DEFAULT NULL,
+	`alterado` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`MEDSEM1` DECIMAL(5,2) NULL DEFAULT NULL,
+	`MEDSEM2` DECIMAL(5,2) NULL DEFAULT NULL,
+	`RESULTFINAL` DECIMAL(5,2) NULL DEFAULT NULL,
+	`TOTFALTAS` INT(11) NULL DEFAULT NULL,
+	`SITUACAO` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codprofturma` INT(11) NULL DEFAULT NULL,
+	`rec1` DECIMAL(5,2) NULL DEFAULT NULL,
+	`rec2` DECIMAL(5,2) NULL DEFAULT NULL,
+	`rec3` DECIMAL(5,2) NULL DEFAULT NULL,
+	`rec4` DECIMAL(5,2) NULL DEFAULT NULL,
+	`soma1` DECIMAL(5,2) NULL DEFAULT NULL,
+	`soma2` DECIMAL(5,2) NULL DEFAULT NULL,
+	`soma3` DECIMAL(5,2) NULL DEFAULT NULL,
+	`soma4` DECIMAL(5,2) NULL DEFAULT NULL,
+	`somasemestre1` DECIMAL(5,2) NULL DEFAULT NULL,
+	`somasemestre2` DECIMAL(5,2) NULL DEFAULT NULL,
+	`CODPROFESSOR` INT(11) NULL DEFAULT NULL,
+	`USUARIO` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codcalculoacumulado` INT(11) NULL DEFAULT NULL,
+	`dtvalidacaocalculo` DATETIME NULL DEFAULT NULL,
+	`somaetapas` DECIMAL(5,2) NULL DEFAULT NULL,
+	`matriculadonawakke` TINYINT(4) NULL DEFAULT '0' COMMENT '0 = Não está matriculado na Wakke Class | 1 = Está matriculado na Wakke Class',
+	`codturma_AUX` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`SOMAETAPA_MIGRACAO` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codconfturma_migracao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cargahoraria_migracao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	PRIMARY KEY (`CODACUMULADO`) USING BTREE
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+; 
+
+
+-- MIG_CONTASRECEBER
+
+CREATE TABLE `mig_contasreceber` (
+	`codrec` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`codmatricula` INT(10) UNSIGNED NULL DEFAULT NULL,
+	`parcela` INT(10) UNSIGNED NULL DEFAULT NULL,
+	`totparcela` INT(10) UNSIGNED NULL DEFAULT NULL,
+	`valorparcela` DECIMAL(17,2) NULL DEFAULT NULL,
+	`vencimento` DATE NULL DEFAULT NULL,
+	`desconto` DECIMAL(10,2) NULL DEFAULT NULL,
+	`desconto_antesfatura` DECIMAL(10,2) NULL DEFAULT NULL,
+	`carenciadesconto` INT(11) NULL DEFAULT NULL,
+	`vencimentodesconto` DATE NULL DEFAULT NULL,
+	`desconto2` DECIMAL(10,2) NULL DEFAULT NULL,
+	`desconto2_antesfatura` DECIMAL(10,2) NULL DEFAULT NULL,
+	`carenciadesconto2` INT(11) NULL DEFAULT NULL,
+	`vencimentodesconto2` DATE NULL DEFAULT NULL,
+	`desconto3` DECIMAL(10,2) NULL DEFAULT NULL,
+	`desconto3_antesfatura` DECIMAL(10,2) NULL DEFAULT NULL,
+	`carenciadesconto3` INT(11) NULL DEFAULT NULL,
+	`vencimentodesconto3` DATE NULL DEFAULT NULL,
+	`multa` DECIMAL(10,2) UNSIGNED NULL DEFAULT NULL,
+	`juros` DECIMAL(10,2) UNSIGNED NULL DEFAULT NULL,
+	`carenciamulta` INT(11) NULL DEFAULT NULL,
+	`vencimentomulta` DATE NULL DEFAULT NULL,
+	`dtpagamento` DATE NULL DEFAULT NULL,
+	`valorpago` DECIMAL(20,2) UNSIGNED NULL DEFAULT NULL,
+	`recebidopor` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codunidade` INT(11) UNSIGNED NOT NULL,
+	`anoletivo` INT(11) NOT NULL,
+	`codreceita` INT(11) NOT NULL,
+	`codcontapago` INT(11) NULL DEFAULT NULL,
+	`codaluno` INT(11) NOT NULL,
+	`nossonumero` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`linha` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`barra` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cobbancaria` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codconta` INT(11) NULL DEFAULT NULL,
+	`incluidotabrps` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codliquidacao` INT(11) NULL DEFAULT NULL,
+	`avulsa` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cadastradopor` VARCHAR(60) NOT NULL COLLATE 'latin1_swedish_ci',
+	`dtcadastro` DATETIME,  -- UPDATE MATRICULA TRAZENDO
+	`valorparcelaoriginal` DECIMAL(17,2) NULL DEFAULT NULL,
+	`descontooriginal` DECIMAL(17,2) NULL DEFAULT NULL,
+	`vencimentooriginal` DATE NULL DEFAULT NULL,
+	`enviaremessa` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`codremessa` INT(11) NULL DEFAULT NULL,
+	`cobregistradabanco` CHAR(1) NULL DEFAULT NULL COMMENT 'confirmaÃ§Ã£o do registro da cobranca no banco' COLLATE 'latin1_swedish_ci',
+	`alteradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codnegociacao` INT(11) NULL DEFAULT NULL,
+	`valornegociado` DECIMAL(10,2) NULL DEFAULT NULL,
+	`abatimento` DECIMAL(10,2) NULL DEFAULT NULL,
+	`abatimento_antesfatura` DECIMAL(10,2) NULL DEFAULT NULL,
+	`valorbruto` DECIMAL(10,2) NOT NULL,
+	`codcontrato` INT(11) NULL DEFAULT NULL,
+	`codfornecedor` INT(11) NULL DEFAULT NULL,
+	`outrasreceitas` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`descricao` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codrecfatura` INT(11) NULL DEFAULT NULL,
+	`codlotefatura` INT(11) NULL DEFAULT NULL,
+	`CPF` VARCHAR(14) NOT NULL COLLATE 'latin1_swedish_ci',
+	`vencfatura` DATETIME NULL DEFAULT NULL,
+	`vencfaturadesc` DATETIME NULL DEFAULT NULL,
+	`vencfaturadesc2` DATETIME NULL DEFAULT NULL,
+	`vencfaturamulta` DATETIME NULL DEFAULT NULL,
+	`receitaoriginal` INT(11) NOT NULL,
+	`codinscricaoevento` INT(11) NULL DEFAULT NULL,
+	`codremessaalteracao` INT(11) NULL DEFAULT NULL,
+	`faturaunica` CHAR(1) NULL DEFAULT NULL COMMENT 'S=SE PARCELA FOR UMA FATURA SEM FILHOS' COLLATE 'latin1_swedish_ci',
+	`outrosacrescimos` DECIMAL(10,2) NULL DEFAULT NULL,
+	`outrosabatimentos` DECIMAL(10,2) NULL DEFAULT NULL,
+	`valor` DECIMAL(17,2) NOT NULL,
+	`codsolicitacao` INT(11) NULL DEFAULT NULL,
+	`carenciadesconto1original` INT(11) NULL DEFAULT NULL,
+	`carenciadesconto2original` INT(11) NULL DEFAULT NULL,
+	`carenciamultaoriginal` INT(11) NULL DEFAULT NULL,
+	`registroconfirmado` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`carenciadesconto3original` INT(11) NULL DEFAULT NULL,
+	`idfaturaiugu` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`statusparcela` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`boletourl` VARCHAR(1000) NULL DEFAULT NULL COMMENT 'Variável para guardar URL para pagamente de boleto, atualmente usado apenas para ISAAC' COLLATE 'latin1_swedish_ci',
+	`parcelaremessasicoob` SMALLINT(4) NULL DEFAULT '1',
+	`tipocobrancaiugu` CHAR(1) NULL DEFAULT 'B' COMMENT 'A=CARTAO E BOLETO; B=SOMENTE BOLETO; C-SOMENTE CARTAO' COLLATE 'latin1_swedish_ci',
+	`tipocobrancaiuguoriginal` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dtcompetencia` DATE NULL DEFAULT NULL,
+	`dtcompetencia_antesfatura` DATE NULL DEFAULT NULL,
+	`cobrancaexterna` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`gabrielsetoucodunidade` DATETIME NULL DEFAULT NULL,
+	`AUX_codpf` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_codpj` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_cpf` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_codunidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_databaixa` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_cartao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`numero_parcela` INT(11) NULL DEFAULT NULL,
+	PRIMARY KEY (`codrec`) USING BTREE,
+	INDEX `codaluno` (`codaluno`) USING BTREE,
+	INDEX `codreceita` (`codreceita`) USING BTREE
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+*/</sql>
     <limit>0</limit>
-    <encoding/>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <accept_filenames>N</accept_filenames>
-    <accept_field/>
-    <accept_stepname/>
-    <file>
-      <name>${v_diretorio-backup}\Migracao-Basica.xlsx</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>CODIGODISCIPLINA</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>NOME</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ABREVIACAO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-    </fields>
-    <sheets>
-      <sheet>
-        <name>DISCIPLINAS</name>
-        <startrow>0</startrow>
-        <startcol>0</startcol>
-      </sheet>
-    </sheets>
-    <strict_types>N</strict_types>
-    <error_ignored>N</error_ignored>
-    <error_line_skipped>N</error_line_skipped>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <spreadsheet_type>POI</spreadsheet_type>
-    <password>Encrypted </password>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1845,2808 +1757,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>160</xloc>
-      <yloc>174</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Insert mig_funcionario</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>RDS</connection>
-    <schema/>
-    <table>mig_funcionario</table>
-    <commit>50000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>funcodigo</column_name>
-        <stream_name>funcodigo</stream_name>
-      </field>
-      <field>
-        <column_name>NOME</column_name>
-        <stream_name>NOME</stream_name>
-      </field>
-      <field>
-        <column_name>sexo</column_name>
-        <stream_name>sexo</stream_name>
-      </field>
-      <field>
-        <column_name>DTNASCIMENTO</column_name>
-        <stream_name>DTNASCIMENTO</stream_name>
-      </field>
-      <field>
-        <column_name>ENDERECO</column_name>
-        <stream_name>ENDERECO</stream_name>
-      </field>
-      <field>
-        <column_name>BAIRRO</column_name>
-        <stream_name>BAIRRO</stream_name>
-      </field>
-      <field>
-        <column_name>CIDADE</column_name>
-        <stream_name>CIDADE</stream_name>
-      </field>
-      <field>
-        <column_name>uf</column_name>
-        <stream_name>uf</stream_name>
-      </field>
-      <field>
-        <column_name>CEP</column_name>
-        <stream_name>CEP</stream_name>
-      </field>
-      <field>
-        <column_name>foneresid</column_name>
-        <stream_name>foneresid</stream_name>
-      </field>
-      <field>
-        <column_name>CELULAR</column_name>
-        <stream_name>CELULAR</stream_name>
-      </field>
-      <field>
-        <column_name>EMAIL</column_name>
-        <stream_name>EMAIL</stream_name>
-      </field>
-      <field>
-        <column_name>RG</column_name>
-        <stream_name>RG</stream_name>
-      </field>
-      <field>
-        <column_name>CPF</column_name>
-        <stream_name>CPF</stream_name>
-      </field>
-      <field>
-        <column_name>DTADMISSAO</column_name>
-        <stream_name>DTADMISSAO</stream_name>
-      </field>
-      <field>
-        <column_name>ATIVO</column_name>
-        <stream_name>ATIVO</stream_name>
-      </field>
-      <field>
-        <column_name>CARTASSINADA</column_name>
-        <stream_name>CARTASSINADA</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>608</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values funcionario</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>CODIGOFUNCIONARIO</name>
-        <rename>funcodigo</rename>
-      </field>
-      <field>
-        <name>NOME</name>
-        <rename/>
-      </field>
-      <field>
-        <name>SEXOFUNCIONARIO</name>
-        <rename>sexo</rename>
-      </field>
-      <field>
-        <name>DTNASCIMENTO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ENDERECO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>BAIRRO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CIDADE</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ESTADO</name>
-        <rename>uf</rename>
-      </field>
-      <field>
-        <name>CEP</name>
-        <rename/>
-      </field>
-      <field>
-        <name>TELRESIDENCIAL</name>
-        <rename>foneresid</rename>
-      </field>
-      <field>
-        <name>CELULAR</name>
-        <rename/>
-      </field>
-      <field>
-        <name>EMAIL</name>
-        <rename/>
-      </field>
-      <field>
-        <name>RG</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CPF</name>
-        <rename/>
-      </field>
-      <field>
-        <name>DTADMISSAO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ATIVO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CARTASSINADA</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>XLSX funcionario</name>
-    <type>ExcelInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <header>Y</header>
-    <noempty>Y</noempty>
-    <stoponempty>N</stoponempty>
-    <filefield/>
-    <sheetfield/>
-    <sheetrownumfield/>
-    <rownumfield/>
-    <sheetfield/>
-    <filefield/>
-    <limit>0</limit>
-    <encoding/>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <accept_filenames>N</accept_filenames>
-    <accept_field/>
-    <accept_stepname/>
-    <file>
-      <name>${v_diretorio-backup}\Migracao-Basica.xlsx</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>CODIGOFUNCIONARIO</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>NOME</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>SEXOFUNCIONARIO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>DTNASCIMENTO</name>
-        <type>Date</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ENDERECO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>BAIRRO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CIDADE</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ESTADO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CEP</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>TELRESIDENCIAL</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CELULAR</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>EMAIL</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>RG</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CPF</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>DTADMISSAO</name>
-        <type>Date</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ATIVO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CARTASSINADA</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-    </fields>
-    <sheets>
-      <sheet>
-        <name>FUNCIONARIOS</name>
-        <startrow>0</startrow>
-        <startcol>0</startcol>
-      </sheet>
-    </sheets>
-    <strict_types>N</strict_types>
-    <error_ignored>N</error_ignored>
-    <error_line_skipped>N</error_line_skipped>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <spreadsheet_type>POI</spreadsheet_type>
-    <password>Encrypted </password>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>160</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Strings cut</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>ATIVO</in_stream_name>
-        <out_stream_name/>
-        <cut_from>0</cut_from>
-        <cut_to>1</cut_to>
-      </field>
-      <field>
-        <in_stream_name>CARTASSINADA</in_stream_name>
-        <out_stream_name/>
-        <cut_from>0</cut_from>
-        <cut_to>1</cut_to>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Insert mig_curso</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>RDS</connection>
-    <schema/>
-    <table>mig_curso</table>
-    <commit>50000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>codcurso</column_name>
-        <stream_name>codcurso</stream_name>
-      </field>
-      <field>
-        <column_name>dsccurso</column_name>
-        <stream_name>dsccurso</stream_name>
-      </field>
-      <field>
-        <column_name>dscabreviada</column_name>
-        <stream_name>dscabreviada</stream_name>
-      </field>
-      <field>
-        <column_name>CARGAHORARIA</column_name>
-        <stream_name>CARGAHORARIA</stream_name>
-      </field>
-      <field>
-        <column_name>ATIVO</column_name>
-        <stream_name>ATIVO</stream_name>
-      </field>
-      <field>
-        <column_name>codnivel</column_name>
-        <stream_name>codnivel</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values curso</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>CODIGOCURSO</name>
-        <rename>codcurso</rename>
-      </field>
-      <field>
-        <name>NOME</name>
-        <rename>dsccurso</rename>
-      </field>
-      <field>
-        <name>ABREVIACAO</name>
-        <rename>dscabreviada</rename>
-      </field>
-      <field>
-        <name>CARGAHORARIA</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ATIVO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>NIVELCURSO</name>
-        <rename>codnivel</rename>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>XLSX curso</name>
-    <type>ExcelInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <header>Y</header>
-    <noempty>Y</noempty>
-    <stoponempty>N</stoponempty>
-    <filefield/>
-    <sheetfield/>
-    <sheetrownumfield/>
-    <rownumfield/>
-    <sheetfield/>
-    <filefield/>
-    <limit>0</limit>
-    <encoding/>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <accept_filenames>N</accept_filenames>
-    <accept_field/>
-    <accept_stepname/>
-    <file>
-      <name>${v_diretorio-backup}\Migracao-Basica.xlsx</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>CODIGOCURSO</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>NOME</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ABREVIACAO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CARGAHORARIA</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ATIVO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>NIVELCURSO</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-    </fields>
-    <sheets>
-      <sheet>
-        <name>CURSOS</name>
-        <startrow>0</startrow>
-        <startcol>0</startcol>
-      </sheet>
-    </sheets>
-    <strict_types>N</strict_types>
-    <error_ignored>N</error_ignored>
-    <error_line_skipped>N</error_line_skipped>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <spreadsheet_type>POI</spreadsheet_type>
-    <password>Encrypted </password>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>160</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Strings cut 2</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>ATIVO</in_stream_name>
-        <out_stream_name/>
-        <cut_from>0</cut_from>
-        <cut_to>1</cut_to>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Insert mig_seriecurso</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>RDS</connection>
-    <schema/>
-    <table>mig_seriecurso</table>
-    <commit>50000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>codseriecurso</column_name>
-        <stream_name>codseriecurso</stream_name>
-      </field>
-      <field>
-        <column_name>codcurso</column_name>
-        <stream_name>codcurso</stream_name>
-      </field>
-      <field>
-        <column_name>codunidade</column_name>
-        <stream_name>codunidade</stream_name>
-      </field>
-      <field>
-        <column_name>ORDEM</column_name>
-        <stream_name>ORDEM</stream_name>
-      </field>
-      <field>
-        <column_name>ATIVO</column_name>
-        <stream_name>ATIVO</stream_name>
-      </field>
-      <field>
-        <column_name>CONCLUINTE</column_name>
-        <stream_name>CONCLUINTE</stream_name>
-      </field>
-      <field>
-        <column_name>DSCSERIE</column_name>
-        <stream_name>DSCSERIE</stream_name>
-      </field>
-      <field>
-        <column_name>codserie</column_name>
-        <stream_name>codserie</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>464</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values seriecurso</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>CODIGOSERIE</name>
-        <rename>codseriecurso</rename>
-      </field>
-      <field>
-        <name>CODIGOCURSO</name>
-        <rename>codcurso</rename>
-      </field>
-      <field>
-        <name>CODIGOUNIDADE</name>
-        <rename>codunidade</rename>
-      </field>
-      <field>
-        <name>ORDEM</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ATIVO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CONCLUINTE</name>
-        <rename/>
-      </field>
-      <field>
-        <name>DSCSERIE</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CODIGOSERIE</name>
-        <rename>codserie</rename>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>464</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>XLSX seriecurso</name>
-    <type>ExcelInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <header>Y</header>
-    <noempty>Y</noempty>
-    <stoponempty>N</stoponempty>
-    <filefield/>
-    <sheetfield/>
-    <sheetrownumfield/>
-    <rownumfield/>
-    <sheetfield/>
-    <filefield/>
-    <limit>0</limit>
-    <encoding/>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <accept_filenames>N</accept_filenames>
-    <accept_field/>
-    <accept_stepname/>
-    <file>
-      <name>${v_diretorio-backup}\Migracao-Basica.xlsx</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>CODIGOSERIE</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CODIGOCURSO</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CODIGOUNIDADE</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ORDEM</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ATIVO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CONCLUINTE</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>DSCSERIE</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-    </fields>
-    <sheets>
-      <sheet>
-        <name>SERIES DOS CURSOS</name>
-        <startrow>0</startrow>
-        <startcol>0</startcol>
-      </sheet>
-    </sheets>
-    <strict_types>N</strict_types>
-    <error_ignored>N</error_ignored>
-    <error_line_skipped>N</error_line_skipped>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <spreadsheet_type>POI</spreadsheet_type>
-    <password>Encrypted </password>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>160</xloc>
-      <yloc>464</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Strings cut 2 2</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>ATIVO</in_stream_name>
-        <out_stream_name/>
-        <cut_from>0</cut_from>
-        <cut_to>1</cut_to>
-      </field>
-      <field>
-        <in_stream_name>CONCLUINTE</in_stream_name>
-        <out_stream_name/>
-        <cut_from>0</cut_from>
-        <cut_to>1</cut_to>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>464</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Insert mig_configturma</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>RDS</connection>
-    <schema/>
-    <table>mig_configturma</table>
-    <commit>50000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>codconfturma</column_name>
-        <stream_name>codconfturma</stream_name>
-      </field>
-      <field>
-        <column_name>codseriecurso</column_name>
-        <stream_name>codseriecurso</stream_name>
-      </field>
-      <field>
-        <column_name>ANOLETIVO</column_name>
-        <stream_name>ANOLETIVO</stream_name>
-      </field>
-      <field>
-        <column_name>DSCTURMA</column_name>
-        <stream_name>DSCTURMA</stream_name>
-      </field>
-      <field>
-        <column_name>SIGLA</column_name>
-        <stream_name>SIGLA</stream_name>
-      </field>
-      <field>
-        <column_name>DTINICIO</column_name>
-        <stream_name>DTINICIO</stream_name>
-      </field>
-      <field>
-        <column_name>DTFIM</column_name>
-        <stream_name>DTFIM</stream_name>
-      </field>
-      <field>
-        <column_name>TURNO</column_name>
-        <stream_name>TURNO</stream_name>
-      </field>
-      <field>
-        <column_name>codturma</column_name>
-        <stream_name>codturma</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>560</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values configturma</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>CODIGOTURMA</name>
-        <rename>codconfturma</rename>
-      </field>
-      <field>
-        <name>CODIGOSERIE</name>
-        <rename>codseriecurso</rename>
-      </field>
-      <field>
-        <name>ANOLETIVO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>DSCTURMA</name>
-        <rename/>
-      </field>
-      <field>
-        <name>SIGLA</name>
-        <rename/>
-      </field>
-      <field>
-        <name>DTINICIO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>DTFIM</name>
-        <rename/>
-      </field>
-      <field>
-        <name>TURNO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CODIGOTURMA</name>
-        <rename>codturma</rename>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>560</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>XLSX configturma</name>
-    <type>ExcelInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <header>Y</header>
-    <noempty>Y</noempty>
-    <stoponempty>N</stoponempty>
-    <filefield/>
-    <sheetfield/>
-    <sheetrownumfield/>
-    <rownumfield/>
-    <sheetfield/>
-    <filefield/>
-    <limit>0</limit>
-    <encoding/>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <accept_filenames>N</accept_filenames>
-    <accept_field/>
-    <accept_stepname/>
-    <file>
-      <name>${v_diretorio-backup}\Migracao-Basica.xlsx</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>CODIGOTURMA</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CODIGOSERIE</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ANOLETIVO</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>DSCTURMA</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>SIGLA</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>DTINICIO</name>
-        <type>Date</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>DTFIM</name>
-        <type>Date</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>TURNO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-    </fields>
-    <sheets>
-      <sheet>
-        <name>TURMAS</name>
-        <startrow>0</startrow>
-        <startcol>0</startcol>
-      </sheet>
-    </sheets>
-    <strict_types>N</strict_types>
-    <error_ignored>N</error_ignored>
-    <error_line_skipped>N</error_line_skipped>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <spreadsheet_type>POI</spreadsheet_type>
-    <password>Encrypted </password>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>160</xloc>
-      <yloc>560</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Strings cut 2 2 2</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>TURNO</in_stream_name>
-        <out_stream_name/>
-        <cut_from>0</cut_from>
-        <cut_to>1</cut_to>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>560</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Insert mig_matricula</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>RDS</connection>
-    <schema/>
-    <table>mig_matricula</table>
-    <commit>50000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>codmatricula</column_name>
-        <stream_name>codmatricula</stream_name>
-      </field>
-      <field>
-        <column_name>codaluno</column_name>
-        <stream_name>codaluno</stream_name>
-      </field>
-      <field>
-        <column_name>codturma</column_name>
-        <stream_name>codturma</stream_name>
-      </field>
-      <field>
-        <column_name>DTMATRICULA</column_name>
-        <stream_name>DTMATRICULA</stream_name>
-      </field>
-      <field>
-        <column_name>rematricula</column_name>
-        <stream_name>rematricula</stream_name>
-      </field>
-      <field>
-        <column_name>CPFRESPFINANCEIRO</column_name>
-        <stream_name>CPFRESPFINANCEIRO</stream_name>
-      </field>
-      <field>
-        <column_name>PARENTESCORESPFINANCEIRO</column_name>
-        <stream_name>PARENTESCORESPFINANCEIRO</stream_name>
-      </field>
-      <field>
-        <column_name>CPFRESPACADEMICO</column_name>
-        <stream_name>CPFRESPACADEMICO</stream_name>
-      </field>
-      <field>
-        <column_name>PARENTESCORESPACADEMICO</column_name>
-        <stream_name>PARENTESCORESPACADEMICO</stream_name>
-      </field>
-      <field>
-        <column_name>CPFRESPFINANCEIRO2</column_name>
-        <stream_name>CPFRESPFINANCEIRO2</stream_name>
-      </field>
-      <field>
-        <column_name>PARENTESCORESPFINANCEIRO2</column_name>
-        <stream_name>PARENTESCORESPFINANCEIRO2</stream_name>
-      </field>
-      <field>
-        <column_name>DTTRANSFERENCIA</column_name>
-        <stream_name>DTTRANSFERENCIA</stream_name>
-      </field>
-      <field>
-        <column_name>motivotransf</column_name>
-        <stream_name>motivotransf</stream_name>
-      </field>
-      <field>
-        <column_name>SITUACAO</column_name>
-        <stream_name>SITUACAO</stream_name>
-      </field>
-      <field>
-        <column_name>codconfturma</column_name>
-        <stream_name>codconfturma</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>656</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values matricula</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>CODIGOMATRICULA</name>
-        <rename>codmatricula</rename>
-      </field>
-      <field>
-        <name>CODIGOALUNO</name>
-        <rename>codaluno</rename>
-      </field>
-      <field>
-        <name>CODIGOTURMA</name>
-        <rename>codturma</rename>
-      </field>
-      <field>
-        <name>DTMATRICULA</name>
-        <rename/>
-      </field>
-      <field>
-        <name>REMATRÍCULA</name>
-        <rename>rematricula</rename>
-      </field>
-      <field>
-        <name>CPFRESPFINANCEIRO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>PARENTESCORESPFINANCEIRO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CPFRESPACADEMICO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>PARENTESCORESPACADEMICO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CPFRESPFINANCEIRO2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>PARENTESCORESPFINANCEIRO2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>DTTRANSFERENCIA</name>
-        <rename/>
-      </field>
-      <field>
-        <name>MOTIVOTRANSFERENCIA</name>
-        <rename>motivotransf</rename>
-      </field>
-      <field>
-        <name>SITUACAO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CODIGOTURMA</name>
-        <rename>codconfturma</rename>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>656</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>XLSX matricula</name>
-    <type>ExcelInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <header>Y</header>
-    <noempty>Y</noempty>
-    <stoponempty>N</stoponempty>
-    <filefield/>
-    <sheetfield/>
-    <sheetrownumfield/>
-    <rownumfield/>
-    <sheetfield/>
-    <filefield/>
-    <limit>0</limit>
-    <encoding/>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <accept_filenames>N</accept_filenames>
-    <accept_field/>
-    <accept_stepname/>
-    <file>
-      <name>${v_diretorio-backup}\Migracao-Basica.xlsx</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>CODIGOMATRICULA</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CODIGOALUNO</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CODIGOTURMA</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>DTMATRICULA</name>
-        <type>Date</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>REMATRÍCULA</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CPFRESPFINANCEIRO</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>PARENTESCORESPFINANCEIRO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CPFRESPACADEMICO</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>PARENTESCORESPACADEMICO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CPFRESPFINANCEIRO2</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>PARENTESCORESPFINANCEIRO2</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>DTTRANSFERENCIA</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>MOTIVOTRANSFERENCIA</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>SITUACAO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-    </fields>
-    <sheets>
-      <sheet>
-        <name>MATRICULAS</name>
-        <startrow>0</startrow>
-        <startcol>0</startcol>
-      </sheet>
-    </sheets>
-    <strict_types>N</strict_types>
-    <error_ignored>N</error_ignored>
-    <error_line_skipped>N</error_line_skipped>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <spreadsheet_type>POI</spreadsheet_type>
-    <password>Encrypted </password>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>160</xloc>
-      <yloc>656</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Strings cut 2 2 2 2</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>REMATRÍCULA</in_stream_name>
-        <out_stream_name/>
-        <cut_from>0</cut_from>
-        <cut_to>1</cut_to>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>656</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Insert mig_acumulado</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>RDS</connection>
-    <schema/>
-    <table>mig_acumulado</table>
-    <commit>50000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>codacumulado</column_name>
-        <stream_name>codacumulado</stream_name>
-      </field>
-      <field>
-        <column_name>codmatricula</column_name>
-        <stream_name>codmatricula</stream_name>
-      </field>
-      <field>
-        <column_name>DTENTRADA</column_name>
-        <stream_name>DTENTRADA</stream_name>
-      </field>
-      <field>
-        <column_name>SOMA1</column_name>
-        <stream_name>SOMA1</stream_name>
-      </field>
-      <field>
-        <column_name>REC1</column_name>
-        <stream_name>REC1</stream_name>
-      </field>
-      <field>
-        <column_name>MEDIA1</column_name>
-        <stream_name>MEDIA1</stream_name>
-      </field>
-      <field>
-        <column_name>FALTAS1</column_name>
-        <stream_name>FALTAS1</stream_name>
-      </field>
-      <field>
-        <column_name>SOMA2</column_name>
-        <stream_name>SOMA2</stream_name>
-      </field>
-      <field>
-        <column_name>REC2</column_name>
-        <stream_name>REC2</stream_name>
-      </field>
-      <field>
-        <column_name>MEDIA2</column_name>
-        <stream_name>MEDIA2</stream_name>
-      </field>
-      <field>
-        <column_name>FALTAS2</column_name>
-        <stream_name>FALTAS2</stream_name>
-      </field>
-      <field>
-        <column_name>SOMASEMESTRE1</column_name>
-        <stream_name>SOMASEMESTRE1</stream_name>
-      </field>
-      <field>
-        <column_name>RECSEMESTRE1</column_name>
-        <stream_name>RECSEMESTRE1</stream_name>
-      </field>
-      <field>
-        <column_name>MEDIASEMESTRE1</column_name>
-        <stream_name>MEDIASEMESTRE1</stream_name>
-      </field>
-      <field>
-        <column_name>SOMA3</column_name>
-        <stream_name>SOMA3</stream_name>
-      </field>
-      <field>
-        <column_name>REC3</column_name>
-        <stream_name>REC3</stream_name>
-      </field>
-      <field>
-        <column_name>MEDIA3</column_name>
-        <stream_name>MEDIA3</stream_name>
-      </field>
-      <field>
-        <column_name>FALTAS3</column_name>
-        <stream_name>FALTAS3</stream_name>
-      </field>
-      <field>
-        <column_name>SOMA4</column_name>
-        <stream_name>SOMA4</stream_name>
-      </field>
-      <field>
-        <column_name>REC4</column_name>
-        <stream_name>REC4</stream_name>
-      </field>
-      <field>
-        <column_name>MEDIA4</column_name>
-        <stream_name>MEDIA4</stream_name>
-      </field>
-      <field>
-        <column_name>FALTAS4</column_name>
-        <stream_name>FALTAS4</stream_name>
-      </field>
-      <field>
-        <column_name>SOMASEMESTRE2</column_name>
-        <stream_name>SOMASEMESTRE2</stream_name>
-      </field>
-      <field>
-        <column_name>RECSEMESTRE2</column_name>
-        <stream_name>RECSEMESTRE2</stream_name>
-      </field>
-      <field>
-        <column_name>MEDIASEMESTRE2</column_name>
-        <stream_name>MEDIASEMESTRE2</stream_name>
-      </field>
-      <field>
-        <column_name>somaetapas</column_name>
-        <stream_name>somaetapas</stream_name>
-      </field>
-      <field>
-        <column_name>RECFINAL</column_name>
-        <stream_name>RECFINAL</stream_name>
-      </field>
-      <field>
-        <column_name>RECFINAL2</column_name>
-        <stream_name>RECFINAL2</stream_name>
-      </field>
-      <field>
-        <column_name>RECFINAL3</column_name>
-        <stream_name>RECFINAL3</stream_name>
-      </field>
-      <field>
-        <column_name>resultfinal</column_name>
-        <stream_name>resultfinal</stream_name>
-      </field>
-      <field>
-        <column_name>totfaltas</column_name>
-        <stream_name>totfaltas</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>752</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values matricula 2</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>CODIGONOTAS</name>
-        <rename>codacumulado</rename>
-      </field>
-      <field>
-        <name>CODIGOMATRICULA</name>
-        <rename>codmatricula</rename>
-      </field>
-      <field>
-        <name>DTENTRADA</name>
-        <rename/>
-      </field>
-      <field>
-        <name>SOMA1</name>
-        <rename/>
-      </field>
-      <field>
-        <name>REC1</name>
-        <rename/>
-      </field>
-      <field>
-        <name>MEDIA1</name>
-        <rename/>
-      </field>
-      <field>
-        <name>FALTAS1</name>
-        <rename/>
-      </field>
-      <field>
-        <name>SOMA2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>REC2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>MEDIA2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>FALTAS2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>SOMASEMESTRE1</name>
-        <rename/>
-      </field>
-      <field>
-        <name>RECSEMESTRE1</name>
-        <rename/>
-      </field>
-      <field>
-        <name>MEDIASEMESTRE1</name>
-        <rename/>
-      </field>
-      <field>
-        <name>SOMA3</name>
-        <rename/>
-      </field>
-      <field>
-        <name>REC3</name>
-        <rename/>
-      </field>
-      <field>
-        <name>MEDIA3</name>
-        <rename/>
-      </field>
-      <field>
-        <name>FALTAS3</name>
-        <rename/>
-      </field>
-      <field>
-        <name>SOMA4</name>
-        <rename/>
-      </field>
-      <field>
-        <name>REC4</name>
-        <rename/>
-      </field>
-      <field>
-        <name>MEDIA4</name>
-        <rename/>
-      </field>
-      <field>
-        <name>FALTAS4</name>
-        <rename/>
-      </field>
-      <field>
-        <name>SOMASEMESTRE2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>RECSEMESTRE2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>MEDIASEMESTRE2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>NOTAFINAL</name>
-        <rename>somaetapas</rename>
-      </field>
-      <field>
-        <name>RECFINAL</name>
-        <rename/>
-      </field>
-      <field>
-        <name>RECFINAL2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>RECFINAL3</name>
-        <rename/>
-      </field>
-      <field>
-        <name>RESULTADOFINAL</name>
-        <rename>resultfinal</rename>
-      </field>
-      <field>
-        <name>TOTALFALTAS</name>
-        <rename>totfaltas</rename>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>752</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>XLSX nota</name>
-    <type>ExcelInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <header>Y</header>
-    <noempty>Y</noempty>
-    <stoponempty>N</stoponempty>
-    <filefield/>
-    <sheetfield/>
-    <sheetrownumfield/>
-    <rownumfield/>
-    <sheetfield/>
-    <filefield/>
-    <limit>0</limit>
-    <encoding/>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <accept_filenames>N</accept_filenames>
-    <accept_field/>
-    <accept_stepname/>
-    <file>
-      <name>${v_diretorio-backup}\Migracao-Basica.xlsx</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>CODIGONOTAS</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CODIGOMATRICULA</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>DTENTRADA</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>SOMA1</name>
-        <type>Number</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>REC1</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>MEDIA1</name>
-        <type>Number</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>FALTAS1</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>SOMA2</name>
-        <type>Number</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>REC2</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>MEDIA2</name>
-        <type>Number</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>FALTAS2</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>SOMASEMESTRE1</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>RECSEMESTRE1</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>MEDIASEMESTRE1</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>SOMA3</name>
-        <type>Number</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>REC3</name>
-        <type>Number</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>MEDIA3</name>
-        <type>Number</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>FALTAS3</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>SOMA4</name>
-        <type>Number</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>REC4</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>MEDIA4</name>
-        <type>Number</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>FALTAS4</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>SOMASEMESTRE2</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>RECSEMESTRE2</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>MEDIASEMESTRE2</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>NOTAFINAL</name>
-        <type>Number</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>RECFINAL</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>RECFINAL2</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>RECFINAL3</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>RESULTADOFINAL</name>
-        <type>Number</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>TOTALFALTAS</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-    </fields>
-    <sheets>
-      <sheet>
-        <name>NOTAS</name>
-        <startrow>0</startrow>
-        <startcol>0</startcol>
-      </sheet>
-    </sheets>
-    <strict_types>N</strict_types>
-    <error_ignored>N</error_ignored>
-    <error_line_skipped>N</error_line_skipped>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <spreadsheet_type>POI</spreadsheet_type>
-    <password>Encrypted </password>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>160</xloc>
-      <yloc>752</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Strings cut 2 2 2 2 2</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>752</yloc>
+      <xloc>480</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

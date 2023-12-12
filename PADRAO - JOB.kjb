@@ -1,13 +1,13 @@
 <job>
-  <name>CONEXAO</name>
+  <name>PADRAO - JOB</name>
   <description/>
   <extended_description/>
   <job_version/>
   <directory>/</directory>
   <created_user>-</created_user>
-  <created_date>2023/10/26 10:50:59.677</created_date>
+  <created_date>2023/12/11 16:29:27.131</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/12/12 11:50:04.667</modified_date>
+  <modified_date>2023/12/11 16:31:47.148</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -286,41 +286,175 @@
   <shared_objects_file/>
   <entries>
     <entry>
-      <name>CONFIG MIGRACAO MYSQL</name>
+      <name>PASSO 1</name>
       <description/>
-      <type>MSGBOX_INFO</type>
+      <type>TRANS</type>
       <attributes/>
-      <bodymessage>SISTEMA:  ${v_sistema}
-――――――――――――――――――――――――
-DIRETÓRIO BKP: ${v_diretorio-backup}
-――――――――――――――――――――――――
-BANCO MYSQL(LocalHost): ${v_nomebanco-mysql}
-――――――――――――――――――――――――
-BANCO RDS: >>>>> [ ${v_nomebanco-RDS} ] &lt;&lt;&lt;&lt;&lt;
-――――――――――――――――――――――――
-RDS:  ${v_end-RDS}
-――――――――――――――――――――――――
-CREATE TABLE LOCAL: ${v_create_localhost}
-――――――――――――――――――――――――
-MIGRAÇÃO SECREARIA: ${v_mig_secretaria}
-MIGRAÇÃO FINANCEIRO: ${v_mig_financeiro}
-MIGRAÇÃO ACADÊMICO: ${v_mig_academico}
-――――――――――――――――――――――――
-FATURA: ${v_fatura}
-ETAPAS: ${v_etapas}
-ETAPAS QUE CONTEM NOTA: ${v_etapa_migrada_com_nota}
-ANO LETIVO NOTAS: ${v_notas_anoletivo}
-VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
-      <titremessage>MIGRAÇÃO MYSQL</titremessage>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>PADRAO - PASSO 1</transname>
+      <directory>/</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>432</xloc>
-      <yloc>272</yloc>
+      <xloc>464</xloc>
+      <yloc>64</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>START</name>
+      <name>FALHA - 1</name>
+      <description/>
+      <type>MSGBOX_INFO</type>
+      <attributes/>
+      <bodymessage>FALHA NO PASSO 1.
+
+Reveja o CREATE FUCTION e CREATE cidade_escolaweb.</bodymessage>
+      <titremessage/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>608</xloc>
+      <yloc>64</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>PASSO 2</name>
+      <description/>
+      <type>TRANS</type>
+      <attributes/>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>PADRAO - PASSO 2</transname>
+      <directory>/</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>464</xloc>
+      <yloc>176</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>PASSO 3</name>
+      <description/>
+      <type>TRANS</type>
+      <attributes/>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>PADRAO - PASSO 3</transname>
+      <directory>/</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>464</xloc>
+      <yloc>288</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>FALHA - 2</name>
+      <description/>
+      <type>MSGBOX_INFO</type>
+      <attributes/>
+      <bodymessage>FALHA NO PASSO 2.
+
+Reveja o tratamento dos dados. O SELECT VALUES têm que estar de acordo com as colunas da MIG.</bodymessage>
+      <titremessage/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>608</xloc>
+      <yloc>176</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>FALHA - 3</name>
+      <description/>
+      <type>MSGBOX_INFO</type>
+      <attributes/>
+      <bodymessage>FALHA NO PASSO 3.
+
+Reveja os UPDATES.</bodymessage>
+      <titremessage/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>608</xloc>
+      <yloc>288</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>Start</name>
       <description/>
       <type>SPECIAL</type>
       <attributes/>
@@ -337,8 +471,8 @@ VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>432</xloc>
-      <yloc>80</yloc>
+      <xloc>304</xloc>
+      <yloc>64</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -349,126 +483,28 @@ VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>512</xloc>
+      <xloc>464</xloc>
       <yloc>400</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>CONFIG MIGRACAO SQL SERVER</name>
+      <name>Abort job</name>
       <description/>
-      <type>MSGBOX_INFO</type>
+      <type>ABORT</type>
       <attributes/>
-      <bodymessage>SISTEMA:  ${v_sistema}
-――――――――――――――――――――――――
-BANCO SQLSERVER(LocalHost): ${v_nomebanco-sqlserver}
-――――――――――――――――――――――――
-BANCO RDS: >>>>> [ ${v_nomebanco-RDS} ] &lt;&lt;&lt;&lt;&lt;
-――――――――――――――――――――――――
-RDS:  ${v_end-RDS}
-――――――――――――――――――――――――
-MIGRAÇÃO SECREARIA: ${v_mig_secretaria}
-MIGRAÇÃO FINANCEIRO: ${v_mig_financeiro}
-MIGRAÇÃO ACADÊMICO: ${v_mig_academico}
-――――――――――――――――――――――――
-FATURA: ${v_fatura}
-ETAPAS: ${v_etapas}
-ETAPAS QUE CONTEM NOTA: ${v_etapa_migrada_com_nota}
-ANO LETIVO NOTAS: ${v_notas_anoletivo}
-VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
-      <titremessage>MIGRAÇÃO SQL SERVER</titremessage>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>608</xloc>
-      <yloc>272</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>CHECK CREATE LOCAL</name>
-      <description/>
-      <type>SIMPLE_EVAL</type>
-      <attributes/>
-      <valuetype>variable</valuetype>
-      <fieldname>${etapas}</fieldname>
-      <variablename>${v_nomebanco-mysql}</variablename>
-      <fieldtype>string</fieldtype>
-      <mask/>
-      <comparevalue/>
-      <minvalue/>
-      <maxvalue/>
-      <successcondition>different</successcondition>
-      <successnumbercondition>equal</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>N</successwhenvarset>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>432</xloc>
-      <yloc>176</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>CHECK CREATE LOCAL 2</name>
-      <description/>
-      <type>SIMPLE_EVAL</type>
-      <attributes/>
-      <valuetype>variable</valuetype>
-      <fieldname>${etapas}</fieldname>
-      <variablename>${v_nomebanco-sqlserver}</variablename>
-      <fieldtype>string</fieldtype>
-      <mask/>
-      <comparevalue/>
-      <minvalue/>
-      <maxvalue/>
-      <successcondition>different</successcondition>
-      <successnumbercondition>equal</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>N</successwhenvarset>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>608</xloc>
-      <yloc>176</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>CONFIG MIGRACAO XLSX</name>
-      <description/>
-      <type>MSGBOX_INFO</type>
-      <attributes/>
-      <bodymessage>SISTEMA:  ${v_sistema}
-――――――――――――――――――――――――
-ENDEREÇO: ${v_diretorio-backup}\
-ARQUIVO: ${v_migracao-basica}
-――――――――――――――――――――――――
-BANCO RDS: >>>>> [ ${v_nomebanco-RDS} ] &lt;&lt;&lt;&lt;&lt;
-――――――――――――――――――――――――
-RDS:  ${v_end-RDS}
-――――――――――――――――――――――――
-MIGRAÇÃO SECREARIA: ${v_mig_secretaria}
-MIGRAÇÃO FINANCEIRO: ${v_mig_financeiro}
-MIGRAÇÃO ACADÊMICO: ${v_mig_academico}
-――――――――――――――――――――――――
-FATURA: ${v_fatura}
-ETAPAS: ${v_etapas}
-ETAPAS QUE CONTEM NOTA: ${v_etapa_migrada_com_nota}
-ANO LETIVO NOTAS: ${v_notas_anoletivo}
-VALOR PROVA: ${v_notas_avaliacao}
-
-</bodymessage>
-      <titremessage>MIGRAÇÃO FORMATO PLANILHA</titremessage>
+      <message/>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>272</yloc>
+      <yloc>288</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
   <hops>
     <hop>
-      <from>START</from>
-      <to>CHECK CREATE LOCAL</to>
+      <from>Start</from>
+      <to>PASSO 1</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -476,8 +512,35 @@ VALOR PROVA: ${v_notas_avaliacao}
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>CHECK CREATE LOCAL</from>
-      <to>CHECK CREATE LOCAL 2</to>
+      <from>PASSO 1</from>
+      <to>PASSO 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>PASSO 2</from>
+      <to>PASSO 3</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>PASSO 3</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>PASSO 1</from>
+      <to>FALHA - 1</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -485,44 +548,8 @@ VALOR PROVA: ${v_notas_avaliacao}
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>CHECK CREATE LOCAL</from>
-      <to>CONFIG MIGRACAO MYSQL</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>CHECK CREATE LOCAL 2</from>
-      <to>CONFIG MIGRACAO SQL SERVER</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>CONFIG MIGRACAO MYSQL</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>CONFIG MIGRACAO SQL SERVER</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>CHECK CREATE LOCAL 2</from>
-      <to>CONFIG MIGRACAO XLSX</to>
+      <from>PASSO 2</from>
+      <to>FALHA - 2</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -530,8 +557,35 @@ VALOR PROVA: ${v_notas_avaliacao}
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>CONFIG MIGRACAO XLSX</from>
-      <to>Success</to>
+      <from>PASSO 3</from>
+      <to>FALHA - 3</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>FALHA - 1</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>FALHA - 2</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>FALHA - 3</from>
+      <to>Abort job</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
