@@ -1,14 +1,13 @@
 <job>
-  <name>WPENSAR - JOB</name>
+  <name>WPENSAR - PASSO 1</name>
   <description/>
   <extended_description/>
   <job_version/>
-  <job_status>0</job_status>
   <directory>/</directory>
   <created_user>-</created_user>
-  <created_date>2023/06/13 19:29:39.926</created_date>
+  <created_date>2023/12/14 09:17:34.126</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/12/14 09:29:20.240</modified_date>
+  <modified_date>2023/12/14 09:28:42.987</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -287,19 +286,27 @@
   <shared_objects_file/>
   <entries>
     <entry>
-      <name>FALHA - 1</name>
+      <name>financeiro ?</name>
       <description/>
-      <type>MSGBOX_INFO</type>
+      <type>SIMPLE_EVAL</type>
       <attributes/>
-      <bodymessage>FALHA NO PASSO 1.
-
-Reveja o CREATE table e o INSERT dos Xlsx.</bodymessage>
-      <titremessage/>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${v_mig_financeiro}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>S</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>288</xloc>
-      <yloc>128</yloc>
+      <xloc>544</xloc>
+      <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -320,8 +327,136 @@ Reveja o CREATE table e o INSERT dos Xlsx.</bodymessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>432</xloc>
-      <yloc>32</yloc>
+      <xloc>256</xloc>
+      <yloc>224</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>secretaria ?</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <attributes/>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${v_mig_secretaria}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>S</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>400</xloc>
+      <yloc>224</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>academico ?</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <attributes/>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${v_mig_academico}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>S</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>688</xloc>
+      <yloc>224</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>WPENSAR - PASSO 1.12 SEC</name>
+      <description/>
+      <type>TRANS</type>
+      <attributes/>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>WPENSAR - PASSO 1.12 SEC</transname>
+      <directory>/</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>400</xloc>
+      <yloc>80</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>WPENSAR - PASSO 1.13 FIN</name>
+      <description/>
+      <type>TRANS</type>
+      <attributes/>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>WPENSAR - PASSO 1.13 FIN</transname>
+      <directory>/</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>544</xloc>
+      <yloc>80</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -332,32 +467,19 @@ Reveja o CREATE table e o INSERT dos Xlsx.</bodymessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>560</xloc>
-      <yloc>464</yloc>
+      <xloc>832</xloc>
+      <yloc>80</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Abort job</name>
-      <description/>
-      <type>ABORT</type>
-      <attributes/>
-      <message>O job foi abortado.</message>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>128</xloc>
-      <yloc>304</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>2 - PASSO 1.2</name>
+      <name>WPENSAR - PASSO 1.14 ACA</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>rep_name</specification_method>
       <trans_object_id/>
       <filename/>
-      <transname>WPENSAR - PASSO 1.2</transname>
+      <transname>WPENSAR - PASSO 1.14 ACA</transname>
       <directory>/</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -385,51 +507,19 @@ Reveja o CREATE table e o INSERT dos Xlsx.</bodymessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>432</xloc>
-      <yloc>240</yloc>
+      <xloc>688</xloc>
+      <yloc>80</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>FALHA - 1.2</name>
-      <description/>
-      <type>MSGBOX_INFO</type>
-      <attributes/>
-      <bodymessage>FALHA NO PASSO 1.2.
-
-Reveja os create mig_.</bodymessage>
-      <titremessage/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>288</xloc>
-      <yloc>240</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>FALHA - 2</name>
-      <description/>
-      <type>MSGBOX_INFO</type>
-      <attributes/>
-      <bodymessage>FALHA NO PASSO 2.
-
-Reveja o tratamento dos dados. O SELECT VALUES têm que estar de acordo com as colunas da MIG.</bodymessage>
-      <titremessage/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>288</xloc>
-      <yloc>352</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>3 - PASSO 2 </name>
+      <name>WPENSAR 1.1</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>rep_name</specification_method>
       <trans_object_id/>
       <filename/>
-      <transname>WPENSAR - PASSO 2</transname>
+      <transname>WPENSAR - PASSO 1.1</transname>
       <directory>/</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -457,108 +547,15 @@ Reveja o tratamento dos dados. O SELECT VALUES têm que estar de acordo com as c
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>432</xloc>
-      <yloc>352</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>PASSO 3</name>
-      <description/>
-      <type>TRANS</type>
-      <attributes/>
-      <specification_method>rep_name</specification_method>
-      <trans_object_id/>
-      <filename/>
-      <transname>WPENSAR - PASSO 3</transname>
-      <directory>/</directory>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <run_configuration>Pentaho local</run_configuration>
-      <suppress_result_data>N</suppress_result_data>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>432</xloc>
-      <yloc>464</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>FALHA - 3</name>
-      <description/>
-      <type>MSGBOX_INFO</type>
-      <attributes/>
-      <bodymessage>FALHA NO PASSO 3.
-
-Reveja os UPDATES.</bodymessage>
-      <titremessage/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>288</xloc>
-      <yloc>464</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>PASSO 1</name>
-      <description/>
-      <type>JOB</type>
-      <attributes/>
-      <specification_method>rep_name</specification_method>
-      <job_object_id/>
-      <filename/>
-      <jobname>WPENSAR - PASSO 1</jobname>
-      <directory>/</directory>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name/>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <run_configuration>Pentaho local</run_configuration>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>
-      <set_append_logfile>N</set_append_logfile>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>432</xloc>
-      <yloc>128</yloc>
+      <xloc>256</xloc>
+      <yloc>80</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
   <hops>
     <hop>
-      <from>FALHA - 1</from>
-      <to>Abort job</to>
+      <from>secretaria ?</from>
+      <to>WPENSAR - PASSO 1.12 SEC</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -566,17 +563,8 @@ Reveja os UPDATES.</bodymessage>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>2 - PASSO 1.2</from>
-      <to>FALHA - 1.2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>FALHA - 1.2</from>
-      <to>Abort job</to>
+      <from>WPENSAR - PASSO 1.12 SEC</from>
+      <to>financeiro ?</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -584,8 +572,8 @@ Reveja os UPDATES.</bodymessage>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>2 - PASSO 1.2</from>
-      <to>3 - PASSO 2 </to>
+      <from>financeiro ?</from>
+      <to>WPENSAR - PASSO 1.13 FIN</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -593,8 +581,8 @@ Reveja os UPDATES.</bodymessage>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>3 - PASSO 2 </from>
-      <to>PASSO 3</to>
+      <from>WPENSAR - PASSO 1.13 FIN</from>
+      <to>academico ?</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -602,7 +590,16 @@ Reveja os UPDATES.</bodymessage>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PASSO 3</from>
+      <from>academico ?</from>
+      <to>WPENSAR - PASSO 1.14 ACA</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>WPENSAR - PASSO 1.14 ACA</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -611,8 +608,8 @@ Reveja os UPDATES.</bodymessage>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>3 - PASSO 2 </from>
-      <to>FALHA - 2</to>
+      <from>secretaria ?</from>
+      <to>financeiro ?</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -620,8 +617,8 @@ Reveja os UPDATES.</bodymessage>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>PASSO 3</from>
-      <to>FALHA - 3</to>
+      <from>financeiro ?</from>
+      <to>academico ?</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -629,26 +626,17 @@ Reveja os UPDATES.</bodymessage>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>FALHA - 3</from>
-      <to>Abort job</to>
+      <from>academico ?</from>
+      <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>FALHA - 2</from>
-      <to>Abort job</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
+      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>Start</from>
-      <to>PASSO 1</to>
+      <to>WPENSAR 1.1</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -656,50 +644,16 @@ Reveja os UPDATES.</bodymessage>
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>PASSO 1</from>
-      <to>2 - PASSO 1.2</to>
+      <from>WPENSAR 1.1</from>
+      <to>secretaria ?</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
-    <hop>
-      <from>PASSO 1</from>
-      <to>FALHA - 1</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
   </hops>
   <notepads>
-    <notepad>
-      <note>1 - PASSO 1 - Csv > Mysql
-2 - PASSO 1.2 - Create Views
-3 - PASSO 2 - Tratamento de dados
-4 - JOB - MIG - Tratamento mig_contasreceber
-5 - PASSO 3 - Updates Finais</note>
-      <xloc>1088</xloc>
-      <yloc>208</yloc>
-      <width>255</width>
-      <heigth>90</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>255</fontcolorred>
-      <fontcolorgreen>255</fontcolorgreen>
-      <fontcolorblue>255</fontcolorblue>
-      <backgroundcolorred>128</backgroundcolorred>
-      <backgroundcolorgreen>128</backgroundcolorgreen>
-      <backgroundcolorblue>255</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <attributes/>
 </job>

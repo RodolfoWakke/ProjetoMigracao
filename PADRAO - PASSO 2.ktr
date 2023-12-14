@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/10/18 09:32:12.169</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/12/12 11:49:05.050</modified_date>
+    <modified_date>2023/12/13 08:30:12.875</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -440,8 +440,8 @@
 -> Parei no Acumulado</note>
       <xloc>800</xloc>
       <yloc>48</yloc>
-      <width>396</width>
-      <heigth>74</heigth>
+      <width>491</width>
+      <heigth>90</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -611,18 +611,18 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values centroreceita</from>
+      <from>Select values creceita</from>
       <to>Insert mig_centroreceita</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Strings cut centroreceita</from>
-      <to>Select values centroreceita</to>
+      <from>Strings cut creceita</from>
+      <to>Select values creceita</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>XLSX centroreceita</from>
-      <to>Strings cut centroreceita</to>
+      <to>Strings cut creceita</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -703,6 +703,21 @@
     <hop>
       <from>Strings cut cr</from>
       <to>Select values contasreceber</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values ue</from>
+      <to>Insert mig_unidadeescolar</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Strings cut ue</from>
+      <to>Select values ue</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>XLSX unidadeescolar</from>
+      <to>Strings cut ue</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -788,6 +803,10 @@
         <stream_name>SOMASEMESTRE1</stream_name>
       </field>
       <field>
+        <column_name>MEDSEM1</column_name>
+        <stream_name>MEDSEM1</stream_name>
+      </field>
+      <field>
         <column_name>RECSEMESTRE1</column_name>
         <stream_name>RECSEMESTRE1</stream_name>
       </field>
@@ -826,6 +845,10 @@
       <field>
         <column_name>SOMASEMESTRE2</column_name>
         <stream_name>SOMASEMESTRE2</stream_name>
+      </field>
+      <field>
+        <column_name>MEDSEM2</column_name>
+        <stream_name>MEDSEM2</stream_name>
       </field>
       <field>
         <column_name>RECSEMESTRE2</column_name>
@@ -1074,7 +1097,7 @@
     </remotesteps>
     <GUI>
       <xloc>640</xloc>
-      <yloc>48</yloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1210,7 +1233,7 @@
     </remotesteps>
     <GUI>
       <xloc>640</xloc>
-      <yloc>624</yloc>
+      <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1254,6 +1277,10 @@
       <field>
         <column_name>codbanco</column_name>
         <stream_name>codbanco</stream_name>
+      </field>
+      <field>
+        <column_name>codempresa</column_name>
+        <stream_name>codempresa</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -1482,7 +1509,7 @@
     </remotesteps>
     <GUI>
       <xloc>640</xloc>
-      <yloc>432</yloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1538,7 +1565,7 @@
     </remotesteps>
     <GUI>
       <xloc>640</xloc>
-      <yloc>240</yloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1650,7 +1677,7 @@
     </remotesteps>
     <GUI>
       <xloc>640</xloc>
-      <yloc>336</yloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1754,7 +1781,7 @@
     </remotesteps>
     <GUI>
       <xloc>640</xloc>
-      <yloc>720</yloc>
+      <yloc>832</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1902,7 +1929,7 @@
     </remotesteps>
     <GUI>
       <xloc>640</xloc>
-      <yloc>144</yloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1978,7 +2005,7 @@
     </remotesteps>
     <GUI>
       <xloc>640</xloc>
-      <yloc>528</yloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2079,6 +2106,18 @@
         <is_unicode>no</is_unicode>
       </field>
       <field>
+        <in_stream_name>MEDIASEMESTRE1</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>,</replace_string>
+        <replace_by_string>.</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
         <in_stream_name>RECSEMESTRE1</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
@@ -2164,6 +2203,18 @@
       </field>
       <field>
         <in_stream_name>SOMASEMESTRE2</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>,</replace_string>
+        <replace_by_string>.</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>MEDIASEMESTRE2</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
         <replace_string>,</replace_string>
@@ -2417,7 +2468,7 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>48</yloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2476,6 +2527,10 @@
         <name>SOMASEMESTRE1</name>
       </field>
       <field>
+        <name>MEDIASEMESTRE1</name>
+        <rename>MEDSEM1</rename>
+      </field>
+      <field>
         <name>RECSEMESTRE1</name>
       </field>
       <field>
@@ -2504,6 +2559,10 @@
       </field>
       <field>
         <name>SOMASEMESTRE2</name>
+      </field>
+      <field>
+        <name>MEDIASEMESTRE2</name>
+        <rename>MEDSEM2</rename>
       </field>
       <field>
         <name>RECSEMESTRE2</name>
@@ -2542,45 +2601,6 @@
     <GUI>
       <xloc>1136</xloc>
       <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values centroreceita</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>CODIGORECEITA</name>
-        <rename>codreceita</rename>
-      </field>
-      <field>
-        <name>NOME</name>
-        <rename>dscreceita</rename>
-      </field>
-      <field>
-        <name>ATIVO</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1136</xloc>
-      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2638,7 +2658,7 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>624</yloc>
+      <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2665,6 +2685,10 @@
       <field>
         <name>BANCO</name>
         <rename>codbanco</rename>
+      </field>
+      <field>
+        <name>CODUNIDADE</name>
+        <rename>codempresa</rename>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -2793,6 +2817,45 @@
     </GUI>
   </step>
   <step>
+    <name>Select values creceita</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>CODIGORECEITA</name>
+        <rename>codreceita</rename>
+      </field>
+      <field>
+        <name>NOME</name>
+        <rename>dscreceita</rename>
+      </field>
+      <field>
+        <name>ATIVO</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1136</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Select values curso</name>
     <type>SelectValues</type>
     <description/>
@@ -2838,7 +2901,7 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>432</yloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2878,7 +2941,7 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>240</yloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2961,7 +3024,7 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>336</yloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3040,7 +3103,7 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>720</yloc>
+      <yloc>832</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3152,7 +3215,7 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>144</yloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3208,46 +3271,7 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Strings cut centroreceita</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>NOME</in_stream_name>
-        <out_stream_name/>
-        <cut_from>0</cut_from>
-        <cut_to>20</cut_to>
-      </field>
-      <field>
-        <in_stream_name>ATIVO</in_stream_name>
-        <out_stream_name/>
-        <cut_from>0</cut_from>
-        <cut_to>1</cut_to>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>992</xloc>
-      <yloc>160</yloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3292,7 +3316,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>624</yloc>
+      <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3354,6 +3378,45 @@
     </GUI>
   </step>
   <step>
+    <name>Strings cut creceita</name>
+    <type>StringCut</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>NOME</in_stream_name>
+        <out_stream_name/>
+        <cut_from>0</cut_from>
+        <cut_to>20</cut_to>
+      </field>
+      <field>
+        <in_stream_name>ATIVO</in_stream_name>
+        <out_stream_name/>
+        <cut_from>0</cut_from>
+        <cut_to>1</cut_to>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>992</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Strings cut curso</name>
     <type>StringCut</type>
     <description/>
@@ -3394,7 +3457,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>432</yloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3433,7 +3496,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>240</yloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3520,7 +3583,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>336</yloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3769,7 +3832,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>48</yloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3850,7 +3913,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>720</yloc>
+      <yloc>832</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3997,7 +4060,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>144</yloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4042,7 +4105,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>528</yloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4614,7 +4677,7 @@
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>48</yloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4906,7 +4969,7 @@
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>624</yloc>
+      <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4976,6 +5039,18 @@
       <field>
         <name>BANCO</name>
         <type>Number</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>CODUNIDADE</name>
+        <type>Integer</type>
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -5530,7 +5605,7 @@
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>432</yloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5646,7 +5721,7 @@
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>240</yloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5930,7 +6005,7 @@
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>336</yloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6178,7 +6253,7 @@
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>720</yloc>
+      <yloc>832</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6390,6 +6465,18 @@
         <group/>
       </field>
       <field>
+        <name>MEDIASEMESTRE1</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
         <name>RECSEMESTRE1</name>
         <type>String</type>
         <length>-1</length>
@@ -6499,6 +6586,18 @@
       </field>
       <field>
         <name>SOMASEMESTRE2</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>MEDIASEMESTRE2</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -7022,7 +7121,7 @@
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>144</yloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -7186,7 +7285,284 @@
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>528</yloc>
+      <yloc>640</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert mig_unidadeescolar</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>RDS</connection>
+    <schema/>
+    <table>mig_unidadeescolar</table>
+    <commit>50000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>codunidade</column_name>
+        <stream_name>codunidade</stream_name>
+      </field>
+      <field>
+        <column_name>dscunidade</column_name>
+        <stream_name>dscunidade</stream_name>
+      </field>
+      <field>
+        <column_name>dscunidadeabrev</column_name>
+        <stream_name>dscunidadeabrev</stream_name>
+      </field>
+      <field>
+        <column_name>CNPJ</column_name>
+        <stream_name>CNPJ</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values ue</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>CODIGOUNIDADE</name>
+        <rename>codunidade</rename>
+      </field>
+      <field>
+        <name>NOME</name>
+        <rename>dscunidade</rename>
+      </field>
+      <field>
+        <name>ABREVIACAO</name>
+        <rename>dscunidadeabrev</rename>
+      </field>
+      <field>
+        <name>CNPJ</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Strings cut ue</name>
+    <type>StringCut</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>NOME</in_stream_name>
+        <out_stream_name/>
+        <cut_from>0</cut_from>
+        <cut_to>200</cut_to>
+      </field>
+      <field>
+        <in_stream_name>ABREVIACAO</in_stream_name>
+        <out_stream_name/>
+        <cut_from>0</cut_from>
+        <cut_to>10</cut_to>
+      </field>
+      <field>
+        <in_stream_name>CNPJ</in_stream_name>
+        <out_stream_name/>
+        <cut_from>0</cut_from>
+        <cut_to>15</cut_to>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>XLSX unidadeescolar</name>
+    <type>ExcelInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <header>Y</header>
+    <noempty>Y</noempty>
+    <stoponempty>N</stoponempty>
+    <filefield/>
+    <sheetfield/>
+    <sheetrownumfield/>
+    <rownumfield/>
+    <sheetfield/>
+    <filefield/>
+    <limit>0</limit>
+    <encoding/>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <accept_filenames>N</accept_filenames>
+    <accept_field/>
+    <accept_stepname/>
+    <file>
+      <name>${v_diretorio-backup}\${v_migracao-basica}</name>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>CODIGOUNIDADE</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>NOME</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>ABREVIACAO</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>CNPJ</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+    </fields>
+    <sheets>
+      <sheet>
+        <name>UNIDADE ESCOLAR</name>
+        <startrow>0</startrow>
+        <startcol>0</startcol>
+      </sheet>
+    </sheets>
+    <strict_types>N</strict_types>
+    <error_ignored>N</error_ignored>
+    <error_line_skipped>N</error_line_skipped>
+    <bad_line_files_destination_directory/>
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <error_line_files_destination_directory/>
+    <error_line_files_extension>error</error_line_files_extension>
+    <line_number_files_destination_directory/>
+    <line_number_files_extension>line</line_number_files_extension>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <spreadsheet_type>POI</spreadsheet_type>
+    <password>Encrypted </password>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>160</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

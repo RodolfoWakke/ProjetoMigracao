@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/12/11 16:31:56.798</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/12/11 17:13:27.981</modified_date>
+    <modified_date>2023/12/13 08:13:02.535</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -528,7 +528,93 @@
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>-- SECRETARIA --
+    <sql>-- UNIDADEESCOLAR
+
+DROP TABLE IF EXISTS `mig_unidadeescolar`;
+CREATE TABLE `mig_unidadeescolar` (
+	`codunidade` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`dscunidade` VARCHAR(200) NOT NULL COLLATE 'latin1_swedish_ci',
+	`codigoinep_censo` INT(8) NULL DEFAULT NULL,
+	`endereco` VARCHAR(140) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`bairro` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cidade` INT(11) NULL DEFAULT NULL,
+	`uf` SMALLINT(6) UNSIGNED NULL DEFAULT NULL,
+	`cep` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`email` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`site` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`telefone` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`fax` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cnpj` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`reconhecimento` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`responsavel` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cargoresponsavel` INT(11) NULL DEFAULT NULL,
+	`cpfresponsavel` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rgresponsavel` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`nomefantasia` VARCHAR(80) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`mantenedor` VARCHAR(70) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`secretario` VARCHAR(70) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`registrosecretario` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`registroresponsavel` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codtabescola` INT(11) NULL DEFAULT NULL,
+	`dscunidadeabrev` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`inscricaomunicipal` CHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`logo` BLOB NULL DEFAULT NULL,
+	`imgrelatorioesquerda` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`imgrelatoriodireita` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`conexaofastreport` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`logoempresaportal` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dscportal` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`logodireita` BLOB NULL DEFAULT NULL,
+	`diretoracademico` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`registrodiretor` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`diretorfinanceiro` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`registrodiretorfinanceiro` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cpfresponsavelfinanceiro` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rgresponsavelfinanceiro` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cargoresponsavelfinanceiro` INT(11) NULL DEFAULT NULL,
+	`cpfdiretorfinanceiro` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rgdiretorlfinanceiro` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cargodiretorfinanceiro` INT(11) NULL DEFAULT NULL,
+	`latitude` DECIMAL(14,6) NULL DEFAULT NULL,
+	`longitude` DECIMAL(14,6) NULL DEFAULT NULL,
+	`emailmatriculaonline` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`contrato` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`situacaofuncionamento003` INT(1) NULL DEFAULT NULL COMMENT '1-Em atividade/2-Paralisada/3-extinta',
+	`distrito0016` INT(11) NULL DEFAULT NULL COMMENT 'usar tabela de distrito',
+	`codorgaoreginal0023` INT(11) NULL DEFAULT NULL COMMENT 'usar tabela de orgao reginal de ensino',
+	`depadministrativa0024` INT(1) NULL DEFAULT NULL COMMENT '1-Federal/2-Estadual/3-Municipal/4-privada',
+	`zonaescola0025` INT(1) NULL DEFAULT NULL COMMENT '1-Urbana/2-Rural',
+	`catescolaprivada0026` INT(1) NULL DEFAULT NULL COMMENT '1-Particular/2-Comunitaria/3-Confessional/4-Filantropica',
+	`conveniopoderpublico0027` INT(1) NULL DEFAULT NULL COMMENT '1-Estadual/2-Municipal/3-Estadual e Municipal',
+	`mantenedora0028_empresapessoa` INT(1) NULL DEFAULT NULL COMMENT 'grupo mantenedora 0-Nao/1-Sim',
+	`mantenedora0029_sindasscoop` INT(1) NULL DEFAULT NULL COMMENT 'grupo mantenedora 0-Nao/1-Sim',
+	`mantenedora0030_ong` INT(1) NULL DEFAULT NULL COMMENT 'grupo mantenedora 0-Nao/1-Sim',
+	`mantenedora0031_semfinslucr` INT(1) NULL DEFAULT NULL COMMENT 'grupo mantenedora 0-Nao/1-Sim',
+	`mantenedora0032_sistema_s` INT(1) NULL DEFAULT NULL COMMENT 'grupo mantenedora 0-Nao/1-Sim',
+	`cnpjmantenedora0033` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`regulamentacao0035` INT(1) NULL DEFAULT NULL COMMENT '0-Nao/1-Sim/3-Em tramitacao',
+	`emailresposanvel` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`liberasituacaofinalaluno` CHAR(1) NULL DEFAULT 'N' COMMENT 'libera a situacao final do aluno antes do termino das turmas. S para SIM e N para NAO' COLLATE 'latin1_swedish_ci',
+	`merchantidcielo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`merchantkeycielo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`wstoken_ava` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`url_ava` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`driveapi` INT(11) NULL DEFAULT NULL,
+	`certificadoa1url` VARCHAR(300) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`certificadoa1senha` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`qtddiasletivos` INT(11) NULL DEFAULT NULL,
+	`observacoes` VARCHAR(2000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`idgoogledrive` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`idiescenso` INT(11) NULL DEFAULT NULL,
+	`alteradopor` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	PRIMARY KEY (`codunidade`) USING BTREE,
+	INDEX `idiescenso` (`idiescenso`) USING BTREE)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+
+-- SECRETARIA --
 DROP TABLE IF EXISTS `mig_aluno`;
    CREATE TABLE IF NOT EXISTS `mig_aluno` (
 	`codaluno` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
