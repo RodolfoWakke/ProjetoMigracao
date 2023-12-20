@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/12/20 11:00:05.977</modified_date>
+  <modified_date>2023/12/20 11:12:45.976</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -317,8 +317,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>80</xloc>
-      <yloc>448</yloc>
+      <xloc>160</xloc>
+      <yloc>336</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -366,11 +366,9 @@
       <description/>
       <type>MSGBOX_INFO</type>
       <attributes/>
-      <bodymessage>FALHA NO PASSO 4.
-
-Reveja o INSERT final da secretaria, passando da MIG para a tabela oficial.
+      <bodymessage>Reveja o INSERT final da secretaria, passando da MIG para a tabela oficial.
 </bodymessage>
-      <titremessage/>
+      <titremessage>FALHA NO PASSO 4</titremessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -463,11 +461,9 @@ Reveja o INSERT final da secretaria, passando da MIG para a tabela oficial.
       <description/>
       <type>MSGBOX_INFO</type>
       <attributes/>
-      <bodymessage>FALHA NO PASSO 5.
-
-Reveja o INSERT final do financeiro, passando da MIG para a tabela oficial.
+      <bodymessage>Reveja o INSERT final do financeiro, passando da MIG para a tabela oficial.
 </bodymessage>
-      <titremessage/>
+      <titremessage>FALHA NO PASSO 5</titremessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -480,11 +476,9 @@ Reveja o INSERT final do financeiro, passando da MIG para a tabela oficial.
       <description/>
       <type>MSGBOX_INFO</type>
       <attributes/>
-      <bodymessage>FALHA NO PASSO 6.
-
-Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
+      <bodymessage>Reveja o INSERT final do acadêmico passando da MIG para a tabela oficial.
 </bodymessage>
-      <titremessage/>
+      <titremessage>FALHA NO PASSO 6</titremessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -1169,6 +1163,20 @@ Confirmar?</bodymessage>
       <yloc>64</yloc>
       <attributes_kjc/>
     </entry>
+    <entry>
+      <name>FALHA - 5.1</name>
+      <description/>
+      <type>MSGBOX_INFO</type>
+      <attributes/>
+      <bodymessage>Reveja a criação da fatura.</bodymessage>
+      <titremessage>FALHA NO PASSO 5.1</titremessage>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>288</xloc>
+      <yloc>448</yloc>
+      <attributes_kjc/>
+    </entry>
   </entries>
   <hops>
     <hop>
@@ -1394,7 +1402,7 @@ Confirmar?</bodymessage>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>CHECK FATURA</from>
@@ -1561,6 +1569,24 @@ Confirmar?</bodymessage>
     <hop>
       <from>SISTEMAS</from>
       <to>PASSO 4 - SEC</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>PASSO 5.1 - FATURA</from>
+      <to>FALHA - 5.1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>FALHA - 5.1</from>
+      <to>Abort - RDS</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
