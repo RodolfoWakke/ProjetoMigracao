@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/08/21 08:54:57.288</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/09/14 15:12:42.405</modified_date>
+    <modified_date>2024/01/05 15:20:06.005</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -654,6 +654,21 @@
       <from>Select values configturma</from>
       <to>Insert mig_configturma</to>
       <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SELECT contasreceber</from>
+      <to>Select values configturma 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Select values configturma 2</from>
+      <to>Insert mig_configturma 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing)</from>
+      <to>SELECT contasreceber</to>
+      <enabled>N</enabled>
     </hop>
   </order>
   <step>
@@ -5585,6 +5600,518 @@ GROUP BY t.SiglaTurma;</sql>
     <GUI>
       <xloc>288</xloc>
       <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert mig_configturma 2</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>RDS</connection>
+    <schema/>
+    <table>mig_configturma</table>
+    <commit>20000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SELECT contasreceber</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>SQLSERVER-LOCALHOST</connection>
+    <sql>SELECT 
+	c.IdTituloCobranca AS 'codrec',
+	CASE WHEN (LEFT(dbo.SONUMERO(l.ParcelaCobranca),2))= '' THEN 01 ELSE (LEFT(dbo.SONUMERO(l.ParcelaCobranca),2)) END  AS 'parcela',
+	SUM(l.ValorServico) AS 'valorbruto',
+	(SUM(l.ValorServico) - dbo.IFNULL(SUM(CAST(l.LIQ_ValorDescontoNaoCondicionado AS DECIMAL(10, 2)))), 0) AS 'valorparcela',
+	SUM(l.ValorServico) AS 'valor',
+	SUM(CAST(l.LIQ_ValorDescontoConcedido AS DECIMAL(10, 2)) + CAST(l.LIQ_ValorDescontoCondicionado AS DECIMAL(10, 2))) AS 'desconto',
+	SUM(CAST(l.LIQ_ValorDescontoNaoCondicionado AS DECIMAL(10, 2))) AS 'outrosabatimentos',
+	c.DataVencimento AS 'vencimentodesconto',	
+	c.DataVencimento AS 'vencimento',
+	IF(l.LIQ_ValorDescontoNaoCondicionado != 0, c.DataVencimento, c.DataPagamento) AS 'dtpagamento',
+	IF(l.LIQ_ValorDescontoNaoCondicionado != 0, '-200', '0') AS 'carenciadesconto',
+	'S' AS 'cobbancaria',
+	'N' AS 'avulsa',
+	0 AS 'carenciamulta',
+	r.IdFormaRecebimento AS 'codconta',
+	a.IdUnidade AS 'codunidade',
+	CASE WHEN (LEFT(p.SiglaPeriodo,4)) IS NULL THEN  (YEAR(c.DataVencimento)) ELSE NULL END AS 'anoletivo',
+	SUM(l.LIQ_ValorRecebidoMulta) AS 'multa',
+	c.DataVencimento AS 'vencimentomulta',
+	CASE WHEN dbo.SONUMERO(rr.CPFCNPJ) IS NULL THEN  '00000000000' ELSE NULL END AS 'cpf',
+	l.LIQ_ValorRecebidoJuros AS 'juros',
+	SUM(l.LIQ_ValorRecebidoPrincipal + l.LIQ_ValorRecebidoMulta + l.LIQ_ValorRecebidoJuros) AS 'valorpago',
+	c.IdAluno AS 'codaluno',
+	l.IdServico AS 'codreceita',
+	l.IdServico AS 'receitaoriginal',
+	c.LinkDoBoleto AS 'urlboleto',
+	cb.BOL_LinhaDigitavel AS 'linhadigitavel',
+	cb.BOL_NossoNumero AS 'nossonumero',
+	'MIGRACAO' AS 'cadastradopor',
+	GETDATE() AS 'dtcadastro',
+	l.IdTurma AS 'AUX_codconfturma',
+	MIN(c.DataBaixa) AS 'AUX_databaixa'
+FROM TbTituloCobranca c
+JOIN TbResponsavel rr ON rr.IdResponsavel = c.IdResponsavel
+JOIN TbLancamentoCobranca l ON (c.IdTituloCobranca = l.IdTituloCobrancaGerado)
+JOIN tbaluno a ON (c.IdAluno = a.IdAluno)
+LEFT JOIN TbTituloCobrancaBoleto cb ON (cb.IdTituloCobranca = c.IdTituloCobranca)
+LEFT JOIN TbTurma t ON (t.IdTurma = l.IdTurma)
+LEFT JOIN TbPeriodo p ON (t.IdPeriodo = p.IdPeriodo)
+LEFT JOIN TbTituloCobrancaRegistrada r ON (r.IdTituloCobranca = c.IdTituloCobranca) AND r.SituacaoCobrancaRegistrada = 'RegistroConfirmado'
+WHERE c.SituacaoTituloCobranca != 'CAN' AND  c.SituacaoTituloCobranca != 'NEG'
+GROUP BY c.IdTituloCobranca;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codconfturma</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT configturma</origin>
+        <comments>codconfturma</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codseriecurso</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT configturma</origin>
+        <comments>codseriecurso</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>dscturma</name>
+        <length>100</length>
+        <precision>-1</precision>
+        <origin>SELECT configturma</origin>
+        <comments>dscturma</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>sigla</name>
+        <length>10</length>
+        <precision>-1</precision>
+        <origin>SELECT configturma</origin>
+        <comments>sigla</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Date</type>
+        <storagetype>normal</storagetype>
+        <name>dtinicio</name>
+        <length>-1</length>
+        <precision>-1</precision>
+        <origin>SELECT configturma</origin>
+        <comments>dtinicio</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Date</type>
+        <storagetype>normal</storagetype>
+        <name>dtfim</name>
+        <length>-1</length>
+        <precision>-1</precision>
+        <origin>SELECT configturma</origin>
+        <comments>dtfim</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>anoletivo</name>
+        <length>6</length>
+        <precision>-1</precision>
+        <origin>SELECT configturma</origin>
+        <comments>anoletivo</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>turno</name>
+        <length>1</length>
+        <precision>-1</precision>
+        <origin>SELECT configturma</origin>
+        <comments>turno</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>cadastradopor</name>
+        <length>8</length>
+        <precision>-1</precision>
+        <origin>SELECT configturma</origin>
+        <comments>cadastradopor</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>dtcadastro</name>
+        <length>3</length>
+        <precision>-1</precision>
+        <origin>SELECT configturma</origin>
+        <comments>dtcadastro</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>numvagas</name>
+        <length>4</length>
+        <precision>0</precision>
+        <origin>SELECT configturma</origin>
+        <comments>numvagas</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codturma</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT configturma</origin>
+        <comments>codturma</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>aux_codturma</name>
+        <length>20</length>
+        <precision>-1</precision>
+        <origin>SELECT configturma</origin>
+        <comments>aux_codturma</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values configturma 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>codconfturma</name>
+      </field>
+      <field>
+        <name>codseriecurso</name>
+      </field>
+      <field>
+        <name>dscturma</name>
+      </field>
+      <field>
+        <name>sigla</name>
+      </field>
+      <field>
+        <name>dtinicio</name>
+      </field>
+      <field>
+        <name>dtfim</name>
+      </field>
+      <field>
+        <name>anoletivo</name>
+      </field>
+      <field>
+        <name>turno</name>
+      </field>
+      <field>
+        <name>cadastradopor</name>
+      </field>
+      <field>
+        <name>dtcadastro</name>
+      </field>
+      <field>
+        <name>numvagas</name>
+      </field>
+      <field>
+        <name>codturma</name>
+      </field>
+      <field>
+        <name>aux_codturma</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>816</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
