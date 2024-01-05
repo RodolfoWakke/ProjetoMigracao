@@ -428,12 +428,79 @@
     <created_user>-</created_user>
     <created_date>2023/08/21 08:53:54.648</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/08/21 11:56:15.932</modified_date>
+    <modified_date>2024/01/05 16:39:49.485</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>MYSQL-LOCALHOST</name>
+    <server>127.0.0.1</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>${v_nomebanco-mysql}</database>
+    <port>3306</port>
+    <username>root</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.autoReconnect</code>
+        <attribute>true</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
+        <attribute>500</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
+        <attribute>true</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>3306</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STREAM_RESULTS</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <connection>
     <name>RDS</name>
     <server>escolawebrds${v_end-RDS}.cdq77divwtia.sa-east-1.rds.amazonaws.com</server>
@@ -505,65 +572,6 @@
       </attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>SQLSERVER-LOCALHOST</name>
-    <server>localhost</server>
-    <type>MSSQLNATIVE</type>
-    <access>Native</access>
-    <database>${v_nomebanco-sqlserver}</database>
-    <port>1433</port>
-    <username>sa</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>MSSQLUseIntegratedSecurity</code>
-        <attribute>false</attribute>
-      </attribute>
-      <attribute>
-        <code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>1433</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <order>
   </order>
   <step>
@@ -583,6 +591,90 @@
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
     <sql>-- SECRETARIA --
+
+DROP TABLE IF EXISTS `mig_unidadeescolar`;
+CREATE TABLE `mig_unidadeescolar` (
+	`codunidade` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`dscunidade` VARCHAR(200) NOT NULL COLLATE 'latin1_swedish_ci',
+	`codigoinep_censo` INT(8) NULL DEFAULT NULL,
+	`endereco` VARCHAR(140) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`bairro` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cidade` INT(11) NULL DEFAULT NULL,
+	`uf` SMALLINT(6) UNSIGNED NULL DEFAULT NULL,
+	`cep` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`email` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`site` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`telefone` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`fax` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cnpj` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`reconhecimento` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`responsavel` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cargoresponsavel` INT(11) NULL DEFAULT NULL,
+	`cpfresponsavel` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rgresponsavel` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`nomefantasia` VARCHAR(80) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`mantenedor` VARCHAR(70) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`secretario` VARCHAR(70) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`registrosecretario` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`registroresponsavel` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codtabescola` INT(11) NULL DEFAULT NULL,
+	`dscunidadeabrev` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`inscricaomunicipal` CHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`logo` BLOB NULL DEFAULT NULL,
+	`imgrelatorioesquerda` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`imgrelatoriodireita` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`conexaofastreport` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`logoempresaportal` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dscportal` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`logodireita` BLOB NULL DEFAULT NULL,
+	`diretoracademico` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`registrodiretor` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`diretorfinanceiro` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`registrodiretorfinanceiro` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cpfresponsavelfinanceiro` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rgresponsavelfinanceiro` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cargoresponsavelfinanceiro` INT(11) NULL DEFAULT NULL,
+	`cpfdiretorfinanceiro` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`rgdiretorlfinanceiro` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cargodiretorfinanceiro` INT(11) NULL DEFAULT NULL,
+	`latitude` DECIMAL(14,6) NULL DEFAULT NULL,
+	`longitude` DECIMAL(14,6) NULL DEFAULT NULL,
+	`emailmatriculaonline` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`contrato` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`situacaofuncionamento003` INT(1) NULL DEFAULT NULL COMMENT '1-Em atividade/2-Paralisada/3-extinta',
+	`distrito0016` INT(11) NULL DEFAULT NULL COMMENT 'usar tabela de distrito',
+	`codorgaoreginal0023` INT(11) NULL DEFAULT NULL COMMENT 'usar tabela de orgao reginal de ensino',
+	`depadministrativa0024` INT(1) NULL DEFAULT NULL COMMENT '1-Federal/2-Estadual/3-Municipal/4-privada',
+	`zonaescola0025` INT(1) NULL DEFAULT NULL COMMENT '1-Urbana/2-Rural',
+	`catescolaprivada0026` INT(1) NULL DEFAULT NULL COMMENT '1-Particular/2-Comunitaria/3-Confessional/4-Filantropica',
+	`conveniopoderpublico0027` INT(1) NULL DEFAULT NULL COMMENT '1-Estadual/2-Municipal/3-Estadual e Municipal',
+	`mantenedora0028_empresapessoa` INT(1) NULL DEFAULT NULL COMMENT 'grupo mantenedora 0-Nao/1-Sim',
+	`mantenedora0029_sindasscoop` INT(1) NULL DEFAULT NULL COMMENT 'grupo mantenedora 0-Nao/1-Sim',
+	`mantenedora0030_ong` INT(1) NULL DEFAULT NULL COMMENT 'grupo mantenedora 0-Nao/1-Sim',
+	`mantenedora0031_semfinslucr` INT(1) NULL DEFAULT NULL COMMENT 'grupo mantenedora 0-Nao/1-Sim',
+	`mantenedora0032_sistema_s` INT(1) NULL DEFAULT NULL COMMENT 'grupo mantenedora 0-Nao/1-Sim',
+	`cnpjmantenedora0033` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`regulamentacao0035` INT(1) NULL DEFAULT NULL COMMENT '0-Nao/1-Sim/3-Em tramitacao',
+	`emailresposanvel` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`liberasituacaofinalaluno` CHAR(1) NULL DEFAULT 'N' COMMENT 'libera a situacao final do aluno antes do termino das turmas. S para SIM e N para NAO' COLLATE 'latin1_swedish_ci',
+	`merchantidcielo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`merchantkeycielo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`wstoken_ava` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`url_ava` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`driveapi` INT(11) NULL DEFAULT NULL,
+	`certificadoa1url` VARCHAR(300) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`certificadoa1senha` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`qtddiasletivos` INT(11) NULL DEFAULT NULL,
+	`observacoes` VARCHAR(2000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`idgoogledrive` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`idiescenso` INT(11) NULL DEFAULT NULL,
+	`alteradopor` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	PRIMARY KEY (`codunidade`) USING BTREE)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+
 DROP TABLE IF EXISTS `mig_aluno`;
    CREATE TABLE IF NOT EXISTS `mig_aluno` (
 	`codaluno` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -968,9 +1060,9 @@ CREATE TABLE IF NOT EXISTS `mig_curso` (
 	`tipoagrupmateriacomposta` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
 	`mediasemestreagrupado` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
 	`avaliacaogrupo` CHAR(1) NULL DEFAULT 'N' COMMENT 'define se as avaliaÃ§Ãµes da escola sÃ£o separadas em grupos. s = sim  /  n = nao.' COLLATE 'latin1_swedish_ci',
-	`calculomediafinal` CHAR(1) NULL DEFAULT 'P' COLLATE 'latin1_general_ci',
+	`calculomediafinal` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_general_ci',
 	`qtdmateriarpp` INT(11) NULL DEFAULT '0',
-	`calculomedia` CHAR(1) NULL DEFAULT 'P' COLLATE 'latin1_swedish_ci',
+	`calculomedia` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
 	`anoletivosemestre` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
 	`mediasemestre1` DECIMAL(5,2) NULL DEFAULT NULL,
 	`mediasemestre2` DECIMAL(5,2) NULL DEFAULT NULL,
@@ -1009,11 +1101,10 @@ CREATE TABLE IF NOT EXISTS `mig_curso` (
 	`modalidade` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
 	`tituloconferido` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
 	`grauconferido` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`aux_codcurso` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_codunidade` INT(11) NULL DEFAULT NULL,
 	PRIMARY KEY (`codcurso`) USING BTREE)
 COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=1;
+ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `mig_seriecurso`;
 CREATE TABLE IF NOT EXISTS `mig_seriecurso` (
@@ -1497,7 +1588,7 @@ ALTER TABLE mig_acumulado AUTO_INCREMENT = 1;</sql>
     </GUI>
   </step>
   <step>
-    <name>REMOVEcaractere e LIMPEZASTRING</name>
+    <name>REMOVEcaractere e LIMPEZASTRING 2</name>
     <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
@@ -1507,31 +1598,40 @@ ALTER TABLE mig_acumulado AUTO_INCREMENT = 1;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>SQLSERVER-LOCALHOST</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <execute_each_row>N</execute_each_row>
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>DROP FUNCTION IF EXISTS dbo.REMOVEcaractere;
+    <sql>SET GLOBAL log_bin_trust_function_creators = 1;
 
-CREATE FUNCTION dbo.REMOVEcaractere
-(
-  @strAlphaNumeric VARCHAR(256)
+drop function if exists `REMOVEcaractere`;
+
+CREATE FUNCTION `REMOVEcaractere`(
+	`P_TEXTO` VARCHAR(200)
 )
-RETURNS VARCHAR(256)
-AS
-BEGIN
-  DECLARE @intAlpha INT
-  SET @intAlpha = PATINDEX('%[^0-9]%', @strAlphaNumeric)
-  BEGIN
-    WHILE @intAlpha > 0
-    BEGIN
-      SET @strAlphaNumeric = STUFF(@strAlphaNumeric, @intAlpha, 1, '' )
-      SET @intAlpha = PATINDEX('%[^0-9]%', @strAlphaNumeric )
-    END
-  END
-  RETURN ISNULL(@strAlphaNumeric,NULL)
-END;</sql>
+RETURNS char(50) CHARSET latin1
+LANGUAGE SQL
+NOT DETERMINISTIC
+CONTAINS SQL
+SQL SECURITY DEFINER
+COMMENT ''
+RETURN replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(P_TEXTO,'.',''),'-',''),'/',''),' ',''),'_',''),';',''),')',''),'(',''), ' ', ''),'a',''),'b',''),'c',''),'d',''),'e',''),'f',''),'g',''),'h',''),'i',''),'j',''),'k',''),'l',''),'m',''),'n',''),'o',''),'p',''),'r',''),'s',''),'t',''),'u',''),'x',''),'z',''),'w',''),'y',''),'|',''),'\'',''),',',''),'$',''),'!',''),'@',''),'+',''),'A',''),'B',''),'C',''),'D',''),'E',''),'F',''),'G',''),'H',''),'I',''),'J',''),'K',''),'L',''),'M',''),'N',''),'O',''),'P',''),'R',''),'S',''),'T',''),'U',''),'V',''),'X',''),'Z',''),'W',''),'Y',''),'Ã¡',''),'Ã ',''),'Ã£',''),'Ã¢',''),'Ã ',''),'Ã€',''),'Ãƒ',''),'Ã‚',''),'Ã©',''),'Ã¨',''),'Ãª',''),'Ã‰',''),'Ãˆ',''),'ÃŠ',''),'Ã­',''),'Ã¬',''),'Ã®',''),'Ã ',''),'ÃŒ',''),'ÃŽ',''),'Ã³',''),'Ã²',''),'Ã´',''),'Ãµ',''),'Ã“',''),'Ã’',''),'Ã”',''),'Ã•',''),'Ãº',''),'Ã¹',''),'Ã»',''),'Ãš',''),'Ã™',''),'Ã›',''),'v',''),'q',''),'Q','')
+;
+
+drop function if exists `LIMPEZASTRING`;
+
+CREATE FUNCTION `LIMPEZASTRING`(
+	`P_TEXTO` VARCHAR(200)
+)
+RETURNS char(50) CHARSET latin1
+LANGUAGE SQL
+NOT DETERMINISTIC
+CONTAINS SQL
+SQL SECURITY DEFINER
+COMMENT ''
+RETURN 
+REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -1564,30 +1664,37 @@ END;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>SQLSERVER-LOCALHOST</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <execute_each_row>N</execute_each_row>
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>-- CREATE TABLE
-DROP TABLE IF EXISTS cidade_escolaweb;
+    <sql>
 
-CREATE TABLE cidade_escolaweb (
-	cod_cidade INT NOT NULL,
-	nom_cidade VARCHAR(50) NOT NULL,
-	municipioibge INT NULL DEFAULT NULL,
-	cod_estado INT NOT NULL,
-	nom_estado VARCHAR(50) NOT NULL,
-	sgl_estado VARCHAR(10) NOT NULL,
-	estadoibge INT NULL DEFAULT NULL,
-	cod_pais INT NOT NULL,
-	PRIMARY KEY (cod_cidade)
+CREATE TABLE IF NOT EXISTS `cidade_escolaweb` (
+	`cod_cidade` INT(11) NOT NULL,
+	`nom_cidade` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
+	`municipioibge` INT(11) NULL DEFAULT NULL,
+	`cod_estado` INT(11) NOT NULL,
+	`nom_estado` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
+	`sgl_estado` VARCHAR(10) NOT NULL COLLATE 'latin1_swedish_ci',
+	`estadoibge` INT(11) NULL DEFAULT NULL,
+	`cod_pais` INT(11) NOT NULL,
+	PRIMARY KEY (`cod_cidade`) USING BTREE,
+	INDEX `nom_cidade` (`nom_cidade`) USING BTREE,
+	INDEX `nom_estado` (`nom_estado`) USING BTREE,
+	INDEX `sgl_estado` (`sgl_estado`) USING BTREE,
+	INDEX `estadoibge` (`estadoibge`) USING BTREE
 )
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
 ;
+
+DELETE FROM cidade_escolaweb;
 
 -- INSERT
 
-INSERT INTO cidade_escolaweb (cod_cidade, nom_cidade, municipioibge, cod_estado, nom_estado, sgl_estado, estadoibge, cod_pais)
+INSERT INTO `cidade_escolaweb` (`cod_cidade`, `nom_cidade`, `municipioibge`, `cod_estado`, `nom_estado`, `sgl_estado`, `estadoibge`, `cod_pais`)
 VALUES 
  (1, 'ACRELÂNDIA', 1200013, 1, 'Acre', 'AC', 12, 76),
  (2, 'ASSIS BRASIL', 1200054, 1, 'Acre', 'AC', 12, 76),
@@ -2587,9 +2694,7 @@ VALUES
  (996, 'ITAPURANGA', 5211206, 9, 'Goiás', 'GO', 52, 76),
  (997, 'ITARUMÃ', 5211305, 9, 'Goiás', 'GO', 52, 76),
  (998, 'ITAUÇU', 5211404, 9, 'Goiás', 'GO', 52, 76),
- (999, 'ITUMBIARA', 5211503, 9, 'Goiás', 'GO', 52, 76);
- INSERT INTO cidade_escolaweb (cod_cidade, nom_cidade, municipioibge, cod_estado, nom_estado, sgl_estado, estadoibge, cod_pais)
-VALUES 
+ (999, 'ITUMBIARA', 5211503, 9, 'Goiás', 'GO', 52, 76),
  (1000, 'IVOLÂNDIA', 5211602, 9, 'Goiás', 'GO', 52, 76),
  (1001, 'JANDAIA', 5211701, 9, 'Goiás', 'GO', 52, 76),
  (1002, 'JARAGUÁ', 5211800, 9, 'Goiás', 'GO', 52, 76),
@@ -3589,9 +3694,7 @@ VALUES
  (1996, 'MANTENA', 3139607, 13, 'Minas Gerais', 'MG', 31, 76),
  (1997, 'MAR DE ESPANHA', 3139805, 13, 'Minas Gerais', 'MG', 31, 76),
  (1998, 'MARAVILHAS', 3139706, 13, 'Minas Gerais', 'MG', 31, 76),
- (1999, 'MARIA DA FÉ', 3139904, 13, 'Minas Gerais', 'MG', 31, 76);
- INSERT INTO cidade_escolaweb (cod_cidade, nom_cidade, municipioibge, cod_estado, nom_estado, sgl_estado, estadoibge, cod_pais)
-VALUES 
+ (1999, 'MARIA DA FÉ', 3139904, 13, 'Minas Gerais', 'MG', 31, 76),
  (2000, 'MARIANA', 3140001, 13, 'Minas Gerais', 'MG', 31, 76),
  (2001, 'MARILAC', 3140100, 13, 'Minas Gerais', 'MG', 31, 76),
  (2002, 'MÁRIO CAMPOS', 3140159, 13, 'Minas Gerais', 'MG', 31, 76),
@@ -4591,9 +4694,7 @@ VALUES
  (2996, 'NOVA LONDRINA', 4117107, 16, 'Paraná', 'PR', 41, 76),
  (2997, 'NOVA OLÍMPIA', 4117206, 16, 'Paraná', 'PR', 41, 76),
  (2998, 'NOVA PRATA DO IGUAÇU', 4117255, 16, 'Paraná', 'PR', 41, 76),
- (2999, 'NOVA SANTA BÁRBARA', 4117214, 16, 'Paraná', 'PR', 41, 76);
- INSERT INTO cidade_escolaweb (cod_cidade, nom_cidade, municipioibge, cod_estado, nom_estado, sgl_estado, estadoibge, cod_pais)
-VALUES 
+ (2999, 'NOVA SANTA BÁRBARA', 4117214, 16, 'Paraná', 'PR', 41, 76),
  (3000, 'NOVA SANTA ROSA', 4117222, 16, 'Paraná', 'PR', 41, 76),
  (3001, 'NOVA TEBAS', 4117271, 16, 'Paraná', 'PR', 41, 76),
  (3002, 'NOVO ITACOLOMI', 4117297, 16, 'Paraná', 'PR', 41, 76),
@@ -5593,9 +5694,7 @@ VALUES
  (3996, 'GUAPORÉ', 4309407, 21, 'Rio Grande do Sul', 'RS', 43, 76),
  (3997, 'GUARANI DAS MISSÕES', 4309506, 21, 'Rio Grande do Sul', 'RS', 43, 76),
  (3998, 'HARMONIA', 4309555, 21, 'Rio Grande do Sul', 'RS', 43, 76),
- (3999, 'HERVAL', 4307104, 21, 'Rio Grande do Sul', 'RS', 43, 76);
- INSERT INTO cidade_escolaweb (cod_cidade, nom_cidade, municipioibge, cod_estado, nom_estado, sgl_estado, estadoibge, cod_pais)
-VALUES 
+ (3999, 'HERVAL', 4307104, 21, 'Rio Grande do Sul', 'RS', 43, 76),
  (4000, 'HERVEIRAS', 4309571, 21, 'Rio Grande do Sul', 'RS', 43, 76),
  (4001, 'HORIZONTINA', 4309605, 21, 'Rio Grande do Sul', 'RS', 43, 76),
  (4002, 'HULHA NEGRA', 4309654, 21, 'Rio Grande do Sul', 'RS', 43, 76),
@@ -6595,9 +6694,7 @@ VALUES
  (4996, 'MOGI MIRIM', 3530805, 25, 'São Paulo', 'SP', 35, 76),
  (4997, 'MOMBUCA', 3530904, 25, 'São Paulo', 'SP', 35, 76),
  (4998, 'MONÇÕES', 3531001, 25, 'São Paulo', 'SP', 35, 76),
- (4999, 'MONGAGUÁ', 3531100, 25, 'São Paulo', 'SP', 35, 76);
- INSERT INTO cidade_escolaweb (cod_cidade, nom_cidade, municipioibge, cod_estado, nom_estado, sgl_estado, estadoibge, cod_pais)
-VALUES 
+ (4999, 'MONGAGUÁ', 3531100, 25, 'São Paulo', 'SP', 35, 76),
  (5000, 'MONTE ALEGRE DO SUL', 3531209, 25, 'São Paulo', 'SP', 35, 76),
  (5001, 'MONTE ALTO', 3531308, 25, 'São Paulo', 'SP', 35, 76),
  (5002, 'MONTE APRAZÍVEL', 3531407, 25, 'São Paulo', 'SP', 35, 76),
