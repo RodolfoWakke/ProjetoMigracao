@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/08/21 08:53:54.648</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/01/05 16:39:49.485</modified_date>
+    <modified_date>2024/01/05 17:25:45.130</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -831,6 +831,7 @@ DROP TABLE IF EXISTS `mig_aluno`;
 	`tokenfirebase` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
 	`wakkestudentid` CHAR(36) NULL DEFAULT NULL COMMENT 'Identificador do aluno na Wakke Class' COLLATE 'latin1_swedish_ci',
 	`codaluno_unificado` INT(11) NULL DEFAULT NULL,
+	`aux_matricula` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
 	PRIMARY KEY (`codaluno`) USING BTREE)
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
@@ -1102,6 +1103,7 @@ CREATE TABLE IF NOT EXISTS `mig_curso` (
 	`tituloconferido` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
 	`grauconferido` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
 	`AUX_codunidade` INT(11) NULL DEFAULT NULL,
+	`aux_codcurso` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
 	PRIMARY KEY (`codcurso`) USING BTREE)
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
@@ -1281,8 +1283,9 @@ CREATE TABLE IF NOT EXISTS `mig_matricula` (
   `codconffatura` int(11) DEFAULT NULL,
   `intercambista` char(1) DEFAULT NULL COMMENT 'S - Sim / N- Nao',
 	`aux_codturma` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-  `AUX_codunidade` varchar(50) DEFAULT NULL,
+   `AUX_codunidade` varchar(50) DEFAULT NULL,
 	`aux_codcurso` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`aux_matricula` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
   PRIMARY KEY (`codmatricula`) USING BTREE,
   INDEX `aux_codturma` (`aux_codturma`) USING BTREE);
   
@@ -1473,10 +1476,12 @@ CREATE TABLE IF NOT EXISTS `mig_contasreceber` (
   `AUX_codpj` varchar(100) DEFAULT NULL,
   `AUX_cpf` varchar(50) DEFAULT NULL,
   `AUX_codunidade` varchar(50) DEFAULT NULL,
+  `AUX_codconfturma` varchar(50) DEFAULT NULL,
+  `AUX_databaixa` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`codrec`) USING BTREE,
   INDEX `codaluno` (`codaluno`) USING BTREE,
   INDEX `codreceita` (`codreceita`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=LATIN1;
 
 
 -- ACADÊMICO -- 
