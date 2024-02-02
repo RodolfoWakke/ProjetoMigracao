@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/08/21 08:54:57.288</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/01/05 17:20:08.713</modified_date>
+    <modified_date>2024/01/22 11:20:51.507</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -634,26 +634,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SELECT aluno</from>
-      <to>Select values aluno</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values aluno</from>
-      <to>Insert mig_aluno</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SELECT responsavel</from>
-      <to>Select values responsavel</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values responsavel</from>
-      <to>Insert mig_responsavel</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>SELECT configturma</from>
       <to>Select values configturma</to>
       <enabled>Y</enabled>
@@ -701,6 +681,26 @@
     <hop>
       <from>Select values unidadeescolar</from>
       <to>Insert mig_unidadeescolar</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SELECT aluno</from>
+      <to>Select values aluno</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values aluno</from>
+      <to>Insert mig_aluno</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SELECT responsavel</from>
+      <to>Select values responsavel</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values responsavel</from>
+      <to>Insert mig_responsavel</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -788,7 +788,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>208</yloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -876,7 +876,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>128</yloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -920,7 +920,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>288</yloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1071,7 +1071,7 @@
     <schema/>
     <table>mig_matricula</table>
     <commit>20000</commit>
-    <truncate>Y</truncate>
+    <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
     <specify_fields>N</specify_fields>
@@ -1292,14 +1292,14 @@
 	a.IdAluno AS 'codaluno',
 	LEFT(UPPER(a.nomealuno),100) AS 'nomealuno', 
 	UPPER(TRIM(CONCAT(ta.Logradouro, IF(ta.Complemento IS NULL, '', CONCAT(', ', ta.Complemento))))) AS 'endereco',
-	LEFT(UPPER(ta.Bairro),60) AS 'bairro',
+	to_base64((LEFT(UPPER(ta.Bairro),60))) AS 'bairro',
 	ce.cod_cidade AS 'cidade',
 	ce.cod_estado AS 'uf',
 	LEFT(RTRIM(REMOVEcaractere(ta.CEP)),8) AS 'cep',
 	LEFT(REMOVEcaractere(a.celular),16) AS 'celular',
 	LEFT(a.email,100) AS 'email',
 	LEFT(a.sexo,1) AS 'sexo',
-	CONVERT(a.datanascimento, DATE) AS 'dtnascimento', 
+	a.datanascimento AS 'dtnascimento', 
 	CASE WHEN a.CorRaca = 'A' THEN 'AMARELA' 
 		WHEN a.CorRaca = 'B' THEN 'BRANCA' 
 		WHEN a.CorRaca = 'N' THEN 'NEGRA' 
@@ -1319,19 +1319,19 @@
 	LEFT(CONCAT(CASE WHEN a.RegistroNascimentoLivro IS NULL THEN '' ELSE NULL END, ' / ', CASE WHEN a.RegistroNascimentoFolha IS NULL THEN '' ELSE NULL END),30) AS 'certidaolivrofolha',
 	LEFT(a.RegistroNascimentoCartorio,50) AS 'certidaocartorio', 
 	LEFT(UPPER(CONCAT(CASE WHEN ep.logradouro IS NULL THEN '' ELSE NULL END,' ', CASE WHEN ep.complemento IS NULL THEN '' ELSE NULL END, ' ')),200) AS 'enderecopai',
-	LEFT(UPPER(ep.Bairro),60) AS 'bairropai', 
+	to_base64((LEFT(UPPER(ep.Bairro),60))) AS 'bairropai', 
 	cp.cod_cidade AS 'codcidadepai',
 	LEFT(RTRIM(REMOVEcaractere(ep.CEP)),8) AS 'ceppai', 
 	LEFT(UPPER(CONCAT(CASE WHEN em.logradouro IS NULL THEN '' ELSE NULL END,' ', CASE WHEN em.complemento IS NULL THEN '' ELSE NULL END)),200) AS 'enderecomae',
-	LEFT(UPPER(em.Bairro),60) AS 'bairromae',
+	to_base64((LEFT(UPPER(em.Bairro),60))) AS 'bairromae',
 	LEFT(RTRIM(REMOVEcaractere(em.CEP)),8) AS 'cepmae', 
 	cp.cod_cidade AS 'codcidademae',
 	LEFT(a.TituloEleitor_Numero,15) AS 'titeleitor',
 	LEFT(a.tituloeleitor_zona,10) AS 'zona',
 	CURDATE() AS 'dtcadastro',
 	LEFT(UPPER(a.nacionalidade),30) AS 'nacionalidade',
-	DATE(rp.datanascimento) AS 'dtnascimentopai',
-	DATE(rm.datanascimento) AS 'dtnascimentomae',
+	rp.datanascimento AS 'dtnascimentopai',
+	rm.datanascimento AS 'dtnascimentomae',
 	LEFT(a.tiposangue,20) AS 'tiposanguineo',
 	LEFT(a.naturalidade,100) AS 'naturalidade',
 	LEFT(REMOVEcaractere(rp.cpfcnpj),11) AS 'cpfpai',
@@ -1345,7 +1345,7 @@
 		WHEN a.RG_OrgaoEmissor IS NULL THEN NULL 
 		ELSE 81 
 		END AS 'rgorgaoemissor',
-	DATE(a.RG_DataEmissao) AS 'rgdataemissao',
+	a.RG_DataEmissao AS 'rgdataemissao',
 	a.Matricula AS 'AUX_matricula'
 FROM tbaluno AS a
 LEFT JOIN TbEndereco AS ta ON ta.IdEndereco = a.IdEndereco
@@ -1357,7 +1357,7 @@ LEFT JOIN tbprofissao AS pp ON rp.idprofissao = pp.idprofissao
 LEFT JOIN tbendereco AS ep ON rp.idendereco = ep.idendereco
 LEFT JOIN tbendereco AS em ON rm.idendereco = em.idendereco
 LEFT JOIN cidade_escolaweb cp ON ep.Cidade = cp.nom_cidade AND ep.UF = cp.sgl_estado
-LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_estado 
+LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_estado
 ;</sql>
     <limit>0</limit>
     <lookup/>
@@ -1393,7 +1393,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nomealuno</name>
-        <length>50</length>
+        <length>55</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>nomealuno</comments>
@@ -1416,7 +1416,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>endereco</name>
-        <length>95</length>
+        <length>105</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>endereco</comments>
@@ -1439,7 +1439,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairro</name>
-        <length>36</length>
+        <length>218</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>bairro</comments>
@@ -1597,10 +1597,10 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimento</name>
-        <length>-1</length>
+        <length>19</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>dtnascimento</comments>
@@ -1646,7 +1646,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>pai</name>
-        <length>57</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>pai</comments>
@@ -1715,7 +1715,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>emailpai</name>
-        <length>43</length>
+        <length>41</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>emailpai</comments>
@@ -1738,7 +1738,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>mae</name>
-        <length>57</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>mae</comments>
@@ -1807,7 +1807,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>emailmae</name>
-        <length>43</length>
+        <length>41</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>emailmae</comments>
@@ -1876,7 +1876,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>certidaonumero</name>
-        <length>32</length>
+        <length>40</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>certidaonumero</comments>
@@ -1968,7 +1968,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairropai</name>
-        <length>36</length>
+        <length>218</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>bairropai</comments>
@@ -2060,7 +2060,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairromae</name>
-        <length>36</length>
+        <length>218</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>bairromae</comments>
@@ -2198,7 +2198,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nacionalidade</name>
-        <length>14</length>
+        <length>15</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>nacionalidade</comments>
@@ -2218,10 +2218,10 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimentopai</name>
-        <length>-1</length>
+        <length>19</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>dtnascimentopai</comments>
@@ -2241,10 +2241,10 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimentomae</name>
-        <length>-1</length>
+        <length>19</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>dtnascimentomae</comments>
@@ -2336,7 +2336,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>rgpai</name>
-        <length>20</length>
+        <length>19</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>rgpai</comments>
@@ -2382,7 +2382,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>rgmae</name>
-        <length>20</length>
+        <length>19</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>rgmae</comments>
@@ -2425,10 +2425,10 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>rgdataemissao</name>
-        <length>-1</length>
+        <length>19</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>rgdataemissao</comments>
@@ -2448,14 +2448,14 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Integer</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>AUX_matricula</name>
-        <length>9</length>
-        <precision>0</precision>
+        <length>11</length>
+        <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>AUX_matricula</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -2498,10 +2498,11 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
     </partitioning>
     <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT 
-	s.IdServico As 'codreceita',
+	IF(s.IdServico = 0, 999, s.IdServico) 'codreceita',
 	UPPER(LEFT(s.NomeServico,20)) AS 'dscreceita',
 	'S' AS 'ativo'
-FROM TbServico s;</sql>
+FROM TbServico s
+GROUP BY s.IdServico;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -2513,9 +2514,9 @@ FROM TbServico s;</sql>
         <type>Integer</type>
         <storagetype>normal</storagetype>
         <name>codreceita</name>
-        <length>9</length>
+        <length>15</length>
         <precision>0</precision>
-        <origin>SELECT conta 2</origin>
+        <origin>SELECT centroreceita</origin>
         <comments>codreceita</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -2538,7 +2539,7 @@ FROM TbServico s;</sql>
         <name>dscreceita</name>
         <length>20</length>
         <precision>-1</precision>
-        <origin>SELECT conta 2</origin>
+        <origin>SELECT centroreceita</origin>
         <comments>dscreceita</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2561,7 +2562,7 @@ FROM TbServico s;</sql>
         <name>ativo</name>
         <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT conta 2</origin>
+        <origin>SELECT centroreceita</origin>
         <comments>ativo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -2589,7 +2590,7 @@ FROM TbServico s;</sql>
     </remotesteps>
     <GUI>
       <xloc>656</xloc>
-      <yloc>208</yloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3214,7 +3215,7 @@ FROM tbformarecebimento c;</sql>
     </remotesteps>
     <GUI>
       <xloc>656</xloc>
-      <yloc>128</yloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3231,8 +3232,8 @@ FROM tbformarecebimento c;</sql>
     </partitioning>
     <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT 
-	c.IdTituloCobranca AS 'codrec',
-	1 AS 'parcela',
+	l.IdLancamentoCobranca AS 'codrec',
+	LEFT(IFNULL(SONUMERO(l.ParcelaCobranca), '01'),2) AS 'parcela',
 	SUM(l.ValorServico) AS 'valorbruto',
 	(SUM(l.ValorServico) - IFNULL(SUM(CAST(l.LIQ_ValorDescontoNaoCondicionado AS DECIMAL(10, 2))), 0)) AS 'valorparcela',
 	SUM(l.ValorServico) AS 'valor',
@@ -3245,7 +3246,9 @@ FROM tbformarecebimento c;</sql>
 	'S' AS 'cobbancaria',
 	'N' AS 'avulsa',
 	0 AS 'carenciamulta',
-	r.IdFormaRecebimento AS 'codconta',
+		(SELECT MAX(r.IdFormaRecebimento) FROM tbtitulocobrancaregistrada r 
+		WHERE r.IdTituloCobranca = c.IdTituloCobranca AND r.SituacaoCobrancaRegistrada = 'RegistroConfirmado'
+		GROUP BY r.IdTituloCobranca) AS 'codconta',
 	a.IdUnidade AS 'codunidade',
 	IFNULL((LEFT(p.SiglaPeriodo,4)), (YEAR(c.DataVencimento))) AS 'anoletivo',
 	SUM(l.LIQ_ValorRecebidoMulta) AS 'multa',
@@ -3254,15 +3257,16 @@ FROM tbformarecebimento c;</sql>
 	l.LIQ_ValorRecebidoJuros AS 'juros',
 	SUM(l.LIQ_ValorRecebidoPrincipal + l.LIQ_ValorRecebidoMulta + l.LIQ_ValorRecebidoJuros) AS 'valorpago',
 	c.IdAluno AS 'codaluno',
-	l.IdServico AS 'codreceita',
-	l.IdServico AS 'receitaoriginal',
+	IF(l.IdServico = 0, 999, l.IdServico) AS 'codreceita',
+	IF(l.IdServico = 0, 999, l.IdServico) AS 'receitaoriginal',
 	c.LinkDoBoleto AS 'boletourl',
 	LEFT(cb.BOL_LinhaDigitavel, 60) AS 'linha',
 	cb.BOL_NossoNumero AS 'nossonumero',
 	'MIGRACAO' AS 'cadastradopor',
 	NOW() AS 'dtcadastro',
 	l.IdTurma AS 'AUX_codconfturma',
-	MIN(c.DataBaixa) AS 'AUX_databaixa'
+	MIN(c.DataBaixa) AS 'AUX_databaixa',
+	c.IdTituloCobranca AS 'AUX_TituloCobranca'
 FROM TbTituloCobranca c
 JOIN TbResponsavel rr ON rr.IdResponsavel = c.IdResponsavel
 JOIN TbLancamentoCobranca l ON (c.IdTituloCobranca = l.IdTituloCobrancaGerado)
@@ -3270,10 +3274,9 @@ JOIN tbaluno a ON (c.IdAluno = a.IdAluno)
 LEFT JOIN TbTituloCobrancaBoleto cb ON (cb.IdTituloCobranca = c.IdTituloCobranca)
 LEFT JOIN TbTurma t ON (t.IdTurma = l.IdTurma)
 LEFT JOIN TbPeriodo p ON (t.IdPeriodo = p.IdPeriodo)
-LEFT JOIN TbTituloCobrancaRegistrada r ON (r.IdTituloCobranca = c.IdTituloCobranca) AND r.SituacaoCobrancaRegistrada = 'RegistroConfirmado'
 WHERE c.SituacaoTituloCobranca != 'CAN' AND  c.SituacaoTituloCobranca != 'NEG'
-GROUP BY c.IdTituloCobranca;
-</sql>
+-- AND c.IdAluno = 1976
+GROUP BY c.IdTituloCobranca, l.IdLancamentoCobranca;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -3305,14 +3308,14 @@ GROUP BY c.IdTituloCobranca;
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Integer</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>parcela</name>
-        <length>15</length>
-        <precision>0</precision>
+        <length>2</length>
+        <precision>-1</precision>
         <origin>SELECT contasreceber</origin>
         <comments>parcela</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -3745,7 +3748,7 @@ GROUP BY c.IdTituloCobranca;
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>juros</name>
-        <length>4</length>
+        <length>6</length>
         <precision>-1</precision>
         <origin>SELECT contasreceber</origin>
         <comments>juros</comments>
@@ -3814,7 +3817,7 @@ GROUP BY c.IdTituloCobranca;
         <type>Integer</type>
         <storagetype>normal</storagetype>
         <name>codreceita</name>
-        <length>9</length>
+        <length>15</length>
         <precision>0</precision>
         <origin>SELECT contasreceber</origin>
         <comments>codreceita</comments>
@@ -3837,7 +3840,7 @@ GROUP BY c.IdTituloCobranca;
         <type>Integer</type>
         <storagetype>normal</storagetype>
         <name>receitaoriginal</name>
-        <length>9</length>
+        <length>15</length>
         <precision>0</precision>
         <origin>SELECT contasreceber</origin>
         <comments>receitaoriginal</comments>
@@ -3857,14 +3860,14 @@ GROUP BY c.IdTituloCobranca;
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>String</type>
+        <type>Integer</type>
         <storagetype>normal</storagetype>
         <name>boletourl</name>
-        <length>118</length>
-        <precision>-1</precision>
+        <length>9</length>
+        <precision>0</precision>
         <origin>SELECT contasreceber</origin>
         <comments>boletourl</comments>
-        <conversion_Mask/>
+        <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -4017,6 +4020,29 @@ GROUP BY c.IdTituloCobranca;
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>AUX_TituloCobranca</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT contasreceber</origin>
+        <comments>AUX_TituloCobranca</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
     </row-meta>
     <attributes/>
     <cluster_schema/>
@@ -4028,7 +4054,7 @@ GROUP BY c.IdTituloCobranca;
     </remotesteps>
     <GUI>
       <xloc>656</xloc>
-      <yloc>288</yloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4412,7 +4438,7 @@ FROM tbdisciplina d;</sql>
 	CONVERT(p.DataNascimento, DATE) AS 'DTNASCIMENTO', 
 	LEFT(UPPER(e.logradouro),100) AS 'ENDERECO',
 	LEFT(UPPER(e.Complemento),10) AS 'COMPLEMENTO', 
-	LEFT(UPPER(e.Bairro),60) AS 'BAIRRO', 
+	to_base64(LEFT(UPPER(e.Bairro),60)) AS 'BAIRRO', 
 	LEFT(UPPER(e.Cidade),40) as 'CIDADE',
 	ce.cod_estado AS 'CODUF',
 	LEFT(REMOVEcaractere(e.CEP),8) AS 'CEP',
@@ -4469,7 +4495,7 @@ LEFT JOIN TbMunicipio AS m ON p.NaturalidadeCidade = m.NomeMunicipio AND m.UF = 
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>NOME</name>
-        <length>44</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>NOME</comments>
@@ -4538,7 +4564,7 @@ LEFT JOIN TbMunicipio AS m ON p.NaturalidadeCidade = m.NomeMunicipio AND m.UF = 
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>ENDERECO</name>
-        <length>50</length>
+        <length>56</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>ENDERECO</comments>
@@ -4584,7 +4610,7 @@ LEFT JOIN TbMunicipio AS m ON p.NaturalidadeCidade = m.NomeMunicipio AND m.UF = 
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>BAIRRO</name>
-        <length>36</length>
+        <length>218</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>BAIRRO</comments>
@@ -4607,7 +4633,7 @@ LEFT JOIN TbMunicipio AS m ON p.NaturalidadeCidade = m.NomeMunicipio AND m.UF = 
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>CIDADE</name>
-        <length>19</length>
+        <length>32</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>CIDADE</comments>
@@ -4722,7 +4748,7 @@ LEFT JOIN TbMunicipio AS m ON p.NaturalidadeCidade = m.NomeMunicipio AND m.UF = 
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>EMAIL</name>
-        <length>33</length>
+        <length>52</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>EMAIL</comments>
@@ -4745,7 +4771,7 @@ LEFT JOIN TbMunicipio AS m ON p.NaturalidadeCidade = m.NomeMunicipio AND m.UF = 
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>RG</name>
-        <length>11</length>
+        <length>15</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>RG</comments>
@@ -4963,7 +4989,7 @@ SELECT
 	t.SiglaTurma AS 'aux_codturma',
 	a.IdUnidade AS 'codunidade',
 	t.IdTurma AS 'codconfturma',
-	IFNULL(m.DataHoraEfetivacaoMatricula, CONCAT(SONUMERO(LEFT(p.SiglaPeriodo,4)),'-01-01'))  AS 'dtmatricula',
+	IFNULL(m.DataHoraEfetivacaoMatricula, CONCAT(REMOVEcaractere(LEFT(p.SiglaPeriodo,4)),'-01-01'))  AS 'dtmatricula',
 	CONVERT(m.DataSituacaoAtivo, DATE) AS 'dtinicio',
 	CONVERT(m.DataSituacaoInativo, DATE) AS 'dtfim',
 	REMOVEcaractere(LEFT(p.SiglaPeriodo,4)) AS 'anoletivo',
@@ -5159,7 +5185,7 @@ LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao);
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>aux_codturma</name>
-        <length>10</length>
+        <length>12</length>
         <precision>-1</precision>
         <origin>SELECT matricula</origin>
         <comments>aux_codturma</comments>
@@ -5228,7 +5254,7 @@ LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao);
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtmatricula</name>
-        <length>261</length>
+        <length>56</length>
         <precision>-1</precision>
         <origin>SELECT matricula</origin>
         <comments>dtmatricula</comments>
@@ -5524,14 +5550,14 @@ LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao);
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Integer</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>AUX_matricula</name>
-        <length>9</length>
-        <precision>0</precision>
+        <length>11</length>
+        <precision>-1</precision>
         <origin>SELECT matricula</origin>
         <comments>AUX_matricula</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -5584,12 +5610,12 @@ LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao);
 	LEFT(r.Email,100) AS 'email',
 	LEFT(r.RG,50) AS 'rg',
 	LEFT(IF(CHAR_LENGTH(RTRIM(e.Logradouro)) > 1, UPPER(e.Logradouro), NULL),120) AS 'endereco',
-	LEFT(UPPER(e.Bairro),60) AS 'bairro', 
+	to_base64((LEFT(UPPER(e.Bairro),60))) AS 'bairro', 
 	ce.cod_cidade AS 'cidade',
 	ce.cod_estado AS 'uf',
 	LEFT(REMOVEcaractere(e.CEP),8) AS 'cep',
 	LEFT(r.Sexo,1) AS 'sexo',
-	CONVERT(r.DataNascimento, DATE) AS 'dtnascimento', 
+	r.DataNascimento AS 'dtnascimento', 
 	LEFT(UPPER(r.Nacionalidade),50) AS 'nacionalidade',
 	NOW() AS 'dtcadastro',
 	'MIG AUTO' AS 'cadastradopor'
@@ -5598,7 +5624,7 @@ LEFT JOIN TbProfissao AS p ON r.IdProfissao = p.IdProfissao
 LEFT JOIN TbEndereco AS e ON r.IdEndereco = e.IdEndereco
 LEFT JOIN cidade_escolaweb ce ON e.Cidade = ce.nom_cidade AND e.UF = ce.sgl_estado
 WHERE r.CPFCNPJ IS NOT NULL 
-AND LENGTH(RTRIM(SONUMERO(r.CPFCNPJ))) >= 11
+AND LENGTH(RTRIM(REMOVEcaractere(r.CPFCNPJ))) >= 11
 AND r.CPFCNPJ != '' ;</sql>
     <limit>0</limit>
     <lookup/>
@@ -5657,7 +5683,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nomeresponsavel</name>
-        <length>57</length>
+        <length>50</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>nomeresponsavel</comments>
@@ -5703,7 +5729,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>localtrabalho</name>
-        <length>15</length>
+        <length>79</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>localtrabalho</comments>
@@ -5772,7 +5798,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>email</name>
-        <length>43</length>
+        <length>41</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>email</comments>
@@ -5795,7 +5821,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>rg</name>
-        <length>20</length>
+        <length>19</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>rg</comments>
@@ -5818,7 +5844,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>endereco</name>
-        <length>50</length>
+        <length>56</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>endereco</comments>
@@ -5841,7 +5867,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairro</name>
-        <length>36</length>
+        <length>218</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>bairro</comments>
@@ -5953,10 +5979,10 @@ AND r.CPFCNPJ != '' ;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimento</name>
-        <length>-1</length>
+        <length>19</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>dtnascimento</comments>
@@ -5979,7 +6005,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nacionalidade</name>
-        <length>10</length>
+        <length>26</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>nacionalidade</comments>
@@ -6440,11 +6466,11 @@ GROUP BY t.SiglaTurma;</sql>
 	UPPER(TRIM(u.Bairro)) AS 'bairro',
 	c.cod_cidade AS 'cidade',
 	c.cod_estado AS 'uf',
-	SONUMERO(u.CEP) AS 'cep', 
+	REMOVEcaractere(u.CEP) AS 'cep', 
 	LOWER(TRIM(u.EmailUnidade)) AS 'email',
 	LOWER(TRIM(u.URL)) AS 'site',
-	SONUMERO(u.Fone) AS 'telefone',
-	SONUMERO(u.Fax) AS 'fax'
+	REMOVEcaractere(u.Fone) AS 'telefone',
+	REMOVEcaractere(u.Fax) AS 'fax'
 FROM tbunidade u
 JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
 ;</sql>
@@ -6461,7 +6487,7 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <name>codunidade</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT unidadeescolar</origin>
         <comments>codunidade</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -6482,9 +6508,9 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dscunidade</name>
-        <length>19</length>
+        <length>35</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT unidadeescolar</origin>
         <comments>dscunidade</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -6505,9 +6531,9 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>endereco</name>
-        <length>25</length>
+        <length>38</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT unidadeescolar</origin>
         <comments>endereco</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -6528,9 +6554,9 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairro</name>
-        <length>8</length>
+        <length>22</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT unidadeescolar</origin>
         <comments>bairro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -6553,7 +6579,7 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <name>cidade</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT unidadeescolar</origin>
         <comments>cidade</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -6576,7 +6602,7 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <name>uf</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT unidadeescolar</origin>
         <comments>uf</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -6597,9 +6623,9 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cep</name>
-        <length>255</length>
+        <length>50</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT unidadeescolar</origin>
         <comments>cep</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -6620,9 +6646,9 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>email</name>
-        <length>11</length>
+        <length>26</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT unidadeescolar</origin>
         <comments>email</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -6643,9 +6669,9 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>site</name>
-        <length>11</length>
+        <length>20</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT unidadeescolar</origin>
         <comments>site</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -6666,9 +6692,9 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>telefone</name>
-        <length>255</length>
+        <length>50</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT unidadeescolar</origin>
         <comments>telefone</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -6689,9 +6715,9 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>fax</name>
-        <length>255</length>
+        <length>50</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT unidadeescolar</origin>
         <comments>fax</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -6928,7 +6954,7 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
     </remotesteps>
     <GUI>
       <xloc>816</xloc>
-      <yloc>208</yloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -7053,7 +7079,7 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
     </remotesteps>
     <GUI>
       <xloc>816</xloc>
-      <yloc>128</yloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -7197,6 +7223,10 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <name>AUX_databaixa</name>
         <rename/>
       </field>
+      <field>
+        <name>AUX_TituloCobranca</name>
+        <rename/>
+      </field>
       <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
@@ -7209,7 +7239,7 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
     </remotesteps>
     <GUI>
       <xloc>816</xloc>
-      <yloc>288</yloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -7227,31 +7257,24 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
     <fields>
       <field>
         <name>aux_codcurso</name>
-        <rename/>
       </field>
       <field>
         <name>codnivel</name>
-        <rename/>
       </field>
       <field>
         <name>dsccurso</name>
-        <rename/>
       </field>
       <field>
         <name>ativo</name>
-        <rename/>
       </field>
       <field>
         <name>dscabreviada</name>
-        <rename/>
       </field>
       <field>
         <name>dsccompleta</name>
-        <rename/>
       </field>
       <field>
         <name>AUX_codunidade</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -7417,95 +7440,72 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
     <fields>
       <field>
         <name>codmatricula</name>
-        <rename/>
       </field>
       <field>
         <name>codaluno</name>
-        <rename/>
       </field>
       <field>
         <name>codcurso</name>
-        <rename/>
       </field>
       <field>
         <name>aux_codcurso</name>
-        <rename/>
       </field>
       <field>
         <name>codseriecurso</name>
-        <rename/>
       </field>
       <field>
         <name>codturma</name>
-        <rename/>
       </field>
       <field>
         <name>aux_codturma</name>
-        <rename/>
       </field>
       <field>
         <name>codunidade</name>
-        <rename/>
       </field>
       <field>
         <name>codconfturma</name>
-        <rename/>
       </field>
       <field>
         <name>dtmatricula</name>
-        <rename/>
       </field>
       <field>
         <name>dtinicio</name>
-        <rename/>
       </field>
       <field>
         <name>dtfim</name>
-        <rename/>
       </field>
       <field>
         <name>anoletivo</name>
-        <rename/>
       </field>
       <field>
         <name>cpfrespfinanceiro</name>
-        <rename/>
       </field>
       <field>
         <name>cpfrespacademico</name>
-        <rename/>
       </field>
       <field>
         <name>parentescorespfinanceiro</name>
-        <rename/>
       </field>
       <field>
         <name>rematricula</name>
-        <rename/>
       </field>
       <field>
         <name>situacao</name>
-        <rename/>
       </field>
       <field>
         <name>dtcadastro</name>
-        <rename/>
       </field>
       <field>
         <name>cadastradopor</name>
-        <rename/>
       </field>
       <field>
         <name>dtTransferencia</name>
-        <rename/>
       </field>
       <field>
         <name>motivotransf</name>
-        <rename/>
       </field>
       <field>
         <name>AUX_matricula</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>

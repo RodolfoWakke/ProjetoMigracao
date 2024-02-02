@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/08/21 08:53:54.648</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/01/05 17:25:45.130</modified_date>
+    <modified_date>2024/01/24 10:04:33.979</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -573,6 +573,36 @@
     </attributes>
   </connection>
   <order>
+    <hop>
+      <from>existe index</from>
+      <to>Filter rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>Execute SQL script</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>existe index 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>existe index 2</from>
+      <to>Filter rows 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows 2</from>
+      <to>Execute SQL script 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows 2</from>
+      <to>Dummy (do nothing)</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>CREATE MIG</name>
@@ -1385,103 +1415,114 @@ CREATE TABLE if not exists  `mig_conta` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `mig_contasreceber`;
-CREATE TABLE IF NOT EXISTS `mig_contasreceber` (
-  `codrec` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `codmatricula` int(10) unsigned DEFAULT NULL,
-  `parcela` int(10) unsigned DEFAULT NULL,
-  `totparcela` int(10) unsigned DEFAULT NULL,
-  `valorparcela` decimal(17,2) DEFAULT NULL,
-  `vencimento` date DEFAULT NULL,
-  `desconto` decimal(10,2) DEFAULT NULL,
-  `desconto_antesfatura` decimal(10,2) DEFAULT NULL,
-  `carenciadesconto` int(11) DEFAULT NULL,
-  `vencimentodesconto` date DEFAULT NULL,
-  `desconto2` decimal(10,2) DEFAULT NULL,
-  `desconto2_antesfatura` decimal(10,2) DEFAULT NULL,
-  `carenciadesconto2` int(11) DEFAULT NULL,
-  `vencimentodesconto2` date DEFAULT NULL,
-  `desconto3` decimal(10,2) DEFAULT NULL,
-  `desconto3_antesfatura` decimal(10,2) DEFAULT NULL,
-  `carenciadesconto3` int(11) DEFAULT NULL,
-  `vencimentodesconto3` date DEFAULT NULL,
-  `multa` decimal(10,2) unsigned DEFAULT NULL,
-  `juros` decimal(10,2) unsigned DEFAULT NULL,
-  `carenciamulta` int(11) DEFAULT NULL,
-  `vencimentomulta` date DEFAULT NULL,
-  `dtpagamento` date DEFAULT NULL,
-  `valorpago` decimal(20,2) unsigned DEFAULT NULL,
-  `recebidopor` varchar(30) DEFAULT NULL,
-  `codunidade` int(11) unsigned NOT NULL,
-  `anoletivo` int(11) NOT NULL,
-  `codreceita` int(11) NOT NULL,
-  `codcontapago` int(11) DEFAULT NULL,
-  `codaluno` int(11) NOT NULL,
-  `nossonumero` varchar(20) DEFAULT NULL,
-  `linha` varchar(60) DEFAULT NULL,
-  `barra` varchar(50) DEFAULT NULL,
-  `cobbancaria` char(1) DEFAULT NULL,
-  `codconta` int(11) DEFAULT NULL,
-  `incluidotabrps` char(1) DEFAULT NULL,
-  `codliquidacao` int(11) DEFAULT NULL,
-  `avulsa` char(1) DEFAULT NULL,
-  `cadastradopor` varchar(60) NOT NULL,
-  `dtcadastro` datetime NOT NULL,
-  `valorparcelaoriginal` decimal(17,2) DEFAULT NULL,
-  `descontooriginal` decimal(17,2) DEFAULT NULL,
-  `vencimentooriginal` date DEFAULT NULL,
-  `enviaremessa` char(1) DEFAULT 'N',
-  `codremessa` int(11) DEFAULT NULL,
-  `cobregistradabanco` char(1) DEFAULT NULL COMMENT 'confirmaÃ§Ã£o do registro da cobranca no banco',
-  `alteradopor` varchar(60) DEFAULT NULL,
-  `codnegociacao` int(11) DEFAULT NULL,
-  `valornegociado` decimal(10,2) DEFAULT NULL,
-  `abatimento` decimal(10,2) DEFAULT NULL,
-  `abatimento_antesfatura` decimal(10,2) DEFAULT NULL,
-  `valorbruto` decimal(10,2) NOT NULL,
-  `codcontrato` int(11) DEFAULT NULL,
-  `codfornecedor` int(11) DEFAULT NULL,
-  `outrasreceitas` char(1) DEFAULT NULL,
-  `descricao` varchar(100) DEFAULT NULL,
-  `codrecfatura` int(11) DEFAULT NULL,
-  `codlotefatura` int(11) DEFAULT NULL,
-  `CPF` varchar(14) NOT NULL,
-  `vencfatura` datetime DEFAULT NULL,
-  `vencfaturadesc` datetime DEFAULT NULL,
-  `vencfaturadesc2` datetime DEFAULT NULL,
-  `vencfaturamulta` datetime DEFAULT NULL,
-  `receitaoriginal` int(11) NOT NULL,
-  `codinscricaoevento` int(11) DEFAULT NULL,
-  `codremessaalteracao` int(11) DEFAULT NULL,
-  `faturaunica` char(1) DEFAULT NULL COMMENT 'S=SE PARCELA FOR UMA FATURA SEM FILHOS',
-  `outrosacrescimos` decimal(10,2) DEFAULT NULL,
-  `outrosabatimentos` decimal(10,2) DEFAULT NULL,
-  `valor` decimal(17,2) NOT NULL,
-  `codsolicitacao` int(11) DEFAULT NULL,
-  `carenciadesconto1original` int(11) DEFAULT NULL,
-  `carenciadesconto2original` int(11) DEFAULT NULL,
-  `carenciamultaoriginal` int(11) DEFAULT NULL,
-  `registroconfirmado` char(1) DEFAULT NULL,
-  `carenciadesconto3original` int(11) DEFAULT NULL,
-  `idfaturaiugu` varchar(100) DEFAULT NULL,
-  `statusparcela` varchar(20) DEFAULT NULL,
-  `boletourl` varchar(1000) DEFAULT NULL COMMENT 'Variável para guardar URL para pagamente de boleto, atualmente usado apenas para ISAAC',
-  `parcelaremessasicoob` smallint(4) DEFAULT '1',
-  `tipocobrancaiugu` char(1) DEFAULT 'B' COMMENT 'A=CARTAO E BOLETO; B=SOMENTE BOLETO; C-SOMENTE CARTAO',
-  `tipocobrancaiuguoriginal` char(1) DEFAULT NULL,
-  `dtcompetencia` date DEFAULT NULL,
-  `dtcompetencia_antesfatura` date DEFAULT NULL,
-  `cobrancaexterna` char(1) DEFAULT 'N',
-  `gabrielsetoucodunidade` datetime DEFAULT NULL,
-  `AUX_codpf` varchar(100) DEFAULT NULL,
-  `AUX_codpj` varchar(100) DEFAULT NULL,
-  `AUX_cpf` varchar(50) DEFAULT NULL,
-  `AUX_codunidade` varchar(50) DEFAULT NULL,
-  `AUX_codconfturma` varchar(50) DEFAULT NULL,
-  `AUX_databaixa` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`codrec`) USING BTREE,
-  INDEX `codaluno` (`codaluno`) USING BTREE,
-  INDEX `codreceita` (`codreceita`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=LATIN1;
+CREATE TABLE `mig_contasreceber` (
+	`codrec` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`codmatricula` INT(10) UNSIGNED NULL DEFAULT NULL,
+	`parcela` INT(10) UNSIGNED NULL DEFAULT NULL,
+	`totparcela` INT(10) UNSIGNED NULL DEFAULT NULL,
+	`valorparcela` DECIMAL(17,2) NULL DEFAULT NULL,
+	`vencimento` DATE NULL DEFAULT NULL,
+	`desconto` DECIMAL(10,2) NULL DEFAULT NULL,
+	`desconto_antesfatura` DECIMAL(10,2) NULL DEFAULT NULL,
+	`carenciadesconto` INT(11) NULL DEFAULT NULL,
+	`vencimentodesconto` DATE NULL DEFAULT NULL,
+	`desconto2` DECIMAL(10,2) NULL DEFAULT NULL,
+	`desconto2_antesfatura` DECIMAL(10,2) NULL DEFAULT NULL,
+	`carenciadesconto2` INT(11) NULL DEFAULT NULL,
+	`vencimentodesconto2` DATE NULL DEFAULT NULL,
+	`desconto3` DECIMAL(10,2) NULL DEFAULT NULL,
+	`desconto3_antesfatura` DECIMAL(10,2) NULL DEFAULT NULL,
+	`carenciadesconto3` INT(11) NULL DEFAULT NULL,
+	`vencimentodesconto3` DATE NULL DEFAULT NULL,
+	`multa` DECIMAL(10,2) UNSIGNED NULL DEFAULT NULL,
+	`juros` DECIMAL(10,2) UNSIGNED NULL DEFAULT NULL,
+	`carenciamulta` INT(11) NULL DEFAULT NULL,
+	`vencimentomulta` DATE NULL DEFAULT NULL,
+	`dtpagamento` DATE NULL DEFAULT NULL,
+	`valorpago` DECIMAL(20,2) UNSIGNED NULL DEFAULT NULL,
+	`recebidopor` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codunidade` INT(11) UNSIGNED NOT NULL,
+	`anoletivo` INT(11) NOT NULL,
+	`codreceita` INT(11) NOT NULL,
+	`codcontapago` INT(11) NULL DEFAULT NULL,
+	`codaluno` INT(11) NOT NULL,
+	`nossonumero` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`linha` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`barra` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cobbancaria` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codconta` INT(11) NULL DEFAULT NULL,
+	`incluidotabrps` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codliquidacao` INT(11) NULL DEFAULT NULL,
+	`avulsa` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cadastradopor` VARCHAR(60) NOT NULL COLLATE 'latin1_swedish_ci',
+	`dtcadastro` DATETIME NOT NULL,
+	`valorparcelaoriginal` DECIMAL(17,2) NULL DEFAULT NULL,
+	`descontooriginal` DECIMAL(17,2) NULL DEFAULT NULL,
+	`vencimentooriginal` DATE NULL DEFAULT NULL,
+	`enviaremessa` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`codremessa` INT(11) NULL DEFAULT NULL,
+	`cobregistradabanco` CHAR(1) NULL DEFAULT NULL COMMENT 'confirmaÃ§Ã£o do registro da cobranca no banco' COLLATE 'latin1_swedish_ci',
+	`alteradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codnegociacao` INT(11) NULL DEFAULT NULL,
+	`valornegociado` DECIMAL(10,2) NULL DEFAULT NULL,
+	`abatimento` DECIMAL(10,2) NULL DEFAULT NULL,
+	`abatimento_antesfatura` DECIMAL(10,2) NULL DEFAULT NULL,
+	`valorbruto` DECIMAL(10,2) NOT NULL,
+	`codcontrato` INT(11) NULL DEFAULT NULL,
+	`codfornecedor` INT(11) NULL DEFAULT NULL,
+	`outrasreceitas` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`descricao` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codrecfatura` INT(11) NULL DEFAULT NULL,
+	`codlotefatura` INT(11) NULL DEFAULT NULL,
+	`CPF` VARCHAR(14) NOT NULL COLLATE 'latin1_swedish_ci',
+	`vencfatura` DATETIME NULL DEFAULT NULL,
+	`vencfaturadesc` DATETIME NULL DEFAULT NULL,
+	`vencfaturadesc2` DATETIME NULL DEFAULT NULL,
+	`vencfaturamulta` DATETIME NULL DEFAULT NULL,
+	`receitaoriginal` INT(11) NOT NULL,
+	`codinscricaoevento` INT(11) NULL DEFAULT NULL,
+	`codremessaalteracao` INT(11) NULL DEFAULT NULL,
+	`faturaunica` CHAR(1) NULL DEFAULT NULL COMMENT 'S=SE PARCELA FOR UMA FATURA SEM FILHOS' COLLATE 'latin1_swedish_ci',
+	`outrosacrescimos` DECIMAL(10,2) NULL DEFAULT NULL,
+	`outrosabatimentos` DECIMAL(10,2) NULL DEFAULT NULL,
+	`valor` DECIMAL(17,2) NOT NULL,
+	`codsolicitacao` INT(11) NULL DEFAULT NULL,
+	`carenciadesconto1original` INT(11) NULL DEFAULT NULL,
+	`carenciadesconto2original` INT(11) NULL DEFAULT NULL,
+	`carenciamultaoriginal` INT(11) NULL DEFAULT NULL,
+	`registroconfirmado` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`carenciadesconto3original` INT(11) NULL DEFAULT NULL,
+	`idfaturaiugu` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`statusparcela` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`boletourl` VARCHAR(1000) NULL DEFAULT NULL COMMENT 'Variável para guardar URL para pagamente de boleto, atualmente usado apenas para ISAAC' COLLATE 'latin1_swedish_ci',
+	`parcelaremessasicoob` SMALLINT(4) NULL DEFAULT '1',
+	`tipocobrancaiugu` CHAR(1) NULL DEFAULT 'B' COMMENT 'A=CARTAO E BOLETO; B=SOMENTE BOLETO; C-SOMENTE CARTAO' COLLATE 'latin1_swedish_ci',
+	`tipocobrancaiuguoriginal` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dtcompetencia` DATE NULL DEFAULT NULL,
+	`dtcompetencia_antesfatura` DATE NULL DEFAULT NULL,
+	`cobrancaexterna` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`gabrielsetoucodunidade` DATETIME NULL DEFAULT NULL,
+	`AUX_codconfturma` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_databaixa` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_cpf` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_codunidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`AUX_TituloCobranca` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	PRIMARY KEY (`codrec`) USING BTREE,
+	INDEX `codaluno` (`codaluno`) USING BTREE,
+	INDEX `codreceita` (`codreceita`) USING BTREE,
+	INDEX `receitaoriginal` (`receitaoriginal`) USING BTREE,
+	INDEX `codmatricula` (`codmatricula`) USING BTREE,
+	INDEX `nossonumero` (`nossonumero`) USING BTREE,
+	INDEX `AUX_codconfturma` (`AUX_codconfturma`) USING BTREE,
+	INDEX `AUX_databaixa` (`AUX_databaixa`) USING BTREE,
+	INDEX `anoletivo` (`anoletivo`) USING BTREE,
+	INDEX `valorpago` (`valorpago`) USING BTREE,
+	INDEX `valorbruto` (`valorbruto`) USING BTREE
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
 
 
 -- ACADÊMICO -- 
@@ -1593,7 +1634,198 @@ ALTER TABLE mig_acumulado AUTO_INCREMENT = 1;</sql>
     </GUI>
   </step>
   <step>
-    <name>REMOVEcaractere e LIMPEZASTRING 2</name>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Execute SQL script</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MYSQL-LOCALHOST</connection>
+    <execute_each_row>Y</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>CREATE INDEX idx_SituacaoCobrancaRegistrada ON tbtitulocobrancaregistrada (SituacaoCobrancaRegistrada);
+</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Execute SQL script 2</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MYSQL-LOCALHOST</connection>
+    <execute_each_row>Y</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>CREATE INDEX idx_SituacaoTituloCobranca ON TbTituloCobranca (SituacaoTituloCobranca);
+</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Execute SQL script</send_true_to>
+    <send_false_to>Execute SQL script 3 2</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>existe</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>#</mask>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter rows 2</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Execute SQL script 2</send_true_to>
+    <send_false_to>Dummy (do nothing)</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>existe idx titulo</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>#</mask>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>REMOVEcaractere e LIMPEZASTRING</name>
     <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
@@ -1636,7 +1868,7 @@ CONTAINS SQL
 SQL SECURITY DEFINER
 COMMENT ''
 RETURN 
-REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
+REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t',''),'\xCE',''),'\x9CES',''), "\\xCE\\x9CES",''), "\\xCE\x9CES",''), "\xCE\\x9CES",'')</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -7232,6 +7464,156 @@ VALUES
     <GUI>
       <xloc>176</xloc>
       <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>existe index</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MYSQL-LOCALHOST</connection>
+    <sql>
+    SELECT COALESCE(COUNT(*), 0) AS 'existe'
+    FROM INFORMATION_SCHEMA.STATISTICS
+    WHERE table_schema = '${v_nomebanco-mysql}'
+      AND table_name = 'TbTituloCobrancaRegistrada'
+      AND index_name = 'idx_SituacaoCobrancaRegistrada';
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>existe</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>existe index</origin>
+        <comments>existe</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>existe index 2</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MYSQL-LOCALHOST</connection>
+    <sql>SELECT COALESCE(COUNT(1), 0) AS 'existe idx titulo'
+    FROM INFORMATION_SCHEMA.STATISTICS
+    WHERE table_schema = '${v_nomebanco-mysql}'
+      AND table_name = 'TbTituloCobranca'
+      AND index_name = 'idx_SituacaoTituloCobranca'
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>existe</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>existe index</origin>
+        <comments>existe</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>existe idx titulo</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>existe index 2</origin>
+        <comments>existe idx titulo</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
