@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/03/02 16:05:47.461</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/12/07 08:32:32.692</modified_date>
+    <modified_date>2024/02/16 15:46:01.539</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -576,10 +576,10 @@ INNER JOIN mig_disciplina d ON (d.coddisciplina = a.CODMATERIA);
 
 -- PROFESSORTURMA
 
-insert into professorturma (  CODSERIE  ,CODTURMA  ,ANO  ,CODMATERIA  ,CODMATERIAGRADE,reprova  ,codconfturma  ,reprovafalta  ,percentualnota )
-(select a.CODSERIE, a.CODTURMA, a.ANO, a.CODMATERIA, a.CODMATERIA as codmateriagrade, 'S', m.codconfturma, 'S', 1
+insert into professorturma (CODSERIE  ,CODTURMA  ,ANO  ,CODMATERIA  ,CODMATERIAGRADE,reprova  ,codconfturma  ,reprovafalta  ,percentualnota)
+(SELECT a.CODSERIE, a.CODTURMA, a.ANO, a.CODMATERIA, a.CODMATERIA as codmateriagrade, 'S', m.codconfturma, 'S', 1
 from acumulado a
-LEFT join matricula m on (a.MATRICULA = m.codmatricula)
+join matricula m on (a.MATRICULA = m.codmatricula) -- TIREI O LEFT
 group by m.codconfturma, a.codmateria);
 
 -- UPDATE EM ACUMULADO SETANDO O CODPROFTURMA 
