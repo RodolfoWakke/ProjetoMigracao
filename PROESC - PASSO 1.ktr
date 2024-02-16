@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/12/18 10:11:07.661</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/01/09 09:02:27.738</modified_date>
+    <modified_date>2024/02/16 11:04:49.468</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -647,107 +647,317 @@
     <hop>
       <from>alunos csv</from>
       <to>alunos - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>enderecos csv</from>
       <to>enderecos - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>dados_medicos csv</from>
       <to>dados_medicos - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>disciplinas_tipos csv</from>
       <to>disciplinas_tipos - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>cursos csv</from>
       <to>cursos - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>turmas csv</from>
       <to>turmas - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>unidades csv</from>
       <to>unidades - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>exercicios csv</from>
       <to>exercicios - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>turnos csv</from>
       <to>turnos - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>matriculas csv</from>
       <to>matriculas - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>dados_profissionais csv </from>
       <to>dados_profissionais - LH </to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>responsaveis_alunos csv </from>
       <to>responsaveis_alunos - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>pessoas csv</from>
       <to>pessoas - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>etapas csv</from>
       <to>etapas - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>debitos_tipos csv</from>
       <to>debitos_tipos - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>contas csv</from>
       <to>contas - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>parcelas csv</from>
       <to>parcelas - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>debitos csv</from>
       <to>debitos - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>diarios csv</from>
       <to>diarios - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>disciplinas csv</from>
       <to>disciplinas - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>notas csv</from>
       <to>notas - LH</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing)</from>
+      <to>Create Tab Alunos</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab Alunos</from>
+      <to>alunos csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 2</from>
+      <to>Create Tab pessoas</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab pessoas</from>
+      <to>pessoas csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 3</from>
+      <to>Create Tab enderecos</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab enderecos</from>
+      <to>enderecos csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 18</from>
+      <to>Create Tab debitos_tipos</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab debitos_tipos</from>
+      <to>debitos_tipos csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 19</from>
+      <to>Create Tab contas</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab contas</from>
+      <to>contas csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 20</from>
+      <to>Create Tab parcelas</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab parcelas</from>
+      <to>parcelas csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 21</from>
+      <to>Create Tab debitos</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab debitos</from>
+      <to>debitos csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 17</from>
+      <to>Create Tab diarios</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab diarios</from>
+      <to>diarios csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 16</from>
+      <to>Create Tab disciplinas</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab disciplinas</from>
+      <to>disciplinas csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 15</from>
+      <to>Create Tab notas</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab notas</from>
+      <to>notas csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 14</from>
+      <to>Create Tab responsaveis_alunos</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab responsaveis_alunos</from>
+      <to>responsaveis_alunos csv </to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 13</from>
+      <to>Create Tab dados_profissionais</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab dados_profissionais</from>
+      <to>dados_profissionais csv </to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 12</from>
+      <to>Create Tab matriculas</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 11</from>
+      <to>Create Tab turnos</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 10</from>
+      <to>Create Tab unidades</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 9</from>
+      <to>Create Tab etapas</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 8</from>
+      <to>Create Tab exercicios</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 7</from>
+      <to>Create Tab turmas</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 6</from>
+      <to>Create Tab cursos</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 5</from>
+      <to>Create Tab disciplinas_tipos</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing) 4</from>
+      <to>Create Tab dados_medicos</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab dados_medicos</from>
+      <to>dados_medicos csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab disciplinas_tipos</from>
+      <to>disciplinas_tipos csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab cursos</from>
+      <to>cursos csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab turmas</from>
+      <to>turmas csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab exercicios</from>
+      <to>exercicios csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab etapas</from>
+      <to>etapas csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab unidades</from>
+      <to>unidades csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab turnos</from>
+      <to>turnos csv</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Create Tab matriculas</from>
+      <to>matriculas csv</to>
+      <enabled>N</enabled>
     </hop>
   </order>
   <step>
@@ -806,7 +1016,7 @@ CREATE TABLE alunos
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>48</yloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -956,8 +1166,8 @@ CREATE TABLE contas
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
-      <yloc>528</yloc>
+      <xloc>928</xloc>
+      <yloc>848</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1084,7 +1294,7 @@ CREATE TABLE cursos
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>528</yloc>
+      <yloc>848</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1146,7 +1356,7 @@ CREATE TABLE dados_medicos
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>336</yloc>
+      <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1234,7 +1444,7 @@ CREATE TABLE `dados_profissionais`
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>1200</yloc>
+      <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1309,8 +1519,8 @@ CREATE TABLE debitos
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
-      <yloc>720</yloc>
+      <xloc>928</xloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1396,8 +1606,8 @@ CREATE TABLE debitos_tipos
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
-      <yloc>432</yloc>
+      <xloc>928</xloc>
+      <yloc>752</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1467,8 +1677,8 @@ CREATE TABLE diarios
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>240</yloc>
+      <xloc>912</xloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1550,8 +1760,8 @@ CREATE TABLE disciplinas
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>144</yloc>
+      <xloc>912</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1608,7 +1818,7 @@ CREATE TABLE disciplinas_tipos
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>432</yloc>
+      <yloc>752</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1676,7 +1886,7 @@ CREATE TABLE enderecos
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>240</yloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1757,7 +1967,7 @@ CREATE TABLE etapas
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>816</yloc>
+      <yloc>1136</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1823,7 +2033,7 @@ CREATE TABLE exercicios
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>720</yloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2005,7 +2215,7 @@ CREATE TABLE matriculas
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>1104</yloc>
+      <yloc>1424</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2068,8 +2278,8 @@ CREATE TABLE notas
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>48</yloc>
+      <xloc>912</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2252,8 +2462,8 @@ CREATE TABLE parcelas
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
-      <yloc>624</yloc>
+      <xloc>928</xloc>
+      <yloc>944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2613,7 +2823,7 @@ CREATE TABLE pessoas
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>144</yloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2663,7 +2873,7 @@ CREATE TABLE responsaveis_alunos
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>1296</yloc>
+      <yloc>1616</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2869,7 +3079,7 @@ CREATE TABLE turmas
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>624</yloc>
+      <yloc>944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2921,7 +3131,7 @@ CREATE TABLE turnos
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>1008</yloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3006,7 +3216,7 @@ CREATE TABLE unidades
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>912</yloc>
+      <yloc>1232</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3572,6 +3782,7 @@ CREATE TABLE IF NOT EXISTS `mig_seriecurso` (
 	`cadastradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
 	`aux_codunidade`  INT(11),
 	`AUX_CursoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`aux_codseriecurso`  INT(11),
 	PRIMARY KEY (`codseriecurso`) USING BTREE,
 	INDEX `aux_codunidade` (`aux_codunidade`) USING BTREE)
 COLLATE='latin1_swedish_ci'
@@ -3667,6 +3878,7 @@ CREATE TABLE IF NOT EXISTS `mig_configturma` (
   `codprofatendimentoespecial` int(11) DEFAULT NULL,
   `aux_codturma` varchar(50) DEFAULT NULL,
   `concluirmatriculasemfinanceiro` char(1) DEFAULT 'S' COMMENT 'S=conclui a matricula mesmo sem financeiro gerado;N=impede que o usuário conclua a matrícula sem que exista um plano de pagamento gerado',
+	`aux_codseriecurso`  INT(11),
   PRIMARY KEY (`codconfturma`) USING BTREE,
 	INDEX `aux_codturma` (`aux_codturma`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -3718,6 +3930,7 @@ CREATE TABLE IF NOT EXISTS `mig_matricula` (
   `intercambista` char(1) DEFAULT NULL COMMENT 'S - Sim / N- Nao',
   `aux_codturma` varchar(50) DEFAULT NULL,
   `aux_codunidade`  INT(11),
+	`aux_codseriecurso`  INT(11),
   PRIMARY KEY (`codmatricula`) USING BTREE,
 	INDEX `aux_codturma` (`aux_codturma`) USING BTREE,
 	INDEX `aux_codunidade` (`aux_codunidade`) USING BTREE
@@ -3970,6 +4183,7 @@ CREATE TABLE IF NOT EXISTS `mig_acumulado` (
   `matriculadonawakke` tinyint(4) DEFAULT '0' COMMENT '0 = Não está matriculado na Wakke Class | 1 = Está matriculado na Wakke Class',
  `SituacaoDidaticaID` varchar(20) DEFAULT NULL,
   `aux_codturma` varchar(50) DEFAULT NULL,
+	`aux_codseriecurso`  INT(11),
   PRIMARY KEY (`CODACUMULADO`) USING BTREE);
   </sql>
     <set_params>N</set_params>
@@ -3988,8 +4202,8 @@ CREATE TABLE IF NOT EXISTS `mig_acumulado` (
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1344</xloc>
-      <yloc>48</yloc>
+      <xloc>272</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4054,8 +4268,8 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1168</xloc>
-      <yloc>48</yloc>
+      <xloc>96</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4099,7 +4313,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>48</yloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4294,7 +4508,7 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>48</yloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -9870,8 +10084,8 @@ VALUES
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1168</xloc>
-      <yloc>144</yloc>
+      <xloc>96</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -9914,8 +10128,8 @@ VALUES
       </output>
     </remotesteps>
     <GUI>
-      <xloc>992</xloc>
-      <yloc>528</yloc>
+      <xloc>1248</xloc>
+      <yloc>848</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -11000,8 +11214,8 @@ VALUES
       </output>
     </remotesteps>
     <GUI>
-      <xloc>816</xloc>
-      <yloc>528</yloc>
+      <xloc>1072</xloc>
+      <yloc>848</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -11045,7 +11259,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>528</yloc>
+      <yloc>848</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -11878,7 +12092,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>528</yloc>
+      <yloc>848</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -11922,7 +12136,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>336</yloc>
+      <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -12150,7 +12364,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>336</yloc>
+      <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -12194,7 +12408,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1200</yloc>
+      <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -12488,7 +12702,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>1200</yloc>
+      <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -12531,8 +12745,8 @@ VALUES
       </output>
     </remotesteps>
     <GUI>
-      <xloc>992</xloc>
-      <yloc>720</yloc>
+      <xloc>1248</xloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -12924,8 +13138,8 @@ VALUES
       </output>
     </remotesteps>
     <GUI>
-      <xloc>816</xloc>
-      <yloc>720</yloc>
+      <xloc>1072</xloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -12968,8 +13182,8 @@ VALUES
       </output>
     </remotesteps>
     <GUI>
-      <xloc>992</xloc>
-      <yloc>432</yloc>
+      <xloc>1248</xloc>
+      <yloc>752</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -13482,8 +13696,8 @@ VALUES
       </output>
     </remotesteps>
     <GUI>
-      <xloc>816</xloc>
-      <yloc>432</yloc>
+      <xloc>1072</xloc>
+      <yloc>752</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -13526,8 +13740,8 @@ VALUES
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>240</yloc>
+      <xloc>1232</xloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -13820,8 +14034,8 @@ VALUES
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
-      <yloc>240</yloc>
+      <xloc>1056</xloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -13864,8 +14078,8 @@ VALUES
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>144</yloc>
+      <xloc>1232</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -14224,8 +14438,8 @@ VALUES
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
-      <yloc>144</yloc>
+      <xloc>1056</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -14269,7 +14483,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>432</yloc>
+      <yloc>752</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -14453,7 +14667,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>432</yloc>
+      <yloc>752</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -14497,7 +14711,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>240</yloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -14780,7 +14994,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>240</yloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -14824,7 +15038,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>816</yloc>
+      <yloc>1136</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -15261,7 +15475,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>816</yloc>
+      <yloc>1136</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -15305,7 +15519,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>720</yloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -15588,7 +15802,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>720</yloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -15632,7 +15846,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1104</yloc>
+      <yloc>1424</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -17136,7 +17350,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>1104</yloc>
+      <yloc>1424</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -17179,8 +17393,8 @@ VALUES
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>48</yloc>
+      <xloc>1232</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -17418,8 +17632,8 @@ VALUES
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
-      <yloc>48</yloc>
+      <xloc>1056</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -17462,8 +17676,8 @@ VALUES
       </output>
     </remotesteps>
     <GUI>
-      <xloc>992</xloc>
-      <yloc>624</yloc>
+      <xloc>1248</xloc>
+      <yloc>944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -18856,8 +19070,8 @@ VALUES
       </output>
     </remotesteps>
     <GUI>
-      <xloc>816</xloc>
-      <yloc>624</yloc>
+      <xloc>1072</xloc>
+      <yloc>944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -18901,7 +19115,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>144</yloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -21395,7 +21609,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>144</yloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -21439,7 +21653,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1296</yloc>
+      <yloc>1616</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -21524,7 +21738,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>1296</yloc>
+      <yloc>1616</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -21568,7 +21782,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>624</yloc>
+      <yloc>944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -23358,7 +23572,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>624</yloc>
+      <yloc>944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -23402,7 +23616,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>1008</yloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -23531,7 +23745,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>1008</yloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -23575,7 +23789,7 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>912</yloc>
+      <yloc>1232</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -24067,7 +24281,532 @@ VALUES
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>912</yloc>
+      <yloc>1232</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 2</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>464</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 3</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>560</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 4</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>656</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 5</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>752</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 6</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>848</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 7</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>944</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 8</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>1040</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 9</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>1136</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 10</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>1232</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 11</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>1328</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 12</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>1424</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 13</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>1520</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 14</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>1616</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 15</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 16</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>464</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 17</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>560</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 18</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>752</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 19</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>848</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 20</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>944</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 21</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

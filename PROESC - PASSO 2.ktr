@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/12/18 13:36:25.459</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/02/15 16:57:03.567</modified_date>
+    <modified_date>2024/02/16 11:28:01.906</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -669,21 +669,6 @@
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>SELECT acumulado</from>
-      <to>Select values acumulado</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>Select values acumulado</from>
-      <to>Insert mig_acumulado</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>Dummy 2</from>
-      <to>SELECT acumulado</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
       <from>SELECT contasreceber</from>
       <to>Select values contasreceber</to>
       <enabled>Y</enabled>
@@ -713,6 +698,26 @@
       <to>Insert mig_centroreceita</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>SELECT acumulado</from>
+      <to>Select values acumulado</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values acumulado</from>
+      <to>Insert mig_acumulado</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SELECT disciplina</from>
+      <to>Select values disciplina</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values disciplina</from>
+      <to>Insert mig_disciplina</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Dummy</name>
@@ -736,31 +741,6 @@
     <GUI>
       <xloc>720</xloc>
       <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy 2</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>720</xloc>
-      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -936,7 +916,7 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>560</yloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1068,7 +1048,7 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>320</yloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1156,7 +1136,7 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>640</yloc>
+      <yloc>720</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1244,7 +1224,7 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>400</yloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1288,7 +1268,7 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>480</yloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1332,7 +1312,7 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>720</yloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1655,6 +1635,7 @@
 	n.id AS 'codacumulado',
 	n.matricula_id AS 'matricula',
 	t.etapa_id AS 'codserie',
+	CONCAT(t.unidade_id, sc.id) AS 'aux_codseriecurso',
 	an.nome AS 'ano',
 	1 AS  'codturma',
 	CONCAT(LEFT(tn.nome, 1), LEFT(t.nome, 9)) AS 'aux_codturma',
@@ -1678,12 +1659,13 @@
 	n4.nota AS 'media4',
 	n4.falta 'faltas4',
 	IFNULL(n3.media_semestral, n4.media_semestral) AS 'medsem2', 
-	(IFNULL(n.nota,0) + IFNULL(n2.nota,0) + IFNULL(n3.nota,0)+ IFNULL(n4.nota,0)) / ${v_etapas} AS 'somaetapas',
 	rc.nota AS 'recfinal',
 	(ifnull(n.falta,0) + IFNULL(n2.falta,0) + IFNULL(n3.falta,0) + IFNULL(n4.falta,0)) AS 'totfaltas'
 FROM notas n
 JOIN matriculas m ON m.id = n.matricula_id
 JOIN turmas t ON t.id = m.turma_id
+JOIN turnos tn ON tn.id = t.turno_id
+JOIN etapas sc ON sc.id = t.etapa_id
 JOIN exercicios an ON an.id = t.exercicio_id
 left JOIN diarios d ON d.id = n.diario_id
 JOIN disciplinas di ON di.id = d.disciplina_id
@@ -1715,7 +1697,9 @@ LEFT JOIN (SELECT rc.nota AS nota, rc.falta AS falta, d3.disciplina_id AS discip
 WHERE d.periodo_letivo = 1 
 -- and n.matricula_id IN (3322553) 
 GROUP BY d.disciplina_id,n.matricula_id
-ORDER BY di.ordem;</sql>
+ORDER BY di.ordem;
+
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1729,7 +1713,7 @@ ORDER BY di.ordem;</sql>
         <name>codacumulado</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <origin>SELECT acumulado</origin>
         <comments>codacumulado</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -1752,7 +1736,7 @@ ORDER BY di.ordem;</sql>
         <name>matricula</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <origin>SELECT acumulado</origin>
         <comments>matricula</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -1775,9 +1759,32 @@ ORDER BY di.ordem;</sql>
         <name>codserie</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <origin>SELECT acumulado</origin>
         <comments>codserie</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>aux_codseriecurso</name>
+        <length>22</length>
+        <precision>-1</precision>
+        <origin>SELECT acumulado</origin>
+        <comments>aux_codseriecurso</comments>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -1798,7 +1805,7 @@ ORDER BY di.ordem;</sql>
         <name>ano</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <origin>SELECT acumulado</origin>
         <comments>ano</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -1821,9 +1828,32 @@ ORDER BY di.ordem;</sql>
         <name>codturma</name>
         <length>15</length>
         <precision>0</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <origin>SELECT acumulado</origin>
         <comments>codturma</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>aux_codturma</name>
+        <length>10</length>
+        <precision>-1</precision>
+        <origin>SELECT acumulado</origin>
+        <comments>aux_codturma</comments>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -1844,7 +1874,7 @@ ORDER BY di.ordem;</sql>
         <name>codmateria</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <origin>SELECT acumulado</origin>
         <comments>codmateria</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -1862,14 +1892,14 @@ ORDER BY di.ordem;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>soma1</name>
-        <length>10</length>
-        <precision>2</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>SELECT acumulado</origin>
         <comments>soma1</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -1885,14 +1915,14 @@ ORDER BY di.ordem;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>rec1</name>
-        <length>10</length>
-        <precision>2</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>SELECT acumulado</origin>
         <comments>rec1</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -1908,14 +1938,14 @@ ORDER BY di.ordem;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>media1</name>
-        <length>10</length>
-        <precision>2</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>SELECT acumulado</origin>
         <comments>media1</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -1936,7 +1966,7 @@ ORDER BY di.ordem;</sql>
         <name>faltas1</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <origin>SELECT acumulado</origin>
         <comments>faltas1</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -1954,14 +1984,14 @@ ORDER BY di.ordem;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>soma2</name>
-        <length>10</length>
-        <precision>2</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>SELECT acumulado</origin>
         <comments>soma2</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -1977,14 +2007,14 @@ ORDER BY di.ordem;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>rec2</name>
-        <length>10</length>
-        <precision>2</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>SELECT acumulado</origin>
         <comments>rec2</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -2000,14 +2030,14 @@ ORDER BY di.ordem;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>media2</name>
-        <length>10</length>
-        <precision>2</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>SELECT acumulado</origin>
         <comments>media2</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -2028,7 +2058,7 @@ ORDER BY di.ordem;</sql>
         <name>faltas2</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <origin>SELECT acumulado</origin>
         <comments>faltas2</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -2046,14 +2076,14 @@ ORDER BY di.ordem;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>Integer</type>
         <storagetype>normal</storagetype>
         <name>medsem1</name>
-        <length>10</length>
-        <precision>2</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT acumulado</origin>
         <comments>medsem1</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -2069,14 +2099,14 @@ ORDER BY di.ordem;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>soma3</name>
-        <length>10</length>
-        <precision>2</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>SELECT acumulado</origin>
         <comments>soma3</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -2092,14 +2122,14 @@ ORDER BY di.ordem;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>rec3</name>
-        <length>10</length>
-        <precision>2</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>SELECT acumulado</origin>
         <comments>rec3</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -2115,14 +2145,14 @@ ORDER BY di.ordem;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>media3</name>
-        <length>10</length>
-        <precision>2</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>SELECT acumulado</origin>
         <comments>media3</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -2143,7 +2173,7 @@ ORDER BY di.ordem;</sql>
         <name>faltas3</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <origin>SELECT acumulado</origin>
         <comments>faltas3</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -2161,14 +2191,14 @@ ORDER BY di.ordem;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>soma4</name>
-        <length>10</length>
-        <precision>2</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>SELECT acumulado</origin>
         <comments>soma4</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -2184,14 +2214,14 @@ ORDER BY di.ordem;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>rec4</name>
-        <length>10</length>
-        <precision>2</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>SELECT acumulado</origin>
         <comments>rec4</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -2207,14 +2237,14 @@ ORDER BY di.ordem;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>media4</name>
-        <length>10</length>
-        <precision>2</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>SELECT acumulado</origin>
         <comments>media4</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -2235,7 +2265,7 @@ ORDER BY di.ordem;</sql>
         <name>faltas4</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <origin>SELECT acumulado</origin>
         <comments>faltas4</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -2253,14 +2283,14 @@ ORDER BY di.ordem;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Number</type>
+        <type>Integer</type>
         <storagetype>normal</storagetype>
         <name>medsem2</name>
-        <length>10</length>
-        <precision>2</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT acumulado</origin>
         <comments>medsem2</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -2276,37 +2306,14 @@ ORDER BY di.ordem;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>BigNumber</type>
-        <storagetype>normal</storagetype>
-        <name>somaetapas</name>
-        <length>16</length>
-        <precision>6</precision>
-        <origin>SELECT unidadeescolar 2</origin>
-        <comments>somaetapas</comments>
-        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Number</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>recfinal</name>
-        <length>10</length>
-        <precision>2</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>SELECT acumulado</origin>
         <comments>recfinal</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -2327,7 +2334,7 @@ ORDER BY di.ordem;</sql>
         <name>totfaltas</name>
         <length>15</length>
         <precision>0</precision>
-        <origin>SELECT unidadeescolar 2</origin>
+        <origin>SELECT acumulado</origin>
         <comments>totfaltas</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -3559,7 +3566,8 @@ FROM debitos_tipos d;</sql>
 	t.id AS 'codconfturma',
 	1 AS 'codturma',
 	CONCAT(LEFT(tn.nome, 1), LEFT(t.nome, 9)) AS 'aux_codturma',	
-	t.etapa_id AS 'codseriecurso',	
+	1 AS 'codseriecurso',	
+	CONCAT(t.unidade_id, sc.id) AS 'aux_codseriecurso',
 	UPPER(LEFT(t.nome, 100)) AS 'dscturma',
 	UPPER(LEFT(t.nome, 10)) AS 'sigla',
 	CONCAT(an.nome,'-03-01') AS 'dtinicio',
@@ -3657,11 +3665,34 @@ ORDER BY an.nome;
         <type>Integer</type>
         <storagetype>normal</storagetype>
         <name>codseriecurso</name>
-        <length>9</length>
+        <length>15</length>
         <precision>0</precision>
         <origin>SELECT configturma</origin>
         <comments>codseriecurso</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>aux_codseriecurso</name>
+        <length>31</length>
+        <precision>-1</precision>
+        <origin>SELECT configturma</origin>
+        <comments>aux_codseriecurso</comments>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -3917,7 +3948,7 @@ ORDER BY an.nome;
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>560</yloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5133,7 +5164,7 @@ FROM cursos c;
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>320</yloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5842,7 +5873,8 @@ GROUP BY p.nome;</sql>
 	m.id AS 'codmatricula',
 	m.pessoa_id AS 'codaluno',
 	et.curso_id AS 'codcurso',
-	t.etapa_id AS 'codseriecurso',
+	1 AS 'codseriecurso',
+	CONCAT(t.unidade_id, et.id) AS 'aux_codseriecurso',
 	1 AS 'codturma',
 	CONCAT(LEFT(tn.nome, 1), LEFT(t.nome, 9)) AS 'aux_codturma',
 	m.turma_id AS 'codconfturma',
@@ -5945,11 +5977,34 @@ INNER JOIN exercicios an ON an.id = t.exercicio_id;</sql>
         <type>Integer</type>
         <storagetype>normal</storagetype>
         <name>codseriecurso</name>
-        <length>9</length>
+        <length>15</length>
         <precision>0</precision>
         <origin>SELECT matricula</origin>
         <comments>codseriecurso</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>aux_codseriecurso</name>
+        <length>31</length>
+        <precision>-1</precision>
+        <origin>SELECT matricula</origin>
+        <comments>aux_codseriecurso</comments>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -6297,7 +6352,7 @@ INNER JOIN exercicios an ON an.id = t.exercicio_id;</sql>
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>640</yloc>
+      <yloc>720</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6883,7 +6938,6 @@ GROUP BY p.cadastro_nacional;</sql>
     </partitioning>
     <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT
-	e.id AS 'codseriecurso',
 	UPPER(LEFT(e.nome, 200)) AS 'dscserie',
 	e.curso_id AS 'codcurso',
 	UPPER(LEFT(e.nome, 200)) AS 'dscseriecompleta',
@@ -6891,10 +6945,12 @@ GROUP BY p.cadastro_nacional;</sql>
 	t.unidade_id AS 'aux_codunidade',
 	e.id AS 'codserie',
 	e.ordem AS 'ordem',
-	IF(e.ativo = 't', 'S', 'N') AS 'ativo' 
+	IF(e.ativo = 't', 'S', 'N') AS 'ativo',
+	CONCAT(t.unidade_id, e.id) AS 'aux_codseriecurso'
 FROM etapas e
 JOIN turmas t ON (t.etapa_id = e.id)
-GROUP BY e.id
+GROUP BY e.id, t.unidade_id
+ORDER BY CONCAT(t.unidade_id, e.id)
 ;</sql>
     <limit>0</limit>
     <lookup/>
@@ -6903,29 +6959,6 @@ GROUP BY e.id
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>codseriecurso</name>
-        <length>15</length>
-        <precision>0</precision>
-        <origin>SELECT seriecurso</origin>
-        <comments>codseriecurso</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
@@ -7110,6 +7143,29 @@ GROUP BY e.id
         <date_format_timezone>America/Sao_Paulo</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>aux_codseriecurso</name>
+        <length>31</length>
+        <precision>-1</precision>
+        <origin>SELECT seriecurso</origin>
+        <comments>aux_codseriecurso</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
     </row-meta>
     <attributes/>
     <cluster_schema/>
@@ -7121,7 +7177,7 @@ GROUP BY e.id
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>400</yloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -7208,7 +7264,7 @@ GROUP BY CONCAT(LEFT(tn.nome, 1), LEFT(t.nome, 9))
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>480</yloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -7436,7 +7492,7 @@ FROM unidades u;</sql>
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>720</yloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -7462,10 +7518,16 @@ FROM unidades u;</sql>
         <name>codserie</name>
       </field>
       <field>
+        <name>aux_codseriecurso</name>
+      </field>
+      <field>
         <name>ano</name>
       </field>
       <field>
         <name>codturma</name>
+      </field>
+      <field>
+        <name>aux_codturma</name>
       </field>
       <field>
         <name>codmateria</name>
@@ -7523,9 +7585,6 @@ FROM unidades u;</sql>
       </field>
       <field>
         <name>medsem2</name>
-      </field>
-      <field>
-        <name>somaetapas</name>
       </field>
       <field>
         <name>recfinal</name>
@@ -7768,6 +7827,9 @@ FROM unidades u;</sql>
         <name>codseriecurso</name>
       </field>
       <field>
+        <name>aux_codseriecurso</name>
+      </field>
+      <field>
         <name>dscturma</name>
       </field>
       <field>
@@ -7809,7 +7871,7 @@ FROM unidades u;</sql>
     </remotesteps>
     <GUI>
       <xloc>320</xloc>
-      <yloc>560</yloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -8031,7 +8093,7 @@ FROM unidades u;</sql>
     </remotesteps>
     <GUI>
       <xloc>320</xloc>
-      <yloc>320</yloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -8169,6 +8231,9 @@ FROM unidades u;</sql>
         <name>codseriecurso</name>
       </field>
       <field>
+        <name>aux_codseriecurso</name>
+      </field>
+      <field>
         <name>codturma</name>
       </field>
       <field>
@@ -8222,7 +8287,7 @@ FROM unidades u;</sql>
     </remotesteps>
     <GUI>
       <xloc>320</xloc>
-      <yloc>640</yloc>
+      <yloc>720</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -8333,9 +8398,6 @@ FROM unidades u;</sql>
     </partitioning>
     <fields>
       <field>
-        <name>codseriecurso</name>
-      </field>
-      <field>
         <name>dscserie</name>
       </field>
       <field>
@@ -8359,6 +8421,9 @@ FROM unidades u;</sql>
       <field>
         <name>ativo</name>
       </field>
+      <field>
+        <name>aux_codseriecurso</name>
+      </field>
       <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
@@ -8371,7 +8436,7 @@ FROM unidades u;</sql>
     </remotesteps>
     <GUI>
       <xloc>320</xloc>
-      <yloc>400</yloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -8405,7 +8470,7 @@ FROM unidades u;</sql>
     </remotesteps>
     <GUI>
       <xloc>320</xloc>
-      <yloc>480</yloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -8457,7 +8522,255 @@ FROM unidades u;</sql>
     </remotesteps>
     <GUI>
       <xloc>320</xloc>
-      <yloc>720</yloc>
+      <yloc>800</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert mig_disciplina</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>RDS</connection>
+    <schema/>
+    <table>mig_disciplina</table>
+    <commit>20000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>485</xloc>
+      <yloc>324</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SELECT disciplina</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MYSQL-LOCALHOST</connection>
+    <sql>SELECT
+	d.id AS 'coddisciplina',
+	TRIM(UPPER(d.nome)) AS 'dscdisciplina',
+	TRIM(UPPER(LEFT(d.sigla,5))) AS 'dscabreviada',
+	'S' AS 'ativo',
+	1 AS 'pesoreprovacao'
+FROM disciplinas_tipos d;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>coddisciplina</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT disciplina</origin>
+        <comments>coddisciplina</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>dscdisciplina</name>
+        <length>64</length>
+        <precision>-1</precision>
+        <origin>SELECT disciplina</origin>
+        <comments>dscdisciplina</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>dscabreviada</name>
+        <length>5</length>
+        <precision>-1</precision>
+        <origin>SELECT disciplina</origin>
+        <comments>dscabreviada</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>ativo</name>
+        <length>1</length>
+        <precision>-1</precision>
+        <origin>SELECT disciplina</origin>
+        <comments>ativo</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>pesoreprovacao</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>SELECT disciplina</origin>
+        <comments>pesoreprovacao</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>165</xloc>
+      <yloc>324</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values disciplina</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>coddisciplina</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dscdisciplina</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dscabreviada</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ativo</name>
+        <rename/>
+      </field>
+      <field>
+        <name>pesoreprovacao</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>325</xloc>
+      <yloc>324</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
