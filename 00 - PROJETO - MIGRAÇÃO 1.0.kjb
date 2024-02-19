@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2023/02/27 15:21:12.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2024/02/19 10:22:28.200</modified_date>
+  <modified_date>2024/02/19 10:46:54.364</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -1751,20 +1751,20 @@ ______________________________________________________________________________
 • padrao - Migração Planilha completa;
 ______________________________________________________________________________
 • proesc - Completa*;
-	- Acadêmico precisa de cálculo para somaetapas/resultfinal.	
+   - Acadêmico precisa de cálculo para somaetapas/resultfinal.	
 ______________________________________________________________________________
 • sophia - Completa [Versão Desktop];
 • sophia2 - DESENVOLVENDO SCRIPT [Versão Web] 
-	- (Secretaria e Financeiro);
+   - (Secretaria e Financeiro);
 ______________________________________________________________________________
 • sponte - Completa [Xlsx com nome do arquivo na planilha];
 • sponte2 - Completa [Xlsx com nome Sheet1 na planilha];
 ______________________________________________________________________________
 • wpensar - Parcial (Secretaria e Financeiro);
-	- Acadêmico precisa de cálculo personalizado.</note>
-      <xloc>912</xloc>
+    - Acadêmico precisa de cálculo personalizado.</note>
+      <xloc>976</xloc>
       <yloc>32</yloc>
-      <width>458</width>
+      <width>402</width>
       <heigth>332</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>10</fontsize>
