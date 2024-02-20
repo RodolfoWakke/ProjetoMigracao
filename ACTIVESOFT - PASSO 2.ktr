@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/08/21 08:54:57.288</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/01/22 11:20:51.507</modified_date>
+    <modified_date>2024/02/20 11:14:46.539</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1291,53 +1291,31 @@
     <sql>SELECT
 	a.IdAluno AS 'codaluno',
 	LEFT(UPPER(a.nomealuno),100) AS 'nomealuno', 
-	UPPER(TRIM(CONCAT(ta.Logradouro, IF(ta.Complemento IS NULL, '', CONCAT(', ', ta.Complemento))))) AS 'endereco',
-	to_base64((LEFT(UPPER(ta.Bairro),60))) AS 'bairro',
+	UPPER(CONCAT(ta.Logradouro, IF(ta.Complemento IS NULL, '', CONCAT(', ', ta.Complemento)))) AS 'endereco',
+	LEFT(UPPER(ta.Bairro),60) AS 'bairro',
 	ce.cod_cidade AS 'cidade',
 	ce.cod_estado AS 'uf',
 	LEFT(RTRIM(REMOVEcaractere(ta.CEP)),8) AS 'cep',
 	LEFT(REMOVEcaractere(a.celular),16) AS 'celular',
 	LEFT(a.email,100) AS 'email',
 	LEFT(a.sexo,1) AS 'sexo',
-	a.datanascimento AS 'dtnascimento', 
+	CONVERT(a.datanascimento, DATE) AS 'dtnascimento', 
 	CASE WHEN a.CorRaca = 'A' THEN 'AMARELA' 
 		WHEN a.CorRaca = 'B' THEN 'BRANCA' 
 		WHEN a.CorRaca = 'N' THEN 'NEGRA' 
 		WHEN a.corRaca = 'P' THEN 'PARDA' 
 		ELSE a.CorRaca END AS 'cor',
-	LEFT(UPPER(rp.nomeresponsavel),100) AS 'pai',
-	LEFT(UPPER(pp.nomeprofissao),40) AS 'profpai',
-	LEFT(REMOVEcaractere(rp.Celular),11) AS 'celularpai',
-	LEFT(rp.email,100) AS 'emailpai',
-	LEFT(UPPER(IFNULL(rm.nomeresponsavel, 'SEM CADASTRO')),100) AS 'mae',
-	LEFT(UPPER(pm.nomeprofissao),40) AS 'profmae',
-	LEFT(REMOVEcaractere(rm.Celular),11) AS 'celularmae',
-	LEFT(rm.email,100) AS 'emailmae',
 	LEFT(REMOVEcaractere(a.cpf),11) AS 'cpf',
 	LEFT(a.rg,50) AS 'rg',
 	LEFT(a.registronascimentonumero,40) AS 'certidaonumero', 
 	LEFT(CONCAT(CASE WHEN a.RegistroNascimentoLivro IS NULL THEN '' ELSE NULL END, ' / ', CASE WHEN a.RegistroNascimentoFolha IS NULL THEN '' ELSE NULL END),30) AS 'certidaolivrofolha',
 	LEFT(a.RegistroNascimentoCartorio,50) AS 'certidaocartorio', 
-	LEFT(UPPER(CONCAT(CASE WHEN ep.logradouro IS NULL THEN '' ELSE NULL END,' ', CASE WHEN ep.complemento IS NULL THEN '' ELSE NULL END, ' ')),200) AS 'enderecopai',
-	to_base64((LEFT(UPPER(ep.Bairro),60))) AS 'bairropai', 
-	cp.cod_cidade AS 'codcidadepai',
-	LEFT(RTRIM(REMOVEcaractere(ep.CEP)),8) AS 'ceppai', 
-	LEFT(UPPER(CONCAT(CASE WHEN em.logradouro IS NULL THEN '' ELSE NULL END,' ', CASE WHEN em.complemento IS NULL THEN '' ELSE NULL END)),200) AS 'enderecomae',
-	to_base64((LEFT(UPPER(em.Bairro),60))) AS 'bairromae',
-	LEFT(RTRIM(REMOVEcaractere(em.CEP)),8) AS 'cepmae', 
-	cp.cod_cidade AS 'codcidademae',
 	LEFT(a.TituloEleitor_Numero,15) AS 'titeleitor',
 	LEFT(a.tituloeleitor_zona,10) AS 'zona',
 	CURDATE() AS 'dtcadastro',
 	LEFT(UPPER(a.nacionalidade),30) AS 'nacionalidade',
-	rp.datanascimento AS 'dtnascimentopai',
-	rm.datanascimento AS 'dtnascimentomae',
 	LEFT(a.tiposangue,20) AS 'tiposanguineo',
 	LEFT(a.naturalidade,100) AS 'naturalidade',
-	LEFT(REMOVEcaractere(rp.cpfcnpj),11) AS 'cpfpai',
-	LEFT(rp.rg,50) AS 'rgpai',
-	LEFT(REMOVEcaractere(rm.cpfcnpj),11) AS 'cpfmae',
-	LEFT(rm.rg,50) AS 'rgmae', 
 	CASE WHEN a.RG_OrgaoEmissor LIKE '%SSP%' THEN 10 
 		WHEN a.RG_OrgaoEmissor LIKE '%IETEP%' THEN 81 
 		WHEN a.RG_OrgaoEmissor LIKE '%MARINHA%' THEN 43 
@@ -1345,8 +1323,32 @@
 		WHEN a.RG_OrgaoEmissor IS NULL THEN NULL 
 		ELSE 81 
 		END AS 'rgorgaoemissor',
-	a.RG_DataEmissao AS 'rgdataemissao',
-	a.Matricula AS 'AUX_matricula'
+	DATE(a.RG_DataEmissao) AS 'rgdataemissao',
+	a.Matricula AS 'AUX_matricula',
+	UPPER(LEFT(IF(rp.Sexo = 'M', rp.NomeResponsavel, IF(rm.Sexo = 'M', rm.NomeResponsavel, rp.NomeResponsavel)),100)) AS 'pai',
+	UPPER(LEFT(IF(rp.Sexo = 'M', pp.nomeprofissao, IF(rm.Sexo = 'M', pm.nomeprofissao, pp.nomeprofissao)),40)) AS 'profpai',	
+	LEFT(REMOVEcaractere(IF(rp.Sexo = 'M', rp.Celular, IF(rm.Sexo = 'M', rm.Celular, rp.Celular))),11) AS 'celularpai',		
+	LOWER(LEFT(IF(rp.Sexo = 'M', rp.email, IF(rm.Sexo = 'M', rm.email, rp.email)),100)) AS 'emailpai',
+	IF(rp.Sexo = 'M', DATE(rp.datanascimento), IF(rm.Sexo = 'M', DATE(rm.datanascimento), DATE(rp.datanascimento))) AS 'dtnascimentopai',		
+	LEFT(UPPER(IF(rp.Sexo = 'M', CONCAT(CASE WHEN ep.logradouro IS NULL THEN '' ELSE ep.Logradouro END,' ', CASE WHEN ep.complemento IS NULL THEN '' ELSE ep.complemento END, ' '), IF(rm.Sexo = 'M',CONCAT(CASE WHEN em.logradouro IS NULL THEN '' ELSE em.logradouro END,' ', CASE WHEN em.complemento IS NULL THEN '' ELSE em.complemento END, ' '), CONCAT(CASE WHEN ep.logradouro IS NULL THEN '' ELSE ep.logradouro END,' ', CASE WHEN ep.complemento IS NULL THEN '' ELSE ep.complemento END, ' ')))),200) AS 'enderecopai',	
+	UPPER(LEFT(IF(rp.Sexo = 'M', ep.Bairro, IF(rm.Sexo = 'M', em.Bairro, ep.Bairro)),60)) AS 'bairropai',
+	IF(rp.Sexo = 'M', cp.cod_cidade, IF(rm.Sexo = 'M', cm.cod_cidade, cp.cod_cidade)) AS 'codcidadepai',
+	UPPER(LEFT(IF(rp.Sexo = 'M', RTRIM(REMOVEcaractere(ep.CEP)), IF(rm.Sexo = 'M', RTRIM(REMOVEcaractere(em.CEP)), RTRIM(REMOVEcaractere(ep.CEP)))),8)) AS 'ceppai',
+	UPPER(LEFT(IF(rp.Sexo = 'M', RTRIM(REMOVEcaractere(rp.cpfcnpj)), IF(rm.Sexo = 'M', RTRIM(REMOVEcaractere(rm.cpfcnpj)), RTRIM(REMOVEcaractere(rp.cpfcnpj)))),11)) AS 'cpfpai',
+	LEFT(IF(rp.Sexo = 'M', rp.rg, IF(rm.Sexo = 'M', rm.rg, rp.rg)),50) AS 'rgpai',
+
+	IFNULL(UPPER(LEFT(IF(rm.Sexo = 'F', rm.NomeResponsavel, IF(rp.Sexo = 'F', rp.NomeResponsavel, rm.NomeResponsavel)), 100)), 'SEM REGISTRO') AS 'mae',
+	UPPER(LEFT(IF(rm.Sexo = 'F', pm.nomeprofissao, IF(rp.Sexo = 'F', pp.nomeprofissao, pm.nomeprofissao)), 40)) AS 'profmae',    
+	LEFT(REMOVEcaractere(IF(rm.Sexo = 'F', rm.Celular, IF(rp.Sexo = 'F', rp.Celular, rm.Celular))), 11) AS 'celularmae',       
+	LOWER(LEFT(IF(rm.Sexo = 'F', rm.email, IF(rp.Sexo = 'F', rp.email, rm.email)), 100)) AS 'emailmae',
+	IF(rm.Sexo = 'F', DATE(rm.datanascimento), IF(rp.Sexo = 'F', DATE(rp.datanascimento), DATE(rm.datanascimento))) AS 'dtnascimentomae',       
+	LEFT(UPPER(IF(rm.Sexo = 'F', CONCAT(CASE WHEN em.logradouro IS NULL THEN '' ELSE em.Logradouro END, ' ', CASE WHEN em.complemento IS NULL THEN '' ELSE em.complemento END, ' '), IF(rp.Sexo = 'F', CONCAT(CASE WHEN ep.logradouro IS NULL THEN '' ELSE ep.logradouro END, ' ', CASE WHEN ep.complemento IS NULL THEN '' ELSE ep.complemento END, ' '), CONCAT(CASE WHEN em.logradouro IS NULL THEN '' ELSE em.logradouro END, ' ', CASE WHEN em.complemento IS NULL THEN '' ELSE em.complemento END, ' ')))), 200) AS 'enderecomae',    
+	UPPER(LEFT(IF(rm.Sexo = 'F', em.Bairro, IF(rp.Sexo = 'F', ep.Bairro, em.Bairro)), 60)) AS 'bairromae',
+	IF(rm.Sexo = 'F', cm.cod_cidade, IF(rp.Sexo = 'F', cp.cod_cidade, cm.cod_cidade)) AS 'codcidademae',
+	UPPER(LEFT(IF(rm.Sexo = 'F', RTRIM(REMOVEcaractere(em.CEP)), IF(rp.Sexo = 'F', RTRIM(REMOVEcaractere(ep.CEP)), RTRIM(REMOVEcaractere(em.CEP)))), 8)) AS 'cepmae',
+	UPPER(LEFT(IF(rm.Sexo = 'F', RTRIM(REMOVEcaractere(rm.cpfcnpj)), IF(rp.Sexo = 'F', RTRIM(REMOVEcaractere(rp.cpfcnpj)), RTRIM(REMOVEcaractere(rm.cpfcnpj)))), 11)) AS 'cpfmae',
+	LEFT(IF(rm.Sexo = 'F', rm.rg, IF(rp.Sexo = 'F', rp.rg, rm.rg)), 50) AS 'rgmae',
+	a.Matricula AS 'ra'
 FROM tbaluno AS a
 LEFT JOIN TbEndereco AS ta ON ta.IdEndereco = a.IdEndereco
 LEFT JOIN cidade_escolaweb ce ON ta.Cidade = ce.nom_cidade AND ta.UF = ce.sgl_estado
@@ -1357,8 +1359,7 @@ LEFT JOIN tbprofissao AS pp ON rp.idprofissao = pp.idprofissao
 LEFT JOIN tbendereco AS ep ON rp.idendereco = ep.idendereco
 LEFT JOIN tbendereco AS em ON rm.idendereco = em.idendereco
 LEFT JOIN cidade_escolaweb cp ON ep.Cidade = cp.nom_cidade AND ep.UF = cp.sgl_estado
-LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_estado
-;</sql>
+LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_estado;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -7097,135 +7098,102 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
     <fields>
       <field>
         <name>codrec</name>
-        <rename/>
       </field>
       <field>
         <name>parcela</name>
-        <rename/>
       </field>
       <field>
         <name>valorbruto</name>
-        <rename/>
       </field>
       <field>
         <name>valorparcela</name>
-        <rename/>
       </field>
       <field>
         <name>valor</name>
-        <rename/>
       </field>
       <field>
         <name>desconto</name>
-        <rename/>
       </field>
       <field>
         <name>outrosabatimentos</name>
-        <rename/>
       </field>
       <field>
         <name>vencimentodesconto</name>
-        <rename/>
       </field>
       <field>
         <name>vencimento</name>
-        <rename/>
       </field>
       <field>
         <name>dtpagamento</name>
-        <rename/>
       </field>
       <field>
         <name>carenciadesconto</name>
-        <rename/>
       </field>
       <field>
         <name>cobbancaria</name>
-        <rename/>
       </field>
       <field>
         <name>avulsa</name>
-        <rename/>
       </field>
       <field>
         <name>carenciamulta</name>
-        <rename/>
       </field>
       <field>
         <name>codconta</name>
-        <rename/>
       </field>
       <field>
         <name>codunidade</name>
-        <rename/>
       </field>
       <field>
         <name>anoletivo</name>
-        <rename/>
       </field>
       <field>
         <name>multa</name>
-        <rename/>
       </field>
       <field>
         <name>vencimentomulta</name>
-        <rename/>
       </field>
       <field>
         <name>cpf</name>
-        <rename/>
       </field>
       <field>
         <name>juros</name>
-        <rename/>
       </field>
       <field>
         <name>valorpago</name>
-        <rename/>
       </field>
       <field>
         <name>codaluno</name>
-        <rename/>
       </field>
       <field>
         <name>codreceita</name>
-        <rename/>
       </field>
       <field>
         <name>receitaoriginal</name>
-        <rename/>
       </field>
       <field>
         <name>boletourl</name>
-        <rename/>
       </field>
       <field>
         <name>linha</name>
-        <rename/>
       </field>
       <field>
         <name>nossonumero</name>
-        <rename/>
       </field>
       <field>
         <name>cadastradopor</name>
-        <rename/>
       </field>
       <field>
         <name>dtcadastro</name>
-        <rename/>
       </field>
       <field>
         <name>AUX_codconfturma</name>
-        <rename/>
       </field>
       <field>
         <name>AUX_databaixa</name>
-        <rename/>
       </field>
       <field>
         <name>AUX_TituloCobranca</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
