@@ -7,7 +7,7 @@
   <created_user>-</created_user>
   <created_date>2023/03/16 08:19:19.501</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2024/02/16 11:10:54.382</modified_date>
+  <modified_date>2024/02/20 10:08:26.265</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -342,7 +342,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
+      <xloc>80</xloc>
       <yloc>48</yloc>
       <attributes_kjc/>
     </entry>
@@ -403,7 +403,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
+      <xloc>80</xloc>
       <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
@@ -464,7 +464,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
+      <xloc>80</xloc>
       <yloc>320</yloc>
       <attributes_kjc/>
     </entry>
@@ -477,8 +477,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1168</xloc>
-      <yloc>320</yloc>
+      <xloc>1408</xloc>
+      <yloc>304</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -499,7 +499,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>96</xloc>
+      <xloc>0</xloc>
       <yloc>48</yloc>
       <attributes_kjc/>
     </entry>
@@ -511,7 +511,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>688</xloc>
+      <xloc>704</xloc>
       <yloc>320</yloc>
       <attributes_kjc/>
     </entry>
@@ -548,8 +548,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
-      <yloc>416</yloc>
+      <xloc>448</xloc>
+      <yloc>544</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -572,8 +572,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
-      <yloc>416</yloc>
+      <xloc>80</xloc>
+      <yloc>544</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -632,8 +632,8 @@ Código outros: (${v_sophia_parentesco_outros})
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
-      <yloc>512</yloc>
+      <xloc>448</xloc>
+      <yloc>640</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -656,8 +656,8 @@ Código outros: (${v_sophia_parentesco_outros})
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
-      <yloc>512</yloc>
+      <xloc>80</xloc>
+      <yloc>640</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -693,8 +693,8 @@ Código outros: (${v_sophia_parentesco_outros})
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
-      <yloc>608</yloc>
+      <xloc>448</xloc>
+      <yloc>736</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -717,8 +717,8 @@ Código outros: (${v_sophia_parentesco_outros})
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
-      <yloc>608</yloc>
+      <xloc>80</xloc>
+      <yloc>736</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -778,7 +778,7 @@ Código outros: (${v_sophia_parentesco_outros})
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
+      <xloc>80</xloc>
       <yloc>128</yloc>
       <attributes_kjc/>
     </entry>
@@ -815,8 +815,8 @@ Código outros: (${v_sophia_parentesco_outros})
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>928</xloc>
-      <yloc>608</yloc>
+      <xloc>1040</xloc>
+      <yloc>736</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -839,8 +839,8 @@ Código outros: (${v_sophia_parentesco_outros})
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1168</xloc>
-      <yloc>608</yloc>
+      <xloc>1408</xloc>
+      <yloc>736</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -876,12 +876,12 @@ Código outros: (${v_sophia_parentesco_outros})
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>928</xloc>
+      <xloc>1024</xloc>
       <yloc>512</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Confira a tabela Parentesco 2</name>
+      <name>Confira a tabela Parentesco2</name>
       <description/>
       <type>MSGBOX_INFO</type>
       <attributes/>
@@ -899,7 +899,7 @@ Código outros: (${v_sophia_parentesco_outros})
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1040</xloc>
+      <xloc>1168</xloc>
       <yloc>512</yloc>
       <attributes_kjc/>
     </entry>
@@ -923,7 +923,7 @@ Código outros: (${v_sophia_parentesco_outros})
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1168</xloc>
+      <xloc>1408</xloc>
       <yloc>512</yloc>
       <attributes_kjc/>
     </entry>
@@ -937,21 +937,271 @@ Código outros: (${v_sophia_parentesco_outros})
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1040</xloc>
-      <yloc>608</yloc>
+      <xloc>1296</xloc>
+      <yloc>736</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>MYSQL SPONTE</name>
+      <description/>
+      <type>MSGBOX_INFO</type>
+      <attributes/>
+      <bodymessage>SISTEMA:  ${v_sistema}
+――――――――――――――――――――――――
+DIRETÓRIO BKP: ${v_diretorio-backup}
+――――――――――――――――――――――――
+BANCO MYSQL(LocalHost): ${v_nomebanco-mysql}
+――――――――――――――――――――――――
+BANCO RDS: >>>>> [ ${v_nomebanco-RDS} ] &lt;&lt;&lt;&lt;&lt;
+――――――――――――――――――――――――
+RDS:  ${v_end-RDS}
+――――――――――――――――――――――――
+CREATE TABLE LOCAL: ${v_create_localhost}
+――――――――――――――――――――――――
+MIGRAÇÃO SECREARIA: ${v_mig_secretaria}
+MIGRAÇÃO FINANCEIRO: ${v_mig_financeiro}
+MIGRAÇÃO ACADÊMICO: ${v_mig_academico}
+――――――――――――――――――――――――
+FATURA: ${v_fatura}
+ETAPAS: ${v_etapas}
+ETAPAS QUE CONTEM NOTA: ${v_etapa_migrada_com_nota}
+ANO LETIVO NOTAS: ${v_notas_anoletivo}
+VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
+      <titremessage>MIGRAÇÃO MYSQL</titremessage>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>224</xloc>
+      <yloc>48</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>MYSQL SOPHIA</name>
+      <description/>
+      <type>MSGBOX_INFO</type>
+      <attributes/>
+      <bodymessage>SISTEMA:  ${v_sistema}
+――――――――――――――――――――――――
+BANCO SQLSERVER(LocalHost): ${v_nomebanco-sqlserver}
+――――――――――――――――――――――――
+BANCO RDS: >>>>> [ ${v_nomebanco-RDS} ] &lt;&lt;&lt;&lt;&lt;
+――――――――――――――――――――――――
+RDS:  ${v_end-RDS}
+――――――――――――――――――――――――
+MIGRAÇÃO SECREARIA: ${v_mig_secretaria}
+MIGRAÇÃO FINANCEIRO: ${v_mig_financeiro}
+MIGRAÇÃO ACADÊMICO: ${v_mig_academico}
+――――――――――――――――――――――――
+FATURA: ${v_fatura}
+ETAPAS: ${v_etapas}
+ETAPAS QUE CONTEM NOTA: ${v_etapa_migrada_com_nota}
+ANO LETIVO NOTAS: ${v_notas_anoletivo}
+VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
+      <titremessage>MIGRAÇÃO SQL SERVER</titremessage>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>224</xloc>
+      <yloc>320</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>SQLSERVER SOPHIA2</name>
+      <description/>
+      <type>MSGBOX_INFO</type>
+      <attributes/>
+      <bodymessage>SISTEMA:  ${v_sistema}
+――――――――――――――――――――――――
+BANCO SQLSERVER(LocalHost): ${v_nomebanco-sqlserver}
+――――――――――――――――――――――――
+BANCO RDS: >>>>> [ ${v_nomebanco-RDS} ] &lt;&lt;&lt;&lt;&lt;
+――――――――――――――――――――――――
+RDS:  ${v_end-RDS}
+――――――――――――――――――――――――
+MIGRAÇÃO SECREARIA: ${v_mig_secretaria}
+MIGRAÇÃO FINANCEIRO: ${v_mig_financeiro}
+MIGRAÇÃO ACADÊMICO: ${v_mig_academico}
+――――――――――――――――――――――――
+FATURA: ${v_fatura}
+ETAPAS: ${v_etapas}
+ETAPAS QUE CONTEM NOTA: ${v_etapa_migrada_com_nota}
+ANO LETIVO NOTAS: ${v_notas_anoletivo}
+VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
+      <titremessage>MIGRAÇÃO SQL SERVER</titremessage>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1312</xloc>
+      <yloc>512</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>MYSQL ACTIVE</name>
+      <description/>
+      <type>MSGBOX_INFO</type>
+      <attributes/>
+      <bodymessage>SISTEMA:  ${v_sistema}
+――――――――――――――――――――――――
+BANCO MYSQL(LocalHost): ${v_nomebanco-mysql}
+――――――――――――――――――――――――
+BANCO RDS: >>>>> [ ${v_nomebanco-RDS} ] &lt;&lt;&lt;&lt;&lt;
+――――――――――――――――――――――――
+RDS:  ${v_end-RDS}
+――――――――――――――――――――――――
+CREATE TABLE LOCAL: ${v_create_localhost}
+――――――――――――――――――――――――
+MIGRAÇÃO SECREARIA: ${v_mig_secretaria}
+MIGRAÇÃO FINANCEIRO: ${v_mig_financeiro}
+MIGRAÇÃO ACADÊMICO: ${v_mig_academico}
+――――――――――――――――――――――――
+FATURA: ${v_fatura}
+ETAPAS: ${v_etapas}
+ETAPAS QUE CONTEM NOTA: ${v_etapa_migrada_com_nota}
+ANO LETIVO NOTAS: ${v_notas_anoletivo}
+VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
+      <titremessage>MIGRAÇÃO MYSQL</titremessage>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>272</xloc>
+      <yloc>640</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>MYSQL PROESC</name>
+      <description/>
+      <type>MSGBOX_INFO</type>
+      <attributes/>
+      <bodymessage>SISTEMA:  ${v_sistema}
+――――――――――――――――――――――――
+BANCO MYSQL(LocalHost): ${v_nomebanco-mysql}
+――――――――――――――――――――――――
+BANCO RDS: >>>>> [ ${v_nomebanco-RDS} ] &lt;&lt;&lt;&lt;&lt;
+――――――――――――――――――――――――
+RDS:  ${v_end-RDS}
+――――――――――――――――――――――――
+CREATE TABLE LOCAL: ${v_create_localhost}
+――――――――――――――――――――――――
+MIGRAÇÃO SECREARIA: ${v_mig_secretaria}
+MIGRAÇÃO FINANCEIRO: ${v_mig_financeiro}
+MIGRAÇÃO ACADÊMICO: ${v_mig_academico}
+――――――――――――――――――――――――
+FATURA: ${v_fatura}
+ETAPAS: ${v_etapas}
+ETAPAS QUE CONTEM NOTA: ${v_etapa_migrada_com_nota}
+ANO LETIVO NOTAS: ${v_notas_anoletivo}
+VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
+      <titremessage>MIGRAÇÃO MYSQL</titremessage>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1168</xloc>
+      <yloc>736</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>MIGRACAO XLSX</name>
+      <description/>
+      <type>MSGBOX_INFO</type>
+      <attributes/>
+      <bodymessage>SISTEMA:  ${v_sistema}
+――――――――――――――――――――――――
+ENDEREÇO: ${v_diretorio-backup}\
+ARQUIVO: ${v_migracao-basica}
+――――――――――――――――――――――――
+BANCO RDS: >>>>> [ ${v_nomebanco-RDS} ] &lt;&lt;&lt;&lt;&lt;
+――――――――――――――――――――――――
+RDS:  ${v_end-RDS}
+――――――――――――――――――――――――
+MIGRAÇÃO SECREARIA: ${v_mig_secretaria}
+MIGRAÇÃO FINANCEIRO: ${v_mig_financeiro}
+MIGRAÇÃO ACADÊMICO: ${v_mig_academico}
+――――――――――――――――――――――――
+FATURA: ${v_fatura}
+ETAPAS: ${v_etapas}
+ETAPAS QUE CONTEM NOTA: ${v_etapa_migrada_com_nota}
+ANO LETIVO NOTAS: ${v_notas_anoletivo}
+VALOR PROVA: ${v_notas_avaliacao}
+
+</bodymessage>
+      <titremessage>MIGRAÇÃO FORMATO PLANILHA</titremessage>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>272</xloc>
+      <yloc>736</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>MYSQL SPONTE2</name>
+      <description/>
+      <type>MSGBOX_INFO</type>
+      <attributes/>
+      <bodymessage>SISTEMA:  ${v_sistema}
+――――――――――――――――――――――――
+DIRETÓRIO BKP: ${v_diretorio-backup}
+――――――――――――――――――――――――
+BANCO MYSQL(LocalHost): ${v_nomebanco-mysql}
+――――――――――――――――――――――――
+BANCO RDS: >>>>> [ ${v_nomebanco-RDS} ] &lt;&lt;&lt;&lt;&lt;
+――――――――――――――――――――――――
+RDS:  ${v_end-RDS}
+――――――――――――――――――――――――
+CREATE TABLE LOCAL: ${v_create_localhost}
+――――――――――――――――――――――――
+MIGRAÇÃO SECREARIA: ${v_mig_secretaria}
+MIGRAÇÃO FINANCEIRO: ${v_mig_financeiro}
+MIGRAÇÃO ACADÊMICO: ${v_mig_academico}
+――――――――――――――――――――――――
+FATURA: ${v_fatura}
+ETAPAS: ${v_etapas}
+ETAPAS QUE CONTEM NOTA: ${v_etapa_migrada_com_nota}
+ANO LETIVO NOTAS: ${v_notas_anoletivo}
+VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
+      <titremessage>MIGRAÇÃO MYSQL</titremessage>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>224</xloc>
+      <yloc>128</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>MYSQL WPENSAR</name>
+      <description/>
+      <type>MSGBOX_INFO</type>
+      <attributes/>
+      <bodymessage>SISTEMA:  ${v_sistema}
+――――――――――――――――――――――――
+DIRETÓRIO BKP: ${v_diretorio-backup}
+――――――――――――――――――――――――
+BANCO MYSQL(LocalHost): ${v_nomebanco-mysql}
+――――――――――――――――――――――――
+BANCO RDS: >>>>> [ ${v_nomebanco-RDS} ] &lt;&lt;&lt;&lt;&lt;
+――――――――――――――――――――――――
+RDS:  ${v_end-RDS}
+――――――――――――――――――――――――
+CREATE TABLE LOCAL: ${v_create_localhost}
+――――――――――――――――――――――――
+MIGRAÇÃO SECREARIA: ${v_mig_secretaria}
+MIGRAÇÃO FINANCEIRO: ${v_mig_financeiro}
+MIGRAÇÃO ACADÊMICO: ${v_mig_academico}
+――――――――――――――――――――――――
+FATURA: ${v_fatura}
+ETAPAS: ${v_etapas}
+ETAPAS QUE CONTEM NOTA: ${v_etapa_migrada_com_nota}
+ANO LETIVO NOTAS: ${v_notas_anoletivo}
+VALOR PROVA: ${v_notas_avaliacao}</bodymessage>
+      <titremessage>MIGRAÇÃO MYSQL</titremessage>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>272</xloc>
+      <yloc>544</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
   <hops>
-    <hop>
-      <from>sponte ?</from>
-      <to>sponte</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
     <hop>
       <from>acadesc ?</from>
       <to>acadesc</to>
@@ -1007,15 +1257,6 @@ Código outros: (${v_sophia_parentesco_outros})
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>wpensar ?</from>
-      <to>wpensar</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>wpensar</from>
       <to>Success</to>
       <from_nr>0</from_nr>
@@ -1031,15 +1272,6 @@ Código outros: (${v_sophia_parentesco_outros})
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>sophia ?</from>
-      <to>Confira a tabela Parentesco</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
@@ -1061,15 +1293,6 @@ Código outros: (${v_sophia_parentesco_outros})
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Activesoft ?</from>
-      <to>Activesoft</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Activesoft</from>
       <to>Success</to>
       <from_nr>0</from_nr>
@@ -1081,15 +1304,6 @@ Código outros: (${v_sophia_parentesco_outros})
     <hop>
       <from>Padrão</from>
       <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>padrao ?</from>
-      <to>Padrão</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1121,15 +1335,6 @@ Código outros: (${v_sophia_parentesco_outros})
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>sponte2 ?</from>
-      <to>sponte 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
@@ -1169,16 +1374,7 @@ Código outros: (${v_sophia_parentesco_outros})
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>sophia2 ?</from>
-      <to>Confira a tabela Parentesco 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Confira a tabela Parentesco 2</from>
+      <from>Confira a tabela Parentesco2</from>
       <to>sophia2</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1205,21 +1401,147 @@ Código outros: (${v_sophia_parentesco_outros})
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Confira a tabela Parentesco</from>
-      <to>Abort - v_sistema</to>
+      <from>sophia ?</from>
+      <to>MYSQL SOPHIA</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>N</evaluation>
+      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Confira a tabela Parentesco 2</from>
-      <to>Abort - v_sistema</to>
+      <from>MYSQL SOPHIA</from>
+      <to>Confira a tabela Parentesco</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>N</evaluation>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>sophia2 ?</from>
+      <to>SQLSERVER SOPHIA2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQLSERVER SOPHIA2</from>
+      <to>Confira a tabela Parentesco2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Activesoft ?</from>
+      <to>MYSQL ACTIVE</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>MYSQL ACTIVE</from>
+      <to>Activesoft</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>padrao ?</from>
+      <to>MIGRACAO XLSX</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>MIGRACAO XLSX</from>
+      <to>Padrão</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>sponte ?</from>
+      <to>MYSQL SPONTE</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>MYSQL SPONTE</from>
+      <to>sponte</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>sponte2 ?</from>
+      <to>MYSQL SPONTE2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>MYSQL SPONTE2</from>
+      <to>sponte 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>wpensar ?</from>
+      <to>MYSQL WPENSAR</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>MYSQL WPENSAR</from>
+      <to>wpensar</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Suba o BD por python</from>
+      <to>MYSQL PROESC</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>MYSQL PROESC</from>
+      <to>Proesc</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
@@ -1229,24 +1551,6 @@ Código outros: (${v_sophia_parentesco_outros})
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Suba o BD por python</from>
-      <to>Proesc</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Suba o BD por python</from>
-      <to>Abort - v_sistema</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>
@@ -1257,8 +1561,8 @@ Código outros: (${v_sophia_parentesco_outros})
 1º PASSO - INSERT DO ARQUIVO AO BD LOCALHOST/CREATE MIG
 2º PASSO - TRATAMENTO DOS DADOS NO BD LOCALHOST
 3º PASSO - UPDATE NAS MIGS</note>
-      <xloc>528</xloc>
-      <yloc>672</yloc>
+      <xloc>656</xloc>
+      <yloc>128</yloc>
       <width>359</width>
       <heigth>89</heigth>
       <fontname>Segoe UI</fontname>
