@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>ACTIVESOFT - PASSO 3</name>
+    <name>ACTIVESOFT - PASSO 1.8</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -426,23 +426,23 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2023/08/21 11:41:08.773</created_date>
+    <created_date>2024/03/18 09:06:05.034</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/03/19 08:41:24.944</modified_date>
+    <modified_date>2024/03/18 14:11:25.006</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>RDS</name>
-    <server>escolawebrds${v_end-RDS}.cdq77divwtia.sa-east-1.rds.amazonaws.com</server>
+    <name>MYSQL-LOCALHOST</name>
+    <server>127.0.0.1</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${v_nomebanco-RDS}</database>
+    <database>${v_nomebanco-mysql}</database>
     <port>3306</port>
-    <username>ricardo.gad</username>
-    <password>Encrypted 2be98afc86aa7f2e49910ad47df99a4df</password>
+    <username>root</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -452,28 +452,8 @@
         <attribute>true</attribute>
       </attribute>
       <attribute>
-        <code>EXTRA_OPTION_MYSQL.collation_connection</code>
-        <attribute>utf8mb4_0900_ai_ci</attribute>
-      </attribute>
-      <attribute>
         <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
         <attribute>500</attribute>
-      </attribute>
-      <attribute>
-        <code>EXTRA_OPTION_MYSQL.net-read-timeout</code>
-        <attribute>2800</attribute>
-      </attribute>
-      <attribute>
-        <code>EXTRA_OPTION_MYSQL.net_write_timeout</code>
-        <attribute>2800</attribute>
-      </attribute>
-      <attribute>
-        <code>EXTRA_OPTION_MYSQL.rewriteBatchedStatements</code>
-        <attribute>true</attribute>
-      </attribute>
-      <attribute>
-        <code>EXTRA_OPTION_MYSQL.useCompression</code>
-        <attribute>true</attribute>
       </attribute>
       <attribute>
         <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
@@ -524,7 +504,7 @@
   <order>
   </order>
   <step>
-    <name>Update Unidadeescolar</name>
+    <name>UPDATES - PROCEDURES</name>
     <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
@@ -534,36 +514,64 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>RDS</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <execute_each_row>N</execute_each_row>
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>-- UPDATE UNIDADE ESCOLAR APROVEITANDO O CÓDIGO
+    <sql>ALTER TABLE tbaluno
+MODIFY COLUMN DataNascimento DATE;
 
-UPDATE unidadeescolar u
-JOIN mig_unidadeescolar un ON (u.codunidade = un.codunidade)
-SET 
-u.dscunidade = un.dscunidade,
-u.codigoinep_censo = un.codigoinep_censo, 
-u.endereco = un.endereco,
-u.bairro = un.bairro,
-u.cidade = un.cidade,
-u.uf = un.uf,
-u.cep = un.cep,
-u.email = un.email,
-u.cnpj = un.cnpj,
-u.dscunidadeabrev = un.dscunidadeabrev;
+ALTER TABLE tbresponsavel
+MODIFY COLUMN DataNascimento DATE;
 
--- INSERINDO UNIDADE ESCOLAR QUE NÃO FOI CADASTRADO
 
-INSERT INTO unidadeescolar (codunidade, email, cep, endereco, bairro, dscunidade, cnpj, dscunidadeabrev, codtabescola)
-(SELECT codunidade, email, cep, endereco, bairro, dscunidade, cnpj, dscunidadeabrev, codtabescola
-FROM mig_unidadeescolar u WHERE u.codunidade NOT IN (SELECT codunidade FROM unidadeescolar));
+ALTER TABLE tbresponsavel
+    ADD COLUMN aux_sexo INT NULL DEFAULT NULL AFTER IntFinanceira_Codigo,
+    ADD INDEX aux_sexo (aux_sexo);
 
-DELETE u FROM unidadeescolar u
-WHERE u.codunidade NOT IN (SELECT un.codunidade FROM mig_unidadeescolar un);
+ALTER TABLE tbaluno
+    ADD COLUMN aux_mae INT NULL DEFAULT NULL,
+    ADD COLUMN aux_pai INT NULL DEFAULT NULL,
+    ADD INDEX aux_pai (aux_pai),
+    ADD INDEX aux_mae (aux_mae);
 
+    
+UPDATE tbresponsavel r 
+SET r.aux_sexo = (CASE
+WHEN r.Sexo = 'M' THEN 1
+WHEN r.Sexo = 'F' THEN 2
+END);
+
+UPDATE tbaluno a
+LEFT JOIN tbresponsavel tbrm ON (tbrm.IdResponsavel = a.IdMae)
+LEFT JOIN tbresponsavel tbrp ON (tbrp.IdResponsavel = a.IdPai)
+LEFT JOIN (
+    SELECT r1.idresponsavel, a1.idaluno
+    FROM tbresponsavel r1
+    JOIN tbaluno a1 ON (a1.IdMae = r1.IdResponsavel AND r1.aux_sexo = 2)
+) AS rm ON a.idaluno = rm.idaluno
+-- ---------------------------------------------------------------------------
+LEFT JOIN (
+    SELECT r11.idresponsavel, a11.idaluno
+    FROM tbresponsavel r11
+    JOIN tbaluno a11 ON (a11.IdPai = r11.IdResponsavel AND r11.aux_sexo = 2)
+) AS rm1 ON a.idaluno = rm1.idaluno
+-- ---------------------------------------------------------------------------
+LEFT JOIN (
+    SELECT r2.idresponsavel, a2.idaluno
+    FROM tbresponsavel r2
+    JOIN tbaluno a2 ON (a2.IdPai = r2.IdResponsavel AND r2.aux_sexo = 1)
+) AS rp ON a.idaluno = rp.idaluno
+-- ---------------------------------------------------------------------------
+LEFT JOIN (
+    SELECT r21.idresponsavel, a21.idaluno
+    FROM tbresponsavel r21
+    JOIN tbaluno a21 ON (a21.IdPai = r21.IdResponsavel AND r21.aux_sexo = 1)
+) AS rp1 ON a.idaluno = rp1.idaluno
+-- ---------------------------------------------------------------------------
+SET a.aux_mae = IFNULL(IFNULL(rm.idresponsavel, rm1.idresponsavel), IF(a.IdMae = a.IdPai OR tbrm.aux_sexo = 1, NULL, a.IdMae)),
+    a.aux_pai = IFNULL(IFNULL(rp.idresponsavel, rp1.idresponsavel), IF(a.IdMae = a.IdPai OR tbrp.aux_sexo = 2, NULL, a.IdPai));
 </sql>
     <set_params>N</set_params>
     <insert_field/>
@@ -581,8 +589,8 @@ WHERE u.codunidade NOT IN (SELECT un.codunidade FROM mig_unidadeescolar un);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>242</xloc>
-      <yloc>165</yloc>
+      <xloc>160</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

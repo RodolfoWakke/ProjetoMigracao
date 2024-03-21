@@ -428,8 +428,8 @@
     <created_user>-</created_user>
     <created_date>2023/12/14 09:22:42.186</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/12/14 09:25:07.546</modified_date>
-    <key_for_session_key/>
+    <modified_date>2024/03/13 15:38:28.324</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -741,7 +741,7 @@ CREATE TABLE aula
 , Periodicidade VARCHAR(50)
 ,INDEX `Codigo` (`Codigo`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -788,7 +788,7 @@ CREATE TABLE IF NOT EXISTS `bairro` (
   `CodMunicipio` text,
   `Nome` text,
   KEY `Codigo` (`Codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql>
+) ENGINE=InnoDB;</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -829,125 +829,125 @@ CREATE TABLE IF NOT EXISTS `bairro` (
     <sql>DROP TABLE IF EXISTS `aluno`;
 CREATE TABLE `aluno` (
 	`Matricula` INT(11) NULL DEFAULT NULL,
-	`Nome` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`DataCadastro` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`DataNascimento` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`Nome` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataCadastro` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataNascimento` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`CodMunicipioNascimento` INT(11) NULL DEFAULT NULL,
-	`MunicipioNascimentoEstrangeiro` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Nacionalidade` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Profissao` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Cargo` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Sexo` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`EstadoCivil` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Cadeira` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Telefone` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`TelProprio` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Celular` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Email` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`EmailProfissional` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Logradouro` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`NumLogradouro` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Complemento` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`MunicipioNascimentoEstrangeiro` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Nacionalidade` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Profissao` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Cargo` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Sexo` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`EstadoCivil` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Cadeira` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Telefone` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TelProprio` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Celular` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Email` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`EmailProfissional` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Logradouro` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumLogradouro` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Complemento` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`CodBairro` INT(11) NULL DEFAULT NULL,
 	`CodMunicipio` INT(11) NULL DEFAULT NULL,
-	`CEP` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`RG` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`UFDocumento` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`DataExpedicaoDocumento` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`DataExpedicao` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`OrgaoExpedidor` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CPF` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Observacoes` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`foto` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`NomeIndicacao` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`NivelOrigem` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`SerieOrigem` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CodEscola` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`AnoEscola` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`UltimaSerie` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`ObsCobranca` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CodFuncionario` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Alteracao` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`SolicitouNFSE` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CorRaca` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`NumCarteira` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`ValidadeCarteira` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CodMunicipioEscola` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`RNECIEstrangeiro` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`DataExpedicaoCIEstrangeiro` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`DataValidacaoCIEstrangeiro` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`SituacaoMilitar` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`RMMilitar` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`NumCertificadoMilitar` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`DsCertificadoMilitar` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`NumInscrTitulo` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`NumZonaTitulo` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`NumSecaoTitulo` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`DataEmissaoTitulo` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Empresa` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CNPJ` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`TelEmpresa` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`RegistroMEC` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`PlanoSaude` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`GrupoSanguineo` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`FatorRH` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`MedicamentoFebreVomito` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`AlergiaMedicamentos` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`AlergiaAlimentos` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`TratamentosMedicos` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`MedicamentosRegulares` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`ObservacoesMedicas` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`ContatoNomeEmergenciaSaude` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`ContatoTelefoneEmergenciaSaude` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`MatAlunoIndicou` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`ResponsavelEstagio` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CodCliente` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`NomeDaMae` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`NomeDoPai` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`NecessidadesEspeciais` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`DataInicialEstagio` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`DataFinalEstagio` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CadastroINEP` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`BolsaFamilia` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`TransporteEscolar` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`TransporteEscolarTipo` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CodFormaIngresso` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`DataFormatura` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CodigoEPC` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CertidaoNascimentoNum` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CertidaoNascimentoLivro` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CertidaoNascimentoTermo` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CertidaoNascimentoFolha` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`DiplomaEntregue` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`NotaFinalProcessoSeletivo` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`RA` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`FotoAntigo` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CartorioNumero` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`DataExpedicaoCertidao` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`UFCartorio` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`usuario_id` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`apelido` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`carreira_id` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CelularMedico` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`TelefoneMedico` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`NomeMedico` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CarteirinhaMedica` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`ContatoCelularEmergenciaSaude` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`cliente_wpay_id` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`cartao_recorrencia_id` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`hub_iugu_id` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`hub_ead_id` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`email_gsuite` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`nome_social` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`numero_censo_escolar` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`criado_em` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`atualizado_em` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`CEP` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RG` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`UFDocumento` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataExpedicaoDocumento` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataExpedicao` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`OrgaoExpedidor` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CPF` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Observacoes` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`foto` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NomeIndicacao` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NivelOrigem` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SerieOrigem` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CodEscola` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`AnoEscola` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`UltimaSerie` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ObsCobranca` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CodFuncionario` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Alteracao` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SolicitouNFSE` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CorRaca` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumCarteira` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ValidadeCarteira` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CodMunicipioEscola` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RNECIEstrangeiro` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataExpedicaoCIEstrangeiro` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataValidacaoCIEstrangeiro` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SituacaoMilitar` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RMMilitar` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumCertificadoMilitar` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DsCertificadoMilitar` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumInscrTitulo` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumZonaTitulo` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumSecaoTitulo` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataEmissaoTitulo` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Empresa` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CNPJ` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TelEmpresa` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RegistroMEC` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`PlanoSaude` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`GrupoSanguineo` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`FatorRH` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MedicamentoFebreVomito` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`AlergiaMedicamentos` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`AlergiaAlimentos` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TratamentosMedicos` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MedicamentosRegulares` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ObservacoesMedicas` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ContatoNomeEmergenciaSaude` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ContatoTelefoneEmergenciaSaude` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MatAlunoIndicou` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ResponsavelEstagio` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CodCliente` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NomeDaMae` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NomeDoPai` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NecessidadesEspeciais` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataInicialEstagio` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataFinalEstagio` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CadastroINEP` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`BolsaFamilia` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TransporteEscolar` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TransporteEscolarTipo` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CodFormaIngresso` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataFormatura` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CodigoEPC` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CertidaoNascimentoNum` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CertidaoNascimentoLivro` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CertidaoNascimentoTermo` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CertidaoNascimentoFolha` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DiplomaEntregue` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NotaFinalProcessoSeletivo` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RA` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`FotoAntigo` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CartorioNumero` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataExpedicaoCertidao` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`UFCartorio` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`usuario_id` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`apelido` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`carreira_id` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CelularMedico` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TelefoneMedico` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NomeMedico` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CarteirinhaMedica` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ContatoCelularEmergenciaSaude` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`cliente_wpay_id` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`cartao_recorrencia_id` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`hub_iugu_id` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`hub_ead_id` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`email_gsuite` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`nome_social` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`numero_censo_escolar` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`criado_em` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`atualizado_em` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `Matricula` (`Matricula`) USING BTREE,
 	INDEX `CodBairro` (`CodBairro`) USING BTREE,
 	INDEX `CodMunicipio` (`CodMunicipio`) USING BTREE,
 	INDEX `CodMunicipioNascimento` (`CodMunicipioNascimento`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -991,15 +991,15 @@ ENGINE=InnoDB
     <sql>DROP TABLE IF EXISTS `avaliacao`;
 CREATE TABLE `avaliacao` (
 	`Codigo` INT(11) NULL DEFAULT NULL,
-	`Nome` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Sigla` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`ValorMaximo` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Global` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Ordem` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`Nome` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Sigla` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ValorMaximo` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Global` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Ordem` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `Codigo` (`Codigo`) USING BTREE,
 	INDEX `Nome` (`Nome`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 
@@ -1026,6 +1026,57 @@ ENGINE=InnoDB
     </GUI>
   </step>
   <step>
+    <name>Create Tab Curso</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP TABLE IF EXISTS `curso`;
+CREATE TABLE IF NOT EXISTS `curso` (
+  `Codigo` int(11) DEFAULT NULL,
+  `Nome` text,
+  `CodTributacao` text,
+  `Nivel` text,
+  `CodBoletimModelo` text,
+  `ItemListaServico` text,
+  `CodBoletimModelo2` text,
+  `CodigoCNAE` text,
+  `PercentualAliquotaTotalTributos` text,
+  `FonteAliquotaTotalTributos` text,
+  KEY `Codigo` (`Codigo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>16</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Create Tab alun</name>
     <type>ExecSQL</type>
     <description/>
@@ -1048,17 +1099,17 @@ CREATE TABLE `aluno_responsavel` (
 	`MatAluno` INT(11) NULL DEFAULT NULL,
 	`CodResponsavel` INT(11) NULL DEFAULT NULL,
 	`CodParentesco` INT(11) NULL DEFAULT NULL,
-	`Financeiro` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Pedagogico` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`PrimSocorro` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`pode_retirar` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`aceita_automacoes` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`Financeiro` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Pedagogico` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`PrimSocorro` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`pode_retirar` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`aceita_automacoes` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `id` (`id`) USING BTREE,
 	INDEX `MatAluno` (`MatAluno`) USING BTREE,
 	INDEX `CodResponsavel` (`CodResponsavel`) USING BTREE,
 	INDEX `CodParentesco` (`CodParentesco`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -1084,6 +1135,58 @@ ENGINE=InnoDB
     </GUI>
   </step>
   <step>
+    <name>Create Tab disciplina</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP TABLE IF EXISTS `disciplina`;
+CREATE TABLE IF NOT EXISTS `disciplina` (
+  `Codigo` int(11) DEFAULT NULL,
+  `Nome` text,
+  `Abreviacao` text,
+  `CargaHoraria` text,
+  `NumOrdem` text,
+  `BaseNacional` text,
+  `PrecisaoBoletim` text,
+  `CodigoDisciplina` text,
+  `Ementa` text,
+  `area_de_conhecimento` text,
+  KEY `Codigo` (`Codigo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Create Table Camp</name>
     <type>ExecSQL</type>
     <description/>
@@ -1104,7 +1207,7 @@ CREATE TABLE IF NOT EXISTS `aluno_campo_desativado` (
   `Codigo` int(11) DEFAULT NULL,
   `Nome` text,
   KEY `Codigo` (`Codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 </sql>
     <set_params>N</set_params>
     <insert_field/>
@@ -1152,30 +1255,30 @@ CREATE TABLE `aluno_turma` (
 	`CodPlanoMatricula` INT(10) NULL DEFAULT NULL,
 	`DataCadastro` DATE NULL DEFAULT NULL,
 	`DataMatricula` DATE NULL DEFAULT NULL,
-	`Situacao` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`SituacaoAntiga` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`Situacao` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SituacaoAntiga` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`Contratante` INT(10) NULL DEFAULT NULL,
 	`CodMotivoInativacao` INT(10) NULL DEFAULT NULL,
 	`DataInativacao` DATE NULL DEFAULT NULL,
-	`Observacoes` VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`Observacoes` VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`CodMatriculaTransferida` INT(10) NULL DEFAULT NULL,
-	`ContratanteAntigo` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`ContratanteAntigo` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`DataAtualizacao` DATE NULL DEFAULT NULL,
-	`NumDiario` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`HorarioEntrada` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`HorarioSaida` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`NumDiario` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`HorarioEntrada` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`HorarioSaida` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`CodFuncionario` INT(10) NULL DEFAULT NULL,
-	`Online` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`Online` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`DataDeContrato` DATE NULL DEFAULT NULL,
-	`MatriculaPersonalizada` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`tipo_matricula` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`aluno_serie_id` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`MatriculaPersonalizada` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`tipo_matricula` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`aluno_serie_id` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `Codigo` (`Codigo`) USING BTREE,
 	INDEX `MatAluno` (`MatAluno`) USING BTREE,
 	INDEX `CodTurma` (`CodTurma`) USING BTREE,
 	INDEX `Contratante` (`Contratante`) USING BTREE
 )
-COLLATE='utf8mb3_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -1197,6 +1300,60 @@ ENGINE=InnoDB
     <GUI>
       <xloc>256</xloc>
       <yloc>560</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Create presenca</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP TABLE IF EXISTS `presenca`;
+CREATE TABLE presenca
+(
+  Codigo BIGINT
+, CodAula BIGINT
+, CodMatricula BIGINT
+, Situacao CHAR(1)
+, agente BIGINT
+,INDEX `Codigo` (`Codigo`) USING BTREE
+,INDEX `CodAula` (`CodAula`) USING BTREE
+,INDEX `CodMatricula` (`CodMatricula`) USING BTREE
+,INDEX `Situacao` (`CodMatricula`) USING BTREE
+)
+COLLATE= 'utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
+</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>1152</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1224,7 +1381,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `LimiteBolsaPorcentagem` text,
   `LimiteBolsaValor` text,
   KEY `Codigo` (`Codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 </sql>
     <set_params>N</set_params>
     <insert_field/>
@@ -1244,6 +1401,585 @@ CREATE TABLE IF NOT EXISTS `categoria` (
     <GUI>
       <xloc>256</xloc>
       <yloc>720</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Create tab func</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP TABLE IF EXISTS `funcionario`;
+CREATE TABLE IF NOT EXISTS `funcionario` (
+  `Codigo` int(11) DEFAULT NULL,
+  `Nome` text,
+  `CodCategoria` int(11) DEFAULT NULL,
+  `DataNascimento` text,
+  `LocalNascimento` text,
+  `Sexo` text,
+  `Nacionalidade` text,
+  `EstadoCivil` text,
+  `Logradouro` text,
+  `NumLogradouro` text,
+  `Complemento` text,
+  `CodBairro` int(11) DEFAULT NULL,
+  `CodMunicipio` int(11) DEFAULT NULL,
+  `CEP` text,
+  `RG` text,
+  `OrgaoExpedidor` text,
+  `DataExpedicao` text,
+  `CPF` text,
+  `PIS` text,
+  `Telefone` text,
+  `Celular` text,
+  `Email` text,
+  `Mae` text,
+  `Pai` text,
+  `TituloNumero` text,
+  `TituloZona` text,
+  `TituloSecao` text,
+  `TituloEmissao` text,
+  `TituloCodMunicipio` text,
+  `EscolaridadeGrau` text,
+  `EscolaridadeFormacao` text,
+  `ProfissionalNumero` text,
+  `ProfissionalSerie` text,
+  `Situacao` text,
+  `ComissaoHoraAula` text,
+  `TipoContratado` text,
+  `CurriculoLattes` text,
+  `CodCedente` text,
+  `PermissaoProfessor` text,
+  `Observacoes` text,
+  `Instituicao` text,
+  `CCM` text,
+  `RFLotacao` text,
+  `AreaFormacao` text,
+  `Titulacao` text,
+  `InstituicaoDeEnsino` text,
+  `Avaliador` text,
+  `Conteudista` text,
+  `Coordenador` text,
+  `FacilitadorDeAprendizado` text,
+  `Orientador` text,
+  `CarteiraTrabalho` text,
+  `CarteiraTrabalhoSerie` text,
+  `CarteiraTrabalhoExpedicao` text,
+  `CarteiraTrabalhoUF` text,
+  `TituloUF` text,
+  `ReservistaNumero` text,
+  `ReservistaEmissao` text,
+  `ReservistaSerie` text,
+  `ReservistaDesligamento` text,
+  `SituacaoTrabalhista` text,
+  `DataFinalAvisoPrevio` text,
+  `DataDesligamento` text,
+  `DataAdmissao` text,
+  `FormaDesligamento` text,
+  `TipoSanguineo` text,
+  `Apelido` text,
+  `Agencia` text,
+  `NumeroContaBancaria` text,
+  `TipoContaBancaria` text,
+  `CodBanco` text,
+  `foto` text,
+  `usuario_id` text,
+  `email_secundario` text,
+  `email_gsuite` text,
+  `hub_ead_id` text,
+  KEY `Codigo` (`Codigo`),
+  KEY `CodCategoria` (`CodCategoria`),
+  KEY `CodBairro` (`CodBairro`),
+  KEY `CodMunicipio` (`CodMunicipio`)
+) ENGINE=InnoDB;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>1408</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Create tab matrsit</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP TABLE IF EXISTS `matricula_situacao`;
+CREATE TABLE IF NOT EXISTS `matricula_situacao` (
+  `Codigo` int(11) DEFAULT NULL,
+  `Nome` text,
+  `AcessoBloqueado` text,
+  `Status` text,
+  KEY `Codigo` (`Codigo`)
+) ENGINE=InnoDB  ;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>1488</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Create tab municipio</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP TABLE IF EXISTS `municipio`;
+CREATE TABLE `municipio` (
+	`Codigo` INT(11) NULL DEFAULT NULL,
+	`UF` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Nome` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CodSIAFI` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	INDEX `Codigo` (`Codigo`) USING BTREE,
+	INDEX `Nome` (`Nome`) USING BTREE,
+	INDEX `UF` (`UF`) USING BTREE
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
+</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>1568</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Create tab periodo</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP TABLE IF EXISTS `periodo`;
+CREATE TABLE IF NOT EXISTS `periodo` (
+  `Codigo` int(11) DEFAULT NULL,
+  `Nome` text,
+  `Numero` text,
+  KEY `Codigo` (`Codigo`)
+) ENGINE=InnoDB;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>1072</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Create tab resp</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP TABLE IF EXISTS `responsavel`;
+CREATE TABLE `responsavel` (
+	`Codigo` INT(10) NULL DEFAULT NULL,
+	`Nome` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NomeFantasia` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataNascimento` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Sexo` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`EstadoCivil` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Nacionalidade` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Naturalidade` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TipoPessoa` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CNPJ` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`InscricaoMunicipal` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`InscricaoEstadual` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CPF` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Identidade` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`IdentidadeUF` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataExpedicao` DATE NULL DEFAULT NULL,
+	`OrgaoExpedidor` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Profissao` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NomeContato` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Telefone` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Telefone2` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Telefone3` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Celular` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Logradouro` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumLogradouro` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Complemento` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CodBairro` INT(10) NULL DEFAULT NULL,
+	`CodMunicipio` INT(10) NULL DEFAULT NULL,
+	`CEP` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Email` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Pai` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Mae` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Empresa` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Logradouro2` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumLogradouro2` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Complemento2` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CodBairro2` INT(10) NULL DEFAULT NULL,
+	`CodMunicipio2` INT(10) NULL DEFAULT NULL,
+	`CEP2` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Falecido` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Observacoes` VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`EscolaridadeFormacao` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`EscolaridadeGrau` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CodCliente` INT(10) NULL DEFAULT NULL,
+	`UF2` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`foto` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`usuario_id` INT(10) NULL DEFAULT NULL,
+	`email_secundario` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`cliente_wpay_id` INT(10) NULL DEFAULT NULL,
+	`cartao_recorrencia_id` INT(10) NULL DEFAULT NULL,
+	`hub_iugu_id` INT(10) NULL DEFAULT NULL,
+	`atualizado_em` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`criado_em` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	INDEX `Codigo` (`Codigo`) USING BTREE,
+	INDEX `CodBairro` (`CodBairro`) USING BTREE,
+	INDEX `CodMunicipio` (`CodMunicipio`) USING BTREE
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
+
+</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>1232</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Create tab serie</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>
+CREATE TABLE IF NOT EXISTS `serie` (
+  `Codigo` text,
+  `CodCurso` text,
+  `Nome` text,
+  `NumSerie` text,
+  `CargaHorariaTotal` text,
+  `ValorHoraAula` text,
+  `NumSerieHistorico` text,
+  `CodBoletimModelo` text,
+  `CodBoletimModelo2` text,
+  `sigla` text
+) ENGINE=InnoDB;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>1312</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Create tab turma</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP TABLE IF EXISTS `turma`;
+CREATE TABLE IF NOT EXISTS `turma` (
+  `Codigo` int(11) DEFAULT NULL,
+  `CodUnidade` int(11) DEFAULT NULL,
+  `CodSerie` int(11) DEFAULT NULL,
+  `CodTurno` int(11) DEFAULT NULL,
+  `AnoLetivo` text,
+  `Nome` text,
+  `Abreviacao` text,
+  `DataInicial` text,
+  `DataFinal` text,
+  `Turno` text,
+  `DataFechamento` text,
+  `HoraInicial` text,
+  `HoraFinal` text,
+  `Observacoes` text,
+  `QtdVagas` text,
+  `Status` text,
+  `AparecerMatriculaOnline` text,
+  KEY `Codigo` (`Codigo`),
+  KEY `CodUnidade` (`CodUnidade`),
+  KEY `CodSerie` (`CodSerie`),
+  KEY `CodTurno` (`CodTurno`)
+) ENGINE=InnoDB;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>816</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Create tab turno</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP TABLE IF EXISTS `turno`;
+CREATE TABLE IF NOT EXISTS `turno` (
+  `Codigo` int(11) DEFAULT NULL,
+  `Nome` text,
+  `HorarioInicio` text,
+  `HorarioTermino` text,
+  `TipoTurno` text,
+  KEY `Codigo` (`Codigo`)
+) ENGINE=InnoDB;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>896</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Create tab unidade</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LocalHost</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DROP TABLE IF EXISTS `unidade`;
+CREATE TABLE IF NOT EXISTS `unidade` (
+  `Codigo` int(11) DEFAULT NULL,
+  `CodCedente` int(11) DEFAULT NULL,
+  `Nome` text,
+  `Telefone` text,
+  `Celular` text,
+  `Email` text,
+  `Logradouro` text,
+  `NumLogradouro` text,
+  `Complemento` text,
+  `CEP` text,
+  `CodBairro` int(11) DEFAULT NULL,
+  `CodMunicipio` int(11) DEFAULT NULL,
+  `CodResponsavel` int(11) DEFAULT NULL,
+  `numero_censo` text,
+  `atualizado_em` text,
+  `criado_em` text,
+  KEY `Codigo` (`Codigo`),
+  KEY `CodBairro` (`CodBairro`),
+  KEY `CodCedente` (`CodCedente`),
+  KEY `CodMunicipio` (`CodMunicipio`),
+  KEY `CodResponsavel` (`CodResponsavel`)
+) ENGINE=InnoDB;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>976</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4850,109 +5586,6 @@ CREATE TABLE IF NOT EXISTS `categoria` (
     </GUI>
   </step>
   <step>
-    <name>Create Tab Curso</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LocalHost</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>DROP TABLE IF EXISTS `curso`;
-CREATE TABLE IF NOT EXISTS `curso` (
-  `Codigo` int(11) DEFAULT NULL,
-  `Nome` text,
-  `CodTributacao` text,
-  `Nivel` text,
-  `CodBoletimModelo` text,
-  `ItemListaServico` text,
-  `CodBoletimModelo2` text,
-  `CodigoCNAE` text,
-  `PercentualAliquotaTotalTributos` text,
-  `FonteAliquotaTotalTributos` text,
-  KEY `Codigo` (`Codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>16</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Create Tab disciplina</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LocalHost</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>DROP TABLE IF EXISTS `disciplina`;
-CREATE TABLE IF NOT EXISTS `disciplina` (
-  `Codigo` int(11) DEFAULT NULL,
-  `Nome` text,
-  `Abreviacao` text,
-  `CargaHoraria` text,
-  `NumOrdem` text,
-  `BaseNacional` text,
-  `PrecisaoBoletim` text,
-  `CodigoDisciplina` text,
-  `Ementa` text,
-  `area_de_conhecimento` text,
-  KEY `Codigo` (`Codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>curso - LH</name>
     <type>TableOutput</type>
     <description/>
@@ -5339,126 +5972,6 @@ CREATE TABLE IF NOT EXISTS `disciplina` (
     <GUI>
       <xloc>432</xloc>
       <yloc>96</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Create tab func</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LocalHost</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>DROP TABLE IF EXISTS `funcionario`;
-CREATE TABLE IF NOT EXISTS `funcionario` (
-  `Codigo` int(11) DEFAULT NULL,
-  `Nome` text,
-  `CodCategoria` int(11) DEFAULT NULL,
-  `DataNascimento` text,
-  `LocalNascimento` text,
-  `Sexo` text,
-  `Nacionalidade` text,
-  `EstadoCivil` text,
-  `Logradouro` text,
-  `NumLogradouro` text,
-  `Complemento` text,
-  `CodBairro` int(11) DEFAULT NULL,
-  `CodMunicipio` int(11) DEFAULT NULL,
-  `CEP` text,
-  `RG` text,
-  `OrgaoExpedidor` text,
-  `DataExpedicao` text,
-  `CPF` text,
-  `PIS` text,
-  `Telefone` text,
-  `Celular` text,
-  `Email` text,
-  `Mae` text,
-  `Pai` text,
-  `TituloNumero` text,
-  `TituloZona` text,
-  `TituloSecao` text,
-  `TituloEmissao` text,
-  `TituloCodMunicipio` text,
-  `EscolaridadeGrau` text,
-  `EscolaridadeFormacao` text,
-  `ProfissionalNumero` text,
-  `ProfissionalSerie` text,
-  `Situacao` text,
-  `ComissaoHoraAula` text,
-  `TipoContratado` text,
-  `CurriculoLattes` text,
-  `CodCedente` text,
-  `PermissaoProfessor` text,
-  `Observacoes` text,
-  `Instituicao` text,
-  `CCM` text,
-  `RFLotacao` text,
-  `AreaFormacao` text,
-  `Titulacao` text,
-  `InstituicaoDeEnsino` text,
-  `Avaliador` text,
-  `Conteudista` text,
-  `Coordenador` text,
-  `FacilitadorDeAprendizado` text,
-  `Orientador` text,
-  `CarteiraTrabalho` text,
-  `CarteiraTrabalhoSerie` text,
-  `CarteiraTrabalhoExpedicao` text,
-  `CarteiraTrabalhoUF` text,
-  `TituloUF` text,
-  `ReservistaNumero` text,
-  `ReservistaEmissao` text,
-  `ReservistaSerie` text,
-  `ReservistaDesligamento` text,
-  `SituacaoTrabalhista` text,
-  `DataFinalAvisoPrevio` text,
-  `DataDesligamento` text,
-  `DataAdmissao` text,
-  `FormaDesligamento` text,
-  `TipoSanguineo` text,
-  `Apelido` text,
-  `Agencia` text,
-  `NumeroContaBancaria` text,
-  `TipoContaBancaria` text,
-  `CodBanco` text,
-  `foto` text,
-  `usuario_id` text,
-  `email_secundario` text,
-  `email_gsuite` text,
-  `hub_ead_id` text,
-  KEY `Codigo` (`Codigo`),
-  KEY `CodCategoria` (`CodCategoria`),
-  KEY `CodBairro` (`CodBairro`),
-  KEY `CodMunicipio` (`CodMunicipio`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>1408</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6384,102 +6897,6 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
     </GUI>
   </step>
   <step>
-    <name>Create tab matrsit</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LocalHost</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>DROP TABLE IF EXISTS `matricula_situacao`;
-CREATE TABLE IF NOT EXISTS `matricula_situacao` (
-  `Codigo` int(11) DEFAULT NULL,
-  `Nome` text,
-  `AcessoBloqueado` text,
-  `Status` text,
-  KEY `Codigo` (`Codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>1488</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Create tab municipio</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LocalHost</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>DROP TABLE IF EXISTS `municipio`;
-CREATE TABLE `municipio` (
-	`Codigo` INT(11) NULL DEFAULT NULL,
-	`UF` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`Nome` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`CodSIAFI` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	INDEX `Codigo` (`Codigo`) USING BTREE,
-	INDEX `Nome` (`Nome`) USING BTREE,
-	INDEX `UF` (`UF`) USING BTREE
-)
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB
-;
-</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>1568</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>matricula_situacao - LH</name>
     <type>TableOutput</type>
     <description/>
@@ -6520,135 +6937,6 @@ ENGINE=InnoDB
     <GUI>
       <xloc>656</xloc>
       <yloc>1488</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>municipio csv </name>
-    <type>CsvInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <filename>${v_diretorio-backup}\municipio.csv</filename>
-    <filename_field/>
-    <rownum_field/>
-    <include_filename>N</include_filename>
-    <separator>,</separator>
-    <enclosure>"</enclosure>
-    <header>Y</header>
-    <buffer_size>50000</buffer_size>
-    <lazy_conversion>Y</lazy_conversion>
-    <add_filename_result>N</add_filename_result>
-    <parallel>N</parallel>
-    <newline_possible>N</newline_possible>
-    <format>mixed</format>
-    <encoding>UTF-8</encoding>
-    <fields>
-      <field>
-        <name>Codigo</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>UF</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>2</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>Nome</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>25</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>CodSIAFI</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>1568</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>municipio - LH</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LocalHost</connection>
-    <schema/>
-    <table>municipio</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>1568</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6738,8 +7026,8 @@ ENGINE=InnoDB
     </GUI>
   </step>
   <step>
-    <name>Create presenca</name>
-    <type>ExecSQL</type>
+    <name>municipio - LH</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -6749,34 +7037,24 @@ ENGINE=InnoDB
       <schema_name/>
     </partitioning>
     <connection>LocalHost</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>DROP TABLE IF EXISTS `presenca`;
-CREATE TABLE presenca
-(
-  Codigo BIGINT
-, CodAula BIGINT
-, CodMatricula BIGINT
-, Situacao CHAR(1)
-, agente BIGINT
-,INDEX `Codigo` (`Codigo`) USING BTREE
-,INDEX `CodAula` (`CodAula`) USING BTREE
-,INDEX `CodMatricula` (`CodMatricula`) USING BTREE
-,INDEX `Situacao` (`CodMatricula`) USING BTREE
-)
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB
-;
-</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
+    <schema/>
+    <table>municipio</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -6786,14 +7064,14 @@ ENGINE=InnoDB
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>1152</yloc>
+      <xloc>656</xloc>
+      <yloc>1568</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Create tab periodo</name>
-    <type>ExecSQL</type>
+    <name>municipio csv </name>
+    <type>CsvInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -6802,25 +7080,66 @@ ENGINE=InnoDB
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>DROP TABLE IF EXISTS `periodo`;
-CREATE TABLE IF NOT EXISTS `periodo` (
-  `Codigo` int(11) DEFAULT NULL,
-  `Nome` text,
-  `Numero` text,
-  KEY `Codigo` (`Codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
+    <filename>${v_diretorio-backup}\municipio.csv</filename>
+    <filename_field/>
+    <rownum_field/>
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>Y</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <format>mixed</format>
+    <encoding>UTF-8</encoding>
+    <fields>
+      <field>
+        <name>Codigo</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>UF</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>2</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Nome</name>
+        <type>String</type>
+        <format/>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>25</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>CodSIAFI</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>R$</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -6830,159 +7149,8 @@ CREATE TABLE IF NOT EXISTS `periodo` (
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>1072</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Create tab resp</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LocalHost</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>DROP TABLE IF EXISTS `responsavel`;
-CREATE TABLE `responsavel` (
-	`Codigo` INT(10) NULL DEFAULT NULL,
-	`Nome` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`NomeFantasia` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`DataNascimento` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Sexo` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`EstadoCivil` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Nacionalidade` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Naturalidade` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`TipoPessoa` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`CNPJ` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`InscricaoMunicipal` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`InscricaoEstadual` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`CPF` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Identidade` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`IdentidadeUF` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`DataExpedicao` DATE NULL DEFAULT NULL,
-	`OrgaoExpedidor` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Profissao` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`NomeContato` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Telefone` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Telefone2` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Telefone3` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Celular` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Logradouro` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`NumLogradouro` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Complemento` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`CodBairro` INT(10) NULL DEFAULT NULL,
-	`CodMunicipio` INT(10) NULL DEFAULT NULL,
-	`CEP` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Email` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Pai` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Mae` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Empresa` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Logradouro2` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`NumLogradouro2` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Complemento2` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`CodBairro2` INT(10) NULL DEFAULT NULL,
-	`CodMunicipio2` INT(10) NULL DEFAULT NULL,
-	`CEP2` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Falecido` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Observacoes` VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`EscolaridadeFormacao` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`EscolaridadeGrau` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`CodCliente` INT(10) NULL DEFAULT NULL,
-	`UF2` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`foto` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`usuario_id` INT(10) NULL DEFAULT NULL,
-	`email_secundario` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`cliente_wpay_id` INT(10) NULL DEFAULT NULL,
-	`cartao_recorrencia_id` INT(10) NULL DEFAULT NULL,
-	`hub_iugu_id` INT(10) NULL DEFAULT NULL,
-	`atualizado_em` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`criado_em` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	INDEX `Codigo` (`Codigo`) USING BTREE,
-	INDEX `CodBairro` (`CodBairro`) USING BTREE,
-	INDEX `CodMunicipio` (`CodMunicipio`) USING BTREE
-)
-COLLATE='utf8mb3_general_ci'
-ENGINE=InnoDB
-;
-
-</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>1232</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Create tab serie</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LocalHost</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>
-CREATE TABLE IF NOT EXISTS `serie` (
-  `Codigo` text,
-  `CodCurso` text,
-  `Nome` text,
-  `NumSerie` text,
-  `CargaHorariaTotal` text,
-  `ValorHoraAula` text,
-  `NumSerieHistorico` text,
-  `CodBoletimModelo` text,
-  `CodBoletimModelo2` text,
-  `sigla` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>1312</yloc>
+      <xloc>464</xloc>
+      <yloc>1568</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -8124,174 +8292,6 @@ CREATE TABLE IF NOT EXISTS `serie` (
     <GUI>
       <xloc>448</xloc>
       <yloc>1312</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Create tab turma</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LocalHost</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>DROP TABLE IF EXISTS `turma`;
-CREATE TABLE IF NOT EXISTS `turma` (
-  `Codigo` int(11) DEFAULT NULL,
-  `CodUnidade` int(11) DEFAULT NULL,
-  `CodSerie` int(11) DEFAULT NULL,
-  `CodTurno` int(11) DEFAULT NULL,
-  `AnoLetivo` text,
-  `Nome` text,
-  `Abreviacao` text,
-  `DataInicial` text,
-  `DataFinal` text,
-  `Turno` text,
-  `DataFechamento` text,
-  `HoraInicial` text,
-  `HoraFinal` text,
-  `Observacoes` text,
-  `QtdVagas` text,
-  `Status` text,
-  `AparecerMatriculaOnline` text,
-  KEY `Codigo` (`Codigo`),
-  KEY `CodUnidade` (`CodUnidade`),
-  KEY `CodSerie` (`CodSerie`),
-  KEY `CodTurno` (`CodTurno`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>816</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Create tab turno</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LocalHost</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>DROP TABLE IF EXISTS `turno`;
-CREATE TABLE IF NOT EXISTS `turno` (
-  `Codigo` int(11) DEFAULT NULL,
-  `Nome` text,
-  `HorarioInicio` text,
-  `HorarioTermino` text,
-  `TipoTurno` text,
-  KEY `Codigo` (`Codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>896</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Create tab unidade</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LocalHost</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>DROP TABLE IF EXISTS `unidade`;
-CREATE TABLE IF NOT EXISTS `unidade` (
-  `Codigo` int(11) DEFAULT NULL,
-  `CodCedente` int(11) DEFAULT NULL,
-  `Nome` text,
-  `Telefone` text,
-  `Celular` text,
-  `Email` text,
-  `Logradouro` text,
-  `NumLogradouro` text,
-  `Complemento` text,
-  `CEP` text,
-  `CodBairro` int(11) DEFAULT NULL,
-  `CodMunicipio` int(11) DEFAULT NULL,
-  `CodResponsavel` int(11) DEFAULT NULL,
-  `numero_censo` text,
-  `atualizado_em` text,
-  `criado_em` text,
-  KEY `Codigo` (`Codigo`),
-  KEY `CodBairro` (`CodBairro`),
-  KEY `CodCedente` (`CodCedente`),
-  KEY `CodMunicipio` (`CodMunicipio`),
-  KEY `CodResponsavel` (`CodResponsavel`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>976</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

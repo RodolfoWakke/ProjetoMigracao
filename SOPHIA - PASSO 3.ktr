@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/04/12 11:35:57.872</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/05/12 16:42:54.933</modified_date>
+    <modified_date>2024/03/13 10:03:01.156</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -458,7 +458,7 @@
   </notepads>
   <connection>
     <name>RDS</name>
-    <server>${v_end-RDS}</server>
+    <server>escolawebrds${v_end-RDS}.cdq77divwtia.sa-east-1.rds.amazonaws.com</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>${v_nomebanco-RDS}</database>
@@ -470,8 +470,20 @@
     <index_tablespace/>
     <attributes>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.autoReconnect</code>
+        <attribute>true</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.collation_connection</code>
+        <attribute>utf8mb4_0900_ai_ci</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
         <attribute>500</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.net_write_timeout</code>
+        <attribute>1800</attribute>
       </attribute>
       <attribute>
         <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
@@ -502,6 +514,10 @@
         <attribute>N</attribute>
       </attribute>
       <attribute>
+        <code>SQL_CONNECT</code>
+        <attribute>SET collation_connection = 'utf8mb4_0900_ai_ci';</attribute>
+      </attribute>
+      <attribute>
         <code>STREAM_RESULTS</code>
         <attribute>Y</attribute>
       </attribute>
@@ -522,7 +538,7 @@
   <order>
   </order>
   <step>
-    <name>REMOVEcaractere e LIMPEZASTRING</name>
+    <name>Updates</name>
     <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
@@ -537,138 +553,15 @@
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>drop function if exists `REMOVEcaractere`;
+    <sql>-- CONFIGTURMA
 
-CREATE FUNCTION `REMOVEcaractere`(
-	`P_TEXTO` VARCHAR(200)
-)
-RETURNS char(50) CHARSET latin1
-LANGUAGE SQL
-NOT DETERMINISTIC
-CONTAINS SQL
-SQL SECURITY DEFINER
-COMMENT ''
-RETURN replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(P_TEXTO,'.',''),'-',''),'/',''),' ',''),'_',''),';',''),')',''),'(',''), ' ', ''),'a',''),'b',''),'c',''),'d',''),'e',''),'f',''),'g',''),'h',''),'i',''),'j',''),'k',''),'l',''),'m',''),'n',''),'o',''),'p',''),'r',''),'s',''),'t',''),'u',''),'x',''),'z',''),'w',''),'y',''),'|',''),'\'',''),',',''),'$',''),'!',''),'@',''),'+',''),'A',''),'B',''),'C',''),'D',''),'E',''),'F',''),'G',''),'H',''),'I',''),'J',''),'K',''),'L',''),'M',''),'N',''),'O',''),'P',''),'R',''),'S',''),'T',''),'U',''),'V',''),'X',''),'Z',''),'W',''),'Y',''),'Ã¡',''),'Ã ',''),'Ã£',''),'Ã¢',''),'Ã ',''),'Ã€',''),'Ãƒ',''),'Ã‚',''),'Ã©',''),'Ã¨',''),'Ãª',''),'Ã‰',''),'Ãˆ',''),'ÃŠ',''),'Ã­',''),'Ã¬',''),'Ã®',''),'Ã ',''),'ÃŒ',''),'ÃŽ',''),'Ã³',''),'Ã²',''),'Ã´',''),'Ãµ',''),'Ã“',''),'Ã’',''),'Ã”',''),'Ã•',''),'Ãº',''),'Ã¹',''),'Ã»',''),'Ãš',''),'Ã™',''),'Ã›',''),'v',''),'q',''),'Q','')
-;
-</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Update mig_acumulado</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>RDS</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>UPDATE mig_acumulado a
-JOIN mig_turma t ON (a.codturma_AUX = t.dscturma)
-SET a.codturma = t.codturma;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>352</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Update mig_configturma</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>RDS</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>UPDATE mig_configturma c
+UPDATE mig_configturma c
 JOIN mig_turma t ON (c.codturma_aux = t.dscturma)
-SET c.codturma = t.codturma;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Update mig_matricula</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>RDS</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>UPDATE mig_matricula m
+SET c.codturma = t.codturma;
+
+-- MATRICULA
+
+UPDATE mig_matricula m
 JOIN mig_turma t ON (m.codturma_aux = t.dscturma)
 SET m.codturma = t.codturma;
 
@@ -678,45 +571,18 @@ WHERE m.cpfrespfinanceiro NOT IN (SELECT cpf FROM mig_responsavel);
 
 UPDATE mig_matricula m 
 SET m.cpfrespacademico = NULL
-WHERE m.cpfrespfinanceiro NOT IN (SELECT cpf FROM mig_responsavel);</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Update mig_contasreceber</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>RDS</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>UPDATE mig_contasreceber c
+WHERE m.cpfrespfinanceiro NOT IN (SELECT cpf FROM mig_responsavel);
+
+-- ACUMULADO
+
+UPDATE mig_acumulado a
+JOIN mig_matricula m ON (a.MATRICULA = m.codmatricula)
+SET a.codturma = m.codturma;
+
+
+-- CONTASRECEBER
+
+UPDATE mig_contasreceber c
 JOIN mig_matricula m ON (c.codmatricula = m.codmatricula)
 SET c.anoletivo = m.anoletivo;</sql>
     <set_params>N</set_params>
@@ -736,7 +602,7 @@ SET c.anoletivo = m.anoletivo;</sql>
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>544</yloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

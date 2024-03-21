@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/02/26 09:22:54.470</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/02/16 10:30:18.546</modified_date>
+    <modified_date>2024/03/19 08:43:32.201</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -495,12 +495,28 @@
         <attribute>true</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.collation_connection</code>
+        <attribute>utf8mb4_0900_ai_ci</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
         <attribute>500</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.net-read-timeout</code>
+        <attribute>2800</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.net_write_timeout</code>
-        <attribute>1800</attribute>
+        <attribute>2800</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.rewriteBatchedStatements</code>
+        <attribute>true</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useCompression</code>
+        <attribute>true</attribute>
       </attribute>
       <attribute>
         <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
@@ -701,7 +717,7 @@ cidade,
 left(REMOVEcaractere(cep),8) AS cep,
 if(length(REMOVEcaractere(telresid)) IN (8,10),REMOVEcaractere(telresid),if(length(REMOVEcaractere(celular)) IN (8,10),REMOVEcaractere(celular),NULL) ) AS telresid, 
 if(length(REMOVEcaractere(celular)) IN (9,11),REMOVEcaractere(celular),if(length(REMOVEcaractere(telresid)) IN (9,11),REMOVEcaractere(telresid),NULL)) AS celular, 
-if(validaemail(email) = 'V', email, NULL) AS email,
+if(validaemail(email) COLLATE UTF8MB4_GENERAL_CI = 'V', email, NULL) AS email,
 UPPER(sexo) AS sexo,
 dtnascimento,
 ufnaturalidade,
@@ -712,13 +728,13 @@ UPPER(trabpai) AS trabpai,
 left(UPPER(profpai),40) AS profpai,
 if(length(REMOVEcaractere(telpai)) IN (8,10),REMOVEcaractere(telpai),if(length(REMOVEcaractere(celularpai)) IN (8,10),REMOVEcaractere(celularpai),NULL) ) AS telpai, 
 if(length(REMOVEcaractere(celularpai)) IN (9,11),REMOVEcaractere(celularpai),if(length(REMOVEcaractere(telpai)) IN (9,11),REMOVEcaractere(telpai),NULL)) AS celularpai,
-if(validaemail(emailpai) = 'V', emailpai, NULL) AS emailpai,
+if(validaemail(emailpai) COLLATE utf8mb4_general_ci = 'V', emailpai, NULL) AS emailpai,
 UPPER(mae) AS mae,
 UPPER(trabmae) AS trabmae,
 UPPER(profmae) AS profmae,
 if(length(REMOVEcaractere(telmae)) IN (8,10),REMOVEcaractere(telmae),if(length(REMOVEcaractere(celularmae)) IN (8,10),REMOVEcaractere(celularmae),NULL) ) AS telmae, 
 if(length(REMOVEcaractere(celularmae)) IN (9,11),REMOVEcaractere(celularmae),if(length(REMOVEcaractere(telmae)) IN (9,11),REMOVEcaractere(telmae),NULL)) AS celularmae,
-if(validaemail(emailmae) = 'V', emailmae, NULL) AS emailmae,
+if(validaemail(emailmae) COLLATE utf8mb4_general_ci = 'V', emailmae, NULL) AS emailmae,
 TRIM(UPPER(CONCAT(ifnull(obs,''),' TELEFONES DO ALUNO: ',ifnull(celular,''),' | ',IFNULL(telresid,''),' / TELEFONES DO PAI ',IFNULL(celularpai,''),' | ', IFNULL(telpai,''),' / TELEFONES DA MÃE ',IFNULL(celularmae,''),' | ', IFNULL(telmae,''),' / ORGÃO EMISSOR DO RG DO ALUNO: ',IFNULL(rgorgaoemissor,''),' / ORGÃO EMISSOR DO RG DO PAI: ',IFNULL(rgorgaoemissorpai,''),' / ORGÃO EMISSOR DO RG DA MÃE: ',IFNULL(rgorgaoemissormae,''),' / EMAIL ALUNO: ',IFNULL(email,''),' / EMAIL ´PAI: ',IFNULL(emailpai,''),' / EMAIL MAE: ',IFNULL(emailmae,'')))) AS obs,
 lpad(REMOVEcaractere(cpf),11,'0') AS cpf,
 if(LENGTH(a.rgorgaoemissor) &lt;=5 , CONCAT(ifnull(a.rg,''),'/',ifnull(a.rgorgaoemissor,'')), a.rg ) AS rg,
@@ -804,7 +820,7 @@ codportaria,
 codpaisorigem, 
 zonaresidencia7024, 
 NULL AS rgorgaoemissor, 
-rgea.cod_estado AS rgestado, 
+rgestado, 
 rgdataemissao, 
 rgcomplemento, 
 modelocertidao, 
@@ -844,7 +860,6 @@ UPPER(obshistinfantil) AS obshistinfantil,
 idgoogledrive,
 codescolaridadealuno
 FROM mig_aluno a
-LEFT JOIN estado rgea ON (a.rgestado = rgea.sgl_estado)
 GROUP BY a.nomealuno);
 
 
@@ -924,6 +939,9 @@ JOIN mig_aluno a ON(a.codaluno = m.codaluno)
 WHERE m.codaluno IN (SELECT codaluno FROM mig_aluno));
 
 -- UPDATE CODESCOLA
+
+UPDATE unidadeescolar u
+SET u.codtabescola = u.codunidade;
 
 UPDATE matricula m 
 JOIN unidadeescolar u ON (m.codunidade = u.codunidade)

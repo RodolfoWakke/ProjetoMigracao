@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2023/02/24 16:49:54.489</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/11/01 16:42:16.208</modified_date>
+    <modified_date>2024/03/11 10:13:30.820</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -541,6 +541,10 @@
         <attribute>true</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.collation_connection</code>
+        <attribute>utf8mb4_0900_ai_ci</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
         <attribute>500</attribute>
       </attribute>
@@ -575,6 +579,10 @@
       <attribute>
         <code>QUOTE_ALL_FIELDS</code>
         <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SQL_CONNECT</code>
+        <attribute>SET collation_connection = 'utf8mb4_0900_ai_ci';</attribute>
       </attribute>
       <attribute>
         <code>STREAM_RESULTS</code>
@@ -613,11 +621,6 @@
     <hop>
       <from>Select values 4</from>
       <to>Insert mig_seriecurso</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values 2</from>
-      <to>Insert mig_aluno</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -686,16 +689,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SELECT contasreceber</from>
-      <to>Select values 13</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values 13</from>
-      <to>Insert mig_contasreceber</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>SELECT acumulado</from>
       <to>Select values 10</to>
       <enabled>Y</enabled>
@@ -711,8 +704,23 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>SELECT contasreceber</from>
+      <to>Select values 13</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 13</from>
+      <to>Insert mig_contasreceber</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>SELECT aluno</from>
       <to>Select values 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 2</from>
+      <to>Insert mig_aluno</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -775,7 +783,7 @@
     <schema/>
     <table>mig_aluno</table>
     <commit>50000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
     <specify_fields>N</specify_fields>
@@ -2004,7 +2012,7 @@ JOIN turmas t ON (t.TurmaID = m.TurmaID)
 	LEFT(RTRIM(REMOVEcaractere(a.FoneCelular)),16) AS 'celular',
 	LEFT(epa.Email,100) AS 'email',
 	LEFT(a.Sexo,1) AS 'sexo',
-	(STR_TO_DATE(a.DataNascimento, '%Y/%m/%d')) AS 'dtnascimento',
+	IFNULL(DATE_FORMAT(STR_TO_DATE(a.DataNascimento, '%m/%d/%Y'), '%Y-%m-%d'), '1900-01-01') AS 'dtnascimento',
 	ctn.cod_cidade AS 'cidadenaturalidade',
 	UPPER(LEFT(rp.Nome,100)) AS 'pai',
 	UPPER(LEFT(rp.LocalTrabalho,50)) AS 'trabpai',
@@ -2031,15 +2039,15 @@ JOIN turmas t ON (t.TurmaID = m.TurmaID)
 	UPPER(LEFT(CONCAT(IFNULL(rm.Endereco,''),' ' ,IFNULL(rm.NumeroEndereco,''),' ',IFNULL(rm.ComplementoEndereco,'')),200)) AS 'enderecomae',
 	UPPER(LEFT(bm.Nome,60)) AS 'bairromae',
 	ctm.cod_cidade AS 'codcidademae',
-	LEFT(RTRIM(REMOVEcaractere(rm.CEP)),8) AS 'cepmae',
+	LEFT(RTRIM(REMOVEcaractere(rm.CEP)),8) AS 'cepmae' ,
 	LEFT(a.TituloEleitor,15) AS 'titeleitor',
 	LEFT(a.TituloEleitorZona,10) AS 'zona',
 	CURDATE() AS 'dtcadastro',
 	1 AS 'usercadastro',
 	UPPER(LEFT(ecp.Descricao,20)) AS 'estadocivilpai',             
 	UPPER(LEFT(ecm.Descricao,20)) AS 'estadocivilmae', 
-	(STR_TO_DATE(rp.DataNascimento, '%Y/%m/%d')) AS 'dtnascimentopai',
-	(STR_TO_DATE(rm.DataNascimento, '%Y/%m/%d')) AS 'dtnascimentomae',
+	DATE_FORMAT(STR_TO_DATE(rp.DataNascimento, '%m/%d/%Y'), '%Y-%m-%d')  AS 'dtnascimentopai',
+	DATE_FORMAT(STR_TO_DATE(rm.DataNascimento, '%m/%d/%Y'), '%Y-%m-%d') AS 'dtnascimentomae',
 	LEFT(a.TipoSanguineo,20) AS 'tiposanguineo',
 	LEFT(a.PrimeirosSocorros, 100) AS 'planosaude',
 	LEFT(a.Alergia, 200) AS 'alergia',
@@ -2051,9 +2059,9 @@ JOIN turmas t ON (t.TurmaID = m.TurmaID)
 	LEFT(a.Profissao,40) AS 'profissao',
 	LEFT(a.LocalTrabalho,100) AS 'localtrabalho',
 	LEFT(RTRIM(REMOVEcaractere(a.FoneComercial)),10) AS 'teltrabalho',
-	(STR_TO_DATE(a.DataExpedicaoRG, '%Y/%m/%d')) AS 'rgdataemissao',
-	(STR_TO_DATE(rp.DataExpedicaoRG, '%Y/%m/%d')) AS 'rgdataemissaopai',
-	(STR_TO_DATE(rm.DataExpedicaoRG, '%Y/%m/%d')) AS 'rgdataemissaomae'
+	DATE_FORMAT(STR_TO_DATE(a.DataExpedicaoRG, '%m/%d/%Y'), '%Y-%m-%d') AS 'rgdataemissao',
+	DATE_FORMAT(STR_TO_DATE(rp.DataExpedicaoRG, '%m/%d/%Y'), '%Y-%m-%d') AS 'rgdataemissaopai',
+	DATE_FORMAT(STR_TO_DATE(rm.DataExpedicaoRG, '%m/%d/%Y'), '%Y-%m-%d') AS 'rgdataemissaomae'
 FROM alunos a
 LEFT JOIN Bairros b ON (a.BairroID = b.BairroID)
 LEFT JOIN Cidades c ON (c.CidadeID = a.CidadeID)
@@ -2338,10 +2346,10 @@ GROUP BY a.AlunoID;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimento</name>
-        <length>-1</length>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>dtnascimento</comments>
@@ -3120,10 +3128,10 @@ GROUP BY a.AlunoID;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimentopai</name>
-        <length>-1</length>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>dtnascimentopai</comments>
@@ -3143,10 +3151,10 @@ GROUP BY a.AlunoID;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimentomae</name>
-        <length>-1</length>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>dtnascimentomae</comments>
@@ -3419,10 +3427,10 @@ GROUP BY a.AlunoID;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>rgdataemissao</name>
-        <length>-1</length>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>rgdataemissao</comments>
@@ -3442,10 +3450,10 @@ GROUP BY a.AlunoID;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>rgdataemissaopai</name>
-        <length>-1</length>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>rgdataemissaopai</comments>
@@ -3465,10 +3473,10 @@ GROUP BY a.AlunoID;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>rgdataemissaomae</name>
-        <length>-1</length>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>rgdataemissaomae</comments>
@@ -4145,7 +4153,7 @@ FROM contasreceber c GROUP BY c.ContaID;</sql>
 	IF(c.DescontoManual = 0, NULL, ((c.DescontoManual * 0.01) * c.Valor)) AS 'desconto2',
 	if(c.DescontoManual &lt;&gt; 0, 0,NULL) AS 'carenciadesconto2',
 	if(c.DescontoManual &lt;&gt; 0, (STR_TO_DATE(c.DataVencimento, '%c/%e/%Y')), NULL) AS 'vencimentodesconto2',
-	c.ValorJuro AS 'juros',
+	IF(c.ValorJuro &lt; 0, (c.ValorJuro * -1), c.ValorJuro) AS 'juros',
 	0 AS 'carenciamulta',
 	(STR_TO_DATE( c.DataVencimento, '%c/%e/%Y')) AS 'vencimentomulta',
 	0 AS 'carenciamultaoriginal',
@@ -4156,7 +4164,7 @@ FROM contasreceber c GROUP BY c.ContaID;</sql>
 	LEFT(COALESCE(c.NumeroBoleto,c.NumeroBoletoAutomatizado),20) AS 'nossonumero',
 	year(STR_TO_DATE(c.DataVencimento, '%c/%e/%Y')) AS 'anoletivo',
 	IF(cc.AlunoID IS NULL, 0, cc.AlunoID) AS 'codaluno',
-	upper(LEFT(c.Obs, 100)) AS 'descricao',
+	upper(LEFT(c.Obs, 80)) AS 'descricao',
 	curdate() AS 'dtcadastro',
 	'MIG AUTO' AS 'cadastradopor',
 	1 as codunidade, -- REVER UNIDADE
@@ -4166,7 +4174,7 @@ FROM contasreceber c GROUP BY c.ContaID;</sql>
 	c.PlanoContaID AS 'AUX_codreceita', 
 	c.ContaReceberID AS 'AUX_contareceberID',
 	IF(c.TipoRecebimentoID = -5, "Parcela Cartão","Parcela Boleto") AS 'AUX_tipoparcela',
-	r.Nome AS 'AUX_responsavel',
+	r.ResponsavelID AS 'AUX_responsavel',
 	c.ContaID AS 'AUX_contaid',
 	cc.EmpresaID AS 'AUX_EmpresaID',
 	c.CNABID AS 'AUX_cnabID'
@@ -4443,7 +4451,7 @@ where pc.Tipo ='E' AND c.situacao &lt;&gt; 2
         <type>Number</type>
         <storagetype>normal</storagetype>
         <name>juros</name>
-        <length>10</length>
+        <length>11</length>
         <precision>2</precision>
         <origin>SELECT contasreceber</origin>
         <comments>juros</comments>
@@ -4696,7 +4704,7 @@ where pc.Tipo ='E' AND c.situacao &lt;&gt; 2
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>descricao</name>
-        <length>100</length>
+        <length>80</length>
         <precision>-1</precision>
         <origin>SELECT contasreceber</origin>
         <comments>descricao</comments>
@@ -4923,14 +4931,14 @@ where pc.Tipo ='E' AND c.situacao &lt;&gt; 2
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>String</type>
+        <type>Integer</type>
         <storagetype>normal</storagetype>
         <name>AUX_responsavel</name>
-        <length>100</length>
-        <precision>-1</precision>
+        <length>9</length>
+        <precision>0</precision>
         <origin>SELECT contasreceber</origin>
         <comments>AUX_responsavel</comments>
-        <conversion_Mask/>
+        <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -5433,7 +5441,7 @@ FROM disciplinas d;
 	ct.cod_estado AS CODUF,
 	UPPER(LEFT(f.NomeCompleto, 100)) AS NOME, 
 	UPPER(LEFT(f.Sexo, 1)) AS 'SEXO',
-	(STR_TO_DATE(f.DataNascimento, '%d/%m/%Y')) AS DTNASCIMENTO,
+	DATE_FORMAT(STR_TO_DATE(f.DataNascimento, '%m/%d/%Y'), '%Y-%m-%d') AS 'dtnascimento',
 	ctn.cod_cidade AS codcidadenaturalidade,
 	UPPER(LEFT(ec.Descricao,15)) AS ESTADOCIVIL,
 	LEFT(CONCAT(IFNULL(f.FoneResidencial, ''), IFNULL(f.FoneCelular,'')),2000) AS 'obs',
@@ -5577,13 +5585,13 @@ GROUP BY f.FuncionarioID;
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
-        <name>DTNASCIMENTO</name>
-        <length>-1</length>
+        <name>dtnascimento</name>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
-        <comments>DTNASCIMENTO</comments>
+        <comments>dtnascimento</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -6087,35 +6095,35 @@ GROUP BY f.FuncionarioID;
     </partitioning>
     <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT
-    a.TurmaAlunoID AS 'codmatricula',
-    a.AlunoID AS 'codaluno',
-    c.CursoID AS 'codseriecurso',  -- Manter padrão codseriecurso
-    LEFT(CONCAT(t.TurmaID, IFNULL(t.Sigla, LEFT(t.Nome, 7))),10) AS 'codturma_aux',
+	a.TurmaAlunoID AS 'codmatricula',
+	a.AlunoID AS 'codaluno',
+	c.CursoID AS 'codseriecurso',  -- Manter padrão codseriecurso
+	LEFT(CONCAT(t.TurmaID, IFNULL(t.Sigla, LEFT(t.Nome, 7))),10) AS 'codturma_aux',
 	1 AS 'codturma', -- SETAR CODTURMA
-    1 AS 'codcurso', -- TROCAR CODCURSO PELO PADRÃO ESCOLAWEB
-    a.TurmaID AS 'codconfturma',
-    (STR_TO_DATE(a.DataMatricula,'%m/%d/%Y')) AS 'dtmatricula',
-    IF(t.AnoLetivo = 0,  YEAR(STR_TO_DATE(a.DataMatricula,'%d/%m/%Y')), ct.AnoLetivo) AS 'anoletivo',
-    LEFT(RTRIM(REMOVEcaractere(ra.CPF)),14) AS cpfrespacademico,  
-    LEFT(IFNULL(RTRIM(REMOVEcaractere(rf.CPF)),'00000000000'),14) AS 'cpfrespfinanceiro', 
-    IF(con.TipoContratoID = -2, 'S', 'N')AS 'rematricula',
-    CASE a.SituacaoDidaticaID                  
-    WHEN -11 THEN 'P'
-    WHEN -10 THEN 'C'
-    WHEN -9 THEN 'C'
-    WHEN -8 THEN 'D'
-    WHEN -7 THEN 'N'
-    WHEN -6 THEN 'C'
-    WHEN -5 THEN 'T'
-    WHEN -4 THEN 'C'
-    WHEN -3 THEN 'C'
-    WHEN -2 THEN 'C'
-    WHEN -1 THEN 'C'
-    ELSE 'C'
-    END AS situacao,          
-    curdate() AS 'dtcadastro',
-    1 AS 'cadastradopor',
-    1 AS 'codunidade'
+	1 AS 'codcurso', -- TROCAR CODCURSO PELO PADRÃO ESCOLAWEB
+	a.TurmaID AS 'codconfturma',
+	(STR_TO_DATE(a.DataMatricula,'%m/%d/%Y')) AS 'dtmatricula',
+	IF(t.AnoLetivo = 0,  YEAR(STR_TO_DATE(t.DataInicio, '%d/%m/%Y')), t.AnoLetivo) AS 'anoletivo',
+	LEFT(RTRIM(REMOVEcaractere(ra.CPF)),14) AS cpfrespacademico,  
+	LEFT(IFNULL(RTRIM(REMOVEcaractere(rf.CPF)),'00000000000'),14) AS 'cpfrespfinanceiro', 
+	IF(con.TipoContratoID = -2, 'S', 'N')AS 'rematricula',
+	CASE a.SituacaoDidaticaID                  
+	WHEN -11 THEN 'P'
+	WHEN -10 THEN 'C'
+	WHEN -9 THEN 'C'
+	WHEN -8 THEN 'D'
+	WHEN -7 THEN 'N'
+	WHEN -6 THEN 'C'
+	WHEN -5 THEN 'T'
+	WHEN -4 THEN 'C'
+	WHEN -3 THEN 'C'
+	WHEN -2 THEN 'C'
+	WHEN -1 THEN 'C'
+	ELSE 'C'
+	END AS situacao,          
+	curdate() AS 'dtcadastro',
+	1 AS 'cadastradopor',
+	1 AS 'codunidade'
 FROM TurmaAlunos a
 LEFT JOIN turmas t ON (t.TurmaID = a.TurmaID)
 LEFT JOIN cursos c ON (c.CursoID = t.CursoID)
@@ -6547,7 +6555,7 @@ WHERE a.Removido = 1 AND a.SituacaoDidaticaID = '-3')); -- ALUNOS REMOVIDOS
     LEFT(RTRIM(REMOVEcaractere(r.CEP)),8) AS 'cep',
     LEFT(r.Sexo,1) AS Sexo,
     UPPER(LEFT(ec.Descricao, 20)) AS 'estadocivil',
-    (str_to_date(r.DataNascimento,'%d/%m/%Y')) AS 'dtnascimento',
+	DATE_FORMAT(STR_TO_DATE(r.DataNascimento, '%m/%d/%Y'), '%Y-%m-%d') AS 'dtnascimento',
     ctn.cod_cidade AS 'codcidadenaturalidade',
     LEFT(IF(r.OrgaoExpedidorRG IS NULL, '', CONCAT('ORGÃO EMISSOR DO RG: ', UPPER(r.OrgaoExpedidorRG))),200) AS 'obs',
     (STR_TO_DATE(r.DataExpedicaoRG,'%d/%m/%Y')) AS 'rgdataemissao',
@@ -6940,10 +6948,10 @@ GROUP BY r.CPF;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimento</name>
-        <length>-1</length>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT reponsavel</origin>
         <comments>dtnascimento</comments>
@@ -8155,247 +8163,186 @@ GROUP BY LEFT(CONCAT(t.TurmaID, IFNULL(t.Sigla, LEFT(t.Nome, 7))),10);
     <fields>
       <field>
         <name>codaluno</name>
-        <rename/>
       </field>
       <field>
         <name>nomealuno</name>
-        <rename/>
       </field>
       <field>
         <name>endereco</name>
-        <rename/>
       </field>
       <field>
         <name>bairro</name>
-        <rename/>
       </field>
       <field>
         <name>cidade</name>
-        <rename/>
       </field>
       <field>
         <name>uf</name>
-        <rename/>
       </field>
       <field>
         <name>cep</name>
-        <rename/>
       </field>
       <field>
         <name>telresid</name>
-        <rename/>
       </field>
       <field>
         <name>celular</name>
-        <rename/>
       </field>
       <field>
         <name>email</name>
-        <rename/>
       </field>
       <field>
         <name>sexo</name>
-        <rename/>
       </field>
       <field>
         <name>dtnascimento</name>
-        <rename/>
       </field>
       <field>
         <name>cidadenaturalidade</name>
-        <rename/>
       </field>
       <field>
         <name>pai</name>
-        <rename/>
       </field>
       <field>
         <name>trabpai</name>
-        <rename/>
       </field>
       <field>
         <name>profpai</name>
-        <rename/>
       </field>
       <field>
         <name>telpai</name>
-        <rename/>
       </field>
       <field>
         <name>celularpai</name>
-        <rename/>
       </field>
       <field>
         <name>emailpai</name>
-        <rename/>
       </field>
       <field>
         <name>mae</name>
-        <rename/>
       </field>
       <field>
         <name>trabmae</name>
-        <rename/>
       </field>
       <field>
         <name>profmae</name>
-        <rename/>
       </field>
       <field>
         <name>telmae</name>
-        <rename/>
       </field>
       <field>
         <name>celularmae</name>
-        <rename/>
       </field>
       <field>
         <name>emailmae</name>
-        <rename/>
       </field>
       <field>
         <name>obs</name>
-        <rename/>
       </field>
       <field>
         <name>cpf</name>
-        <rename/>
       </field>
       <field>
         <name>rg</name>
-        <rename/>
       </field>
       <field>
         <name>certidaonumero</name>
-        <rename/>
       </field>
       <field>
         <name>certidaolivrofolha</name>
-        <rename/>
       </field>
       <field>
         <name>certidaocartorio</name>
-        <rename/>
       </field>
       <field>
         <name>enderecopai</name>
-        <rename/>
       </field>
       <field>
         <name>bairropai</name>
-        <rename/>
       </field>
       <field>
         <name>codcidadepai</name>
-        <rename/>
       </field>
       <field>
         <name>ceppai</name>
-        <rename/>
       </field>
       <field>
         <name>enderecomae</name>
-        <rename/>
       </field>
       <field>
         <name>bairromae</name>
-        <rename/>
       </field>
       <field>
         <name>codcidademae</name>
-        <rename/>
       </field>
       <field>
         <name>cepmae</name>
-        <rename/>
       </field>
       <field>
         <name>titeleitor</name>
-        <rename/>
       </field>
       <field>
         <name>zona</name>
-        <rename/>
       </field>
       <field>
         <name>dtcadastro</name>
-        <rename/>
       </field>
       <field>
         <name>usercadastro</name>
-        <rename/>
       </field>
       <field>
         <name>estadocivilpai</name>
-        <rename/>
       </field>
       <field>
         <name>estadocivilmae</name>
-        <rename/>
       </field>
       <field>
         <name>dtnascimentopai</name>
-        <rename/>
       </field>
       <field>
         <name>dtnascimentomae</name>
-        <rename/>
       </field>
       <field>
         <name>tiposanguineo</name>
-        <rename/>
       </field>
       <field>
         <name>planosaude</name>
-        <rename/>
       </field>
       <field>
         <name>alergia</name>
-        <rename/>
       </field>
       <field>
         <name>cpfpai</name>
-        <rename/>
       </field>
       <field>
         <name>rgpai</name>
-        <rename/>
       </field>
       <field>
         <name>cpfmae</name>
-        <rename/>
       </field>
       <field>
         <name>rgmae</name>
-        <rename/>
       </field>
       <field>
         <name>estadocivil</name>
-        <rename/>
       </field>
       <field>
         <name>profissao</name>
-        <rename/>
       </field>
       <field>
         <name>localtrabalho</name>
-        <rename/>
       </field>
       <field>
         <name>teltrabalho</name>
-        <rename/>
       </field>
       <field>
         <name>rgdataemissao</name>
-        <rename/>
       </field>
       <field>
         <name>rgdataemissaopai</name>
-        <rename/>
       </field>
       <field>
         <name>rgdataemissaomae</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>

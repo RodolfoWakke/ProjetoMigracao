@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>WPENSAR - PASSO 1</name>
+    <name>WPENSAR - PASSO 1.13 FIN</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/06/05 10:34:50.371</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/12/14 09:27:17.520</modified_date>
+    <modified_date>2024/03/13 15:39:06.789</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -618,37 +618,37 @@ CREATE TABLE `cobranca` (
 	`CodRemessa` INT(10) NULL DEFAULT NULL,
 	`CodRastreioOrigem` INT(10) NULL DEFAULT NULL,
 	`CodRastreioDestino` INT(10) NULL DEFAULT NULL,
-	`Situacao` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`DataCompetencia` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`DataCriacao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`DataVencimento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`DataPagamento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`Situacao` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataCompetencia` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataCriacao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataVencimento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataPagamento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`ValorPagamento` DECIMAL(10,2) NULL DEFAULT NULL,
-	`FormaPagamento` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`DataCancelamento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`DataMovimentacao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`SPC` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Observacoes` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`FormaPagamento` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataCancelamento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataMovimentacao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SPC` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Observacoes` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`CodOcorrenciaBanco` INT(10) NULL DEFAULT NULL,
 	`CodBoleto` INT(10) NULL DEFAULT NULL,
-	`FormaPagamentoObrigatoria` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`FormaPagamentoObrigatoria` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`ValorEsperado` DECIMAL(10,2) NULL DEFAULT NULL,
-	`PossuiDescontoTransferencia` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`PossuiDescontoTransferencia` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`fornecedor_id` INT(10) NULL DEFAULT NULL,
 	`inscricao_curso_id` INT(10) NULL DEFAULT NULL,
-	`DataCredito` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`DataCredito` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`conta_cobranca_facil_id` INT(10) NULL DEFAULT NULL,
-	`processando_iugu` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`transacao_adquirente_getnet_id` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`processando_iugu` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`transacao_adquirente_getnet_id` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`hub_iugu_id` INT(10) NULL DEFAULT NULL,
-	`pix` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`pix` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`pre_transaction_hub_stone_id` INT(10) NULL DEFAULT NULL,
 	`transaction_hub_stone_id` INT(10) NULL DEFAULT NULL,
-	`atualizado_em` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`criado_em` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`atualizado_em` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`criado_em` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`juros` DECIMAL(10,2) NULL DEFAULT NULL,
 	`multa` DECIMAL(10,2) NULL DEFAULT NULL,
-	`erro` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`erro` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `CodMatricula` (`CodMatricula`) USING BTREE,
 	INDEX `Codigo` (`Codigo`) USING BTREE,
 	INDEX `CodCedenteConta` (`CodCedenteConta`) USING BTREE,
@@ -656,7 +656,7 @@ CREATE TABLE `cobranca` (
 	INDEX `CodRastreioOrigem` (`CodRastreioOrigem`) USING BTREE,
 	INDEX `CodRastreioDestino` (`CodRastreioDestino`) USING BTREE
 )
-COLLATE='utf8mb3_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 
@@ -725,7 +725,7 @@ CREATE TABLE IF NOT EXISTS `cedente` (
   `PercentualAliquotaTotalTributos` text,
   `FonteAliquotaTotalTributos` text,
   KEY `Codigo` (`Codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql>
+) ENGINE=InnoDB ;</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -828,7 +828,7 @@ CREATE TABLE IF NOT EXISTS `cedente_conta` (
   KEY `CodCedente` (`CodCedente`),
   KEY `CodFuncionario` (`CodFuncionario`),
   KEY `CodBanco` (`CodBanco`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql>
+) ENGINE=InnoDB;</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -885,7 +885,7 @@ CREATE TABLE IF NOT EXISTS `evento_financeiro` (
   `is_evento_isaac` text,
   `is_evento_arcopay` text,
   KEY `Codigo` (`Codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql>
+) ENGINE=InnoDB;</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -950,7 +950,7 @@ CREATE TABLE IF NOT EXISTS `financeiro_faturaiugu` (
   `is_cf` text,
   `pix_qr_code` text,
   `pix_qr_code_text` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql>
+) ENGINE=InnoDB ;</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -991,23 +991,23 @@ CREATE TABLE IF NOT EXISTS `financeiro_faturaiugu` (
     <sql>DROP TABLE IF EXISTS `lancamento_financeiro`;
 CREATE TABLE `lancamento_financeiro` (
 	`Codigo` INT(10) NULL DEFAULT NULL,
-	`NumDocumento` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`NumDocumento` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`CodEventoFinanceiro` INT(10) NULL DEFAULT NULL,
 	`CodCedenteConta` INT(10) NULL DEFAULT NULL,
-	`CodFornecedor` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`CodParcelamento` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`FormaPagamento` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Descricao` VARCHAR(400) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`DataLancamento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`DataVencimento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`Tipo` VARCHAR(30) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`CodFornecedor` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CodParcelamento` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`FormaPagamento` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Descricao` VARCHAR(400) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataLancamento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataVencimento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Tipo` VARCHAR(30) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`Valor` DECIMAL(10,2) NULL DEFAULT NULL,
-	`DataPagamento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`DataPagamento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`ValorPagamento` DECIMAL(10,2) NULL DEFAULT NULL,
 	`CodParcela` INT(10) NULL DEFAULT NULL,
 	`CodFechamentoCaixa` INT(10) NULL DEFAULT NULL,
-	`DataCancelamento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`DataEmissaoDocumento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`DataCancelamento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataEmissaoDocumento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`CodUsuario` INT(10) NULL DEFAULT NULL,
 	`CodCentroCusto` INT(10) NULL DEFAULT NULL,
 	`CodExtratoMovimentacao` INT(10) NULL DEFAULT NULL,
@@ -1015,16 +1015,16 @@ CREATE TABLE `lancamento_financeiro` (
 	`CodLancamentoEstorno` INT(10) NULL DEFAULT NULL,
 	`valoresperado` DECIMAL(10,2) NULL DEFAULT NULL,
 	`valorreal` DECIMAL(10,2) NULL DEFAULT NULL,
-	`Observacoes` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`DataCredito` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`conta_cobranca_facil_id` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`transacao_adquirente_getnet_id` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`Observacoes` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataCredito` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`conta_cobranca_facil_id` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`transacao_adquirente_getnet_id` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `CodParcela` (`CodParcela`) USING BTREE,
 	INDEX `Codigo` (`Codigo`) USING BTREE,
 	INDEX `CodEventoFinanceiro` (`CodEventoFinanceiro`) USING BTREE,
 	INDEX `CodCedenteConta` (`CodCedenteConta`) USING BTREE
 )
-COLLATE='utf8mb3_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 
@@ -1072,7 +1072,7 @@ CREATE TABLE `parcela` (
 	`CodPlanoMatricula` INT(11) NULL DEFAULT NULL,
 	`CodCobranca` INT(10) NULL DEFAULT NULL,
 	`Numero` INT(10) NULL DEFAULT NULL,
-	`DataCompetencia` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`DataCompetencia` VARCHAR(50) NULL DEFAULT NULL,
 	`Valor` DECIMAL(17,2) NULL DEFAULT NULL,
 	`Desconto` DECIMAL(17,2) NULL DEFAULT NULL,
 	`ValorPagamento` DECIMAL(17,2) NULL DEFAULT NULL,
@@ -1085,7 +1085,7 @@ CREATE TABLE `parcela` (
 	INDEX `Codigo` (`Codigo`) USING BTREE,
 	INDEX `CodCobranca` (`CodCobranca`) USING BTREE
 )
-COLLATE='utf8mb3_general_ci'
+COLLATE= 'utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>

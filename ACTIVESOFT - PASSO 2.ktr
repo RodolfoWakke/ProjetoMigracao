@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/08/21 08:54:57.288</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/02/20 11:14:46.539</modified_date>
+    <modified_date>2024/03/18 13:43:13.560</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -454,77 +454,6 @@
       <attribute>
         <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
         <attribute>500</attribute>
-      </attribute>
-      <attribute>
-        <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
-        <attribute>true</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>3306</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>STREAM_RESULTS</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
-  <connection>
-    <name>RDS</name>
-    <server>escolawebrds${v_end-RDS}.cdq77divwtia.sa-east-1.rds.amazonaws.com</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>${v_nomebanco-RDS}</database>
-    <port>3306</port>
-    <username>ricardo.gad</username>
-    <password>Encrypted 2be98afc86aa7f2e49910ad47df99a4df</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute>
-        <code>EXTRA_OPTION_MYSQL.autoReconnect</code>
-        <attribute>true</attribute>
-      </attribute>
-      <attribute>
-        <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
-        <attribute>500</attribute>
-      </attribute>
-      <attribute>
-        <code>EXTRA_OPTION_MYSQL.net_write_timeout</code>
-        <attribute>1800</attribute>
       </attribute>
       <attribute>
         <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
@@ -624,21 +553,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SELECT matricula</from>
-      <to>Select values matricula</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values matricula</from>
-      <to>Insert mig_matricula</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SELECT configturma</from>
-      <to>Select values configturma</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Select values configturma</from>
       <to>Insert mig_configturma</to>
       <enabled>Y</enabled>
@@ -684,13 +598,23 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SELECT aluno</from>
-      <to>Select values aluno</to>
+      <from>Select values responsavel</from>
+      <to>Insert mig_responsavel</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values aluno</from>
-      <to>Insert mig_aluno</to>
+      <from>SELECT configturma</from>
+      <to>Select values configturma</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SELECT matricula</from>
+      <to>Select values matricula</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values matricula</from>
+      <to>Insert mig_matricula</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -699,8 +623,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values responsavel</from>
-      <to>Insert mig_responsavel</to>
+      <from>SELECT aluno</from>
+      <to>Select values aluno</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values aluno</from>
+      <to>Insert mig_aluno</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -715,7 +644,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>RDS</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <schema/>
     <table>mig_aluno</table>
     <commit>20000</commit>
@@ -759,7 +688,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>RDS</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <schema/>
     <table>mig_centroreceita</table>
     <commit>20000</commit>
@@ -803,7 +732,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>RDS</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <schema/>
     <table>mig_configturma</table>
     <commit>20000</commit>
@@ -847,7 +776,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>RDS</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <schema/>
     <table>mig_conta</table>
     <commit>20000</commit>
@@ -891,7 +820,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>RDS</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <schema/>
     <table>mig_contasreceber</table>
     <commit>20000</commit>
@@ -935,7 +864,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>RDS</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <schema/>
     <table>mig_curso</table>
     <commit>20000</commit>
@@ -979,7 +908,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>RDS</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <schema/>
     <table>mig_disciplina</table>
     <commit>20000</commit>
@@ -1023,7 +952,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>RDS</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <schema/>
     <table>mig_funcionario</table>
     <commit>20000</commit>
@@ -1067,7 +996,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>RDS</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <schema/>
     <table>mig_matricula</table>
     <commit>20000</commit>
@@ -1111,7 +1040,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>RDS</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <schema/>
     <table>mig_responsavel</table>
     <commit>20000</commit>
@@ -1155,7 +1084,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>RDS</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <schema/>
     <table>mig_seriecurso</table>
     <commit>20000</commit>
@@ -1199,7 +1128,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>RDS</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <schema/>
     <table>mig_turma</table>
     <commit>20000</commit>
@@ -1243,7 +1172,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>RDS</connection>
+    <connection>MYSQL-LOCALHOST</connection>
     <schema/>
     <table>mig_unidadeescolar</table>
     <commit>20000</commit>
@@ -1299,7 +1228,7 @@
 	LEFT(REMOVEcaractere(a.celular),16) AS 'celular',
 	LEFT(a.email,100) AS 'email',
 	LEFT(a.sexo,1) AS 'sexo',
-	CONVERT(a.datanascimento, DATE) AS 'dtnascimento', 
+	IFNULL(a.datanascimento, '1900-01-01') AS 'dtnascimento',
 	CASE WHEN a.CorRaca = 'A' THEN 'AMARELA' 
 		WHEN a.CorRaca = 'B' THEN 'BRANCA' 
 		WHEN a.CorRaca = 'N' THEN 'NEGRA' 
@@ -1323,13 +1252,13 @@
 		WHEN a.RG_OrgaoEmissor IS NULL THEN NULL 
 		ELSE 81 
 		END AS 'rgorgaoemissor',
-	DATE(a.RG_DataEmissao) AS 'rgdataemissao',
+	a.RG_DataEmissao AS 'rgdataemissao',
 	a.Matricula AS 'AUX_matricula',
 	UPPER(LEFT(IF(rp.Sexo = 'M', rp.NomeResponsavel, IF(rm.Sexo = 'M', rm.NomeResponsavel, rp.NomeResponsavel)),100)) AS 'pai',
 	UPPER(LEFT(IF(rp.Sexo = 'M', pp.nomeprofissao, IF(rm.Sexo = 'M', pm.nomeprofissao, pp.nomeprofissao)),40)) AS 'profpai',	
 	LEFT(REMOVEcaractere(IF(rp.Sexo = 'M', rp.Celular, IF(rm.Sexo = 'M', rm.Celular, rp.Celular))),11) AS 'celularpai',		
 	LOWER(LEFT(IF(rp.Sexo = 'M', rp.email, IF(rm.Sexo = 'M', rm.email, rp.email)),100)) AS 'emailpai',
-	IF(rp.Sexo = 'M', DATE(rp.datanascimento), IF(rm.Sexo = 'M', DATE(rm.datanascimento), DATE(rp.datanascimento))) AS 'dtnascimentopai',		
+	TRIM(IF(rp.Sexo = 'M', rp.datanascimento, IF(rm.Sexo = 'M', rm.datanascimento, rp.datanascimento))) AS 'dtnascimentopai',		
 	LEFT(UPPER(IF(rp.Sexo = 'M', CONCAT(CASE WHEN ep.logradouro IS NULL THEN '' ELSE ep.Logradouro END,' ', CASE WHEN ep.complemento IS NULL THEN '' ELSE ep.complemento END, ' '), IF(rm.Sexo = 'M',CONCAT(CASE WHEN em.logradouro IS NULL THEN '' ELSE em.logradouro END,' ', CASE WHEN em.complemento IS NULL THEN '' ELSE em.complemento END, ' '), CONCAT(CASE WHEN ep.logradouro IS NULL THEN '' ELSE ep.logradouro END,' ', CASE WHEN ep.complemento IS NULL THEN '' ELSE ep.complemento END, ' ')))),200) AS 'enderecopai',	
 	UPPER(LEFT(IF(rp.Sexo = 'M', ep.Bairro, IF(rm.Sexo = 'M', em.Bairro, ep.Bairro)),60)) AS 'bairropai',
 	IF(rp.Sexo = 'M', cp.cod_cidade, IF(rm.Sexo = 'M', cm.cod_cidade, cp.cod_cidade)) AS 'codcidadepai',
@@ -1341,7 +1270,7 @@
 	UPPER(LEFT(IF(rm.Sexo = 'F', pm.nomeprofissao, IF(rp.Sexo = 'F', pp.nomeprofissao, pm.nomeprofissao)), 40)) AS 'profmae',    
 	LEFT(REMOVEcaractere(IF(rm.Sexo = 'F', rm.Celular, IF(rp.Sexo = 'F', rp.Celular, rm.Celular))), 11) AS 'celularmae',       
 	LOWER(LEFT(IF(rm.Sexo = 'F', rm.email, IF(rp.Sexo = 'F', rp.email, rm.email)), 100)) AS 'emailmae',
-	IF(rm.Sexo = 'F', DATE(rm.datanascimento), IF(rp.Sexo = 'F', DATE(rp.datanascimento), DATE(rm.datanascimento))) AS 'dtnascimentomae',       
+	TRIM(IF(rm.Sexo = 'F', rm.datanascimento, IF(rp.Sexo = 'F', rp.datanascimento, rm.datanascimento))) AS 'dtnascimentomae',       
 	LEFT(UPPER(IF(rm.Sexo = 'F', CONCAT(CASE WHEN em.logradouro IS NULL THEN '' ELSE em.Logradouro END, ' ', CASE WHEN em.complemento IS NULL THEN '' ELSE em.complemento END, ' '), IF(rp.Sexo = 'F', CONCAT(CASE WHEN ep.logradouro IS NULL THEN '' ELSE ep.logradouro END, ' ', CASE WHEN ep.complemento IS NULL THEN '' ELSE ep.complemento END, ' '), CONCAT(CASE WHEN em.logradouro IS NULL THEN '' ELSE em.logradouro END, ' ', CASE WHEN em.complemento IS NULL THEN '' ELSE em.complemento END, ' ')))), 200) AS 'enderecomae',    
 	UPPER(LEFT(IF(rm.Sexo = 'F', em.Bairro, IF(rp.Sexo = 'F', ep.Bairro, em.Bairro)), 60)) AS 'bairromae',
 	IF(rm.Sexo = 'F', cm.cod_cidade, IF(rp.Sexo = 'F', cp.cod_cidade, cm.cod_cidade)) AS 'codcidademae',
@@ -1352,18 +1281,19 @@
 FROM tbaluno AS a
 LEFT JOIN TbEndereco AS ta ON ta.IdEndereco = a.IdEndereco
 LEFT JOIN cidade_escolaweb ce ON ta.Cidade = ce.nom_cidade AND ta.UF = ce.sgl_estado
-LEFT JOIN Tbresponsavel AS rm ON a.idmae = rm.idresponsavel
-LEFT JOIN Tbresponsavel AS rp ON a.idpai = rp.idresponsavel
+LEFT JOIN Tbresponsavel AS rm ON (rm.IdResponsavel = a.aux_mae)
+LEFT JOIN Tbresponsavel AS rp ON (rp.IdResponsavel = a.aux_pai)
 LEFT JOIN tbprofissao AS pm ON rm.idprofissao = pm.idprofissao
 LEFT JOIN tbprofissao AS pp ON rp.idprofissao = pp.idprofissao
 LEFT JOIN tbendereco AS ep ON rp.idendereco = ep.idendereco
 LEFT JOIN tbendereco AS em ON rm.idendereco = em.idendereco
 LEFT JOIN cidade_escolaweb cp ON ep.Cidade = cp.nom_cidade AND ep.UF = cp.sgl_estado
-LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_estado;</sql>
+LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_estado
+GROUP BY a.IdAluno;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
@@ -1394,7 +1324,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nomealuno</name>
-        <length>55</length>
+        <length>54</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>nomealuno</comments>
@@ -1417,7 +1347,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>endereco</name>
-        <length>105</length>
+        <length>134</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>endereco</comments>
@@ -1440,7 +1370,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairro</name>
-        <length>218</length>
+        <length>51</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>bairro</comments>
@@ -1555,7 +1485,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>email</name>
-        <length>38</length>
+        <length>44</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>email</comments>
@@ -1601,7 +1531,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimento</name>
-        <length>19</length>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>dtnascimento</comments>
@@ -1646,190 +1576,6 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>pai</name>
-        <length>50</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>pai</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>profpai</name>
-        <length>30</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>profpai</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>celularpai</name>
-        <length>11</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>celularpai</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>emailpai</name>
-        <length>41</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>emailpai</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>mae</name>
-        <length>50</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>mae</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>profmae</name>
-        <length>30</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>profmae</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>celularmae</name>
-        <length>11</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>celularmae</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>emailmae</name>
-        <length>41</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>emailmae</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
         <name>cpf</name>
         <length>11</length>
         <precision>-1</precision>
@@ -1854,7 +1600,7 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>rg</name>
-        <length>15</length>
+        <length>20</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>rg</comments>
@@ -1945,190 +1691,6 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>enderecopai</name>
-        <length>2</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>enderecopai</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>bairropai</name>
-        <length>218</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>bairropai</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>codcidadepai</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>SELECT aluno</origin>
-        <comments>codcidadepai</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>ceppai</name>
-        <length>8</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>ceppai</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>enderecomae</name>
-        <length>1</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>enderecomae</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>bairromae</name>
-        <length>218</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>bairromae</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>cepmae</name>
-        <length>8</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>cepmae</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>codcidademae</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>SELECT aluno</origin>
-        <comments>codcidademae</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
         <name>titeleitor</name>
         <length>11</length>
         <precision>-1</precision>
@@ -2199,56 +1761,10 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nacionalidade</name>
-        <length>15</length>
+        <length>20</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>nacionalidade</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>dtnascimentopai</name>
-        <length>19</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>dtnascimentopai</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>dtnascimentomae</name>
-        <length>19</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>dtnascimentomae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -2295,98 +1811,6 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>naturalidade</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>cpfpai</name>
-        <length>11</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>cpfpai</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>rgpai</name>
-        <length>19</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>rgpai</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>cpfmae</name>
-        <length>11</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>cpfmae</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>rgmae</name>
-        <length>19</length>
-        <precision>-1</precision>
-        <origin>SELECT aluno</origin>
-        <comments>rgmae</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -2452,10 +1876,539 @@ LEFT JOIN cidade_escolaweb cm ON em.Cidade = cm.nom_cidade AND em.UF = cm.sgl_es
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>AUX_matricula</name>
-        <length>11</length>
+        <length>12</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>AUX_matricula</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>pai</name>
+        <length>60</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>pai</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>profpai</name>
+        <length>37</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>profpai</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>celularpai</name>
+        <length>11</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>celularpai</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>emailpai</name>
+        <length>45</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>emailpai</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>dtnascimentopai</name>
+        <length>10</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>dtnascimentopai</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>enderecopai</name>
+        <length>134</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>enderecopai</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>bairropai</name>
+        <length>51</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>bairropai</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codcidadepai</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT aluno</origin>
+        <comments>codcidadepai</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>ceppai</name>
+        <length>8</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>ceppai</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>cpfpai</name>
+        <length>11</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>cpfpai</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>rgpai</name>
+        <length>20</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>rgpai</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>mae</name>
+        <length>60</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>mae</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>profmae</name>
+        <length>37</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>profmae</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>celularmae</name>
+        <length>11</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>celularmae</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>emailmae</name>
+        <length>45</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>emailmae</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>dtnascimentomae</name>
+        <length>10</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>dtnascimentomae</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>enderecomae</name>
+        <length>134</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>enderecomae</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>bairromae</name>
+        <length>51</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>bairromae</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>codcidademae</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>SELECT aluno</origin>
+        <comments>codcidademae</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>cepmae</name>
+        <length>8</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>cepmae</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>cpfmae</name>
+        <length>11</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>cpfmae</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>rgmae</name>
+        <length>20</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>rgmae</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>ra</name>
+        <length>12</length>
+        <precision>-1</precision>
+        <origin>SELECT aluno</origin>
+        <comments>ra</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -2612,8 +2565,10 @@ GROUP BY s.IdServico;</sql>
 	t.IdSerie AS 'codseriecurso', 
 	LEFT(UPPER(CONCAT(t.SiglaTurma, ' - ',t.NomeTurma)),100) AS 'dscturma',
 	LEFT(UPPER(t.SiglaTurma),10) AS 'sigla',
-	CONVERT(p.DataInicial, DATE) AS 'dtinicio',
-	CONVERT(p.DataFinal, DATE) AS 'dtfim',
+
+	p.DataInicial AS 'dtinicio',
+	p.DataFinal AS 'dtfim',
+
 	LEFT(p.SiglaPeriodo,4) AS 'anoletivo',
 	LEFT(t.TurnoPrincipal,1) AS 'turno',
 	'MIG AUTO' AS 'cadastradopor',
@@ -2680,7 +2635,7 @@ JOIN TbPeriodo p ON (t.IdPeriodo = p.IdPeriodo) ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dscturma</name>
-        <length>34</length>
+        <length>57</length>
         <precision>-1</precision>
         <origin>SELECT configturma</origin>
         <comments>dscturma</comments>
@@ -2723,10 +2678,10 @@ JOIN TbPeriodo p ON (t.IdPeriodo = p.IdPeriodo) ;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtinicio</name>
-        <length>-1</length>
+        <length>19</length>
         <precision>-1</precision>
         <origin>SELECT configturma</origin>
         <comments>dtinicio</comments>
@@ -2746,10 +2701,10 @@ JOIN TbPeriodo p ON (t.IdPeriodo = p.IdPeriodo) ;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtfim</name>
-        <length>-1</length>
+        <length>19</length>
         <precision>-1</precision>
         <origin>SELECT configturma</origin>
         <comments>dtfim</comments>
@@ -2910,7 +2865,7 @@ JOIN TbPeriodo p ON (t.IdPeriodo = p.IdPeriodo) ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>aux_codturma</name>
-        <length>10</length>
+        <length>12</length>
         <precision>-1</precision>
         <origin>SELECT configturma</origin>
         <comments>aux_codturma</comments>
@@ -2961,7 +2916,6 @@ JOIN TbPeriodo p ON (t.IdPeriodo = p.IdPeriodo) ;</sql>
 	UPPER(TRIM(c.NomeFormaRecebimento)) AS 'dscconta',
 	c.BOL_ContaCorrente AS 'numconta',
 	c.BOL_CodigoAgencia AS 'agencia',
-	c.DEB_NumeroBanco AS 'codbanco',
 	c.BOL_CodigoCedente AS 'codcedente',
 	'X' AS 'tipoconta',
 	'N' AS 'bancaria',
@@ -2981,7 +2935,7 @@ FROM tbformarecebimento c;</sql>
         <name>codconta</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT contasreceber</origin>
+        <origin>SELECT conta</origin>
         <comments>codconta</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -3002,9 +2956,9 @@ FROM tbformarecebimento c;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dscconta</name>
-        <length>23</length>
+        <length>55</length>
         <precision>-1</precision>
-        <origin>SELECT contasreceber</origin>
+        <origin>SELECT conta</origin>
         <comments>dscconta</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3027,7 +2981,7 @@ FROM tbformarecebimento c;</sql>
         <name>numconta</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT contasreceber</origin>
+        <origin>SELECT conta</origin>
         <comments>numconta</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -3050,31 +3004,8 @@ FROM tbformarecebimento c;</sql>
         <name>agencia</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT contasreceber</origin>
+        <origin>SELECT conta</origin>
         <comments>agencia</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>codbanco</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>SELECT contasreceber</origin>
-        <comments>codbanco</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -3096,7 +3027,7 @@ FROM tbformarecebimento c;</sql>
         <name>codcedente</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT contasreceber</origin>
+        <origin>SELECT conta</origin>
         <comments>codcedente</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -3119,7 +3050,7 @@ FROM tbformarecebimento c;</sql>
         <name>tipoconta</name>
         <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT contasreceber</origin>
+        <origin>SELECT conta</origin>
         <comments>tipoconta</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3142,7 +3073,7 @@ FROM tbformarecebimento c;</sql>
         <name>bancaria</name>
         <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT contasreceber</origin>
+        <origin>SELECT conta</origin>
         <comments>bancaria</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3165,7 +3096,7 @@ FROM tbformarecebimento c;</sql>
         <name>ativo</name>
         <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT contasreceber</origin>
+        <origin>SELECT conta</origin>
         <comments>ativo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3188,7 +3119,7 @@ FROM tbformarecebimento c;</sql>
         <name>homologada</name>
         <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT contasreceber</origin>
+        <origin>SELECT conta</origin>
         <comments>homologada</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -3234,7 +3165,7 @@ FROM tbformarecebimento c;</sql>
     <connection>MYSQL-LOCALHOST</connection>
     <sql>SELECT 
 	l.IdLancamentoCobranca AS 'codrec',
-	LEFT(IFNULL(SONUMERO(l.ParcelaCobranca), '01'),2) AS 'parcela',
+	CAST(LEFT(IFNULL(REMOVEcaractere(l.ParcelaCobranca), '01'), 2) AS UNSIGNED) AS 'parcela',
 	SUM(l.ValorServico) AS 'valorbruto',
 	(SUM(l.ValorServico) - IFNULL(SUM(CAST(l.LIQ_ValorDescontoNaoCondicionado AS DECIMAL(10, 2))), 0)) AS 'valorparcela',
 	SUM(l.ValorServico) AS 'valor',
@@ -3309,16 +3240,16 @@ GROUP BY c.IdTituloCobranca, l.IdLancamentoCobranca;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>String</type>
+        <type>BigNumber</type>
         <storagetype>normal</storagetype>
         <name>parcela</name>
-        <length>2</length>
-        <precision>-1</precision>
+        <length>16</length>
+        <precision>0</precision>
         <origin>SELECT contasreceber</origin>
         <comments>parcela</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
         <currency_symbol/>
         <trim_type>none</trim_type>
         <case_insensitive>N</case_insensitive>
@@ -3726,7 +3657,7 @@ GROUP BY c.IdTituloCobranca, l.IdLancamentoCobranca;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cpf</name>
-        <length>50</length>
+        <length>500</length>
         <precision>-1</precision>
         <origin>SELECT contasreceber</origin>
         <comments>cpf</comments>
@@ -3910,7 +3841,7 @@ GROUP BY c.IdTituloCobranca, l.IdLancamentoCobranca;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nossonumero</name>
-        <length>12</length>
+        <length>13</length>
         <precision>-1</precision>
         <origin>SELECT contasreceber</origin>
         <comments>nossonumero</comments>
@@ -4439,7 +4370,7 @@ FROM tbdisciplina d;</sql>
 	CONVERT(p.DataNascimento, DATE) AS 'DTNASCIMENTO', 
 	LEFT(UPPER(e.logradouro),100) AS 'ENDERECO',
 	LEFT(UPPER(e.Complemento),10) AS 'COMPLEMENTO', 
-	to_base64(LEFT(UPPER(e.Bairro),60)) AS 'BAIRRO', 
+	LEFT(UPPER(e.Bairro),60) AS 'BAIRRO', 
 	LEFT(UPPER(e.Cidade),40) as 'CIDADE',
 	ce.cod_estado AS 'CODUF',
 	LEFT(REMOVEcaractere(e.CEP),8) AS 'CEP',
@@ -4496,7 +4427,7 @@ LEFT JOIN TbMunicipio AS m ON p.NaturalidadeCidade = m.NomeMunicipio AND m.UF = 
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>NOME</name>
-        <length>50</length>
+        <length>58</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>NOME</comments>
@@ -4565,7 +4496,7 @@ LEFT JOIN TbMunicipio AS m ON p.NaturalidadeCidade = m.NomeMunicipio AND m.UF = 
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>ENDERECO</name>
-        <length>56</length>
+        <length>68</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>ENDERECO</comments>
@@ -4611,7 +4542,7 @@ LEFT JOIN TbMunicipio AS m ON p.NaturalidadeCidade = m.NomeMunicipio AND m.UF = 
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>BAIRRO</name>
-        <length>218</length>
+        <length>51</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>BAIRRO</comments>
@@ -4634,7 +4565,7 @@ LEFT JOIN TbMunicipio AS m ON p.NaturalidadeCidade = m.NomeMunicipio AND m.UF = 
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>CIDADE</name>
-        <length>32</length>
+        <length>36</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>CIDADE</comments>
@@ -4749,7 +4680,7 @@ LEFT JOIN TbMunicipio AS m ON p.NaturalidadeCidade = m.NomeMunicipio AND m.UF = 
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>EMAIL</name>
-        <length>52</length>
+        <length>38</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>EMAIL</comments>
@@ -4772,7 +4703,7 @@ LEFT JOIN TbMunicipio AS m ON p.NaturalidadeCidade = m.NomeMunicipio AND m.UF = 
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>RG</name>
-        <length>15</length>
+        <length>14</length>
         <precision>-1</precision>
         <origin>SELECT funcionario</origin>
         <comments>RG</comments>
@@ -4991,11 +4922,15 @@ SELECT
 	a.IdUnidade AS 'codunidade',
 	t.IdTurma AS 'codconfturma',
 	IFNULL(m.DataHoraEfetivacaoMatricula, CONCAT(REMOVEcaractere(LEFT(p.SiglaPeriodo,4)),'-01-01'))  AS 'dtmatricula',
-	CONVERT(m.DataSituacaoAtivo, DATE) AS 'dtinicio',
-	CONVERT(m.DataSituacaoInativo, DATE) AS 'dtfim',
+	m.DataSituacaoAtivo AS 'dtinicio',
+	m.DataSituacaoInativo AS 'dtfim',
 	REMOVEcaractere(LEFT(p.SiglaPeriodo,4)) AS 'anoletivo',
-	case when r.CPFCNPJ IS NULL OR r.CPFCNPJ = '' then '00000000000' else REMOVEcaractere(r.CPFCNPJ) end AS 'cpfrespfinanceiro',
-	case when r.CPFCNPJ IS NULL OR r.CPFCNPJ = '' then NULL else REMOVEcaractere(r.CPFCNPJ) end AS 'cpfrespacademico',
+	case 
+		when rf.CPFCNPJ IS NULL OR rf.CPFCNPJ = '' then IFNULL(REMOVEcaractere(r.CPFCNPJ), '00000000000')
+		else REMOVEcaractere(rf.CPFCNPJ) end AS 'cpfrespfinanceiro',
+	case 
+		when ra.CPFCNPJ IS NULL OR ra.CPFCNPJ = '' then IFNULL(REMOVEcaractere(r.CPFCNPJ), NULL) 
+		else REMOVEcaractere(ra.CPFCNPJ) end AS 'cpfrespacademico',
 	CASE m.IdTipoResponsavelFinanceiro
 		WHEN 1 THEN 'PAI'
 		WHEN 2 THEN 'MAE'
@@ -5034,9 +4969,11 @@ JOIN TbTurma t ON (t.IdTurma = m.IdTurma)
 JOIN TbPeriodo p ON (t.IdPeriodo = p.IdPeriodo)
 JOIN TbSerie ts ON (t.IdSerie = ts.IdSerie)
 JOIN tbaluno a ON (m.IdAluno = a.IdAluno)
-LEFT JOIN TbResponsavel r ON (m.IdResponsavelFinanceiro = r.IdResponsavel)
-LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao);
-</sql>
+LEFT JOIN tbresponsavel r ON (r.IdResponsavel = a.IdResponsavel)
+LEFT JOIN TbResponsavel rf ON (m.IdResponsavelFinanceiro = rf.IdResponsavel)
+LEFT JOIN TbResponsavel ra ON (m.IdResponsavelSecundario = ra.IdResponsavel)
+LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao)
+-- WHERE a.IdAluno = 17629</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -5186,7 +5123,7 @@ LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao);
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>aux_codturma</name>
-        <length>12</length>
+        <length>20</length>
         <precision>-1</precision>
         <origin>SELECT matricula</origin>
         <comments>aux_codturma</comments>
@@ -5255,7 +5192,7 @@ LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao);
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtmatricula</name>
-        <length>56</length>
+        <length>506</length>
         <precision>-1</precision>
         <origin>SELECT matricula</origin>
         <comments>dtmatricula</comments>
@@ -5275,10 +5212,10 @@ LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao);
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtinicio</name>
-        <length>-1</length>
+        <length>19</length>
         <precision>-1</precision>
         <origin>SELECT matricula</origin>
         <comments>dtinicio</comments>
@@ -5298,10 +5235,10 @@ LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao);
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtfim</name>
-        <length>-1</length>
+        <length>19</length>
         <precision>-1</precision>
         <origin>SELECT matricula</origin>
         <comments>dtfim</comments>
@@ -5324,7 +5261,7 @@ LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao);
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>anoletivo</name>
-        <length>50</length>
+        <length>500</length>
         <precision>-1</precision>
         <origin>SELECT matricula</origin>
         <comments>anoletivo</comments>
@@ -5347,7 +5284,7 @@ LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao);
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cpfrespfinanceiro</name>
-        <length>50</length>
+        <length>500</length>
         <precision>-1</precision>
         <origin>SELECT matricula</origin>
         <comments>cpfrespfinanceiro</comments>
@@ -5370,7 +5307,7 @@ LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao);
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>cpfrespacademico</name>
-        <length>50</length>
+        <length>500</length>
         <precision>-1</precision>
         <origin>SELECT matricula</origin>
         <comments>cpfrespacademico</comments>
@@ -5531,7 +5468,7 @@ LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao);
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>motivotransf</name>
-        <length>11</length>
+        <length>20</length>
         <precision>-1</precision>
         <origin>SELECT matricula</origin>
         <comments>motivotransf</comments>
@@ -5554,7 +5491,7 @@ LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao);
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>AUX_matricula</name>
-        <length>11</length>
+        <length>12</length>
         <precision>-1</precision>
         <origin>SELECT matricula</origin>
         <comments>AUX_matricula</comments>
@@ -5611,12 +5548,12 @@ LEFT JOIN TbMotivoInativacao i ON (m.IdMotivoInativacao = i.IdMotivoInativacao);
 	LEFT(r.Email,100) AS 'email',
 	LEFT(r.RG,50) AS 'rg',
 	LEFT(IF(CHAR_LENGTH(RTRIM(e.Logradouro)) > 1, UPPER(e.Logradouro), NULL),120) AS 'endereco',
-	to_base64((LEFT(UPPER(e.Bairro),60))) AS 'bairro', 
+	(LEFT(UPPER(e.Bairro),60)) AS 'bairro', 
 	ce.cod_cidade AS 'cidade',
 	ce.cod_estado AS 'uf',
 	LEFT(REMOVEcaractere(e.CEP),8) AS 'cep',
 	LEFT(r.Sexo,1) AS 'sexo',
-	r.DataNascimento AS 'dtnascimento', 
+	LEFT(r.DataNascimento, 10) AS 'dtnascimento', 
 	LEFT(UPPER(r.Nacionalidade),50) AS 'nacionalidade',
 	NOW() AS 'dtcadastro',
 	'MIG AUTO' AS 'cadastradopor'
@@ -5684,7 +5621,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nomeresponsavel</name>
-        <length>50</length>
+        <length>60</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>nomeresponsavel</comments>
@@ -5707,7 +5644,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>profissao</name>
-        <length>30</length>
+        <length>37</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>profissao</comments>
@@ -5730,7 +5667,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>localtrabalho</name>
-        <length>79</length>
+        <length>39</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>localtrabalho</comments>
@@ -5799,7 +5736,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>email</name>
-        <length>41</length>
+        <length>45</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>email</comments>
@@ -5822,7 +5759,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>rg</name>
-        <length>19</length>
+        <length>20</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>rg</comments>
@@ -5845,7 +5782,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>endereco</name>
-        <length>56</length>
+        <length>68</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>endereco</comments>
@@ -5868,7 +5805,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>bairro</name>
-        <length>218</length>
+        <length>51</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>bairro</comments>
@@ -5983,7 +5920,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimento</name>
-        <length>19</length>
+        <length>10</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>dtnascimento</comments>
@@ -6006,7 +5943,7 @@ AND r.CPFCNPJ != '' ;</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>nacionalidade</name>
-        <length>26</length>
+        <length>25</length>
         <precision>-1</precision>
         <origin>SELECT responsavel</origin>
         <comments>nacionalidade</comments>
@@ -6259,7 +6196,7 @@ JOIN tbcurso c ON (t.IdCurso = c.IdCurso);</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dscserie</name>
-        <length>21</length>
+        <length>39</length>
         <precision>-1</precision>
         <origin>SELECT seriecurso</origin>
         <comments>dscserie</comments>
@@ -6282,7 +6219,7 @@ JOIN tbcurso c ON (t.IdCurso = c.IdCurso);</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>dscseriecompleta</name>
-        <length>21</length>
+        <length>39</length>
         <precision>-1</precision>
         <origin>SELECT seriecurso</origin>
         <comments>dscseriecompleta</comments>
@@ -6799,30 +6736,6 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <name>cor</name>
       </field>
       <field>
-        <name>pai</name>
-      </field>
-      <field>
-        <name>profpai</name>
-      </field>
-      <field>
-        <name>celularpai</name>
-      </field>
-      <field>
-        <name>emailpai</name>
-      </field>
-      <field>
-        <name>mae</name>
-      </field>
-      <field>
-        <name>profmae</name>
-      </field>
-      <field>
-        <name>celularmae</name>
-      </field>
-      <field>
-        <name>emailmae</name>
-      </field>
-      <field>
         <name>cpf</name>
       </field>
       <field>
@@ -6838,30 +6751,6 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <name>certidaocartorio</name>
       </field>
       <field>
-        <name>enderecopai</name>
-      </field>
-      <field>
-        <name>bairropai</name>
-      </field>
-      <field>
-        <name>codcidadepai</name>
-      </field>
-      <field>
-        <name>ceppai</name>
-      </field>
-      <field>
-        <name>enderecomae</name>
-      </field>
-      <field>
-        <name>bairromae</name>
-      </field>
-      <field>
-        <name>cepmae</name>
-      </field>
-      <field>
-        <name>codcidademae</name>
-      </field>
-      <field>
         <name>titeleitor</name>
       </field>
       <field>
@@ -6874,28 +6763,10 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <name>nacionalidade</name>
       </field>
       <field>
-        <name>dtnascimentopai</name>
-      </field>
-      <field>
-        <name>dtnascimentomae</name>
-      </field>
-      <field>
         <name>tiposanguineo</name>
       </field>
       <field>
         <name>naturalidade</name>
-      </field>
-      <field>
-        <name>cpfpai</name>
-      </field>
-      <field>
-        <name>rgpai</name>
-      </field>
-      <field>
-        <name>cpfmae</name>
-      </field>
-      <field>
-        <name>rgmae</name>
       </field>
       <field>
         <name>rgorgaoemissor</name>
@@ -6906,7 +6777,144 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
       <field>
         <name>AUX_matricula</name>
       </field>
+      <field>
+        <name>pai</name>
+      </field>
+      <field>
+        <name>profpai</name>
+      </field>
+      <field>
+        <name>celularpai</name>
+      </field>
+      <field>
+        <name>emailpai</name>
+      </field>
+      <field>
+        <name>dtnascimentopai</name>
+      </field>
+      <field>
+        <name>enderecopai</name>
+      </field>
+      <field>
+        <name>bairropai</name>
+      </field>
+      <field>
+        <name>codcidadepai</name>
+      </field>
+      <field>
+        <name>ceppai</name>
+      </field>
+      <field>
+        <name>cpfpai</name>
+      </field>
+      <field>
+        <name>rgpai</name>
+      </field>
+      <field>
+        <name>mae</name>
+      </field>
+      <field>
+        <name>profmae</name>
+      </field>
+      <field>
+        <name>celularmae</name>
+      </field>
+      <field>
+        <name>emailmae</name>
+      </field>
+      <field>
+        <name>dtnascimentomae</name>
+      </field>
+      <field>
+        <name>enderecomae</name>
+      </field>
+      <field>
+        <name>bairromae</name>
+      </field>
+      <field>
+        <name>codcidademae</name>
+      </field>
+      <field>
+        <name>cepmae</name>
+      </field>
+      <field>
+        <name>cpfmae</name>
+      </field>
+      <field>
+        <name>rgmae</name>
+      </field>
+      <field>
+        <name>ra</name>
+      </field>
       <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>dtnascimento</name>
+        <rename>dtnascimento</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>dtnascimentomae</name>
+        <rename>dtnascimentomae</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>dtnascimentopai</name>
+        <rename>dtnascimentopai</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>dtcadastro</name>
+        <rename>dtcadastro</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -7049,9 +7057,6 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
       </field>
       <field>
         <name>agencia</name>
-      </field>
-      <field>
-        <name>codbanco</name>
       </field>
       <field>
         <name>codcedente</name>
@@ -7408,72 +7413,95 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
     <fields>
       <field>
         <name>codmatricula</name>
+        <rename/>
       </field>
       <field>
         <name>codaluno</name>
+        <rename/>
       </field>
       <field>
         <name>codcurso</name>
+        <rename/>
       </field>
       <field>
         <name>aux_codcurso</name>
+        <rename/>
       </field>
       <field>
         <name>codseriecurso</name>
+        <rename/>
       </field>
       <field>
         <name>codturma</name>
+        <rename/>
       </field>
       <field>
         <name>aux_codturma</name>
+        <rename/>
       </field>
       <field>
         <name>codunidade</name>
+        <rename/>
       </field>
       <field>
         <name>codconfturma</name>
+        <rename/>
       </field>
       <field>
         <name>dtmatricula</name>
+        <rename/>
       </field>
       <field>
         <name>dtinicio</name>
+        <rename/>
       </field>
       <field>
         <name>dtfim</name>
+        <rename/>
       </field>
       <field>
         <name>anoletivo</name>
+        <rename/>
       </field>
       <field>
         <name>cpfrespfinanceiro</name>
+        <rename/>
       </field>
       <field>
         <name>cpfrespacademico</name>
+        <rename/>
       </field>
       <field>
         <name>parentescorespfinanceiro</name>
+        <rename/>
       </field>
       <field>
         <name>rematricula</name>
+        <rename/>
       </field>
       <field>
         <name>situacao</name>
+        <rename/>
       </field>
       <field>
         <name>dtcadastro</name>
+        <rename/>
       </field>
       <field>
         <name>cadastradopor</name>
+        <rename/>
       </field>
       <field>
         <name>dtTransferencia</name>
+        <rename/>
       </field>
       <field>
         <name>motivotransf</name>
+        <rename/>
       </field>
       <field>
         <name>AUX_matricula</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -7561,6 +7589,23 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
         <name>cadastradopor</name>
       </field>
       <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>dtnascimento</name>
+        <rename>dtnascimento</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -7593,6 +7638,9 @@ JOIN cidade_escolaweb c ON (c.nom_cidade = u.Cidade AND c.sgl_estado = u.UF)
       </field>
       <field>
         <name>codcurso</name>
+      </field>
+      <field>
+        <name>aux_codcurso</name>
       </field>
       <field>
         <name>codunidade</name>

@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2022/12/25 11:13:34.137</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/10/26 16:15:16.149</modified_date>
+    <modified_date>2024/03/08 16:59:22.379</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -563,6 +563,10 @@ Logo, no início, antes de rodar o Spoon, é necessário criar o DB no servidor 
         <attribute>true</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.collation_connection</code>
+        <attribute>utf8mb4_0900_ai_ci</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
         <attribute>500</attribute>
       </attribute>
@@ -597,6 +601,10 @@ Logo, no início, antes de rodar o Spoon, é necessário criar o DB no servidor 
       <attribute>
         <code>QUOTE_ALL_FIELDS</code>
         <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SQL_CONNECT</code>
+        <attribute>SET collation_connection = 'utf8mb4_0900_ai_ci';</attribute>
       </attribute>
       <attribute>
         <code>STREAM_RESULTS</code>
@@ -2854,7 +2862,7 @@ CREATE TABLE IF NOT EXISTS CNAB (
 DROP TABLE IF EXISTS  `bancos`;
 CREATE TABLE IF NOT EXISTS bancos
 (
-  BancoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+  BancoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , Nome VARCHAR(50)
 , Agencia VARCHAR(50)
 , Fone VARCHAR(50)
@@ -2907,7 +2915,7 @@ CREATE TABLE IF NOT EXISTS cargos
 (
   CargoID INT(11)
 , Descricao VARCHAR(200)
-, Ativo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, Ativo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , RecordValue TEXT
 , INDEX `CargoID` (`CargoID`) USING BTREE
 )
@@ -2954,12 +2962,12 @@ CREATE TABLE IF NOT EXISTS cargos
 DROP TABLE IF EXISTS  `contas`;
 CREATE TABLE IF NOT EXISTS contas
 (
-  ContaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, BancoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+  ContaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, BancoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , ce VARCHAR(50)
 , Numero VARCHAR(50)
 , Titular VARCHAR(50)
-, Encerrada VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, Encerrada VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , CodAnt VARCHAR(50)
 , INDEX `ContaID` (`ContaID`) USING BTREE
 , INDEX `BancoID` (`BancoID`) USING BTREE
@@ -3006,37 +3014,37 @@ CREATE TABLE IF NOT EXISTS contas
     <sql>DROP TABLE IF EXISTS  `contasreceber`;
 CREATE TABLE IF NOT EXISTS contasreceber
 (
-  ContaReceberID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, BolsaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+  ContaReceberID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, BolsaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , ce VARCHAR(50)
-, ContaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, TipoRecebimentoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, AlunoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, EmpresaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, PlanoContaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, OperadoraCartaoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, ContaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, TipoRecebimentoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, AlunoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, EmpresaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, PlanoContaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, OperadoraCartaoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , ValorOriginal DECIMAL(10,2)
 , Documento VARCHAR(50)
 , Observacao TEXT
 , Complemento TEXT
 , DiaVencimento VARCHAR(50)
-, ContaReceberRenegID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, ContaReceberRenegID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , ParcelasComDesconto VARCHAR(50)
 , ValorComDescontoBolsa VARCHAR(50)
 , CodAnt VARCHAR(50)
-, MotivoRenegociacaoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, MotivoRenegociacaoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , DataRenegociacao VARCHAR(50)
 , DescontoManual DECIMAL(10,2)
 , MotivoDescontoManual TEXT
-, FuncionarioID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, ClienteVindiID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, FuncionarioID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, ClienteVindiID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , DataCompetencia VARCHAR(50)
 , VencimentoUltimoDia VARCHAR(50)
 , ValorAbatimento DECIMAL(10,2)
-, ClienteStoneID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, GrupoSplitStoneID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, CartaoStoneID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, EscolaEducbankID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, ClienteStoneID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, GrupoSplitStoneID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, CartaoStoneID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, EscolaEducbankID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , INDEX `ContaReceberID` (`ContaReceberID`) USING BTREE
 , INDEX `ContaID` (`ContaID`) USING BTREE
 , INDEX `TipoRecebimentoID` (`TipoRecebimentoID`) USING BTREE
@@ -3088,16 +3096,16 @@ CREATE TABLE IF NOT EXISTS contasreceber
     <sql>DROP TABLE IF EXISTS  `contasreceberparcelas`;
 CREATE TABLE IF NOT EXISTS contasreceberparcelas
 (
-  ContaReceberID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, NumeroParcela VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, TipoRecebimentoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, PlanoContaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, ContaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+  ContaReceberID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, NumeroParcela VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, TipoRecebimentoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, PlanoContaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, ContaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , Valor DECIMAL(10,2)
 , ValorPago DECIMAL(10,2)
 , DataVencimento VARCHAR(50)
 , DataPagamento VARCHAR(50)
-, Situacao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, Situacao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , NumeroBoleto VARCHAR(50)
 , ValorDesconto DECIMAL(10,2)
 , ValorJuro DECIMAL(10,2)
@@ -3210,26 +3218,26 @@ CREATE TABLE IF NOT EXISTS contratos
 , ResponsavelID INT(11)
 , AlunoID INT(11)
 , FuncionarioID INT(11)
-, MotivoCancelamentoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, UsuarioID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, MotivoCancelamentoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, UsuarioID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , ce VARCHAR(50)
 , NumeroContrato VARCHAR(50)
 , DataInicio VARCHAR(50)
 , DataTermino VARCHAR(50)
 , DataContrato VARCHAR(50)
 , Observacoes TEXT
-, Situacao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, Situacao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , PercentualEmpresa VARCHAR(50)
 , DataEncerramento VARCHAR(50)
-, CodAnt VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, MotivoDesistenciaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, PagamentoComissaoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, CodAnt VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, MotivoDesistenciaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, PagamentoComissaoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , EmpresaPaga VARCHAR(50)
-, ValorTaxa VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, UsuarioAlteracaoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, ValorTaxa VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, UsuarioAlteracaoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , DataAlteracao VARCHAR(50)
-, RecordValue VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, ResponsavelTestemunhaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, RecordValue VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, ResponsavelTestemunhaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , INDEX `ContratoID` (`ContratoID`) USING BTREE
 , INDEX `TipoContratoID` (`TipoContratoID`) USING BTREE
 , INDEX `ResponsavelID` (`ResponsavelID`) USING BTREE
@@ -3285,16 +3293,16 @@ CREATE TABLE IF NOT EXISTS contratosturmas
 , CursoID INT(11)
 , TipoCursoID INT(11)
 , Etapa VARCHAR(50)
-, AnoLetivo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, AnoLetivo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , DataMatricula VARCHAR(50)
 , InicioAtividades VARCHAR(50)
 , ValorAdicional VARCHAR(50)
-, Padrao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Turno VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, Padrao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Turno VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , TerminoAtividades VARCHAR(50)
-, StatusMatricula VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, StatusMatricula VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , DataStatus VARCHAR(50)
-, Ordem VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, Ordem VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , INDEX `ContratoTurmaID` (`ContratoTurmaID`) USING BTREE
 , INDEX `ContratoID` (`ContratoID`) USING BTREE
 , INDEX `TurmaID` (`TurmaID`) USING BTREE
@@ -3342,11 +3350,11 @@ CREATE TABLE IF NOT EXISTS contratosturmas
     <sql>DROP TABLE IF EXISTS  `empresas`;
 CREATE TABLE IF NOT EXISTS empresas
 (
-  EmpresaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+  EmpresaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , ce VARCHAR(50)
-, BancoFebrabanID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, CidadeID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, BairroID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, BancoFebrabanID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, CidadeID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, BairroID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , Nome VARCHAR(100)
 , RazaoSocial VARCHAR(100)
 , Endereco VARCHAR(100)
@@ -3357,7 +3365,7 @@ CREATE TABLE IF NOT EXISTS empresas
 , Inscricao VARCHAR(50)
 , Email VARCHAR(80)
 , DataCadastro VARCHAR(50)
-, Ativo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, Ativo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , Fone VARCHAR(50)
 , Ramal VARCHAR(50)
 , Fax VARCHAR(50)
@@ -3380,7 +3388,7 @@ CREATE TABLE IF NOT EXISTS empresas
 , RecordValue VARCHAR(50)
 , Veiculo VARCHAR(50)
 , PlacaVeiculo VARCHAR(50)
-, ClienteStoneID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, ClienteStoneID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , INDEX `EmpresaID` (`EmpresaID`) USING BTREE
 , INDEX `CidadeID` (`CidadeID`) USING BTREE
 )
@@ -3427,12 +3435,12 @@ CREATE TABLE IF NOT EXISTS empresas
 CREATE TABLE IF NOT EXISTS estadoscivis
 (
   EstadoCivilID INT(11)
-, Descricao VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Ativo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, Descricao VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Ativo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , RecordValue TEXT
 , INDEX `EstadoCivilID` (`EstadoCivilID`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -3483,15 +3491,15 @@ CREATE TABLE IF NOT EXISTS notas
 , Nota1 DECIMAL(10,2)
 , Recuperacao1 DECIMAL(10,2)
 , NotaAposRec1 DECIMAL(10,2)
-, Faltas1 VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, Faltas1 VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , Nota2 DECIMAL(10,2)
 , Recuperacao2 DECIMAL(10,2)
 , NotaAposRec2 DECIMAL(10,2)
-, Faltas2 VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, Faltas2 VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , Nota3 DECIMAL(10,2)
 , Recuperacao3 DECIMAL(10,2)
 , NotaAposRec3 DECIMAL(10,2)
-, Faltas3 VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, Faltas3 VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , Nota4 DECIMAL(10,2)
 , Recuperacao4 DECIMAL(10,2)
 , NotaAposRec4 DECIMAL(10,2)
@@ -3499,31 +3507,31 @@ CREATE TABLE IF NOT EXISTS notas
 , Media DECIMAL(10,2)
 , RecuperacaoFinal DECIMAL(10,2)
 , MediaFinal DECIMAL(10,2)
-, TotalFaltas VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, TotalFaltas VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , ExameFinal DECIMAL(10,2)
-, TurmaAlunoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, SituacaoDidaticaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, TurmaAlunoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, SituacaoDidaticaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , NotaAposRecFinal DECIMAL(10,2)
-, Disp1 VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Disp2 VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Disp3 VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Disp4 VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, HabilidadeDisciplinaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, ContratoAulaLivreDisciplinaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Modulo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, Disp1 VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Disp2 VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Disp3 VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Disp4 VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, HabilidadeDisciplinaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, ContratoAulaLivreDisciplinaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Modulo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , Notaconselho DECIMAL(10,2)
 , MediaSem1 DECIMAL(10,2)
 , MediaSem2 DECIMAL(10,2)
 , NotaConselho1 DECIMAL(10,2)
 , NotaConselho2 DECIMAL(10,2)
-, RecordValue VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, AlterouManualmenteSituacaoDisciplina VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, AlterouManualmenteMediaFinal VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, MTA VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, RTA VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, MRTA VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, MediaPF VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, RF VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, RecordValue VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, AlterouManualmenteSituacaoDisciplina VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, AlterouManualmenteMediaFinal VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, MTA VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, RTA VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, MRTA VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, MediaPF VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, RF VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , INDEX `NotaID` (`NotaID`) USING BTREE
 , INDEX `AlunoID` (`AlunoID`) USING BTREE
 , INDEX `TurmaID` (`TurmaID`) USING BTREE
@@ -3575,8 +3583,8 @@ CREATE TABLE IF NOT EXISTS planoscontas
 , ce VARCHAR(50)
 , Nome VARCHAR(100)
 , Tipo VARCHAR(50)
-, PlanoContaPaiID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Ativo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, PlanoContaPaiID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Ativo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , Grupo VARCHAR(50)
 , Mensalidade VARCHAR(50)
 , PermiteDesconto VARCHAR(50)
@@ -14983,200 +14991,200 @@ CREATE TABLE IF NOT EXISTS planoscontas
 DROP TABLE IF EXISTS `mig_aluno`;
    CREATE TABLE IF NOT EXISTS `mig_aluno` (
 	`codaluno` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-	`nomealuno` VARCHAR(100) NOT NULL COLLATE 'latin1_swedish_ci',
-	`endereco` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`bairro` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`nomealuno` VARCHAR(100) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`endereco` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`bairro` VARCHAR(60) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`uf` SMALLINT(6) NULL DEFAULT NULL,
 	`cidade` INT(11) NULL DEFAULT NULL,
-	`cep` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`telresid` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`celular` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`email` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`sexo` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cep` VARCHAR(8) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`telresid` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`celular` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`email` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`sexo` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`dtnascimento` DATE NULL DEFAULT NULL,
 	`ufnaturalidade` SMALLINT(6) UNSIGNED NULL DEFAULT NULL,
 	`cidadenaturalidade` SMALLINT(6) UNSIGNED NULL DEFAULT NULL,
-	`cor` VARCHAR(13) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`pai` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`trabpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`profpai` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`telpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`celularpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`emailpai` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`mae` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`trabmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`profmae` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`telmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`celularmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`emailmae` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`obs` VARCHAR(5000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`cpf` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`rg` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`foto` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`senha` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`nomeabrev` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`certidaonumero` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`certidaolivrofolha` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`certidaocartorio` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`religiao` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cor` VARCHAR(13) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`pai` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`trabpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`profpai` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`telpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`celularpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`emailpai` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`mae` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`trabmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`profmae` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`telmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`celularmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`emailmae` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`obs` VARCHAR(5000) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`cpf` VARCHAR(11) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`rg` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`foto` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`senha` VARCHAR(8) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`nomeabrev` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`certidaonumero` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`certidaolivrofolha` VARCHAR(30) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`certidaocartorio` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`religiao` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`codeducacaoespecial` SMALLINT(6) NULL DEFAULT NULL,
-	`obseducacaoespecial` VARCHAR(500) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`obseducacaoespecial` VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`codsocio` INT(11) NULL DEFAULT NULL,
-	`vivopai` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
-	`instrucaopai` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`enderecopai` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`bairropai` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`vivopai` CHAR(1) NULL DEFAULT 'S' COLLATE 'utf8mb4_0900_ai_ci',
+	`instrucaopai` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`enderecopai` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`bairropai` VARCHAR(60) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`codcidadepai` INT(11) NULL DEFAULT NULL,
 	`codufpai` SMALLINT(6) NULL DEFAULT NULL,
-	`ceppai` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`vivomae` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
-	`instrucaomae` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`enderecomae` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`bairromae` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`cepmae` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`ceppai` VARCHAR(8) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`vivomae` CHAR(1) NULL DEFAULT 'S' COLLATE 'utf8mb4_0900_ai_ci',
+	`instrucaomae` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`enderecomae` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`bairromae` VARCHAR(60) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`cepmae` VARCHAR(8) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`codufmae` SMALLINT(6) NULL DEFAULT NULL,
 	`codcidademae` INT(11) NULL DEFAULT NULL,
-	`ativo` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
-	`fotoPortal` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`foneportal` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`emailportal` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`titeleitor` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`zona` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`ativo` CHAR(1) NULL DEFAULT 'S' COLLATE 'utf8mb4_0900_ai_ci',
+	`fotoPortal` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`foneportal` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`emailportal` VARCHAR(60) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`titeleitor` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`zona` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`dtcadastro` DATETIME NULL DEFAULT NULL,
 	`usercadastro` INT(11) NULL DEFAULT NULL,
 	`dtalteracao` DATETIME NULL DEFAULT NULL,
 	`useralteracao` INT(11) NULL DEFAULT NULL,
-	`nacionalidade` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`bloqueado` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`obshistfundamental` VARCHAR(3000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`obshistmedio` VARCHAR(3000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`estadocivilpai` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`estadocivilmae` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`nacionalidade` VARCHAR(30) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`bloqueado` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`obshistfundamental` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`obshistmedio` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`estadocivilpai` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`estadocivilmae` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`dtnascimentopai` DATE NULL DEFAULT NULL,
 	`dtnascimentomae` DATE NULL DEFAULT NULL,
 	`codpaisnaturalidade` INT(11) NULL DEFAULT NULL,
-	`alunoadotado` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`sabeadocao` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`paisseparados` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`tiposanguineo` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`planosaude` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`alergia` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`doencacongenita` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`deficiencia` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`cuidadoespecial` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`locomocaoida` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`locomocaovolta` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`obsguiatransferencia` VARCHAR(1000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`naturalidade` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`cpfpai` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`rgpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`cpfmae` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`rgmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`alunoadotado` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`sabeadocao` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`paisseparados` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`tiposanguineo` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`planosaude` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`alergia` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`doencacongenita` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`deficiencia` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`cuidadoespecial` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`locomocaoida` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`locomocaovolta` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`obsguiatransferencia` VARCHAR(1000) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`naturalidade` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`cpfpai` VARCHAR(11) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`rgpai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`cpfmae` VARCHAR(11) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`rgmae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`fotoblob` BLOB NULL DEFAULT NULL,
-	`estadocivil` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`saisozinho` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`tipocertidao` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
-	`certreservista` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`profissao` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`localtrabalho` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`teltrabalho` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`numcartao` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`enviarsms` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`celularsms` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`operadorasms` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`hospital` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`pne` CHAR(1) NULL DEFAULT 'N' COMMENT 'Aluno portado de necessidades especiais (S/N)' COLLATE 'latin1_swedish_ci',
-	`pnedescricao` VARCHAR(100) NULL DEFAULT NULL COMMENT 'Descricao na necessidade especial' COLLATE 'latin1_swedish_ci',
-	`pneavaliado` CHAR(1) NULL DEFAULT 'S' COMMENT 'Aluno Ã© avalidado com notas como os outros alunos' COLLATE 'latin1_swedish_ci',
-	`alunofalecido` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
-	`codcenso` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`estadocivil` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`saisozinho` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`tipocertidao` CHAR(1) NULL DEFAULT 'N' COLLATE 'utf8mb4_0900_ai_ci',
+	`certreservista` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`profissao` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`localtrabalho` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`teltrabalho` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`numcartao` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`enviarsms` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`celularsms` VARCHAR(11) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`operadorasms` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`hospital` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`pne` CHAR(1) NULL DEFAULT 'N' COMMENT 'Aluno portado de necessidades especiais (S/N)' COLLATE 'utf8mb4_0900_ai_ci',
+	`pnedescricao` VARCHAR(100) NULL DEFAULT NULL COMMENT 'Descricao na necessidade especial' COLLATE 'utf8mb4_0900_ai_ci',
+	`pneavaliado` CHAR(1) NULL DEFAULT 'S' COMMENT 'Aluno Ã© avalidado com notas como os outros alunos' COLLATE 'utf8mb4_0900_ai_ci',
+	`alunofalecido` CHAR(1) NULL DEFAULT 'N' COLLATE 'utf8mb4_0900_ai_ci',
+	`codcenso` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`codportaria` INT(11) NULL DEFAULT NULL,
 	`codpaisorigem` SMALLINT(6) NULL DEFAULT NULL,
 	`zonaresidencia7024` INT(1) NULL DEFAULT NULL COMMENT '1-Urbana/2-Rural',
 	`rgorgaoemissor` INT(2) NULL DEFAULT NULL COMMENT 'Orgao Emissor da indentidade. Relaciona com a tabela orgaoemissoridentidade',
 	`rgestado` SMALLINT(6) NULL DEFAULT NULL COMMENT 'Estado Identidade',
 	`rgdataemissao` DATE NULL DEFAULT NULL COMMENT 'Data de Emissao RG',
-	`rgcomplemento` VARCHAR(4) NULL DEFAULT NULL COMMENT 'Complemento RG' COLLATE 'latin1_swedish_ci',
+	`rgcomplemento` VARCHAR(4) NULL DEFAULT NULL COMMENT 'Complemento RG' COLLATE 'utf8mb4_0900_ai_ci',
 	`modelocertidao` INT(1) NULL DEFAULT NULL COMMENT '1-Modelo Antigo / 2-Modelo Novo',
 	`codcartoriocertidao` INT(11) NULL DEFAULT NULL COMMENT 'codigo do cartorio que emitiu a certidao',
 	`dtemissaocertidao` DATE NULL DEFAULT NULL COMMENT 'Data da emissÃ£o da certidao',
 	`rgorgaoemissorpai` INT(2) NULL DEFAULT NULL COMMENT 'Orgao Emissor da indentidade. Relaciona com a tabela orgaoemissoridentidade',
 	`rgestadopai` SMALLINT(6) NULL DEFAULT NULL COMMENT 'Estado Identidade',
 	`rgdataemissaopai` DATE NULL DEFAULT NULL COMMENT 'Data de Emissao RG',
-	`nacionalidadepai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`nacionalidadepai` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`codpaisorigempai` SMALLINT(6) NULL DEFAULT NULL,
 	`codcidadenaturalidadepai` INT(11) NULL DEFAULT NULL,
 	`codescolaridadepai` INT(11) NULL DEFAULT NULL,
 	`rgorgaoemissormae` INT(2) NULL DEFAULT NULL COMMENT 'Orgao Emissor da indentidade. Relaciona com a tabela orgaoemissoridentidade',
 	`rgestadomae` SMALLINT(6) NULL DEFAULT NULL COMMENT 'Estado Identidade',
 	`rgdataemissaomae` DATE NULL DEFAULT NULL COMMENT 'Data de Emissao RG',
-	`nacionalidademae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`nacionalidademae` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`codpaisorigemmae` SMALLINT(6) NULL DEFAULT NULL,
 	`codcidadenaturalidademae` INT(11) NULL DEFAULT NULL,
 	`codescolaridademae` INT(11) NULL DEFAULT NULL,
 	`codrendafamiliar` INT(11) NULL DEFAULT NULL,
-	`obsfinanceiro` VARCHAR(3000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`obsacademico` VARCHAR(3000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`sexomae` CHAR(1) NULL DEFAULT 'F' COLLATE 'latin1_swedish_ci',
-	`sexopai` CHAR(1) NULL DEFAULT 'M' COLLATE 'latin1_swedish_ci',
+	`obsfinanceiro` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`obsacademico` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`sexomae` CHAR(1) NULL DEFAULT 'F' COLLATE 'utf8mb4_0900_ai_ci',
+	`sexopai` CHAR(1) NULL DEFAULT 'M' COLLATE 'utf8mb4_0900_ai_ci',
 	`codbolsapadrao` INT(11) NULL DEFAULT NULL,
 	`diavencpadrao` INT(11) NULL DEFAULT NULL,
-	`ra` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`localbatalhaomilitar` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`categoriamilitar` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`situacaomilitar` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`ra` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`localbatalhaomilitar` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`categoriamilitar` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`situacaomilitar` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`dataexpedicaomilitar` DATE NULL DEFAULT NULL,
-	`secaoeleitor` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`secaoeleitor` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`dataexpedicaoeleitor` DATE NULL DEFAULT NULL,
-	`avatoken` VARCHAR(200) NULL DEFAULT NULL COMMENT 'token de autenticaÃ§Ã£o do aluno no ava json {login,senha} convertido em base64' COLLATE 'latin1_swedish_ci',
+	`avatoken` VARCHAR(200) NULL DEFAULT NULL COMMENT 'token de autenticaÃ§Ã£o do aluno no ava json {login,senha} convertido em base64' COLLATE 'utf8mb4_0900_ai_ci',
 	`avauserid` INT(11) NULL DEFAULT NULL,
-	`obshistinfantil` VARCHAR(3000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`idgoogledrive` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`obshistinfantil` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`idgoogledrive` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`codescolaridadealuno` INT(11) NULL DEFAULT NULL,
-	`tokenfirebase` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`wakkestudentid` CHAR(36) NULL DEFAULT NULL COMMENT 'Identificador do aluno na Wakke Class' COLLATE 'latin1_swedish_ci',
+	`tokenfirebase` VARCHAR(256) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`wakkestudentid` CHAR(36) NULL DEFAULT NULL COMMENT 'Identificador do aluno na Wakke Class' COLLATE 'utf8mb4_0900_ai_ci',
 	`codaluno_unificado` INT(11) NULL DEFAULT NULL,
 	PRIMARY KEY (`codaluno`) USING BTREE)
-COLLATE='latin1_swedish_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 AUTO_INCREMENT=1;
 
 DROP TABLE IF EXISTS `mig_responsavel`;
 CREATE TABLE IF NOT EXISTS `mig_responsavel` (
 	`codsoc` INT(11) NOT NULL AUTO_INCREMENT,
-	`cpf` VARCHAR(14) NOT NULL COLLATE 'latin1_swedish_ci',
-	`nomeresponsavel` VARCHAR(100) NOT NULL COLLATE 'latin1_swedish_ci',
-	`profissao` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`localtrabalho` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`teltrabalho` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-    `turno` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`telresid` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`celular` VARCHAR(16) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`email` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`rg` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`endereco` VARCHAR(120) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`bairro` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cpf` VARCHAR(14) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`nomeresponsavel` VARCHAR(100) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`profissao` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`localtrabalho` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`teltrabalho` VARCHAR(11) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+    `turno` VARCHAR(11) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`telresid` VARCHAR(11) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`celular` VARCHAR(16) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`email` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`rg` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`endereco` VARCHAR(120) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`bairro` VARCHAR(60) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`cidade` INT(11) NULL DEFAULT NULL,
 	`uf` INT(10) UNSIGNED NULL DEFAULT NULL,
-	`cep` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cep` VARCHAR(8) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`rendaliquida` DECIMAL(10,2) NULL DEFAULT NULL,
-	`sexo` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`estadocivil` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`sexo` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`estadocivil` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`dtnascimento` DATE NULL DEFAULT NULL,
-	`escolaridade` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`pai` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`mae` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`enderecocom` VARCHAR(120) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`bairrocom` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`cepcom` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`escolaridade` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`pai` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`mae` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`enderecocom` VARCHAR(120) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`bairrocom` VARCHAR(30) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`cepcom` VARCHAR(8) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`codcidadecom` INT(11) NULL DEFAULT NULL,
-	`cargo` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`senha` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`login` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`fotoportal` VARCHAR(120) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`nacionalidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`naturalidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`obs` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cargo` VARCHAR(30) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`senha` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`login` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`fotoportal` VARCHAR(120) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`nacionalidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`naturalidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`obs` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`rgorgaoemissor` INT(2) NULL DEFAULT NULL COMMENT 'Orgao Emissor da indentidade. Relaciona com a tabela orgaoemissoridentidade',
 	`rgestado` SMALLINT(6) NULL DEFAULT NULL COMMENT 'Estado Identidade',
 	`rgdataemissao` DATE NULL DEFAULT NULL COMMENT 'Data de Emissao RG',
@@ -15184,24 +15192,24 @@ CREATE TABLE IF NOT EXISTS `mig_responsavel` (
 	`codcidadenaturalidade` INT(11) NULL DEFAULT NULL,
 	`codescolaridade` INT(11) NULL DEFAULT NULL,
 	`codfatura` INT(11) NULL DEFAULT NULL,
-	`agrupamentofatura` CHAR(1) NULL DEFAULT 'R' COMMENT 'R=responsavel; A=aluno;' COLLATE 'latin1_swedish_ci',
-	`placa` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`veiculo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`agrupamentofatura` CHAR(1) NULL DEFAULT 'R' COMMENT 'R=responsavel; A=aluno;' COLLATE 'utf8mb4_0900_ai_ci',
+	`placa` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`veiculo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`fotoblob` BLOB NULL DEFAULT NULL,
 	`dtcadastro` DATETIME NULL DEFAULT NULL,
 	`dtalteracao` DATETIME NULL DEFAULT NULL,
-	`cadastradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`alteradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cadastradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`alteradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`codbanco` INT(11) NULL DEFAULT NULL,
-	`agencia` VARCHAR(5) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`conta` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`debitoautomaticoativo` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
-	`clienteiugu` VARCHAR(40) NULL DEFAULT NULL COMMENT 'Id do responsavel no cadastro de clientes no iugu' COLLATE 'latin1_swedish_ci',
-	`inscricaoestadual` VARCHAR(20) NULL DEFAULT NULL COMMENT 'InscriÃ§Ã£o Estadual da empresa' COLLATE 'latin1_swedish_ci',
-	`tokenfirebase` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`inscricaomunicipal` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`agencia` VARCHAR(5) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`conta` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`debitoautomaticoativo` CHAR(1) NULL DEFAULT 'N' COLLATE 'utf8mb4_0900_ai_ci',
+	`clienteiugu` VARCHAR(40) NULL DEFAULT NULL COMMENT 'Id do responsavel no cadastro de clientes no iugu' COLLATE 'utf8mb4_0900_ai_ci',
+	`inscricaoestadual` VARCHAR(20) NULL DEFAULT NULL COMMENT 'InscriÃ§Ã£o Estadual da empresa' COLLATE 'utf8mb4_0900_ai_ci',
+	`tokenfirebase` VARCHAR(256) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`inscricaomunicipal` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	PRIMARY KEY (`codsoc`) USING BTREE)
-COLLATE='latin1_swedish_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 AUTO_INCREMENT=1;
 
@@ -15210,98 +15218,98 @@ CREATE TABLE IF NOT EXISTS `mig_funcionario` (
 	`FUNCODIGO` INT(11) NOT NULL AUTO_INCREMENT,
 	`CODESCOLARIDADE` INT(11) NULL DEFAULT NULL,
 	`CODBANCO` INT(11) NULL DEFAULT NULL,
-	`funbancoagencia` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`funbancoconta` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`funbancooperacao` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`funbancoagencia` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`funbancoconta` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`funbancooperacao` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`CODUF` INT(11) NULL DEFAULT NULL,
-	`NOME` VARCHAR(100) NOT NULL COLLATE 'latin1_swedish_ci',
-	`FOTO` VARCHAR(150) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`SEXO` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`NOME` VARCHAR(100) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`FOTO` VARCHAR(150) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SEXO` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`DTNASCIMENTO` DATE NULL DEFAULT NULL,
-	`NATURALIDADE` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`ESTADOCIVIL` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`CONJUGE` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`NATURALIDADE` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ESTADOCIVIL` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CONJUGE` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`DEPENDENTES` INT(11) NULL DEFAULT NULL,
 	`ESCOLARIDADE` INT(11) NULL DEFAULT NULL,
-	`ENDERECO` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`COMPLEMENTO` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`BAIRRO` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`CIDADE` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`CEP` VARCHAR(8) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`FONERESID` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`CELULAR` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`FONRECADO` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`EMAIL` VARCHAR(70) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`RG` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`CPF` VARCHAR(11) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`CATRABALHO` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`SERIECTRABALHO` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`HABILITACAO` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`CATEGORIA` VARCHAR(2) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`ENDERECO` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`COMPLEMENTO` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`BAIRRO` VARCHAR(60) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CIDADE` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CEP` VARCHAR(8) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`FONERESID` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CELULAR` VARCHAR(11) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`FONRECADO` VARCHAR(11) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`EMAIL` VARCHAR(70) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RG` VARCHAR(30) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CPF` VARCHAR(11) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CATRABALHO` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SERIECTRABALHO` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`HABILITACAO` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CATEGORIA` VARCHAR(2) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`DTADMISSAO` DATE NULL DEFAULT NULL,
 	`DTDESLIGAMENTO` DATE NULL DEFAULT NULL,
-	`MOTIVO` VARCHAR(1000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`OBSERVACOES` VARCHAR(2000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-    `obs` VARCHAR(2000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`ATIVO` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`CARTASSINADA` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`MOTIVO` VARCHAR(1000) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`OBSERVACOES` VARCHAR(2000) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+    `obs` VARCHAR(2000) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ATIVO` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CARTASSINADA` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`CAPACETE` INT(11) NULL DEFAULT NULL,
-	`TITELEITOR` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`TITZONA` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`HORAENTRADA` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`HORASAIDA` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`DESCANSO` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`FGTSOPTANTE` CHAR(3) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`TITELEITOR` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TITZONA` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`HORAENTRADA` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`HORASAIDA` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DESCANSO` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`FGTSOPTANTE` CHAR(3) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`FGTSDTOPCAO` DATE NULL DEFAULT NULL,
 	`FGTSDTRETRATACAO` DATE NULL DEFAULT NULL,
-	`NACIONALIDADE` VARCHAR(23) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`PAI` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`MAE` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`NUNCTMILIT` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`SERIECTMILIT` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`CATEGCTMILIT` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`NACIONALIDADE` VARCHAR(23) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`PAI` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MAE` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NUNCTMILIT` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SERIECTMILIT` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CATEGCTMILIT` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`PISDTCADASTRO` DATE NULL DEFAULT NULL,
-	`PISNUMERO` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`PISENDERECOBANCO` VARCHAR(150) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`PISCODBANCO` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`PISCODAGENCIA` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`PISOBS` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`PISNUMERO` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`PISENDERECOBANCO` VARCHAR(150) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`PISCODBANCO` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`PISCODAGENCIA` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`PISOBS` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`DTENTRADA` DATE NULL DEFAULT NULL,
 	`LIVREGISTRO` INT(11) NULL DEFAULT NULL,
-	`RESERVA` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`RESERVA` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`CODCARGO` INT(11) NULL DEFAULT NULL,
 	`PISBANCO` INT(11) NULL DEFAULT NULL,
 	`FGTSBANCO` INT(11) NULL DEFAULT NULL,
-	`FOTOPORTAL` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`LOGIN` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`SENHA` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`EMAILPORTAL` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`FONEPORTAL` VARCHAR(30) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`bloqueado` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
-	`UF` CHAR(2) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`FOTOPORTAL` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`LOGIN` VARCHAR(30) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SENHA` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`EMAILPORTAL` VARCHAR(60) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`FONEPORTAL` VARCHAR(30) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`bloqueado` CHAR(1) NULL DEFAULT 'N' COLLATE 'utf8mb4_0900_ai_ci',
+	`UF` CHAR(2) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`horariobloqueio` DATETIME NULL DEFAULT NULL,
-	`ipbloqueio` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`loginbloqueio` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`localbloqueio` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`SENHAADM` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`ipbloqueio` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`loginbloqueio` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`localbloqueio` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SENHAADM` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`fotoblob` BLOB NULL DEFAULT NULL,
-	`cor` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cor` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`codpaisorigem` SMALLINT(6) NULL DEFAULT NULL,
-	`codinep` VARCHAR(12) NULL DEFAULT NULL COMMENT 'codigo do profissional no INEP' COLLATE 'latin1_swedish_ci',
+	`codinep` VARCHAR(12) NULL DEFAULT NULL COMMENT 'codigo do profissional no INEP' COLLATE 'utf8mb4_0900_ai_ci',
 	`codcidadenaturalidade` INT(11) NULL DEFAULT NULL,
 	`zonaresidencia4006` INT(1) NULL DEFAULT NULL COMMENT '1-Urbana/2-Rural',
 	`regimecontratacao` INT(1) NULL DEFAULT NULL COMMENT '1-Concursado / 2-Contrato temporario / 3-Contrato tercerizado / 4-Contrato CLT',
-	`numcartao` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`alcunha` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`rf` VARCHAR(10) NULL DEFAULT NULL COMMENT 'Registro Funcional do Professor da Prefeitura Municipal de SÃ£o Paulo' COLLATE 'latin1_swedish_ci',
-	`qpe` VARCHAR(5) NULL DEFAULT NULL COMMENT 'evoluÃ§Ã£o que o Professor possui e indicativo do que ele precisa fazer para evoluir' COLLATE 'latin1_swedish_ci',
-	`avatoken` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`tokenfirebase` VARCHAR(256) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`chat_ativo` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
-	`idgoogledrive` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`wakkeuserid` CHAR(36) NULL DEFAULT NULL COMMENT 'Identificador do funcionÃ¡rio na Wakke Class' COLLATE 'latin1_swedish_ci',
+	`numcartao` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`alcunha` VARCHAR(60) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`rf` VARCHAR(10) NULL DEFAULT NULL COMMENT 'Registro Funcional do Professor da Prefeitura Municipal de SÃ£o Paulo' COLLATE 'utf8mb4_0900_ai_ci',
+	`qpe` VARCHAR(5) NULL DEFAULT NULL COMMENT 'evoluÃ§Ã£o que o Professor possui e indicativo do que ele precisa fazer para evoluir' COLLATE 'utf8mb4_0900_ai_ci',
+	`avatoken` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`tokenfirebase` VARCHAR(256) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`chat_ativo` CHAR(1) NULL DEFAULT 'N' COLLATE 'utf8mb4_0900_ai_ci',
+	`idgoogledrive` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`wakkeuserid` CHAR(36) NULL DEFAULT NULL COMMENT 'Identificador do funcionÃ¡rio na Wakke Class' COLLATE 'utf8mb4_0900_ai_ci',
 	PRIMARY KEY (`FUNCODIGO`) USING BTREE)
-COLLATE='latin1_swedish_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 AUTO_INCREMENT=1;
 
@@ -15331,82 +15339,82 @@ DROP TABLE IF EXISTS `mig_curso`;
 CREATE TABLE IF NOT EXISTS `mig_curso` (
 	`codcurso` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`codnivel` INT(10) UNSIGNED NOT NULL,
-	`dsccurso` VARCHAR(150) NOT NULL COLLATE 'latin1_swedish_ci',
-	`ativo` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`dscabreviada` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`enderecoaditivo` VARCHAR(150) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`financeiroporcurso` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
-	`cnae` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`acessaportal` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
-	`dsccompleta` VARCHAR(150) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`resolucao` VARCHAR(250) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dsccurso` VARCHAR(150) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ativo` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`dscabreviada` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`enderecoaditivo` VARCHAR(150) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`financeiroporcurso` CHAR(1) NULL DEFAULT 'N' COLLATE 'utf8mb4_0900_ai_ci',
+	`cnae` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`acessaportal` CHAR(1) NULL DEFAULT 'S' COLLATE 'utf8mb4_0900_ai_ci',
+	`dsccompleta` VARCHAR(150) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`resolucao` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`cargahoraria` DECIMAL(10,2) NULL DEFAULT NULL,
-	`perfil` VARCHAR(4000) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`competencia` TEXT NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`codcenso` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`codservicoprefeitura` VARCHAR(15) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`fundamentolegal` VARCHAR(500) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`eixotecnologico` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`recetapas` CHAR(1) NULL DEFAULT 'S' COMMENT 'quantidade de bimestres/trimestres - curso tecnico = 1' COLLATE 'latin1_swedish_ci',
-	`recsemestre` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`perfil` VARCHAR(4000) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`competencia` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`codcenso` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`codservicoprefeitura` VARCHAR(15) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`fundamentolegal` VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`eixotecnologico` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`recetapas` CHAR(1) NULL DEFAULT 'S' COMMENT 'quantidade de bimestres/trimestres - curso tecnico = 1' COLLATE 'utf8mb4_0900_ai_ci',
+	`recsemestre` CHAR(1) NULL DEFAULT 'N' COLLATE 'utf8mb4_0900_ai_ci',
 	`numcasasdecimais` INT(11) NULL DEFAULT NULL,
 	`arredfinal` INT(11) NULL DEFAULT NULL,
 	`calculorec` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_general_ci',
 	`numetapas` INT(11) NOT NULL DEFAULT '1',
 	`anularesultadofinal` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_general_ci',
 	`tipoarredetapa` INT(11) NULL DEFAULT '0',
-	`suplementaretapa` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`profgerenciaravaliacao` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`suplementaretapa` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`profgerenciaravaliacao` CHAR(1) NULL DEFAULT 'S' COLLATE 'utf8mb4_0900_ai_ci',
 	`mediafinaldiv` INT(11) NULL DEFAULT NULL,
-	`limitarrecmedia` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
-	`limitarecfinalmedia` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`limitarrecmedia` CHAR(1) NULL DEFAULT 'S' COLLATE 'utf8mb4_0900_ai_ci',
+	`limitarecfinalmedia` CHAR(1) NULL DEFAULT 'S' COLLATE 'utf8mb4_0900_ai_ci',
 	`totalaprovacao` INT(11) NULL DEFAULT '60',
-	`tipoagrupmateriacomposta` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
-	`mediasemestreagrupado` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
-	`avaliacaogrupo` CHAR(1) NULL DEFAULT 'N' COMMENT 'define se as avaliaÃ§Ãµes da escola sÃ£o separadas em grupos. s = sim  /  n = nao.' COLLATE 'latin1_swedish_ci',
+	`tipoagrupmateriacomposta` CHAR(1) NULL DEFAULT 'S' COLLATE 'utf8mb4_0900_ai_ci',
+	`mediasemestreagrupado` CHAR(1) NULL DEFAULT 'N' COLLATE 'utf8mb4_0900_ai_ci',
+	`avaliacaogrupo` CHAR(1) NULL DEFAULT 'N' COMMENT 'define se as avaliaÃ§Ãµes da escola sÃ£o separadas em grupos. s = sim  /  n = nao.' COLLATE 'utf8mb4_0900_ai_ci',
 	`calculomediafinal` CHAR(1) NULL DEFAULT 'P' COLLATE 'latin1_general_ci',
 	`qtdmateriarpp` INT(11) NULL DEFAULT '0',
-	`calculomedia` CHAR(1) NULL DEFAULT 'P' COLLATE 'latin1_swedish_ci',
-	`anoletivosemestre` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`calculomedia` CHAR(1) NULL DEFAULT 'P' COLLATE 'utf8mb4_0900_ai_ci',
+	`anoletivosemestre` CHAR(1) NULL DEFAULT 'N' COLLATE 'utf8mb4_0900_ai_ci',
 	`mediasemestre1` DECIMAL(5,2) NULL DEFAULT NULL,
 	`mediasemestre2` DECIMAL(5,2) NULL DEFAULT NULL,
-	`matriculaonline` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
-	`rpp` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`matriculaonline` CHAR(1) NULL DEFAULT 'N' COLLATE 'utf8mb4_0900_ai_ci',
+	`rpp` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`formulamediaetapa` INT(11) NOT NULL DEFAULT '1000',
 	`calculorecsemestre` INT(11) NULL DEFAULT '1000',
 	`totalaprovacaoposrecfinal` INT(11) NULL DEFAULT '60',
 	`totalaprovacaoposrecfinal2` INT(11) NULL DEFAULT '60',
-	`analisafaltaspordisciplina` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
-	`aulahistorico` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
-	`suplementarposrec` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
-	`utilizanotatransferencia` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
-	`setasituacaoalunoaolancarnota` CHAR(1) NULL DEFAULT 'N' COMMENT 'Determina se a situacao do aluno do curso nivel 4 Ã© setada na hora que lancar a nota ou se Ã© o padrÃ£o quando a turma finaliza.' COLLATE 'latin1_swedish_ci',
-	`periodorecuperacao` CHAR(2) NULL DEFAULT NULL COMMENT 'E1 - etapa1, E2 - etapa2 ,E3 - etapa3 ,E4 - etapa4, S1 - semestre1 ,S2 - semestre2, F1 - Final1, F2 - Final2' COLLATE 'latin1_swedish_ci',
+	`analisafaltaspordisciplina` CHAR(1) NULL DEFAULT 'S' COLLATE 'utf8mb4_0900_ai_ci',
+	`aulahistorico` CHAR(1) NULL DEFAULT 'S' COLLATE 'utf8mb4_0900_ai_ci',
+	`suplementarposrec` CHAR(1) NULL DEFAULT 'N' COLLATE 'utf8mb4_0900_ai_ci',
+	`utilizanotatransferencia` CHAR(1) NULL DEFAULT 'S' COLLATE 'utf8mb4_0900_ai_ci',
+	`setasituacaoalunoaolancarnota` CHAR(1) NULL DEFAULT 'N' COMMENT 'Determina se a situacao do aluno do curso nivel 4 Ã© setada na hora que lancar a nota ou se Ã© o padrÃ£o quando a turma finaliza.' COLLATE 'utf8mb4_0900_ai_ci',
+	`periodorecuperacao` CHAR(2) NULL DEFAULT NULL COMMENT 'E1 - etapa1, E2 - etapa2 ,E3 - etapa3 ,E4 - etapa4, S1 - semestre1 ,S2 - semestre2, F1 - Final1, F2 - Final2' COLLATE 'utf8mb4_0900_ai_ci',
 	`modalidade2036` INT(1) NULL DEFAULT NULL COMMENT '1-Ensino Regular/2-Educacao especial substituta/3-Educacao Jovens e Adultos (EJA)',
 	`codcursoprofissional2038` INT(8) NULL DEFAULT NULL COMMENT 'Codigo do curso para o censo da tabela cursoseducacaoprofissional do censo. Somente para curso de educacao prossional',
 	`codboletimportal` INT(11) NULL DEFAULT NULL,
 	`aliquota` INT(11) NULL DEFAULT NULL,
 	`aliquotanfse` DECIMAL(5,4) NULL DEFAULT NULL,
-	`dscnfse` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`codservico` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`codtributacaomunicipio` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dscnfse` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`codservico` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`codtributacaomunicipio` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`liberarsituacaoaluno` INT(11) NOT NULL DEFAULT '0',
-	`concluirmatriculasemfinanceiro` CHAR(1) NULL DEFAULT 'S' COMMENT 'S=conclui a matricula mesmo sem financeiro gerado;N=impede que o usuÃ¡rio conclua a matrÃ­cula sem que exista um plano de pagamento gerado' COLLATE 'latin1_swedish_ci',
-	`financeiroporha` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
+	`concluirmatriculasemfinanceiro` CHAR(1) NULL DEFAULT 'S' COMMENT 'S=conclui a matricula mesmo sem financeiro gerado;N=impede que o usuÃ¡rio conclua a matrÃ­cula sem que exista um plano de pagamento gerado' COLLATE 'utf8mb4_0900_ai_ci',
+	`financeiroporha` CHAR(1) NULL DEFAULT 'N' COLLATE 'utf8mb4_0900_ai_ci',
 	`codcursoreplicadode` INT(11) NULL DEFAULT NULL,
 	`dtreplicado` DATETIME NULL DEFAULT NULL,
-	`replicadopor` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`replicadopor` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`dtcadastro` DATETIME NULL DEFAULT NULL,
-	`cadastradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`servicolc116` VARCHAR(10) NULL DEFAULT NULL COMMENT 'usado para gerar rps' COLLATE 'latin1_swedish_ci',
+	`cadastradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`servicolc116` VARCHAR(10) NULL DEFAULT NULL COMMENT 'usado para gerar rps' COLLATE 'utf8mb4_0900_ai_ci',
 	`classe` INT(11) NULL DEFAULT '1' COMMENT '1=BNCC / 2=ELETIVA / 3=ITINERARIO FORMATIVO',
-	`codigoemec` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`nomehabilitacao` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`modalidade` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`tituloconferido` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`grauconferido` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codigoemec` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`nomehabilitacao` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`modalidade` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`tituloconferido` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`grauconferido` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	PRIMARY KEY (`codcurso`) USING BTREE)
-COLLATE='latin1_swedish_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 AUTO_INCREMENT=1;
 
@@ -15417,42 +15425,42 @@ CREATE TABLE IF NOT EXISTS `mig_seriecurso` (
 	`codunidade` INT(10) UNSIGNED NOT NULL,
 	`codserie` INT(10) UNSIGNED NOT NULL,
 	`ordem` INT(10) UNSIGNED NULL DEFAULT NULL,
-	`ativo` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`concluinte` CHAR(1) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`dscserie` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',   -- dscserie
-	`resolucao` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`incluirhistorico` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
-	`dscseriecompleta` VARCHAR(200) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`dscaprovado` VARCHAR(50) NULL DEFAULT 'APROVADO' COLLATE 'latin1_swedish_ci',
-	`dscreprovado` VARCHAR(50) NULL DEFAULT 'REPROVADO' COLLATE 'latin1_swedish_ci',
-	`dscrpp` VARCHAR(50) NULL DEFAULT 'RPP' COLLATE 'latin1_swedish_ci',
+	`ativo` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`concluinte` CHAR(1) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`dscserie` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',   -- dscserie
+	`resolucao` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`incluirhistorico` CHAR(1) NULL DEFAULT 'S' COLLATE 'utf8mb4_0900_ai_ci',
+	`dscseriecompleta` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`dscaprovado` VARCHAR(50) NULL DEFAULT 'APROVADO' COLLATE 'utf8mb4_0900_ai_ci',
+	`dscreprovado` VARCHAR(50) NULL DEFAULT 'REPROVADO' COLLATE 'utf8mb4_0900_ai_ci',
+	`dscrpp` VARCHAR(50) NULL DEFAULT 'RPP' COLLATE 'utf8mb4_0900_ai_ci',
 	`codetapaensino2037` INT(2) NULL DEFAULT NULL COMMENT 'codigo da etapa de ensino da tabela etapaensinocenso',
 	`chminima` DECIMAL(10,2) NULL DEFAULT NULL,
 	`chmaxima` DECIMAL(10,2) NULL DEFAULT NULL,
 	`qtdaulasdia` INT(11) NULL DEFAULT NULL COMMENT 'quantidade de aulas por dia (urania)',
-	`diassemana` VARCHAR(20) NULL DEFAULT NULL COMMENT 'dias da semana que tem aula. ex: 2,3,4 = seg, ter,qua (urania)' COLLATE 'latin1_swedish_ci',
+	`diassemana` VARCHAR(20) NULL DEFAULT NULL COMMENT 'dias da semana que tem aula. ex: 2,3,4 = seg, ter,qua (urania)' COLLATE 'utf8mb4_0900_ai_ci',
 	`codseriecursoreplicadode` INT(11) NULL DEFAULT NULL,
-	`replicadopor` VARCHAR(40) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`replicadopor` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`dtreplicado` DATETIME NULL DEFAULT NULL,
 	`dtcadastro` DATETIME NULL DEFAULT NULL,
-	`cadastradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`AUX_SerieID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`AUX_CursoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`cadastradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`AUX_SerieID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`AUX_CursoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	PRIMARY KEY (`codseriecurso`) USING BTREE)
-COLLATE='latin1_swedish_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 AUTO_INCREMENT=1;
 
 DROP TABLE IF EXISTS `mig_turma`;
 CREATE TABLE IF NOT EXISTS `mig_turma` (
 	`codturma` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-	`dscturma` VARCHAR(10) NOT NULL COLLATE 'latin1_swedish_ci',
-	`turno` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`unidade` VARCHAR(10) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`mig_periodo` VARCHAR(20) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`dscturma` VARCHAR(10) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`turno` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`unidade` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`mig_periodo` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	PRIMARY KEY (`codturma`) USING BTREE,
 	INDEX `dscturma` (`dscturma`) USING BTREE)
-COLLATE='latin1_swedish_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `mig_configturma`;
@@ -15591,8 +15599,8 @@ CREATE TABLE IF NOT EXISTS `mig_matricula` (
 DROP TABLE IF EXISTS `mig_centroreceita`;
 CREATE TABLE `mig_centroreceita` (
 	`codreceita` INT(11) NOT NULL AUTO_INCREMENT,
-	`dscreceita` VARCHAR(20) NOT NULL COLLATE 'latin1_swedish_ci',
-	`ativo` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
+	`dscreceita` VARCHAR(20) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ativo` CHAR(1) NULL DEFAULT 'S' COLLATE 'utf8mb4_0900_ai_ci',
 	`multa` DECIMAL(10,5) NULL DEFAULT NULL,
 	`juros` DECIMAL(10,5) NULL DEFAULT NULL,
 	`codnaturezalanccaixa` INT(10) UNSIGNED NULL DEFAULT NULL,
@@ -15600,27 +15608,27 @@ CREATE TABLE `mig_centroreceita` (
 	`carenciadesconto` INT(11) NULL DEFAULT '0',
 	`percentualdesconto` DECIMAL(10,5) NULL DEFAULT NULL,
 	`codcontacaixa` INT(10) NULL DEFAULT NULL,
-	`principal` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
-	`jurossobre` CHAR(1) NULL DEFAULT 'P' COLLATE 'latin1_swedish_ci',
-	`msgfixaboleto` VARCHAR(400) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`atualizajuros` CHAR(1) NOT NULL DEFAULT 'D' COMMENT 'Indica se o ojuros sera atualizado diariamente ou mensalmente sendo D=diario, D=mensal' COLLATE 'latin1_swedish_ci',
-	`desconto2sobre` CHAR(1) NULL DEFAULT 'P' COLLATE 'latin1_swedish_ci',
-	`podeagrupar` CHAR(1) NULL DEFAULT 'N' COMMENT 's=permite agrupar na fatura; nao permite agrupar na fatura' COLLATE 'latin1_swedish_ci',
-	`conluimatriculaonline` CHAR(1) NULL DEFAULT 'N' COLLATE 'latin1_swedish_ci',
-	`cobrancaautomatica` CHAR(1) NULL DEFAULT 'S' COLLATE 'latin1_swedish_ci',
-	`cieloativo` CHAR(1) NULL DEFAULT 'N' COMMENT 'Indica se o sistema de pagamento online cielo estÃ¡ ativo' COLLATE 'latin1_swedish_ci',
-	`tipocobrancaiugu` CHAR(1) NULL DEFAULT 'B' COMMENT 'A=CARTAO E BOLETO; B=SOMENTE BOLETO; C-SOMENTE CARTAO' COLLATE 'latin1_swedish_ci',
+	`principal` CHAR(1) NULL DEFAULT 'N' COLLATE 'utf8mb4_0900_ai_ci',
+	`jurossobre` CHAR(1) NULL DEFAULT 'P' COLLATE 'utf8mb4_0900_ai_ci',
+	`msgfixaboleto` VARCHAR(400) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`atualizajuros` CHAR(1) NOT NULL DEFAULT 'D' COMMENT 'Indica se o ojuros sera atualizado diariamente ou mensalmente sendo D=diario, D=mensal' COLLATE 'utf8mb4_0900_ai_ci',
+	`desconto2sobre` CHAR(1) NULL DEFAULT 'P' COLLATE 'utf8mb4_0900_ai_ci',
+	`podeagrupar` CHAR(1) NULL DEFAULT 'N' COMMENT 's=permite agrupar na fatura; nao permite agrupar na fatura' COLLATE 'utf8mb4_0900_ai_ci',
+	`conluimatriculaonline` CHAR(1) NULL DEFAULT 'N' COLLATE 'utf8mb4_0900_ai_ci',
+	`cobrancaautomatica` CHAR(1) NULL DEFAULT 'S' COLLATE 'utf8mb4_0900_ai_ci',
+	`cieloativo` CHAR(1) NULL DEFAULT 'N' COMMENT 'Indica se o sistema de pagamento online cielo estÃ¡ ativo' COLLATE 'utf8mb4_0900_ai_ci',
+	`tipocobrancaiugu` CHAR(1) NULL DEFAULT 'B' COMMENT 'A=CARTAO E BOLETO; B=SOMENTE BOLETO; C-SOMENTE CARTAO' COLLATE 'utf8mb4_0900_ai_ci',
 	`competencia` INT(11) NULL DEFAULT '0' COMMENT '0= mesmo mes do vencimento; 1=prÃ³ximo mÃªs do vencimento; -1 = mes anterior ao vencimento',
-	`opcional` CHAR(1) NULL DEFAULT 'N' COMMENT 'S = Informa que o centro de receita Ã© opcional, foi acrescentado para atender o matriculaOnline; N = Informa que Ã© obrigatÃ³rio' COLLATE 'latin1_swedish_ci',
-	`alteradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`opcional` CHAR(1) NULL DEFAULT 'N' COMMENT 'S = Informa que o centro de receita Ã© opcional, foi acrescentado para atender o matriculaOnline; N = Informa que Ã© obrigatÃ³rio' COLLATE 'utf8mb4_0900_ai_ci',
+	`alteradopor` VARCHAR(60) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`dtalteracao` DATETIME NULL DEFAULT NULL,
-	`codreceita_aux` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`dscreceita_aux` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`codreceita_unificado` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`codreceita_aux` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`dscreceita_aux` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`codreceita_unificado` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	PRIMARY KEY (`codreceita`) USING BTREE,
 	INDEX `codreceita_aux` (`codreceita_aux`) USING BTREE
 )
-COLLATE='latin1_swedish_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 AUTO_INCREMENT=1
 ;
@@ -15683,8 +15691,8 @@ CREATE TABLE if not exists  `mig_conta` (
   `dataalteracao` date DEFAULT NULL,
   `usuarioalteracao` varchar(30) DEFAULT NULL,
   `versaolayoutremessa` SMALLINT(6) DEFAULT NULL,
-`AUX_titular` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-`AUX_BancoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+`AUX_titular` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+`AUX_BancoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
   PRIMARY KEY (`codconta`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -15882,42 +15890,42 @@ CREATE TABLE IF NOT EXISTS `mig_acumulado` (
 CREATE TABLE IF NOT EXISTS alunos
 (
   `AlunoID` INT(25) NULL DEFAULT NULL
-, DestinoCorrespondenciaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, ResponsavelFinanceiroID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, ResponsavelDidaticoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, BancoFebrabanID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, DestinoCorrespondenciaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, ResponsavelFinanceiroID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, ResponsavelDidaticoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, BancoFebrabanID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , BairroID INT(11)
-, UsuarioID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, UsuarioID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , EstadoCivilID INT(11)
 , CidadeID INT(11)
 , CidadeNatalID INT(11)
-, Nome VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, DataNascimento VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Sexo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, CPF VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, RG VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Endereco VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, CEP VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, Nome VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, DataNascimento VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Sexo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, CPF VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, RG VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Endereco VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, CEP VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , ComplementoEndereco TEXT
-, FoneResidencial VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, FoneCelular VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, DataCadastro VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, RamalTrabalho VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Profissao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Email VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, FoneComercial VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, HorarioContato VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, NaoReceberEmail VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Conta VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Agencia VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, CodigoClienteBanco VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, EmpresaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Foto VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, TipoFoto VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, MatriculaWeb VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, PermEmpBib VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, TituloEleitor VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, DocumentoMilitar VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, FoneResidencial VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, FoneCelular VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, DataCadastro VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, RamalTrabalho VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Profissao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Email VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, FoneComercial VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, HorarioContato VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, NaoReceberEmail VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Conta VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Agencia VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, CodigoClienteBanco VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, EmpresaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Foto VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, TipoFoto VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, MatriculaWeb VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, PermEmpBib VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, TituloEleitor VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, DocumentoMilitar VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , CertidaoNascimento TEXT
 , CertidaoFolha TEXT
 , CertidaoLivro TEXT
@@ -15925,55 +15933,55 @@ CREATE TABLE IF NOT EXISTS alunos
 , CertidaoDataEmissao TEXT
 , CertidaoCartorio TEXT
 , CertidaoUF TEXT
-, DataExpedicaoRG VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, OrgaoExpedidorRG VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Idade VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, DataExpedicaoRG VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, OrgaoExpedidorRG VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Idade VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , Alergia TEXT
 , Doencas TEXT
 , PrimeirosSocorros TEXT
-, TipoSanguineo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Cor VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, PreEmOutra VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, TipoCertidao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, NumeroMatriculaCertidao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, TituloEleitorZona VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, TituloEleitorSessao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, TituloEleitorDataEmissao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, NaoReceberSMS VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, NroDocMilitar VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, CidadeCertidaoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, TurnoPretendido VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, CNHOrgEmissor VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, CNHDataVencimento VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, CNHUFID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, CNHCategoria VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, CNHNumero VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, CNHRegistro VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, HorarioEntrada VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, HorarioSaida VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, OperadoraCelularId VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, MelhorHorarioContatoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, NroPassaporte VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, LocalTrabalho VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, DiaVencimento VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, FotoPortal VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, CorPortal VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, NumeroEndereco VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, DataArquivo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, NroPastaArquivo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, LocalizacaoArquivo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, OutraEscolaId VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, NomeSocial VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, RecordValue VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, NaoReceberSMSMarketing VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, CondutorID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, ResponsavelFinanceiroOpcionalID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, CondutorSaidaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, NacionalidadeID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, InfoBloqueada VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, ClienteStoneID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, PaisID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-, Estrangeiro VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+, TipoSanguineo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Cor VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, PreEmOutra VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, TipoCertidao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, NumeroMatriculaCertidao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, TituloEleitorZona VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, TituloEleitorSessao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, TituloEleitorDataEmissao VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, NaoReceberSMS VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, NroDocMilitar VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, CidadeCertidaoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, TurnoPretendido VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, CNHOrgEmissor VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, CNHDataVencimento VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, CNHUFID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, CNHCategoria VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, CNHNumero VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, CNHRegistro VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, HorarioEntrada VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, HorarioSaida VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, OperadoraCelularId VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, MelhorHorarioContatoID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, NroPassaporte VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, LocalTrabalho VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, DiaVencimento VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, FotoPortal VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, CorPortal VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, NumeroEndereco VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, DataArquivo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, NroPastaArquivo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, LocalizacaoArquivo VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, OutraEscolaId VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, NomeSocial VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, RecordValue VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, NaoReceberSMSMarketing VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, CondutorID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, ResponsavelFinanceiroOpcionalID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, CondutorSaidaID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, NacionalidadeID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, InfoBloqueada VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, ClienteStoneID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, PaisID VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+, Estrangeiro VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 , INDEX `AlunoID` (`AlunoID`) USING BTREE
 , INDEX `ResponsavelFinanceiroID` (`ResponsavelFinanceiroID`) USING BTREE
 , INDEX `ResponsavelDidaticoID` (`ResponsavelDidaticoID`) USING BTREE
@@ -15981,7 +15989,7 @@ CREATE TABLE IF NOT EXISTS alunos
 , INDEX `CidadeNatalID` (`CidadeNatalID`) USING BTREE
 , INDEX `BairroID` (`BairroID`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;</sql>
     <set_params>N</set_params>
@@ -16027,7 +16035,7 @@ CREATE TABLE IF NOT EXISTS `alunosresponsaveis` (
 	`ResponsavelID` INT(11),
 	`AlunoID` INT(11),
 	`TipoResponsavelID` INT(11),
-	`PodeRetirarAluno` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`PodeRetirarAluno` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`RecordValue` INT(11) NULL DEFAULT NULL
 , INDEX `AlunoResponsavelID` (`AlunoResponsavelID`) USING BTREE
 , INDEX `ResponsavelID` (`ResponsavelID`) USING BTREE
@@ -16035,7 +16043,7 @@ CREATE TABLE IF NOT EXISTS `alunosresponsaveis` (
 , INDEX `TipoResponsavelID` (`TipoResponsavelID`) USING BTREE
 
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;</sql>
     <set_params>N</set_params>
@@ -16079,10 +16087,10 @@ ENGINE=InnoDB
 CREATE TABLE IF NOT EXISTS `bairros` (
 	`BairroID` INT(11),
 	`CidadeID` INT(11),
-	`Nome` VARCHAR(80) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`Nome` VARCHAR(80) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `BairroID` (`BairroID`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -16126,12 +16134,12 @@ ENGINE=InnoDB
     <sql>DROP TABLE IF EXISTS  `cidades`;
 CREATE TABLE IF NOT EXISTS `cidades` (
 	`CidadeID` INT(11)
-,	`PaisID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-,	`Nome` VARCHAR(55) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
-,	`Estado` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci'
+,	`PaisID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+,	`Nome` VARCHAR(55) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+,	`Estado` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
 ,	INDEX `CidadeID` (`CidadeID`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;</sql>
     <set_params>N</set_params>
@@ -16174,71 +16182,71 @@ ENGINE=InnoDB
     <sql>DROP TABLE IF EXISTS  `cursos`;
 CREATE TABLE IF NOT EXISTS `cursos` (
 	`CursoID` INT(11),
-	`Nome` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`RegimeID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ce` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`CoordenadorID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`TipoCursoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Etapas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NumeroVagas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`Nome` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RegimeID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ce` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CoordenadorID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TipoCursoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Etapas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumeroVagas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`CurriculoCurso` TEXT,
 	`PerfilCurso` TEXT,
-	`Sigla` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Ativo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MensalidadeParcelas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MensalidadeValor` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MensalidadePlanoContasID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MensalidadeDataInicial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MaterialParcelas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MaterialValor` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MaterialPlanoContasID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MaterialDataInicial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`OutroParcelas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`OutroValor` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`OutroPlanoContasID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`OutroDataInicial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`SistemaAvaliacaoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Jubilamento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`IdadeMinima` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Dependencias` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Requisitos` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MatriculaParcelas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MatriculaValor` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MatriculaPlanoContasID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MatriculaDataInicial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`SerieID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`AlunosPontoEquilibrio` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`Sigla` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Ativo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MensalidadeParcelas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MensalidadeValor` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MensalidadePlanoContasID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MensalidadeDataInicial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MaterialParcelas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MaterialValor` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MaterialPlanoContasID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MaterialDataInicial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`OutroParcelas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`OutroValor` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`OutroPlanoContasID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`OutroDataInicial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SistemaAvaliacaoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Jubilamento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`IdadeMinima` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Dependencias` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Requisitos` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MatriculaParcelas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MatriculaValor` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MatriculaPlanoContasID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MatriculaDataInicial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SerieID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`AlunosPontoEquilibrio` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`Ato` TEXT,
 	`ReconhecimentoCurso` TEXT,
 	`EixoCurso` TEXT,
 	`NomeInstituicao` TEXT,
-	`MesVencimentoAtual` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MensalidadeValorPrimeiraParcela` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ValorMinimoMensalidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ValorMinimoMaterial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ValorMinimoTaxa` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NumeroAulas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MinimoAlunos` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`HorasAula` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`CargaHoraria` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`AtividadeComplementarModular` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`UsaPoliticaComercial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`TipoPoliticaComercial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ValorMinimoParcMensalidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ValorMinimoParcTaxa` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ValorMinimoParcMaterial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NumeroMaximoParcMensalidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NumeroMaximoParcTaxa` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NumeroMaximoParcMaterial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`TipoFormacao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`GrauAcademico` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Intitulado` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ModalidadeEnsino` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`UsaCompetencias` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',	
+	`MesVencimentoAtual` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MensalidadeValorPrimeiraParcela` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ValorMinimoMensalidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ValorMinimoMaterial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ValorMinimoTaxa` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumeroAulas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MinimoAlunos` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`HorasAula` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CargaHoraria` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`AtividadeComplementarModular` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`UsaPoliticaComercial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TipoPoliticaComercial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ValorMinimoParcMensalidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ValorMinimoParcTaxa` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ValorMinimoParcMaterial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumeroMaximoParcMensalidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumeroMaximoParcTaxa` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumeroMaximoParcMaterial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TipoFormacao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`GrauAcademico` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Intitulado` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ModalidadeEnsino` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`UsaCompetencias` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',	
 	INDEX `CursoID` (`CursoID`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -16283,26 +16291,26 @@ ENGINE=InnoDB
 DROP TABLE IF EXISTS  `disciplinas`;
 CREATE TABLE IF NOT EXISTS `disciplinas` (
 	`DisciplinaID` INT(11),
-	`TipoCursoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ce` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`TipoDisciplinaID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`TipoCursoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ce` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TipoDisciplinaID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`Nome` VARCHAR(540) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`Ativo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`CodigoINEP` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`DisciplinaPaiID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Nivel` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`Ativo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CodigoINEP` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DisciplinaPaiID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Nivel` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`Sigla` VARCHAR(150) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`Valor` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`Valor` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`TraducaoDisciplina` VARCHAR(450) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
-	`UtilizaHabilidades` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`UtilizaHabilidades1Ano` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`CursoEvoluaID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`CodigoDisciplinaEducacenso` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`AreaConhecimentoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`UtilizaHabilidades` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`UtilizaHabilidades1Ano` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CursoEvoluaID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CodigoDisciplinaEducacenso` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`AreaConhecimentoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `DisciplinaID` (`DisciplinaID`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -16350,10 +16358,10 @@ CREATE TABLE IF NOT EXISTS `emailspessoas` (
 	`ResponsavelID` INT(11),
 	`FuncionarioID` INT(11),
 	`EmpresaID` INT(11),
-	`TipoEmailID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Email` VARCHAR(67) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Padrao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`TipoEmailID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Email` VARCHAR(67) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Padrao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `EmailPessoaID` (`EmailPessoaID`) USING BTREE,
 	INDEX `AlunoID` (`AlunoID`) USING BTREE,
 	INDEX `ResponsavelID` (`ResponsavelID`) USING BTREE,
@@ -16361,7 +16369,7 @@ CREATE TABLE IF NOT EXISTS `emailspessoas` (
 	INDEX `EmpresaID` (`EmpresaID`) USING BTREE,
 	INDEX `TipoEmailID` (`TipoEmailID`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -16405,62 +16413,62 @@ ENGINE=InnoDB
     <sql>DROP TABLE IF EXISTS  `funcionarios`;
 CREATE TABLE IF NOT EXISTS `funcionarios` (
 	`FuncionarioID` INT(11),
-	`BancoFebrabanID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`BancoFebrabanID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`EstadoCivilID` INT(11),
 	`CidadeID` INT(11),
 	`BairroID` INT(11),
-	`UsuarioID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ce` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`UsuarioID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ce` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`CargoID` INT(11),
 	`CidadeNatalID` INT(11),
-	`Nome` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NomeCompleto` VARCHAR(73) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Sexo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`DataNascimento` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`CPF` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`RG` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`CarteiraProfissional` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`Nome` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NomeCompleto` VARCHAR(73) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Sexo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataNascimento` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CPF` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RG` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CarteiraProfissional` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`Endereco` TEXT,
-	`ComplementoEndereco` VARCHAR(66) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`CEP` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`DataCadastro` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`FoneResidencial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`FoneCelular` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Salario` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`ComplementoEndereco` VARCHAR(66) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CEP` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataCadastro` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`FoneResidencial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`FoneCelular` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Salario` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`Observacao` TEXT,
-	`Professor` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Ativo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ValorHoraAula` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ValorHoraAulaExterna` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`INSS` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`TipoPagamento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Email` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Conta` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Agencia` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NaoReceberEmail` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`SenhaSponteNET` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`DataDemissao` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`CodigoClienteBanco` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Atendente` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`DataAdmissao` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Curriculo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NroDependentes` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Ato` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Foto` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`TipoFoto` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NumeroMatricula` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NumeroEndereco` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`TipoComissao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`PermiteReceberMsgPortal` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`PIS` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Titulacao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`Professor` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Ativo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ValorHoraAula` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ValorHoraAulaExterna` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`INSS` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TipoPagamento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Email` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Conta` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Agencia` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NaoReceberEmail` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SenhaSponteNET` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataDemissao` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CodigoClienteBanco` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Atendente` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataAdmissao` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Curriculo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NroDependentes` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Ato` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Foto` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TipoFoto` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumeroMatricula` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumeroEndereco` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TipoComissao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`PermiteReceberMsgPortal` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`PIS` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Titulacao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `FuncionarioID` (`FuncionarioID`) USING BTREE
 	, INDEX `CidadeID` (`CidadeID`) USING BTREE
 	, INDEX `CargoID` (`CargoID`) USING BTREE
 	, INDEX `CidadeNatalID` (`CidadeNatalID`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;</sql>
     <set_params>N</set_params>
@@ -16503,23 +16511,23 @@ ENGINE=InnoDB
     <sql>DROP TABLE IF EXISTS  `matriculasrematriculasedu`;
 CREATE TABLE IF NOT EXISTS `matriculasrematriculasedu` (
 	`ce` INT(11),
-	`CursoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`AlunoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Data` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`AulasLivres` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Matriculas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Rematriculas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Encerramentos` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Trancamentos` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Cancelamentos` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`TransferenciasTurma` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Rescisoes` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`DataRescisao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`DataEncerramento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`CursoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`AlunoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Data` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`AulasLivres` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Matriculas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Rematriculas` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Encerramentos` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Trancamentos` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Cancelamentos` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TransferenciasTurma` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Rescisoes` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataRescisao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataEncerramento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `AlunoID` (`AlunoID`) USING BTREE,
 	INDEX `CursoID` (`CursoID`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -16565,49 +16573,49 @@ CREATE TABLE IF NOT EXISTS `responsaveis` (
 	`ResponsavelID` INT(11),
 	`CidadeID` INT(11),
 	`BairroID` INT(11),
-	`Nome` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`Nome` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`Endereco` TEXT,
-	`CEP` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`FoneResidencial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`FoneCelular` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Email` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`FoneComercial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Profissao` VARCHAR(70) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`CEP` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`FoneResidencial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`FoneCelular` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Email` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`FoneComercial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Profissao` VARCHAR(70) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`Observacao` TEXT,
-	`DataNascimento` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`CPF` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`RG` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ComplementoEndereco` VARCHAR(81) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`LoginSponteNet` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`SenhaSponteNet` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`DataNascimento` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CPF` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RG` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ComplementoEndereco` VARCHAR(81) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`LoginSponteNet` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SenhaSponteNet` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`EstadoCivilID` INT(11),
-	`LocalTrabalho` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Naturalidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`GrauInstrucaoId` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`DataExpedicaoRG` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`OrgaoExpedidorRG` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Sexo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Ce` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`OperadoraCelularId` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`FotoPortal` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`CorPortal` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NumeroEndereco` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`TipoResp` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`CodigoBarras` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NomeSocial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NaoReceberEmail` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NaoReceberSMS` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NaoReceberSMSMarketing` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ClienteStoneID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`PaisID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NroPassaporte` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Estrangeiro` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`LocalTrabalho` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Naturalidade` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`GrauInstrucaoId` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataExpedicaoRG` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`OrgaoExpedidorRG` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Sexo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Ce` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`OperadoraCelularId` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`FotoPortal` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CorPortal` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumeroEndereco` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TipoResp` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CodigoBarras` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NomeSocial` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NaoReceberEmail` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NaoReceberSMS` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NaoReceberSMSMarketing` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ClienteStoneID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`PaisID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NroPassaporte` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Estrangeiro` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `ResponsavelID` (`ResponsavelID`) USING BTREE
 ,	INDEX `CidadeID` (`CidadeID`) USING BTREE
 ,	INDEX `BairroID` (`BairroID`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -16651,15 +16659,15 @@ ENGINE=InnoDB
     <sql>DROP TABLE IF EXISTS  `situacoesdidaticas`;
 CREATE TABLE IF NOT EXISTS `situacoesdidaticas` (
 	`SituacaoDidaticaID` INT(11),
-	`Descricao` VARCHAR(61) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ce` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Abreviatura` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Ativo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`DescricaoPadrao` VARCHAR(61) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`Descricao` VARCHAR(61) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ce` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Abreviatura` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Ativo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DescricaoPadrao` VARCHAR(61) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `SituacaoDidaticaID` (`SituacaoDidaticaID`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -16703,11 +16711,11 @@ ENGINE=InnoDB
     <sql>DROP TABLE IF EXISTS  `tiposemail`;
 CREATE TABLE IF NOT EXISTS `tiposemail` (
 	`TipoEmailID` INT(11),
-	`Descricao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`Descricao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `TipoEmailID` (`TipoEmailID`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -16753,22 +16761,22 @@ CREATE TABLE IF NOT EXISTS `turmaalunos` (
 	`TurmaAlunoID` INT(11),
 	`TurmaID` INT(11),
 	`AlunoID` INT(11),
-	`DataMatricula` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`TipoMatricula` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Transferido` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Observacao` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ContratoTurmaID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`SituacaoDidaticaID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NumChamada` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Removido` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MudancaId` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`AlterouManualmenteSituacaoFinal` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`DataMatricula` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TipoMatricula` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Transferido` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Observacao` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ContratoTurmaID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SituacaoDidaticaID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumChamada` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Removido` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MudancaId` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`AlterouManualmenteSituacaoFinal` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `TurmaAlunoID` (`TurmaAlunoID`) USING BTREE,
 	INDEX `TurmaID` (`TurmaID`) USING BTREE,
 	INDEX `AlunoID` (`AlunoID`) USING BTREE,
 	INDEX `SituacaoDidaticaID` (`SituacaoDidaticaID`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -16812,41 +16820,41 @@ ENGINE=InnoDB
     <sql>DROP TABLE IF EXISTS  `turmas`;
 CREATE TABLE IF NOT EXISTS `turmas` (
 	`TurmaID` INT(11),
-	`Nome` VARCHAR(85) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Sigla` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`Nome` VARCHAR(85) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Sigla` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`CursoID` INT(11),
-	`Etapa` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`Etapa` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`TurnoID` INT(11),
-	`ce` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`SalaID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`HorarioID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`FuncionarioID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`CalendarioID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`DataInicio` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`DataTermino` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Situacao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`AnoLetivo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NumeroAlunos` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Observacao` VARCHAR(83) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`TurmaModular` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`TipoPagamentoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ValorTurma` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`SistemaAvaliacaoPadraoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Codigo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`TipoTurma` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`TipoDiario` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`MinimoAlunos` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Investimento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`ModalidadeTurma` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`OrdemTurma` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`UtilizaQuadroHorariosQuinzenal` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`NumeroAlunosEstimado` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`ce` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SalaID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`HorarioID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`FuncionarioID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`CalendarioID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataInicio` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`DataTermino` VARCHAR(52) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Situacao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`AnoLetivo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumeroAlunos` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Observacao` VARCHAR(83) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TurmaModular` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TipoPagamentoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ValorTurma` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`SistemaAvaliacaoPadraoID` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Codigo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TipoTurma` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`TipoDiario` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`MinimoAlunos` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Investimento` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ModalidadeTurma` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`OrdemTurma` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`UtilizaQuadroHorariosQuinzenal` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`NumeroAlunosEstimado` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `TurmaID` (`TurmaID`) USING BTREE,
 	INDEX `CursoID` (`CursoID`) USING BTREE,
 	INDEX `FuncionarioID` (`FuncionarioID`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;</sql>
     <set_params>N</set_params>
@@ -16889,12 +16897,12 @@ ENGINE=InnoDB
     <sql>DROP TABLE IF EXISTS  `turnos`;
 CREATE TABLE IF NOT EXISTS `turnos` (
 	`TurnoID` INT(11),
-	`Descricao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`Ativo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
-	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_swedish_ci',
+	`Descricao` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Ativo` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`RecordValue` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	INDEX `TurnoID` (`TurnoID`) USING BTREE
 )
-COLLATE='utf8_general_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 </sql>
@@ -25650,11 +25658,11 @@ REPLACE(REPLACE(REPLACE(trim(P_TEXTO), '\r\n', ''),"\n",''),'\t','')</sql>
 
 CREATE TABLE IF NOT EXISTS `cidade_escolaweb` (
 	`cod_cidade` INT(11) NOT NULL,
-	`nom_cidade` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
+	`nom_cidade` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`municipioibge` INT(11) NULL DEFAULT NULL,
 	`cod_estado` INT(11) NOT NULL,
-	`nom_estado` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
-	`sgl_estado` VARCHAR(10) NOT NULL COLLATE 'latin1_swedish_ci',
+	`nom_estado` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`sgl_estado` VARCHAR(10) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`estadoibge` INT(11) NULL DEFAULT NULL,
 	`cod_pais` INT(11) NOT NULL,
 	PRIMARY KEY (`cod_cidade`) USING BTREE,
@@ -25663,7 +25671,7 @@ CREATE TABLE IF NOT EXISTS `cidade_escolaweb` (
 	INDEX `sgl_estado` (`sgl_estado`) USING BTREE,
 	INDEX `estadoibge` (`estadoibge`) USING BTREE
 )
-COLLATE='latin1_swedish_ci'
+COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 
