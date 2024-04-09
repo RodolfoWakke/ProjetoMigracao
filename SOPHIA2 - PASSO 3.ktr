@@ -428,21 +428,21 @@
     <created_user>-</created_user>
     <created_date>2024/01/05 15:54:54.314</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/01/11 15:58:11.121</modified_date>
+    <modified_date>2024/04/08 11:20:00.918</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>LocalHost</name>
-    <server>127.0.0.1</server>
+    <name>RDS</name>
+    <server>escolawebrds${v_end-RDS}.cdq77divwtia.sa-east-1.rds.amazonaws.com</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${v_nomebanco-mysql}</database>
+    <database>${v_nomebanco-RDS}</database>
     <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
+    <username>ricardo.gad</username>
+    <password>Encrypted 2be98afc86aa7f2e49910ad47df99a4df</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -452,12 +452,28 @@
         <attribute>true</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.collation_connection</code>
+        <attribute>utf8mb4_0900_ai_ci</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
         <attribute>500</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.net-read-timeout</code>
+        <attribute>2800</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.net_write_timeout</code>
-        <attribute>1800</attribute>
+        <attribute>2800</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.rewriteBatchedStatements</code>
+        <attribute>true</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useCompression</code>
+        <attribute>true</attribute>
       </attribute>
       <attribute>
         <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
@@ -507,8 +523,8 @@
   </connection>
   <order>
     <hop>
-      <from>REMOVEcaractere e LIMPEZASTRING 2</from>
-      <to>Update mig_matricula</to>
+      <from>Update mig_matricula</from>
+      <to>Update mig_configturma</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -517,13 +533,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Update mig_matricula</from>
-      <to>Update mig_configturma</to>
+      <from>Update mig_contasreceber</from>
+      <to>Remove_virgula_endereco</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>REMOVEcaractere e LIMPEZASTRING 2</name>
+    <name>Remove_virgula_endereco</name>
     <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
@@ -533,24 +549,47 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <execute_each_row>N</execute_each_row>
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>drop function if exists `REMOVEcaractere`;
+    <sql>update mig_aluno a
+set
+a.endereco = left(a.endereco,(length(a.endereco) -2))
+where right(a.endereco,2) = ', ' ;
 
-CREATE FUNCTION `REMOVEcaractere`(
-	`P_TEXTO` VARCHAR(200)
-)
-RETURNS char(50) CHARSET latin1
-LANGUAGE SQL
-NOT DETERMINISTIC
-CONTAINS SQL
-SQL SECURITY DEFINER
-COMMENT ''
-RETURN replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(P_TEXTO,'.',''),'-',''),'/',''),' ',''),'_',''),';',''),')',''),'(',''), ' ', ''),'a',''),'b',''),'c',''),'d',''),'e',''),'f',''),'g',''),'h',''),'i',''),'j',''),'k',''),'l',''),'m',''),'n',''),'o',''),'p',''),'r',''),'s',''),'t',''),'u',''),'x',''),'z',''),'w',''),'y',''),'|',''),'\'',''),',',''),'$',''),'!',''),'@',''),'+',''),'A',''),'B',''),'C',''),'D',''),'E',''),'F',''),'G',''),'H',''),'I',''),'J',''),'K',''),'L',''),'M',''),'N',''),'O',''),'P',''),'R',''),'S',''),'T',''),'U',''),'V',''),'X',''),'Z',''),'W',''),'Y',''),'Ã¡',''),'Ã ',''),'Ã£',''),'Ã¢',''),'Ã ',''),'Ã€',''),'Ãƒ',''),'Ã‚',''),'Ã©',''),'Ã¨',''),'Ãª',''),'Ã‰',''),'Ãˆ',''),'ÃŠ',''),'Ã­',''),'Ã¬',''),'Ã®',''),'Ã ',''),'ÃŒ',''),'ÃŽ',''),'Ã³',''),'Ã²',''),'Ã´',''),'Ãµ',''),'Ã“',''),'Ã’',''),'Ã”',''),'Ã•',''),'Ãº',''),'Ã¹',''),'Ã»',''),'Ãš',''),'Ã™',''),'Ã›',''),'v',''),'q',''),'Q','')
-;
+
+update mig_aluno a
+set
+a.enderecopai = left(a.enderecopai,(length(a.enderecopai) -2))
+where right(a.enderecopai,2) = ', ' ;
+
+update mig_aluno a
+set
+a.enderecomae = left(a.enderecomae,(length(a.enderecomae) -2))
+where right(a.enderecomae,2) = ', ' ;
+
+update mig_responsavel r
+set
+r.endereco = left(r.endereco,(length(r.endereco) -2))
+where right(r.endereco,2) = ', ' ;
+
+
+update mig_responsavel r
+set
+r.endereco = left(r.endereco,(length(r.endereco) -1))
+where right(r.endereco,1) = ',' ;
+
+update mig_funcionario f
+set
+f.endereco = left(f.endereco,(length(f.endereco) -2))
+where right(f.endereco,2) = ', ';
+
+update mig_funcionario f
+set
+f.endereco = left(f.endereco,(length(f.endereco) -1))
+where right(f.endereco,1) = ',';
 </sql>
     <set_params>N</set_params>
     <insert_field/>
@@ -569,7 +608,7 @@ RETURN replace(replace(replace(replace(replace(replace(replace(replace(replace(r
     </remotesteps>
     <GUI>
       <xloc>144</xloc>
-      <yloc>112</yloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -584,7 +623,7 @@ RETURN replace(replace(replace(replace(replace(replace(replace(replace(replace(r
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <execute_each_row>N</execute_each_row>
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
@@ -609,7 +648,7 @@ c.codturma = t.codturma;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
+      <xloc>144</xloc>
       <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
@@ -625,17 +664,17 @@ c.codturma = t.codturma;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <execute_each_row>N</execute_each_row>
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>-- AJUSTAR TOTPARCELA
+    <sql>--  AJUSTAR TOTPARCELA
 
--- UPDATE mig_contasreceber r 
---	left JOIN mig matricula m ON m.codaluno = r.codaluno AND m.anoletivo = r.anoletivo 
---	SET r.codmatricula = m.codmatricula  
---	WHERE r.codmatricula IS NULL;
+    UPDATE mig_contasreceber r 
+	left JOIN mig_matricula m ON m.codaluno = r.codaluno AND m.anoletivo = r.anoletivo 
+   SET r.codmatricula = m.codmatricula  
+	WHERE r.codmatricula IS NULL;
 
 	UPDATE mig_contasreceber r 
 	left JOIN mig_matricula m ON m.codaluno = r.codaluno 
@@ -677,7 +716,7 @@ c.codturma = t.codturma;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <execute_each_row>N</execute_each_row>
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
@@ -698,10 +737,10 @@ WHERE m.dtmatricula IS NULL;
 
 -- CODESCOLA
 
---UPDATE mig_matricula m
---JOIN unidadeescolar u ON (m.codunidade = u.codunidade)
---SET m.codescolaorigem = u.codtabescola
---WHERE m.codescolaorigem IS NULL;</sql>
+-- UPDATE mig_matricula m
+-- JOIN unidadeescolar u ON (m.codunidade = u.codunidade)
+-- SET m.codescolaorigem = u.codtabescola
+-- WHERE m.codescolaorigem IS NULL;</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
