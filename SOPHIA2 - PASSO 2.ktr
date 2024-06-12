@@ -428,21 +428,21 @@
     <created_user>-</created_user>
     <created_date>2024/01/05 08:48:12.015</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/01/12 08:30:41.094</modified_date>
+    <modified_date>2024/04/08 11:18:57.734</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>LocalHost</name>
-    <server>127.0.0.1</server>
+    <name>RDS</name>
+    <server>escolawebrds${v_end-RDS}.cdq77divwtia.sa-east-1.rds.amazonaws.com</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${v_nomebanco-mysql}</database>
+    <database>${v_nomebanco-RDS}</database>
     <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
+    <username>ricardo.gad</username>
+    <password>Encrypted 2be98afc86aa7f2e49910ad47df99a4df</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -452,12 +452,28 @@
         <attribute>true</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.collation_connection</code>
+        <attribute>utf8mb4_0900_ai_ci</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
         <attribute>500</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.net-read-timeout</code>
+        <attribute>2800</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.net_write_timeout</code>
-        <attribute>1800</attribute>
+        <attribute>2800</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.rewriteBatchedStatements</code>
+        <attribute>true</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useCompression</code>
+        <attribute>true</attribute>
       </attribute>
       <attribute>
         <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
@@ -707,7 +723,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <schema/>
     <table>mig_aluno</table>
     <commit>20000</commit>
@@ -751,7 +767,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <schema/>
     <table>mig_centroreceita</table>
     <commit>20000</commit>
@@ -795,7 +811,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <schema/>
     <table>mig_configturma</table>
     <commit>20000</commit>
@@ -839,7 +855,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <schema/>
     <table>mig_conta</table>
     <commit>20000</commit>
@@ -883,7 +899,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <schema/>
     <table>mig_contasreceber</table>
     <commit>20000</commit>
@@ -927,7 +943,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <schema/>
     <table>mig_curso</table>
     <commit>20000</commit>
@@ -971,7 +987,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <schema/>
     <table>mig_disciplina</table>
     <commit>20000</commit>
@@ -1015,7 +1031,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <schema/>
     <table>mig_funcionario</table>
     <commit>20000</commit>
@@ -1059,7 +1075,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <schema/>
     <table>mig_funcionariounidade</table>
     <commit>20000</commit>
@@ -1103,7 +1119,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <schema/>
     <table>mig_matricula</table>
     <commit>20000</commit>
@@ -1147,7 +1163,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <schema/>
     <table>mig_responsavel</table>
     <commit>20000</commit>
@@ -1191,7 +1207,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <schema/>
     <table>mig_seriecurso</table>
     <commit>20000</commit>
@@ -1235,7 +1251,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>LocalHost</connection>
+    <connection>RDS</connection>
     <schema/>
     <table>mig_turma</table>
     <commit>20000</commit>
@@ -1292,7 +1308,7 @@ MAX(dbo.sonumero(tel.CONTATO)) as telresid,
 MAX(dbo.sonumero(cel.CONTATO)) as celular,
 MAX(eml.CONTATO) as email,
 MAX(case p.SEXO when 1 then 'M' else 'F' end) as sexo,
-MAX(convert(date,p.DATA_NASCIMENTO)) as dtnascimento,
+MAX(replace(convert(date,p.DATA_NASCIMENTO),'/','-')) as dtnascimento,
 MAX(rg.numero) as rg,
 MAX(upper(pai.NOME)) pai,
 MAX(dbo.sonumero(epai.CEP)) as ceppai,
@@ -1304,7 +1320,7 @@ MAX(iif(concat(elpai.NOME,isnull(elpai.nome,','),epai.NUMERO,',',epai.COMPLEMENT
 ,null,upper(concat(elpai.NOME,', ',epai.NUMERO,', ',epai.COMPLEMENTO)))) as enderecopai, 
 MAX(upper(ebpai.NOME)) as bairropai,
 MAX(cipai.cod_cidade) as codcidadepai,
-MAX(pai.DATA_NASCIMENTO) as dtnascimentopai,
+MAX(replace(pai.DATA_NASCIMENTO,'/','-')) as dtnascimentopai,
 MAX(upper(mae.NOME)) mae,
 MAX(dbo.sonumero(emae.CEP)) as cepmae,
 MAX(dbo.sonumero(mae.cpf)) as cpfmae,
@@ -1315,18 +1331,18 @@ MAX(iif(concat(elmae.NOME,isnull(elmae.nome,','),emae.NUMERO,',',emae.COMPLEMENT
 ,null,upper(concat(elmae.NOME,', ',emae.NUMERO,', ',emae.COMPLEMENTO)))) as enderecomae, 
 MAX(upper(ebmae.NOME)) as bairromae,
 MAX(cimae.cod_cidade) as codcidademae,
-MAX(mae.DATA_NASCIMENTO) as dtnascimentomae,
+MAX(replace(mae.DATA_NASCIMENTO,'/','-')) as dtnascimentomae,
 MAX(iif(pc.IDFK_FORMA_CONTATO is not null, concat('Outros Contatos: ',pc.contato,' - ',pc.observacao),null)) as 'obs',
 MAX(dbo.sonumero(p.CPF)) as cpf,
 MAX(upper(rl.DESCRICAO)) AS RELIGIAO,
 MAX('S') as 'ativo',
 MAX(tt.NUMERO) titeleitor,
 MAX(tt.ZONA) AS zona,
-MAX(convert(date,getdate())) as 'dtcadastro',
+MAX(replace(convert(date,getdate()),'/','-')) as 'dtcadastro',
 MAX('BRASILEIRA') AS nacionalidade,
 MAX(upper(p.ESTADO_CIVIL)) AS estadocivil,
 MAX(iif(rg.ORGAO_EXPEDIDOR is not null,81,null)) rgorgaoemissor,
-MAX(rg.DATA_EXPEDICAO) rgdataemissao
+MAX(replace(rg.DATA_EXPEDICAO,'/','-')) rgdataemissao
 from sophia.PESSOA p
 left join sophia.PESSOA_CONTATO tel on tel.IDFK_PESSOA = p.ID_PESSOA and tel.IDFK_FORMA_CONTATO = 1 and tel.OBSERVACAO is null
 left join sophia.PESSOA_CONTATO cel on cel.IDFK_PESSOA = p.ID_PESSOA and cel.IDFK_FORMA_CONTATO = 2 and cel.OBSERVACAO is null
@@ -1605,10 +1621,10 @@ GROUP BY p.ID_PESSOA;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimento</name>
-        <length>-1</length>
+        <length>8000</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>dtnascimento</comments>
@@ -1858,10 +1874,10 @@ GROUP BY p.ID_PESSOA;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimentopai</name>
-        <length>-1</length>
+        <length>8000</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>dtnascimentopai</comments>
@@ -2088,10 +2104,10 @@ GROUP BY p.ID_PESSOA;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimentomae</name>
-        <length>-1</length>
+        <length>8000</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>dtnascimentomae</comments>
@@ -2249,10 +2265,10 @@ GROUP BY p.ID_PESSOA;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtcadastro</name>
-        <length>-1</length>
+        <length>8000</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>dtcadastro</comments>
@@ -2341,10 +2357,10 @@ GROUP BY p.ID_PESSOA;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>rgdataemissao</name>
-        <length>-1</length>
+        <length>8000</length>
         <precision>-1</precision>
         <origin>SELECT aluno</origin>
         <comments>rgdataemissao</comments>
@@ -2393,7 +2409,7 @@ GROUP BY p.ID_PESSOA;</sql>
     <sql>select 
 c.ID_CLASSIFICACAO as codreceita,
 left(c.DESCRICAO,20) as dscreceita,
-c.ATIVO as ativo
+replace(replace(c.ATIVO,'Y','S'),'1','S') as ativo
 from sophia.CLASSIFICACAO c
 where left(c.CODIFICACAO,1) = 1
 and c.PERMITELANCAMENTO = 1;</sql>
@@ -2451,10 +2467,10 @@ and c.PERMITELANCAMENTO = 1;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Boolean</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>ativo</name>
-        <length>-1</length>
+        <length>8000</length>
         <precision>-1</precision>
         <origin>SELECT centroreceita</origin>
         <comments>ativo</comments>
@@ -4763,7 +4779,7 @@ WHEN m.situacao = 4 THEN 'D'
 WHEN m.situacao = 5 THEN 'I'
 else 'C'
 END AS situacao,
-m.DATA as dtmatricula,
+replace(m.DATA,'/','-') as dtmatricula,
 m.IDFK_TURMA as codconfturma,
 '1' as codunidade,
 dbo.sonumero(r.CPF) as cpfrespacademico,
@@ -4793,7 +4809,7 @@ order by m.IDFK_ALUNO;</sql>
         <name>codaluno</name>
         <length>15</length>
         <precision>0</precision>
-        <origin>SELECT turma 3</origin>
+        <origin>SELECT matricula</origin>
         <comments>codaluno</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -4816,7 +4832,7 @@ order by m.IDFK_ALUNO;</sql>
         <name>codcurso</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT turma 3</origin>
+        <origin>SELECT matricula</origin>
         <comments>codcurso</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -4839,7 +4855,7 @@ order by m.IDFK_ALUNO;</sql>
         <name>codseriecurso</name>
         <length>24</length>
         <precision>-1</precision>
-        <origin>SELECT turma 3</origin>
+        <origin>SELECT matricula</origin>
         <comments>codseriecurso</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4862,7 +4878,7 @@ order by m.IDFK_ALUNO;</sql>
         <name>anoletivo</name>
         <length>30</length>
         <precision>-1</precision>
-        <origin>SELECT turma 3</origin>
+        <origin>SELECT matricula</origin>
         <comments>anoletivo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4885,7 +4901,7 @@ order by m.IDFK_ALUNO;</sql>
         <name>situacao</name>
         <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT turma 3</origin>
+        <origin>SELECT matricula</origin>
         <comments>situacao</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4903,12 +4919,12 @@ order by m.IDFK_ALUNO;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtmatricula</name>
-        <length>-1</length>
+        <length>8000</length>
         <precision>-1</precision>
-        <origin>SELECT turma 3</origin>
+        <origin>SELECT matricula</origin>
         <comments>dtmatricula</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4931,7 +4947,7 @@ order by m.IDFK_ALUNO;</sql>
         <name>codconfturma</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT turma 3</origin>
+        <origin>SELECT matricula</origin>
         <comments>codconfturma</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -4954,7 +4970,7 @@ order by m.IDFK_ALUNO;</sql>
         <name>codunidade</name>
         <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT turma 3</origin>
+        <origin>SELECT matricula</origin>
         <comments>codunidade</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -4977,7 +4993,7 @@ order by m.IDFK_ALUNO;</sql>
         <name>cpfrespacademico</name>
         <length>256</length>
         <precision>-1</precision>
-        <origin>SELECT turma 3</origin>
+        <origin>SELECT matricula</origin>
         <comments>cpfrespacademico</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5000,7 +5016,7 @@ order by m.IDFK_ALUNO;</sql>
         <name>cpfrespfinanceiro</name>
         <length>256</length>
         <precision>-1</precision>
-        <origin>SELECT turma 3</origin>
+        <origin>SELECT matricula</origin>
         <comments>cpfrespfinanceiro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5023,7 +5039,7 @@ order by m.IDFK_ALUNO;</sql>
         <name>dtcadastro</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT turma 3</origin>
+        <origin>SELECT matricula</origin>
         <comments>dtcadastro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5046,7 +5062,7 @@ order by m.IDFK_ALUNO;</sql>
         <name>cadastradopor</name>
         <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT turma 3</origin>
+        <origin>SELECT matricula</origin>
         <comments>cadastradopor</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5069,7 +5085,7 @@ order by m.IDFK_ALUNO;</sql>
         <name>dttransferencia</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>SELECT turma 3</origin>
+        <origin>SELECT matricula</origin>
         <comments>dttransferencia</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5092,7 +5108,7 @@ order by m.IDFK_ALUNO;</sql>
         <name>turma_aux</name>
         <length>10</length>
         <precision>-1</precision>
-        <origin>SELECT turma 3</origin>
+        <origin>SELECT matricula</origin>
         <comments>turma_aux</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5142,22 +5158,22 @@ dbo.sonumero(p.CPF) as cpf,
 max(upper(p.NOME)) as nomeresponsavel,
 max(iif(concat(el.NOME,isnull(el.nome,','),e.NUMERO,',',e.COMPLEMENTO) = ',,'
 ,null,upper(concat(el.NOME,', ',e.NUMERO,', ',e.COMPLEMENTO)))) as endereco,	
-max(upper(eb.NOME)) as bairro,
-max(ci.cod_cidade) as cidade,
-max(dbo.sonumero(e.CEP)) as cep,
-max(dbo.sonumero(tel.CONTATO)) as telresid,
-max(dbo.sonumero(cel.CONTATO)) celular,
-max(eml.CONTATO) as email,
-max(case p.SEXO when 1 then 'M' else 'F' end) as sexo,
-max(convert(date,p.DATA_NASCIMENTO)) as dtnascimento,
-max(rg.numero) as rg,
-max(iif(pc.IDFK_FORMA_CONTATO is not null, concat('Outros Contatos: ',pc.contato,' - ',pc.observacao),null)) as 'obs',
-max('MIGRACAO') as 'cadastradopor',
-max(convert(date,getdate())) as 'dtcadastro',
-max('BRASILEIRA') AS nacionalidade,
-max(upper(p.ESTADO_CIVIL)) AS estadocivil,
-max(iif(rg.ORGAO_EXPEDIDOR is not null,81,null)) rgorgaoemissor,
-max(rg.DATA_EXPEDICAO) rgdataemissao
+ max(upper(eb.NOME)) as bairro,
+ max(ci.cod_cidade) as cidade,
+ max(dbo.sonumero(e.CEP)) as cep,
+ max(left(dbo.sonumero(tel.CONTATO),10)) as telresid,
+ max(left(dbo.sonumero(cel.CONTATO),11)) celular,
+ max(eml.CONTATO) as email,
+ max(case p.SEXO when 1 then 'M' else 'F' end) as sexo,
+ max(replace(convert(date,p.DATA_NASCIMENTO),'/','-')) as dtnascimento,
+ max(rg.numero) as rg,
+ max(iif(pc.IDFK_FORMA_CONTATO is not null, concat('Outros Contatos: ',pc.contato,' - ',pc.observacao),null)) as 'obs',
+ max('MIGRACAO') as 'cadastradopor',
+ max(replace(convert(date,getdate()),'/','-')) as 'dtcadastro',
+ max('BRASILEIRA') AS nacionalidade,
+ max(upper(p.ESTADO_CIVIL)) AS estadocivil,
+ max(iif(rg.ORGAO_EXPEDIDOR is not null,81,null)) rgorgaoemissor,
+ max(replace(rg.DATA_EXPEDICAO,'/','-')) rgdataemissao
 from sophia.PESSOA p
 left join sophia.PESSOA_CONTATO tel on tel.IDFK_PESSOA = p.ID_PESSOA and tel.IDFK_FORMA_CONTATO = 1
 left join sophia.PESSOA_CONTATO cel on cel.IDFK_PESSOA = p.ID_PESSOA and cel.IDFK_FORMA_CONTATO = 2
@@ -5184,7 +5200,7 @@ group by cpf</sql>
         <name>codsoc</name>
         <length>15</length>
         <precision>0</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>codsoc</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -5207,7 +5223,7 @@ group by cpf</sql>
         <name>cpf</name>
         <length>256</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>cpf</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5230,7 +5246,7 @@ group by cpf</sql>
         <name>nomeresponsavel</name>
         <length>100</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>nomeresponsavel</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5253,7 +5269,7 @@ group by cpf</sql>
         <name>endereco</name>
         <length>674</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>endereco</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5276,7 +5292,7 @@ group by cpf</sql>
         <name>bairro</name>
         <length>250</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>bairro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5299,7 +5315,7 @@ group by cpf</sql>
         <name>cidade</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>cidade</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -5322,7 +5338,7 @@ group by cpf</sql>
         <name>cep</name>
         <length>256</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>cep</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5343,9 +5359,9 @@ group by cpf</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>telresid</name>
-        <length>256</length>
+        <length>10</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>telresid</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5366,9 +5382,9 @@ group by cpf</sql>
         <type>String</type>
         <storagetype>normal</storagetype>
         <name>celular</name>
-        <length>256</length>
+        <length>11</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>celular</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5391,7 +5407,7 @@ group by cpf</sql>
         <name>email</name>
         <length>250</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>email</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5414,7 +5430,7 @@ group by cpf</sql>
         <name>sexo</name>
         <length>1</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>sexo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5432,12 +5448,12 @@ group by cpf</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtnascimento</name>
-        <length>-1</length>
+        <length>8000</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>dtnascimento</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5460,7 +5476,7 @@ group by cpf</sql>
         <name>rg</name>
         <length>13</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>rg</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5483,7 +5499,7 @@ group by cpf</sql>
         <name>obs</name>
         <length>520</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>obs</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5506,7 +5522,7 @@ group by cpf</sql>
         <name>cadastradopor</name>
         <length>8</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>cadastradopor</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5524,12 +5540,12 @@ group by cpf</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>dtcadastro</name>
-        <length>-1</length>
+        <length>8000</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>dtcadastro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5552,7 +5568,7 @@ group by cpf</sql>
         <name>nacionalidade</name>
         <length>10</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>nacionalidade</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5575,7 +5591,7 @@ group by cpf</sql>
         <name>estadocivil</name>
         <length>4</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>estadocivil</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -5598,7 +5614,7 @@ group by cpf</sql>
         <name>rgorgaoemissor</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>rgorgaoemissor</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -5616,12 +5632,12 @@ group by cpf</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>rgdataemissao</name>
-        <length>-1</length>
+        <length>8000</length>
         <precision>-1</precision>
-        <origin>SELECT aluno 2</origin>
+        <origin>SELECT responsavel</origin>
         <comments>rgdataemissao</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -6662,63 +6678,47 @@ group by left(t.NOME_RESUMIDO,10)</sql>
     <fields>
       <field>
         <name>codsoc</name>
+        <rename/>
       </field>
       <field>
         <name>cpf</name>
+        <rename/>
       </field>
       <field>
         <name>nomeresponsavel</name>
+        <rename/>
       </field>
       <field>
         <name>endereco</name>
+        <rename/>
       </field>
       <field>
         <name>bairro</name>
+        <rename/>
       </field>
       <field>
         <name>cidade</name>
+        <rename/>
       </field>
       <field>
         <name>cep</name>
+        <rename/>
       </field>
       <field>
         <name>telresid</name>
+        <rename/>
       </field>
       <field>
         <name>celular</name>
-      </field>
-      <field>
-        <name>email</name>
-      </field>
-      <field>
-        <name>sexo</name>
-      </field>
-      <field>
-        <name>dtnascimento</name>
-      </field>
-      <field>
-        <name>rg</name>
-      </field>
-      <field>
-        <name>obs</name>
-      </field>
-      <field>
-        <name>cadastradopor</name>
-      </field>
-      <field>
-        <name>dtcadastro</name>
-      </field>
-      <field>
-        <name>nacionalidade</name>
-      </field>
-      <field>
-        <name>estadocivil</name>
+        <rename/>
       </field>
       <field>
         <name>rgorgaoemissor</name>
+        <rename/>
       </field>
       <field>
         <name>rgdataemissao</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
