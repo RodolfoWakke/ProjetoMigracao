@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2023/03/02 15:42:02.689</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/10/27 11:15:11.207</modified_date>
+    <modified_date>2024/04/25 15:47:18.287</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -496,12 +496,28 @@ TODAS OS REGISTROS DE PARCELA QUE ESTAVAM PARA O ALUNO 0, FORAM COLOCADAS PARA O
         <attribute>true</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.collation_connection</code>
+        <attribute>utf8mb4_0900_ai_ci</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
         <attribute>500</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.net-read-timeout</code>
+        <attribute>2800</attribute>
+      </attribute>
+      <attribute>
         <code>EXTRA_OPTION_MYSQL.net_write_timeout</code>
-        <attribute>1800</attribute>
+        <attribute>2800</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.rewriteBatchedStatements</code>
+        <attribute>true</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useCompression</code>
+        <attribute>true</attribute>
       </attribute>
       <attribute>
         <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
@@ -612,13 +628,14 @@ set c.codaluno = a.codaluno_unificado;
 
 
 -- PREENCHER CODMATRICULA PARTE 1
-update mig_contasreceber ca 
-set ca.codmatricula = (select max(m.codmatricula) from matricula m where m.codaluno = ca.codaluno and m.anoletivo = ca.anoletivo);
+UPDATE mig_contasreceber ca 
+SET ca.codmatricula = (SELECT MAX(m.codmatricula) FROM matricula m WHERE m.codaluno = ca.codaluno AND m.anoletivo = ca.anoletivo)
+WHERE ca.codmatricula IS NULL;
 
 -- PREENCHER CODMATRICULA PARTE 2
-update mig_contasreceber ca 
-set ca.codmatricula = (select max(m.codmatricula) from matricula m where m.codaluno = ca.codaluno)
-where ca.codmatricula is NULL;
+UPDATE mig_contasreceber ca 
+SET ca.codmatricula = (SELECT MAX(m.codmatricula) FROM matricula m WHERE m.codaluno = ca.codaluno)
+WHERE ca.codmatricula IS NULL;
 
 -- PREENCHER OUTRASRECEITAS
 UPDATE mig_contasreceber c SET c.outrasreceitas = 'S' WHERE c.codmatricula IS NULL;
@@ -631,7 +648,7 @@ where c.cpf is NULL;
 
 -- PREENCHER CODUNIDADE
 UPDATE mig_contasreceber c 
-JOIN matricula m ON m.codmatricula = c.codmatricula
+JOIN matricula m ON m.codmatricula = c.codmatricula AND m.codunidade = c.codunidade
 SET c.codunidade = m.codunidade;
 
 
